@@ -25,11 +25,13 @@ import {
   RefreshCcw,
   Route,
   ShoppingCart,
+  Smartphone,
   Truck,
   TrendingUp,
   Warehouse,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 
 const emptyOperational = {
   totalOrdersToday: 0,
@@ -310,6 +312,12 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
+            <Link href="/presentation">
+              <Button variant="outline" size="sm">
+                <Smartphone className="h-4 w-4" />
+                Presentation
+              </Button>
+            </Link>
             <Button
               variant="outline"
               size="sm"
