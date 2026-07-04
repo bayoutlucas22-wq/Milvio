@@ -30,11 +30,13 @@ import {
   getLastDailyClosing,
   getDailyClosingHistory,
   getExecutiveSummary,
+  getLatestImportedSummaries,
   getSystemSetting,
   getAllSystemSettings,
 } from "./queries";
 import { calculateOrderDelay, calculateRiskLevel, calculateNetMargin } from "./db";
-import { parseDailyMetricsExcel, parseWorkbookImport } from "./excelIngest";
+import { parseDailyMetricsExcel, parseWorkbookImport, extractNormalizedImportRows } from "./excelIngest";
+import { persistImportedWorkbook } from "./importPersistence";
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
 import {
@@ -48,6 +50,8 @@ import {
   dailyClosings,
   systemSettings,
 } from "../drizzle/schema";
+
+const decimalString = (value: number) => value.toString();
 
 export const appRouter = router({
   system: systemRouter,
@@ -98,7 +102,14 @@ export const appRouter = router({
         const db = await getDb();
         if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
 
-        const result = await db.insert(products).values(input);
+        const result = await db.insert(products).values({
+          ...input,
+          salePrice: decimalString(input.salePrice),
+          unitCost: decimalString(input.unitCost),
+          platformFeePercent: decimalString(input.platformFeePercent),
+          extraFeePercent: decimalString(input.extraFeePercent),
+          marginTargetPercent: decimalString(input.marginTargetPercent),
+        });
         return result;
       }),
 
@@ -121,9 +132,23 @@ export const appRouter = router({
         if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
 
         const { id, ...updateData } = input;
+        const decimalUpdate = {
+          ...(updateData.name !== undefined ? { name: updateData.name } : {}),
+          ...(updateData.salePrice !== undefined ? { salePrice: decimalString(updateData.salePrice) } : {}),
+          ...(updateData.unitCost !== undefined ? { unitCost: decimalString(updateData.unitCost) } : {}),
+          ...(updateData.stockTotal !== undefined ? { stockTotal: updateData.stockTotal } : {}),
+          ...(updateData.stockCold !== undefined ? { stockCold: updateData.stockCold } : {}),
+          ...(updateData.minimumStock !== undefined ? { minimumStock: updateData.minimumStock } : {}),
+          ...(updateData.platformFeePercent !== undefined
+            ? { platformFeePercent: decimalString(updateData.platformFeePercent) }
+            : {}),
+          ...(updateData.extraFeePercent !== undefined
+            ? { extraFeePercent: decimalString(updateData.extraFeePercent) }
+            : {}),
+        };
         const result = await db
           .update(products)
-          .set(updateData)
+          .set(decimalUpdate)
           .where(eq(products.id, id));
         return result;
       }),
@@ -278,9 +303,17 @@ export const appRouter = router({
           .insert(orders)
           .values({
             ...input,
-            platformFeeAmount,
-            netMarginAmount,
-            netMarginPercent,
+            grossAmount: decimalString(input.grossAmount),
+            platformFeePercent: decimalString(input.platformFeePercent),
+            platformFeeAmount: decimalString(platformFeeAmount),
+            extraFeeAmount: decimalString(input.extraFeeAmount),
+            productCostTotal: decimalString(input.productCostTotal),
+            deliveryCost: decimalString(input.deliveryCost),
+            packagingCost: decimalString(input.packagingCost),
+            discountAmount: decimalString(input.discountAmount),
+            refundAmount: "0.00",
+            netMarginAmount: decimalString(netMarginAmount),
+            netMarginPercent: decimalString(netMarginPercent),
             riskLevel,
             status: "pending",
             createdAt: new Date(),
@@ -390,6 +423,9 @@ export const appRouter = router({
           .insert(feeRules)
           .values({
             ...input,
+            platformFeePercent: decimalString(input.platformFeePercent),
+            extraFeePercent: decimalString(input.extraFeePercent),
+            paymentFeePercent: decimalString(input.paymentFeePercent),
             active: true,
             createdAt: new Date(),
           });
@@ -411,10 +447,22 @@ export const appRouter = router({
         const db = await getDb();
         if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
 
+        const decimalUpdate = {
+          ...(input.name !== undefined ? { name: input.name } : {}),
+          ...(input.platformFeePercent !== undefined
+            ? { platformFeePercent: decimalString(input.platformFeePercent) }
+            : {}),
+          ...(input.extraFeePercent !== undefined
+            ? { extraFeePercent: decimalString(input.extraFeePercent) }
+            : {}),
+          ...(input.paymentFeePercent !== undefined
+            ? { paymentFeePercent: decimalString(input.paymentFeePercent) }
+            : {}),
+        };
         const { id, ...updateData } = input;
         const result = await db
           .update(feeRules)
-          .set(updateData)
+          .set(decimalUpdate)
           .where(eq(feeRules.id, id));
 
         return result;
@@ -620,6 +668,11 @@ export const appRouter = router({
   // ============ EXCEL INGEST ============
   imports: router({
     getLatestSummaries: publicProcedure.query(async () => {
+      const normalizedResult = await getLatestImportedSummaries();
+      if (normalizedResult) {
+        return normalizedResult;
+      }
+
       const keys = [
         "excel_ingest:last_result",
         "excel_ingest:orders_report",
@@ -649,8 +702,11 @@ export const appRouter = router({
         if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
 
         const imported = parseWorkbookImport(input.base64, input.fileName);
+        const normalized = extractNormalizedImportRows(input.base64, input.fileName);
         const importedAt = new Date().toISOString();
         const importId = `${imported.reportType}:${importedAt}:${input.fileName}`;
+
+        await persistImportedWorkbook(db, imported, normalized, input.fileName, importId, importedAt);
 
         if (imported.reportType === "restitution_summary") {
           const rows = imported.rows ?? [];

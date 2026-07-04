@@ -11,8 +11,13 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { getLoginUrl } from "@/const";
-import { buildOwnerDashboardModel } from "@/lib/owner-dashboard";
+import { buildOwnerDashboardModel, buildOwnerRecommendations } from "@/lib/owner-dashboard";
 import { trpc } from "@/lib/trpc";
 import {
   AlertTriangle,
@@ -21,6 +26,9 @@ import {
   Clock3,
   DollarSign,
   FileUp,
+  ChevronDown,
+  ChevronUp,
+  Lightbulb,
   LogIn,
   PackageCheck,
   RefreshCcw,
@@ -33,32 +41,13 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-
-const emptyOperational = {
-  totalOrdersToday: 0,
-  activeOrders: 0,
-  lateOrders: 0,
-  criticalOrders: 0,
-  waitingOrders: 0,
-  availableDrivers: 0,
-  driversWithOne: 0,
-  driversWithTwo: 0,
-  capacityUsedPercent: 0,
-  totalDrivers: 0,
-};
-
-const emptyFinancial = {
-  grossRevenue: 0,
-  platformCommissions: 0,
-  extraFees: 0,
-  productCosts: 0,
-  deliveryCosts: 0,
-  packagingCosts: 0,
-  discounts: 0,
-  refunds: 0,
-  netMargin: 0,
-  netMarginPercent: 0,
-};
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 function money(value: number) {
   return new Intl.NumberFormat("pt-BR", {
@@ -206,6 +195,7 @@ export default function Home() {
   const [selectedOrderImportId, setSelectedOrderImportId] = useState("");
   const [selectedDriverImportId, setSelectedDriverImportId] = useState("");
   const [selectedRestitutionImportId, setSelectedRestitutionImportId] = useState("");
+  const [showImportSelectors, setShowImportSelectors] = useState(false);
 
   const operationalQuery = trpc.dashboard.getOperationalMetrics.useQuery(undefined, {
     enabled: isAuthenticated,
@@ -222,6 +212,13 @@ export default function Home() {
     retry: false,
     refetchOnWindowFocus: false,
   });
+  const executiveQuery = trpc.dashboard.getExecutiveSummary.useQuery(
+    { limit: 7 },
+    {
+      retry: false,
+      refetchOnWindowFocus: false,
+    }
+  );
   const summariesQuery = trpc.imports.getLatestSummaries.useQuery(undefined, {
     retry: false,
     refetchOnWindowFocus: false,
@@ -246,13 +243,14 @@ export default function Home() {
     },
   });
 
-  const operational = operationalQuery.data ?? emptyOperational;
-  const financial = financialQuery.data ?? emptyFinancial;
+  const operational = operationalQuery.data;
+  const financial = financialQuery.data;
   const criticalStockCount = criticalStockQuery.data?.length ?? 0;
   const isLoading =
     operationalQuery.isLoading ||
     financialQuery.isLoading ||
-    criticalStockQuery.isLoading;
+    criticalStockQuery.isLoading ||
+    executiveQuery.isLoading;
 
   const summaries = summariesQuery.data ?? {};
   const importCatalog = (summaries["excel_ingest:catalog"] as any[]) ?? [];
@@ -281,6 +279,20 @@ export default function Home() {
     financial,
     criticalStockCount,
   });
+  const ownerRecommendations = buildOwnerRecommendations(ownerModel);
+  const executiveSummary = executiveQuery.data;
+  const latestClosing = executiveSummary?.latestClosing;
+  const latestClosingStoreCost = asNumber(latestClosing?.productCosts);
+  const latestClosingDeliveryCost = asNumber(latestClosing?.deliveryCosts);
+  const latestClosingNetMargin = asNumber(latestClosing?.totalNetMargin);
+  const latestClosingNetMarginPercent = asNumber(latestClosing?.netMarginPercent);
+  const hasFinancialSnapshot =
+    ownerModel.sources.hasFinancialData || ownerModel.sources.hasRestitutionReport || Boolean(latestClosing);
+  const trendData = (executiveSummary?.history ?? []).slice().reverse().map((row) => ({
+    date: new Date(row.closingDate).toLocaleDateString("pt-BR"),
+    margem: row.totalNetMargin,
+    faturamento: row.grossRevenue,
+  }));
 
   useEffect(() => {
     if (!selectedOrderImportId && orderOptions[0]?.importId) {
@@ -341,6 +353,7 @@ export default function Home() {
                 void operationalQuery.refetch();
                 void financialQuery.refetch();
                 void criticalStockQuery.refetch();
+                void executiveQuery.refetch();
               }}
             >
               <RefreshCcw className="h-4 w-4" />
@@ -397,32 +410,89 @@ export default function Home() {
             </Badge>
           </div>
 
+          <Card className="rounded-lg border-emerald-200 bg-emerald-50/70 shadow-none">
+            <CardContent className="flex flex-col gap-4 p-4 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="secondary" className="rounded-full">
+                    {ownerModel.readingMode === "lucro_real" ? "Lucro real" : "Base parcial"}
+                  </Badge>
+                  <span className="text-sm font-medium text-stone-700">
+                    {ownerModel.readingMode === "lucro_real"
+                      ? "A leitura está validada pelos arquivos essenciais."
+                      : "A leitura ainda depende de um arquivo faltar para fechar o lucro real."}
+                  </span>
+                </div>
+                <p className="text-sm text-stone-600">
+                  Regra simples: pedidos mostram receita, restituição fecha custo e o histórico persistido confirma a tendência.
+                  Se um dos pilares faltar, o painel não inventa lucro e marca a visão como base parcial.
+                </p>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-3">
+                <Badge variant={ownerModel.sources.hasOrdersReport ? "secondary" : "outline"} className="justify-center py-2">
+                  Receita: {ownerModel.sources.hasOrdersReport ? "ok" : "falta"}
+                </Badge>
+                <Badge variant={ownerModel.sources.hasRestitutionReport ? "secondary" : "outline"} className="justify-center py-2">
+                  Custo: {ownerModel.sources.hasRestitutionReport ? "ok" : "falta"}
+                </Badge>
+                <Badge variant={ownerModel.sources.hasValidatedCore ? "secondary" : "outline"} className="justify-center py-2">
+                  Base: {ownerModel.sources.hasValidatedCore ? "validada" : "parcial"}
+                </Badge>
+              </div>
+            </CardContent>
+          </Card>
+
           <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             <MetricCard
-              title="Pedidos hoje"
-              value={ownerModel.totals.totalOrdersToday}
-              helper={`${ownerModel.totals.activeOrders} em andamento`}
+              title="Pedidos analisados"
+              value={ownerModel.sources.hasOrdersReport ? ownerModel.totals.totalOrders : "Sem dados"}
+              helper={
+                ownerModel.sources.hasOrdersReport
+                  ? `${ownerModel.totals.deliveredOrders} entregues no workbook`
+                  : "importe o relatório de pedidos para calcular faturamento real"
+              }
               icon={PackageCheck}
-              tone="good"
+              tone={ownerModel.sources.hasOrdersReport ? "good" : "risk"}
             />
             <MetricCard
               title="Margem liquida"
-              value={pct(ownerModel.totals.netMarginPercent)}
-              helper={money(ownerModel.totals.netMargin)}
+              value={hasFinancialSnapshot ? pct(latestClosing ? latestClosingNetMarginPercent : ownerModel.totals.netMarginPercent) : "Sem base"}
+              helper={
+                hasFinancialSnapshot
+                  ? money(latestClosing ? latestClosingNetMargin : ownerModel.totals.netMargin)
+                  : "importe pedidos e fechamento para calcular margem"
+              }
               icon={TrendingUp}
-              tone={ownerModel.totals.netMarginPercent < 10 ? "risk" : "good"}
+              tone={
+                hasFinancialSnapshot &&
+                (latestClosing ? latestClosingNetMarginPercent : ownerModel.totals.netMarginPercent) >= 10
+                  ? "good"
+                  : "risk"
+              }
             />
             <MetricCard
               title="Faturamento"
-              value={money(ownerModel.totals.grossRevenue)}
-              helper={`${ownerModel.totals.totalOrders} pedidos importados`}
+              value={ownerModel.sources.hasOrdersReport ? money(ownerModel.totals.grossRevenue) : "Sem dados"}
+              helper={
+                ownerModel.sources.hasOrdersReport
+                  ? `${ownerModel.totals.totalOrders} pedidos importados`
+                  : "sem workbook de pedidos, não existe faturamento analisado"
+              }
               icon={DollarSign}
-              tone="good"
+              tone={ownerModel.sources.hasOrdersReport ? "good" : "risk"}
             />
             <MetricCard
               title="Custo final"
-              value={money(ownerModel.totals.finalOperationalCost)}
-              helper="custo da loja + custo dos motoboys"
+              value={
+                ownerModel.sources.hasRestitutionReport
+                  ? money(ownerModel.totals.finalOperationalCost)
+                  : "Sem base"
+              }
+              helper={
+                ownerModel.sources.hasRestitutionReport
+                  ? "custo da loja + custo dos motoboys"
+                  : "importe o resumo de restituição para fechar o custo real"
+              }
               icon={Truck}
             />
           </section>
@@ -430,64 +500,117 @@ export default function Home() {
           <section className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
             <Card className="rounded-lg shadow-none">
               <CardHeader>
-                <CardTitle>Resumo importado</CardTitle>
-                <CardDescription>
-                  Os três arquivos alimentam a leitura sem precisar trocar de tela.
-                </CardDescription>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="space-y-1">
+                    <CardTitle>Resumo importado</CardTitle>
+                    <CardDescription>
+                      Os três arquivos alimentam a leitura sem precisar trocar de tela.
+                    </CardDescription>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowImportSelectors((value) => !value)}
+                  >
+                    {showImportSelectors ? (
+                      <>
+                        <ChevronUp className="h-4 w-4" />
+                        Fechar opcoes
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="h-4 w-4" />
+                        Ver opcoes
+                      </>
+                    )}
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent className="space-y-5">
-                <div className="grid gap-3 md:grid-cols-3">
-                  {orderOptions.length ? (
-                    <ImportPicker
-                      title="Excel de pedidos"
-                      value={selectedOrderImportId}
-                      options={orderOptions}
-                      onChange={setSelectedOrderImportId}
-                    />
-                  ) : null}
-                  {driverOptions.length ? (
-                    <ImportPicker
-                      title="Excel de entregadores"
-                      value={selectedDriverImportId}
-                      options={driverOptions}
-                      onChange={setSelectedDriverImportId}
-                    />
-                  ) : null}
-                  {restitutionOptions.length ? (
-                    <ImportPicker
-                      title="Excel de restituicao"
-                      value={selectedRestitutionImportId}
-                      options={restitutionOptions}
-                      onChange={setSelectedRestitutionImportId}
-                    />
-                  ) : null}
+                {showImportSelectors ? (
+                  <div className="grid gap-3 md:grid-cols-3">
+                    {orderOptions.length ? (
+                      <ImportPicker
+                        title="Excel de pedidos"
+                        value={selectedOrderImportId}
+                        options={orderOptions}
+                        onChange={setSelectedOrderImportId}
+                      />
+                    ) : null}
+                    {driverOptions.length ? (
+                      <ImportPicker
+                        title="Excel de entregadores"
+                        value={selectedDriverImportId}
+                        options={driverOptions}
+                        onChange={setSelectedDriverImportId}
+                      />
+                    ) : null}
+                    {restitutionOptions.length ? (
+                      <ImportPicker
+                        title="Excel de restituicao"
+                        value={selectedRestitutionImportId}
+                        options={restitutionOptions}
+                        onChange={setSelectedRestitutionImportId}
+                      />
+                    ) : null}
+                  </div>
+                ) : null}
+                <div className="grid gap-2 sm:grid-cols-3">
+                  <Badge variant={ownerModel.sources.hasOrdersReport ? "secondary" : "outline"} className="justify-center py-2">
+                    Pedidos: {ownerModel.sources.hasOrdersReport ? "ok" : "falta"}
+                  </Badge>
+                  <Badge variant={ownerModel.sources.hasDriversReport ? "secondary" : "outline"} className="justify-center py-2">
+                    Entregadores: {ownerModel.sources.hasDriversReport ? "ok" : "falta"}
+                  </Badge>
+                  <Badge variant={ownerModel.sources.hasRestitutionReport ? "secondary" : "outline"} className="justify-center py-2">
+                    Restituição: {ownerModel.sources.hasRestitutionReport ? "ok" : "falta"}
+                  </Badge>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                   <MetricCard
                     title="Pedidos importados"
-                    value={ownerModel.totals.totalOrders}
-                    helper={dateRangeLabel(ownerModel.ordersSummary?.dateFrom, ownerModel.ordersSummary?.dateTo)}
+                    value={ownerModel.sources.hasOrdersReport ? ownerModel.totals.totalOrders : "Sem dados"}
+                    helper={
+                      ownerModel.sources.hasOrdersReport
+                        ? dateRangeLabel(ownerModel.ordersSummary?.dateFrom, ownerModel.ordersSummary?.dateTo)
+                        : "importe o workbook de pedidos para abrir esse bloco"
+                    }
                     icon={ShoppingCart}
-                    tone="good"
+                    tone={ownerModel.sources.hasOrdersReport ? "good" : "risk"}
                   />
                   <MetricCard
                     title="Receita pedidos"
-                    value={money(ownerModel.ordersSummary?.totals?.grossRevenue ?? 0)}
-                    helper={`${ownerModel.totals.deliveredOrders} entregues`}
+                    value={ownerModel.sources.hasOrdersReport ? money(ownerModel.ordersSummary?.totals?.grossRevenue ?? 0) : "Sem dados"}
+                    helper={
+                      ownerModel.sources.hasOrdersReport
+                        ? `${ownerModel.totals.deliveredOrders} entregues`
+                        : "sem relatório de pedidos, não dá para afirmar faturamento"
+                    }
                     icon={DollarSign}
-                    tone="good"
+                    tone={ownerModel.sources.hasOrdersReport ? "good" : "risk"}
                   />
                   <MetricCard
                     title="Receita motoboys"
-                    value={money(ownerModel.driversSummary?.totals?.grossRevenue ?? 0)}
-                    helper={`${ownerModel.totals.totalDrivers} entregadores`}
+                    value={ownerModel.sources.hasDriversReport ? money(ownerModel.driversSummary?.totals?.grossRevenue ?? 0) : "Sem dados"}
+                    helper={
+                      ownerModel.sources.hasDriversReport
+                        ? `${ownerModel.totals.totalDrivers} entregadores`
+                        : "importe o relatório de entregadores para mostrar esse bloco"
+                    }
                     icon={Truck}
+                    tone={ownerModel.sources.hasDriversReport ? "default" : "risk"}
                   />
                   <MetricCard
                     title="Restituicao"
-                    value={money(ownerModel.totals.restitutionTotal)}
-                    helper={dateRangeLabel(ownerModel.restitutionSummary?.dateFrom, ownerModel.restitutionSummary?.dateTo)}
+                    value={ownerModel.sources.hasRestitutionReport ? money(ownerModel.totals.restitutionTotal) : "Sem dados"}
+                    helper={
+                      ownerModel.sources.hasRestitutionReport
+                        ? dateRangeLabel(ownerModel.restitutionSummary?.dateFrom, ownerModel.restitutionSummary?.dateTo)
+                        : "importe o resumo de restituição para fechar o custo"
+                    }
                     icon={Warehouse}
+                    tone={ownerModel.sources.hasRestitutionReport ? "default" : "risk"}
                   />
                 </div>
               </CardContent>
@@ -503,18 +626,23 @@ export default function Home() {
               <CardContent className="space-y-4">
                 <div className="rounded-lg border bg-white p-4">
                   <p className="text-sm text-muted-foreground">Valor final consolidado</p>
-                  <p className="mt-2 text-3xl font-semibold">{money(ownerModel.totals.finalOperationalCost)}</p>
+                  <p className="mt-2 text-3xl font-semibold">
+                    {money(
+                      ownerModel.totals.finalOperationalCost ||
+                        latestClosingStoreCost + latestClosingDeliveryCost
+                    )}
+                  </p>
                 </div>
                 <div className="grid gap-3">
                   <MetricCard
                     title="Custo loja"
-                    value={money(ownerModel.restitutionSummary?.totals?.storeCostTotal ?? 0)}
+                    value={money(ownerModel.restitutionSummary?.totals?.storeCostTotal ?? latestClosingStoreCost)}
                     helper="alimentado pela planilha diaria"
                     icon={Warehouse}
                   />
                   <MetricCard
                     title="Custo motoboys"
-                    value={money(ownerModel.restitutionSummary?.totals?.driverCostTotal ?? 0)}
+                    value={money(ownerModel.restitutionSummary?.totals?.driverCostTotal ?? latestClosingDeliveryCost)}
                     helper="custo operacional de entrega"
                     icon={Bike}
                   />
@@ -534,7 +662,7 @@ export default function Home() {
               <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 <MetricCard
                   title="Faturamento"
-                  value={money(ownerModel.totals.grossRevenue)}
+                  value={money(ownerModel.totals.grossRevenue || latestClosing?.grossRevenue || 0)}
                   helper="pedidos entregues"
                   icon={DollarSign}
                 />
@@ -547,13 +675,13 @@ export default function Home() {
                 />
                 <MetricCard
                   title="Produto"
-                  value={money(ownerModel.totals.productCosts)}
+                  value={money(ownerModel.totals.productCosts || latestClosingStoreCost)}
                   helper="custo vendido"
                   icon={Boxes}
                 />
                 <MetricCard
                   title="Entrega"
-                  value={money(ownerModel.totals.deliveryCosts)}
+                  value={money(ownerModel.totals.deliveryCosts || latestClosingDeliveryCost)}
                   helper="custo logistico"
                   icon={Bike}
                 />
@@ -588,6 +716,173 @@ export default function Home() {
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Estoque critico</span>
                   <strong>{ownerModel.totals.criticalStockCount}</strong>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+            <Card className="rounded-lg shadow-none">
+              <CardHeader>
+                <CardTitle>Leitura persistida no MySQL</CardTitle>
+                <CardDescription>
+                  Fechamentos diários consolidados para enxergar tendência, não só um mês solto.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                <MetricCard
+                  title="Último fechamento"
+                  value={money(executiveSummary?.latestClosing?.totalNetMargin ?? ownerModel.totals.netMargin)}
+                  helper={
+                    executiveSummary?.latestClosing?.closingDate
+                      ? new Date(executiveSummary.latestClosing.closingDate).toLocaleDateString("pt-BR")
+                      : "usando o import atual enquanto o histórico cresce"
+                  }
+                  icon={TrendingUp}
+                  tone="good"
+                />
+                <MetricCard
+                  title="Média de margem"
+                  value={`${
+                    executiveSummary?.history.length
+                      ? (executiveSummary?.averageNetMarginPercent ?? 0).toFixed(1)
+                      : ownerModel.totals.netMarginPercent.toFixed(1)
+                  }%`}
+                  helper={
+                    executiveSummary?.history.length ? "últimos fechamentos" : "base atual importada"
+                  }
+                  icon={DollarSign}
+                />
+                <MetricCard
+                  title="Tendência"
+                  value={
+                    executiveSummary?.history.length && executiveSummary?.trend === "up"
+                      ? "Subindo"
+                      : executiveSummary?.history.length && executiveSummary?.trend === "down"
+                        ? "Caindo"
+                        : "Estável"
+                  }
+                  helper={money(executiveSummary?.averageGrossRevenue ?? ownerModel.totals.grossRevenue)}
+                  icon={Route}
+                />
+                <MetricCard
+                  title="Top fechamento"
+                  value={money(executiveSummary?.bestDay?.totalNetMargin ?? ownerModel.totals.netMargin)}
+                  helper={executiveSummary?.history.length ? "melhor dia salvo" : "sem histórico salvo ainda"}
+                  icon={PackageCheck}
+                />
+              </CardContent>
+              <CardContent className="pt-0">
+                <ChartContainer
+                  config={{
+                    margem: { label: "Margem", color: "hsl(142 76% 36%)" },
+                    faturamento: { label: "Faturamento", color: "hsl(38 92% 50%)" },
+                  }}
+                  className="h-[280px] w-full"
+                >
+                  <LineChart data={trendData} margin={{ left: 8, right: 8, top: 10, bottom: 10 }}>
+                    <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                    <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} />
+                    <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+                    <ChartTooltip content={<ChartTooltipContent indicator="line" />} />
+                    <Line
+                      type="monotone"
+                      dataKey="margem"
+                      stroke="var(--color-margem)"
+                      strokeWidth={3}
+                      dot={false}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="faturamento"
+                      stroke="var(--color-faturamento)"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  </LineChart>
+                </ChartContainer>
+                {!trendData.length ? (
+                  <div className="mt-3 rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
+                    Ainda não há fechamentos salvos para desenhar a tendência.
+                  </div>
+                ) : null}
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-lg shadow-none">
+              <CardHeader>
+                <CardTitle>Guia do dono</CardTitle>
+                <CardDescription>
+                  O caminho mais simples para explicar onde está o lucro e como aumentá-lo.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="rounded-lg border bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Passo 1</p>
+                  <p className="mt-2 font-semibold">Olhe margem, faturamento e custo final primeiro.</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Se a margem sobe, o lucro cresce. Se o faturamento sobe mas a margem cai, o custo está comendo o ganho.
+                  </p>
+                </div>
+                <div className="rounded-lg border bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Passo 2</p>
+                  <p className="mt-2 font-semibold">Ataque estoque, fila e restituição.</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    O lucro sobe mais rápido quando você reduz ruptura, atraso, cancelamento e dinheiro perdido em correções.
+                  </p>
+                </div>
+                <div className="rounded-lg border bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Passo 3</p>
+                  <p className="mt-2 font-semibold">Use a etiqueta de leitura como trava de verdade.</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {ownerModel.readingMode === "lucro_real"
+                      ? "Lucro real significa que receita e custo já estão fechados o suficiente para orientar decisão."
+                      : "Base parcial significa que falta arquivo essencial. Aqui o painel serve para apoio, não para concluir lucro final."}
+                  </p>
+                </div>
+                <div className="rounded-lg border border-dashed bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Como lucrar</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Receita - custo da loja - custo de entrega - perdas = lucro real.
+                    Se faltar um arquivo, o painel mostra base parcial. Quando os arquivos essenciais entram, o dono vê onde o dinheiro fica e onde ele some.
+                  </p>
+                </div>
+                <div className="space-y-3 rounded-lg border bg-muted/20 p-4">
+                  <div className="flex items-center gap-2">
+                    <Lightbulb className="h-4 w-4 text-amber-600" />
+                    <p className="font-semibold">Ações rápidas agora</p>
+                  </div>
+                  {!ownerModel.sources.hasOrdersReport ? (
+                    <div className="rounded-lg border border-dashed bg-white p-3 text-sm text-muted-foreground">
+                      Falta o workbook de pedidos. Sem ele, o painel não consegue provar faturamento nem margem real.
+                    </div>
+                  ) : null}
+                  {ownerRecommendations.map((item) => (
+                    <div key={`${item.tag}-${item.title}`} className="rounded-lg border bg-white p-3">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="space-y-1">
+                          <p className="font-medium">{item.title}</p>
+                          <p className="text-sm text-muted-foreground">{item.description}</p>
+                        </div>
+                        <Badge
+                          variant={
+                            item.priority === "high"
+                              ? "destructive"
+                              : item.priority === "medium"
+                                ? "secondary"
+                                : "outline"
+                          }
+                        >
+                          {item.tag}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                  {!ownerRecommendations.length ? (
+                    <div className="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
+                      Sem alerta no momento. A operação está saudável e pronta para escalar.
+                    </div>
+                  ) : null}
                 </div>
               </CardContent>
             </Card>

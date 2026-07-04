@@ -69,7 +69,7 @@ function normalizeRow(row: RawRow) {
   return normalized;
 }
 
-function getValue(row: Record<string, unknown>, keys: string[]) {
+function getValue(row: Record<string, unknown>, keys: readonly string[]) {
   for (const key of keys) {
     const value = row[normalizeKey(key)];
     if (value !== undefined && value !== null && value !== "") return value;
@@ -322,6 +322,75 @@ export type WorkbookImportSummary =
         restitutionPromotions?: number;
         restitutionTotal?: number;
         manualAdjustments?: number;
+      }>;
+    };
+
+export type NormalizedImportRows =
+  | {
+      reportType: "orders_report";
+      sourceSheet: string;
+      title: string;
+      dateFrom?: string;
+      dateTo?: string;
+      orders: Array<{
+        rowIndex: number;
+        orderDateLabel: string;
+        status: string;
+        courierName: string;
+        paymentMethod: string;
+        subtotal: number;
+        discount: number;
+        freight: number;
+        total: number;
+        rawJson: string;
+      }>;
+      products: Array<{
+        rowIndex: number;
+        name: string;
+        quantity: number;
+        total: number;
+        rawJson: string;
+      }>;
+    }
+  | {
+      reportType: "drivers_report";
+      sourceSheet: string;
+      title: string;
+      dateFrom?: string;
+      dateTo?: string;
+      drivers: Array<{
+        rowIndex: number;
+        name: string;
+        deliveredOrders: number;
+        cashTotal: number;
+        cardTotal: number;
+        onlineTotal: number;
+        total: number;
+        rawJson: string;
+      }>;
+    }
+  | {
+      reportType: "restitution_summary";
+      sourceSheet: string;
+      title: string;
+      dateFrom?: string;
+      dateTo?: string;
+      rows: Array<{
+        rowIndex: number;
+        dateLabel: string;
+        grossRevenue: number;
+        storeCostTotal: number;
+        driverCostTotal: number;
+        finalCostAmount: number;
+        totalNetMargin: number;
+        netMarginPercent: number;
+        restitutionFreight: number;
+        restitutionMarkup: number;
+        marketplaceCommission: number;
+        restitutionPromotions: number;
+        restitutionTotal: number;
+        manualAdjustments: number;
+        rawJson: string;
       }>;
     };
 
@@ -813,6 +882,156 @@ export function parseWorkbookImport(base64: string, fileName: string): WorkbookI
       dateTo: rowsByDay.at(-1)?.date,
       totals,
       rows: rowsByDay,
+    };
+  }
+
+  throw new Error(`Workbook type not recognized for ${fileName}`);
+}
+
+export function extractNormalizedImportRows(base64: string, fileName: string): NormalizedImportRows {
+  const workbook = getWorkbookBase64(base64);
+  const sheetNames = workbook.SheetNames;
+
+  if (sheetNames.includes("Relatório de Pedidos") && sheetNames.includes("Ranking de Produtos")) {
+    const orderSheet = workbook.Sheets["Relatório de Pedidos"];
+    const productSheet = workbook.Sheets["Ranking de Produtos"];
+    const rawOrderRows = getSheetRows(orderSheet);
+    const rawProductRows = getSheetRows(productSheet);
+    const orderRows = getOrderRows(orderSheet);
+    const productRows = getDataRowsAfterHeader(rawProductRows, "Produto").filter(
+      (row) => typeof row[0] === "string" && !String(row[0]).toLowerCase().includes("lista de produtos")
+    );
+    const dateRange = extractDateRangeFromRows(rawOrderRows);
+
+    return {
+      reportType: "orders_report",
+      title: titleFromSheetName("Relatório de Pedidos"),
+      sourceSheet: "Relatório de Pedidos",
+      ...dateRange,
+      orders: orderRows.map((row, index) => ({
+        rowIndex: index + 1,
+        orderDateLabel:
+          row[0] instanceof Date
+            ? toIsoDate(row[0])
+            : typeof row[0] === "string"
+              ? row[0].trim()
+              : "",
+        status: String(row[4] ?? "").trim(),
+        courierName: String(row[5] ?? "").trim(),
+        paymentMethod: String(row[6] ?? "").trim(),
+        subtotal: asNumber(row[7]),
+        discount: asNumber(row[8]),
+        freight: asNumber(row[9]),
+        total: asNumber(row[10]),
+        rawJson: JSON.stringify(row),
+      })),
+      products: productRows.map((row, index) => ({
+        rowIndex: index + 1,
+        name: String(row[0] ?? "").trim(),
+        quantity: Math.round(asNumber(row[1])),
+        total: asNumber(row[3]),
+        rawJson: JSON.stringify(row),
+      })),
+    };
+  }
+
+  if (sheetNames.includes("Relatório de Entregadores")) {
+    const sheet = workbook.Sheets["Relatório de Entregadores"];
+    const rawRows = getSheetRows(sheet);
+    const rows = getDataRowsAfterHeader(rawRows, "Pessoa Entregadora");
+    const dateRange = extractDateRangeFromRows(rawRows);
+
+    return {
+      reportType: "drivers_report",
+      title: titleFromSheetName("Relatório de Entregadores"),
+      sourceSheet: "Relatório de Entregadores",
+      ...dateRange,
+      drivers: rows
+        .filter((row) => isDriverRow(row as unknown[]))
+        .map((row, index) => {
+          const r = row as unknown[];
+          const name = r.find((cell, cellIndex) => cellIndex > 0 && typeof cell === "string" && cell.trim().length > 0);
+          return {
+            rowIndex: index + 1,
+            name: String(name ?? "").trim(),
+            deliveredOrders: Math.round(asNumber(r[1])),
+            cardTotal: asNumber(r[3]),
+            cashTotal: asNumber(r[4]),
+            onlineTotal: asNumber(r[5]),
+            total: asNumber(r[6]),
+            rawJson: JSON.stringify(r),
+          };
+        }),
+    };
+  }
+
+  if (sheetNames.includes("Resumo Restituição")) {
+    const summary = parseWorkbookImport(base64, fileName);
+    if (summary.reportType !== "restitution_summary") {
+      throw new Error(`Workbook type not recognized for ${fileName}`);
+    }
+
+    return {
+      reportType: "restitution_summary",
+      title: summary.title,
+      sourceSheet: summary.sourceSheet,
+      dateFrom: summary.dateFrom,
+      dateTo: summary.dateTo,
+      rows: summary.rows.map((row, index) => ({
+        rowIndex: index + 1,
+        dateLabel: row.date,
+        grossRevenue: row.grossRevenue,
+        storeCostTotal: row.storeCostTotal,
+        driverCostTotal: row.driverCostTotal,
+        finalCostAmount: row.finalCostAmount,
+        totalNetMargin: row.totalNetMargin,
+        netMarginPercent: row.netMarginPercent,
+        restitutionFreight: row.restitutionFreight ?? 0,
+        restitutionMarkup: row.restitutionMarkup ?? 0,
+        marketplaceCommission: row.marketplaceCommission ?? 0,
+        restitutionPromotions: row.restitutionPromotions ?? 0,
+        restitutionTotal: row.restitutionTotal ?? 0,
+        manualAdjustments: row.manualAdjustments ?? 0,
+        rawJson: JSON.stringify(row),
+      })),
+    };
+  }
+
+  if (
+    sheetNames.includes("Fretes") &&
+    sheetNames.includes("Markup") &&
+    sheetNames.includes("Cupom") &&
+    sheetNames.includes("MarketPlace") &&
+    sheetNames.includes("Resumo")
+  ) {
+    const summary = parseWorkbookImport(base64, fileName);
+    if (summary.reportType !== "restitution_summary") {
+      throw new Error(`Workbook type not recognized for ${fileName}`);
+    }
+
+    return {
+      reportType: "restitution_summary",
+      title: summary.title,
+      sourceSheet: summary.sourceSheet,
+      dateFrom: summary.dateFrom,
+      dateTo: summary.dateTo,
+      rows: summary.rows.map((row, index) => ({
+        rowIndex: index + 1,
+        dateLabel: row.date,
+        grossRevenue: row.grossRevenue,
+        storeCostTotal: row.storeCostTotal,
+        driverCostTotal: row.driverCostTotal,
+        finalCostAmount: row.finalCostAmount,
+        totalNetMargin: row.totalNetMargin,
+        netMarginPercent: row.netMarginPercent,
+        restitutionFreight: row.restitutionFreight ?? 0,
+        restitutionMarkup: row.restitutionMarkup ?? 0,
+        marketplaceCommission: row.marketplaceCommission ?? 0,
+        restitutionPromotions: row.restitutionPromotions ?? 0,
+        restitutionTotal: row.restitutionTotal ?? 0,
+        manualAdjustments: row.manualAdjustments ?? 0,
+        rawJson: JSON.stringify(row),
+      })),
     };
   }
 

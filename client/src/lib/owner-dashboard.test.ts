@@ -10,6 +10,14 @@ describe("buildOwnerDashboardModel", () => {
     expect(model.driversSummary).toBeNull();
     expect(model.restitutionSummary).toBeNull();
     expect(model.latestResult).toBeNull();
+    expect(model.sources).toMatchObject({
+      hasOrdersReport: false,
+      hasDriversReport: false,
+      hasRestitutionReport: false,
+      hasOperationalData: false,
+      hasFinancialData: false,
+      hasValidatedCore: false,
+    });
     expect(model.totals).toMatchObject({
       grossRevenue: 0,
       netMargin: 0,
@@ -114,6 +122,15 @@ describe("buildOwnerDashboardModel", () => {
       driversWithOne: 2,
       driversWithTwo: 1,
     });
+    expect(model.sources).toMatchObject({
+      hasOrdersReport: true,
+      hasDriversReport: true,
+      hasRestitutionReport: true,
+      hasOperationalData: true,
+      hasFinancialData: true,
+      hasValidatedCore: true,
+    });
+    expect(model.readingMode).toBe("lucro_real");
   });
 
   it("generates practical owner recommendations from the snapshot", () => {

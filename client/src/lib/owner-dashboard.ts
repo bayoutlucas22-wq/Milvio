@@ -15,6 +15,15 @@ export type OwnerDashboardModel = {
   driversSummary: any | null;
   restitutionSummary: any | null;
   latestResult: any | null;
+  sources: {
+    hasOrdersReport: boolean;
+    hasDriversReport: boolean;
+    hasRestitutionReport: boolean;
+    hasOperationalData: boolean;
+    hasFinancialData: boolean;
+    hasValidatedCore: boolean;
+  };
+  readingMode: "lucro_real" | "base_parcial";
   totals: {
     totalOrdersToday: number;
     grossRevenue: number;
@@ -64,23 +73,35 @@ export function buildOwnerDashboardModel({
   const driversSummary = (summaries["excel_ingest:drivers_report"] as any) ?? null;
   const restitutionSummary = (summaries["excel_ingest:restitution_summary"] as any) ?? null;
   const latestResult = (summaries["excel_ingest:last_result"] as any) ?? null;
+  const hasOperationalData = Boolean(operational && Object.keys(operational).length > 0);
+  const hasFinancialData = Boolean(financial && Object.keys(financial).length > 0);
+  const hasValidatedCore = Boolean(ordersSummary && restitutionSummary);
+  const readingMode: OwnerDashboardModel["readingMode"] = hasValidatedCore ? "lucro_real" : "base_parcial";
 
   const grossRevenue = toNumber(
-    financial?.grossRevenue ?? restitutionSummary?.totals?.grossRevenue ?? ordersSummary?.totals?.grossRevenue
+    financial?.grossRevenue ?? ordersSummary?.totals?.grossRevenue ?? restitutionSummary?.totals?.grossRevenue
   );
-  const netMargin = toNumber(financial?.netMargin ?? restitutionSummary?.totals?.totalNetMargin);
+  const netMargin = toNumber(restitutionSummary?.totals?.totalNetMargin ?? financial?.netMargin);
   const netMarginPercent = toNumber(
-    financial?.netMarginPercent ?? restitutionSummary?.totals?.netMarginPercent
+    restitutionSummary?.totals?.netMarginPercent ?? financial?.netMarginPercent
   );
-  const productCosts = toNumber(financial?.productCosts ?? restitutionSummary?.totals?.storeCostTotal);
-  const deliveryCosts = toNumber(financial?.deliveryCosts ?? restitutionSummary?.totals?.driverCostTotal);
+  const productCosts = toNumber(restitutionSummary?.totals?.storeCostTotal ?? financial?.productCosts);
+  const deliveryCosts = toNumber(restitutionSummary?.totals?.driverCostTotal ?? financial?.deliveryCosts);
   const platformCommissions = toNumber(
-    financial?.platformCommissions ?? restitutionSummary?.totals?.marketplaceCommission
+    restitutionSummary?.totals?.marketplaceCommission ?? financial?.platformCommissions
   );
   const restitutionTotal = toNumber(restitutionSummary?.totals?.restitutionTotal);
-  const finalOperationalCost =
+  const finalOperationalCostRaw =
     toNumber(restitutionSummary?.totals?.storeCostTotal) +
     toNumber(restitutionSummary?.totals?.driverCostTotal);
+  const derivedNetMarginPercent =
+    netMarginPercent || (grossRevenue > 0 ? (netMargin / grossRevenue) * 100 : 0);
+  const derivedFinalOperationalCost =
+    finalOperationalCostRaw > 0
+      ? finalOperationalCostRaw
+      : grossRevenue > 0 && netMargin !== 0
+        ? Math.max(grossRevenue - netMargin, 0)
+        : 0;
 
   return {
     importCatalog,
@@ -88,16 +109,25 @@ export function buildOwnerDashboardModel({
     driversSummary,
     restitutionSummary,
     latestResult,
+    sources: {
+      hasOrdersReport: Boolean(ordersSummary),
+      hasDriversReport: Boolean(driversSummary),
+      hasRestitutionReport: Boolean(restitutionSummary),
+      hasOperationalData,
+      hasFinancialData,
+      hasValidatedCore,
+    },
+    readingMode,
     totals: {
       totalOrdersToday: toNumber(operational?.totalOrdersToday),
       grossRevenue,
       netMargin,
-      netMarginPercent,
+      netMarginPercent: derivedNetMarginPercent,
       productCosts,
       deliveryCosts,
       platformCommissions,
       restitutionTotal,
-      finalOperationalCost,
+      finalOperationalCost: derivedFinalOperationalCost,
       criticalStockCount: toNumber(criticalStockCount),
       totalOrders: toNumber(ordersSummary?.totals?.totalOrders),
       deliveredOrders: toNumber(ordersSummary?.totals?.deliveredOrders),

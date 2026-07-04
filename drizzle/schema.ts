@@ -245,6 +245,117 @@ export type DailyClosing = typeof dailyClosings.$inferSelect;
 export type InsertDailyClosing = typeof dailyClosings.$inferInsert;
 
 /**
+ * Workbook import batches used to keep normalized Excel history in MySQL.
+ */
+export const importBatches = mysqlTable("importBatches", {
+  id: int("id").autoincrement().primaryKey(),
+  importId: varchar("importId", { length: 180 }).notNull().unique(),
+  reportType: mysqlEnum("reportType", [
+    "orders_report",
+    "drivers_report",
+    "restitution_summary",
+  ]).notNull(),
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  sourceSheet: varchar("sourceSheet", { length: 255 }).notNull(),
+  importedRows: int("importedRows").notNull(),
+  dateFrom: datetime("dateFrom"),
+  dateTo: datetime("dateTo"),
+  importedAt: timestamp("importedAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ImportBatch = typeof importBatches.$inferSelect;
+export type InsertImportBatch = typeof importBatches.$inferInsert;
+
+/**
+ * Normalized order rows from the "Relatório de Pedidos" workbook.
+ */
+export const importOrderRows = mysqlTable("importOrderRows", {
+  id: int("id").autoincrement().primaryKey(),
+  importId: varchar("importId", { length: 180 }).notNull(),
+  rowIndex: int("rowIndex").notNull(),
+  orderDateLabel: varchar("orderDateLabel", { length: 50 }),
+  status: varchar("status", { length: 100 }),
+  courierName: varchar("courierName", { length: 255 }),
+  paymentMethod: varchar("paymentMethod", { length: 120 }),
+  subtotal: decimal("subtotal", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  discount: decimal("discount", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  freight: decimal("freight", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  total: decimal("total", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  rawJson: text("rawJson").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ImportOrderRow = typeof importOrderRows.$inferSelect;
+export type InsertImportOrderRow = typeof importOrderRows.$inferInsert;
+
+/**
+ * Normalized product ranking rows from the "Ranking de Produtos" workbook.
+ */
+export const importOrderProductRows = mysqlTable("importOrderProductRows", {
+  id: int("id").autoincrement().primaryKey(),
+  importId: varchar("importId", { length: 180 }).notNull(),
+  rowIndex: int("rowIndex").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  quantity: int("quantity").default(0).notNull(),
+  total: decimal("total", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  rawJson: text("rawJson").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ImportOrderProductRow = typeof importOrderProductRows.$inferSelect;
+export type InsertImportOrderProductRow = typeof importOrderProductRows.$inferInsert;
+
+/**
+ * Normalized driver settlement rows from the "Relatório de Entregadores" workbook.
+ */
+export const importDriverRows = mysqlTable("importDriverRows", {
+  id: int("id").autoincrement().primaryKey(),
+  importId: varchar("importId", { length: 180 }).notNull(),
+  rowIndex: int("rowIndex").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  deliveredOrders: int("deliveredOrders").default(0).notNull(),
+  cashTotal: decimal("cashTotal", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  cardTotal: decimal("cardTotal", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  onlineTotal: decimal("onlineTotal", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  total: decimal("total", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  rawJson: text("rawJson").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ImportDriverRow = typeof importDriverRows.$inferSelect;
+export type InsertImportDriverRow = typeof importDriverRows.$inferInsert;
+
+/**
+ * Normalized restitution summary rows from the weekly closing workbook.
+ */
+export const importRestitutionRows = mysqlTable("importRestitutionRows", {
+  id: int("id").autoincrement().primaryKey(),
+  importId: varchar("importId", { length: 180 }).notNull(),
+  rowIndex: int("rowIndex").notNull(),
+  dateLabel: varchar("dateLabel", { length: 20 }).notNull(),
+  grossRevenue: decimal("grossRevenue", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  storeCostTotal: decimal("storeCostTotal", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  driverCostTotal: decimal("driverCostTotal", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  finalCostAmount: decimal("finalCostAmount", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  totalNetMargin: decimal("totalNetMargin", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  netMarginPercent: decimal("netMarginPercent", { precision: 5, scale: 2 }).default("0.00").notNull(),
+  restitutionFreight: decimal("restitutionFreight", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  restitutionMarkup: decimal("restitutionMarkup", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  marketplaceCommission: decimal("marketplaceCommission", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  restitutionPromotions: decimal("restitutionPromotions", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  restitutionTotal: decimal("restitutionTotal", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  manualAdjustments: decimal("manualAdjustments", { precision: 10, scale: 2 }).default("0.00").notNull(),
+  rawJson: text("rawJson").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ImportRestitutionRow = typeof importRestitutionRows.$inferSelect;
+export type InsertImportRestitutionRow = typeof importRestitutionRows.$inferInsert;
+
+/**
  * System settings table for configurable parameters
  */
 export const systemSettings = mysqlTable("systemSettings", {

@@ -4,6 +4,11 @@ import {
   dailyClosings,
   deliveries,
   drivers,
+  importBatches,
+  importDriverRows,
+  importOrderProductRows,
+  importOrderRows,
+  importRestitutionRows,
   feeRules,
   orderItems,
   orders,
@@ -42,9 +47,19 @@ export type ExecutiveSummary = {
   worstDay: ExecutiveDailyClosing | null;
 };
 
+export type ImportedSummariesResult = Record<string, unknown>;
+
 function toNumber(value: unknown) {
   const parsed = Number(value ?? 0);
   return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function toIsoDate(value?: Date | null) {
+  return value ? value.toISOString().slice(0, 10) : undefined;
+}
+
+function normalizeDateLabel(value?: Date | null) {
+  return value ? value.toISOString().slice(0, 10) : "";
 }
 
 function normalizeDailyClosing(row: typeof dailyClosings.$inferSelect): ExecutiveDailyClosing {
@@ -315,6 +330,237 @@ export async function getDailyClosingHistory(limit = 30) {
 export async function getExecutiveSummary(limit = 7) {
   const history = await getDailyClosingHistory(limit);
   return buildExecutiveSummary(history);
+}
+
+function buildOrdersSummaryFromRows(
+  batch: typeof importBatches.$inferSelect,
+  rows: typeof importOrderRows.$inferSelect[],
+  productsRows: typeof importOrderProductRows.$inferSelect[]
+) {
+  const paymentMix = new Map<string, number>();
+  const courierStats = new Map<string, { count: number; total: number }>();
+  const productStats = new Map<string, { count: number; total: number }>();
+
+  let subtotalRevenue = 0;
+  let freightRevenue = 0;
+  let discountTotal = 0;
+  let deliveredOrders = 0;
+  let cancelledOrders = 0;
+  let grossRevenue = 0;
+
+  for (const row of rows) {
+    const payment = row.paymentMethod?.trim() || "Nao informado";
+    const courier = row.courierName?.trim() || "";
+    const total = toNumber(row.total);
+
+    subtotalRevenue += toNumber(row.subtotal);
+    freightRevenue += toNumber(row.freight);
+    discountTotal += toNumber(row.discount);
+    grossRevenue += total;
+    paymentMix.set(payment, (paymentMix.get(payment) ?? 0) + total);
+
+    if ((row.status ?? "").toLowerCase().includes("entreg")) deliveredOrders += 1;
+    if ((row.status ?? "").toLowerCase().includes("cancel")) cancelledOrders += 1;
+
+    if (courier) {
+      const current = courierStats.get(courier) ?? { count: 0, total: 0 };
+      courierStats.set(courier, { count: current.count + 1, total: current.total + total });
+    }
+  }
+
+  for (const row of productsRows) {
+    const current = productStats.get(row.name) ?? { count: 0, total: 0 };
+    productStats.set(row.name, {
+      count: current.count + toNumber(row.quantity),
+      total: current.total + toNumber(row.total),
+    });
+  }
+
+  return {
+    reportType: "orders_report" as const,
+    title: batch.title,
+    sourceSheet: batch.sourceSheet,
+    importedRows: batch.importedRows,
+    dateFrom: toIsoDate(batch.dateFrom),
+    dateTo: toIsoDate(batch.dateTo),
+    totals: {
+      totalOrders: rows.length,
+      deliveredOrders,
+      cancelledOrders,
+      grossRevenue,
+      subtotalRevenue,
+      freightRevenue,
+      discountTotal,
+    },
+    topCouriers: [...courierStats.entries()]
+      .map(([name, value]) => ({ name, count: value.count, total: value.total }))
+      .sort((a, b) => b.count - a.count || b.total - a.total)
+      .slice(0, 5),
+    paymentMix: Object.fromEntries(paymentMix.entries()),
+    topProducts: [...productStats.entries()]
+      .map(([name, value]) => ({ name, count: value.count, total: value.total }))
+      .sort((a, b) => b.total - a.total || b.count - a.count)
+      .slice(0, 5),
+  };
+}
+
+function buildDriversSummaryFromRows(
+  batch: typeof importBatches.$inferSelect,
+  rows: typeof importDriverRows.$inferSelect[]
+) {
+  const drivers = rows
+    .map((row) => ({
+      name: row.name,
+      deliveredOrders: toNumber(row.deliveredOrders),
+      cashTotal: toNumber(row.cashTotal),
+      cardTotal: toNumber(row.cardTotal),
+      onlineTotal: toNumber(row.onlineTotal),
+      total: toNumber(row.total),
+    }))
+    .sort((a, b) => b.total - a.total);
+
+  return {
+    reportType: "drivers_report" as const,
+    title: batch.title,
+    sourceSheet: batch.sourceSheet,
+    importedRows: batch.importedRows,
+    dateFrom: toIsoDate(batch.dateFrom),
+    dateTo: toIsoDate(batch.dateTo),
+    totals: {
+      totalDrivers: drivers.length,
+      deliveredOrders: drivers.reduce((sum, row) => sum + row.deliveredOrders, 0),
+      cashTotal: drivers.reduce((sum, row) => sum + row.cashTotal, 0),
+      cardTotal: drivers.reduce((sum, row) => sum + row.cardTotal, 0),
+      onlineTotal: drivers.reduce((sum, row) => sum + row.onlineTotal, 0),
+      grossRevenue: drivers.reduce((sum, row) => sum + row.total, 0),
+    },
+    drivers,
+  };
+}
+
+function buildRestitutionSummaryFromRows(
+  batch: typeof importBatches.$inferSelect,
+  rows: typeof importRestitutionRows.$inferSelect[]
+) {
+  const normalizedRows = rows.map((row) => ({
+    date: row.dateLabel,
+    grossRevenue: toNumber(row.grossRevenue),
+    storeCostTotal: toNumber(row.storeCostTotal),
+    driverCostTotal: toNumber(row.driverCostTotal),
+    finalCostAmount: toNumber(row.finalCostAmount),
+    totalNetMargin: toNumber(row.totalNetMargin),
+    netMarginPercent: toNumber(row.netMarginPercent),
+    restitutionFreight: toNumber(row.restitutionFreight),
+    restitutionMarkup: toNumber(row.restitutionMarkup),
+    marketplaceCommission: toNumber(row.marketplaceCommission),
+    restitutionPromotions: toNumber(row.restitutionPromotions),
+    restitutionTotal: toNumber(row.restitutionTotal),
+    manualAdjustments: toNumber(row.manualAdjustments),
+  }));
+
+  const totals = normalizedRows.reduce(
+    (sum, row) => ({
+      grossRevenue: sum.grossRevenue + row.grossRevenue,
+      storeCostTotal: sum.storeCostTotal + row.storeCostTotal,
+      driverCostTotal: sum.driverCostTotal + row.driverCostTotal,
+      finalCostAmount: sum.finalCostAmount + row.finalCostAmount,
+      totalNetMargin: sum.totalNetMargin + row.totalNetMargin,
+      restitutionFreight: sum.restitutionFreight + row.restitutionFreight,
+      restitutionMarkup: sum.restitutionMarkup + row.restitutionMarkup,
+      marketplaceCommission: sum.marketplaceCommission + row.marketplaceCommission,
+      restitutionPromotions: sum.restitutionPromotions + row.restitutionPromotions,
+      restitutionTotal: sum.restitutionTotal + row.restitutionTotal,
+    }),
+    {
+      grossRevenue: 0,
+      storeCostTotal: 0,
+      driverCostTotal: 0,
+      finalCostAmount: 0,
+      totalNetMargin: 0,
+      restitutionFreight: 0,
+      restitutionMarkup: 0,
+      marketplaceCommission: 0,
+      restitutionPromotions: 0,
+      restitutionTotal: 0,
+    }
+  );
+
+  return {
+    reportType: "restitution_summary" as const,
+    title: batch.title,
+    sourceSheet: batch.sourceSheet,
+    importedRows: batch.importedRows,
+    dateFrom: toIsoDate(batch.dateFrom),
+    dateTo: toIsoDate(batch.dateTo),
+    totals,
+    rows: normalizedRows,
+  };
+}
+
+export async function getLatestImportedSummaries() {
+  const db = await getDb();
+  if (!db) return null;
+
+  const batches = await db.select().from(importBatches).orderBy(desc(importBatches.importedAt)).limit(100);
+  if (!batches.length) return null;
+
+  const latestByType = new Map<string, (typeof batches)[number]>();
+  for (const batch of batches) {
+    if (!latestByType.has(batch.reportType)) {
+      latestByType.set(batch.reportType, batch);
+    }
+  }
+
+  const catalog = batches.map((batch) => ({
+    importId: batch.importId,
+    reportType: batch.reportType,
+    fileName: batch.fileName,
+    title: batch.title,
+    sourceSheet: batch.sourceSheet,
+    importedRows: batch.importedRows,
+    dateFrom: toIsoDate(batch.dateFrom),
+    dateTo: toIsoDate(batch.dateTo),
+    importedAt: batch.importedAt.toISOString(),
+  }));
+
+  const lastResult = catalog[0] ?? null;
+  const result: Record<string, unknown> = {
+    "excel_ingest:catalog": catalog,
+    "excel_ingest:last_result": lastResult,
+  };
+
+  const ordersBatch = latestByType.get("orders_report");
+  if (ordersBatch) {
+    const orderRows = await db
+      .select()
+      .from(importOrderRows)
+      .where(eq(importOrderRows.importId, ordersBatch.importId));
+    const productRows = await db
+      .select()
+      .from(importOrderProductRows)
+      .where(eq(importOrderProductRows.importId, ordersBatch.importId));
+    result["excel_ingest:orders_report"] = buildOrdersSummaryFromRows(ordersBatch, orderRows, productRows);
+  }
+
+  const driversBatch = latestByType.get("drivers_report");
+  if (driversBatch) {
+    const driverRows = await db
+      .select()
+      .from(importDriverRows)
+      .where(eq(importDriverRows.importId, driversBatch.importId));
+    result["excel_ingest:drivers_report"] = buildDriversSummaryFromRows(driversBatch, driverRows);
+  }
+
+  const restitutionBatch = latestByType.get("restitution_summary");
+  if (restitutionBatch) {
+    const restitutionRows = await db
+      .select()
+      .from(importRestitutionRows)
+      .where(eq(importRestitutionRows.importId, restitutionBatch.importId));
+    result["excel_ingest:restitution_summary"] = buildRestitutionSummaryFromRows(restitutionBatch, restitutionRows);
+  }
+
+  return result;
 }
 
 // ============ SYSTEM SETTINGS ============
