@@ -12,6 +12,100 @@ import {
 } from "../drizzle/schema";
 import { getDb } from "./db";
 
+export type ExecutiveDailyClosing = {
+  closingDate: Date;
+  totalOrders: number;
+  totalDeliveredOrders: number;
+  totalCancelledOrders: number;
+  grossRevenue: number;
+  platformCommissions: number;
+  extraFees: number;
+  productCosts: number;
+  deliveryCosts: number;
+  packagingCosts: number;
+  discounts: number;
+  refunds: number;
+  totalNetMargin: number;
+  netMarginPercent: number;
+  ordersWithLoss: number;
+  averageDelayMinutes: number;
+  onTimeDeliveryPercent: number;
+};
+
+export type ExecutiveSummary = {
+  latestClosing: ExecutiveDailyClosing | null;
+  history: ExecutiveDailyClosing[];
+  averageNetMarginPercent: number;
+  averageGrossRevenue: number;
+  trend: "up" | "down" | "flat";
+  bestDay: ExecutiveDailyClosing | null;
+  worstDay: ExecutiveDailyClosing | null;
+};
+
+function toNumber(value: unknown) {
+  const parsed = Number(value ?? 0);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function normalizeDailyClosing(row: typeof dailyClosings.$inferSelect): ExecutiveDailyClosing {
+  return {
+    closingDate: row.closingDate,
+    totalOrders: toNumber(row.totalOrders),
+    totalDeliveredOrders: toNumber(row.totalDeliveredOrders),
+    totalCancelledOrders: toNumber(row.totalCancelledOrders),
+    grossRevenue: toNumber(row.grossRevenue),
+    platformCommissions: toNumber(row.platformCommissions),
+    extraFees: toNumber(row.extraFees),
+    productCosts: toNumber(row.productCosts),
+    deliveryCosts: toNumber(row.deliveryCosts),
+    packagingCosts: toNumber(row.packagingCosts),
+    discounts: toNumber(row.discounts),
+    refunds: toNumber(row.refunds),
+    totalNetMargin: toNumber(row.totalNetMargin),
+    netMarginPercent: toNumber(row.netMarginPercent),
+    ordersWithLoss: toNumber(row.ordersWithLoss),
+    averageDelayMinutes: toNumber(row.averageDelayMinutes),
+    onTimeDeliveryPercent: toNumber(row.onTimeDeliveryPercent),
+  };
+}
+
+export function buildExecutiveSummary(rows: typeof dailyClosings.$inferSelect[]): ExecutiveSummary {
+  const history = rows.map(normalizeDailyClosing);
+  const latestClosing = history[0] ?? null;
+  const averageNetMarginPercent = history.length
+    ? history.reduce((sum, row) => sum + row.netMarginPercent, 0) / history.length
+    : 0;
+  const averageGrossRevenue = history.length
+    ? history.reduce((sum, row) => sum + row.grossRevenue, 0) / history.length
+    : 0;
+  const bestDay = history.reduce<ExecutiveDailyClosing | null>((best, row) => {
+    if (!best || row.totalNetMargin > best.totalNetMargin) return row;
+    return best;
+  }, null);
+  const worstDay = history.reduce<ExecutiveDailyClosing | null>((worst, row) => {
+    if (!worst || row.totalNetMargin < worst.totalNetMargin) return row;
+    return worst;
+  }, null);
+  const trend =
+    history.length >= 2
+      ? history[0].totalNetMargin > history[history.length - 1].totalNetMargin
+        ? "up"
+        : history[0].totalNetMargin < history[history.length - 1].totalNetMargin
+          ? "down"
+          : "flat"
+      : "flat";
+
+  return {
+    latestClosing,
+    history,
+    averageNetMarginPercent,
+    averageGrossRevenue,
+    trend,
+    bestDay,
+    worstDay,
+  };
+}
+
 // ============ PRODUCTS ============
 
 export async function getAllProducts() {
@@ -216,6 +310,11 @@ export async function getDailyClosingHistory(limit = 30) {
   const db = await getDb();
   if (!db) return [];
   return await db.select().from(dailyClosings).orderBy(desc(dailyClosings.closingDate)).limit(limit);
+}
+
+export async function getExecutiveSummary(limit = 7) {
+  const history = await getDailyClosingHistory(limit);
+  return buildExecutiveSummary(history);
 }
 
 // ============ SYSTEM SETTINGS ============

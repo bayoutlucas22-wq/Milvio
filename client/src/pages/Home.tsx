@@ -12,6 +12,7 @@ import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getLoginUrl } from "@/const";
+import { buildOwnerDashboardModel } from "@/lib/owner-dashboard";
 import { trpc } from "@/lib/trpc";
 import {
   AlertTriangle,
@@ -269,9 +270,17 @@ export default function Home() {
     (summaries["excel_ingest:restitution_summary"] as any);
   const latestResult = summaries["excel_ingest:last_result"] as any;
   const closingsHistory = closingsHistoryQuery.data ?? [];
-  const finalOperationalCost =
-    (restitutionSummary?.totals?.storeCostTotal ?? 0) +
-    (restitutionSummary?.totals?.driverCostTotal ?? 0);
+  const ownerModel = buildOwnerDashboardModel({
+    summaries: {
+      ...summaries,
+      "excel_ingest:orders_report": ordersSummary,
+      "excel_ingest:drivers_report": driversSummary,
+      "excel_ingest:restitution_summary": restitutionSummary,
+    },
+    operational,
+    financial,
+    criticalStockCount,
+  });
 
   useEffect(() => {
     if (!selectedOrderImportId && orderOptions[0]?.importId) {
@@ -308,10 +317,16 @@ export default function Home() {
               Delivery Margin Control
             </h1>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Pedidos, entregadores, restituicoes e margem real em tabs separadas.
+              Painel consolidado com leitura executiva, dados dos XLS e visao detalhada nas tabs.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
+            <Link href="/owner">
+              <Button variant="secondary" size="sm">
+                <TrendingUp className="h-4 w-4" />
+                Aba do owner
+              </Button>
+            </Link>
             <Link href="/presentation">
               <Button variant="outline" size="sm">
                 <Smartphone className="h-4 w-4" />
@@ -371,217 +386,222 @@ export default function Home() {
           </section>
         ) : null}
 
-        <Tabs defaultValue="overview" className="gap-4">
+        <section className="space-y-6">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <SectionLabel
+              title="Resumo executivo"
+              description="Tudo que o dono precisa ver em segundos, com cada XLS refletido na leitura principal."
+            />
+            <Badge variant="secondary" className="rounded-full">
+              {ownerModel.importCatalog.length} arquivos importados
+            </Badge>
+          </div>
+
+          <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <MetricCard
+              title="Pedidos hoje"
+              value={ownerModel.totals.totalOrdersToday}
+              helper={`${ownerModel.totals.activeOrders} em andamento`}
+              icon={PackageCheck}
+              tone="good"
+            />
+            <MetricCard
+              title="Margem liquida"
+              value={pct(ownerModel.totals.netMarginPercent)}
+              helper={money(ownerModel.totals.netMargin)}
+              icon={TrendingUp}
+              tone={ownerModel.totals.netMarginPercent < 10 ? "risk" : "good"}
+            />
+            <MetricCard
+              title="Faturamento"
+              value={money(ownerModel.totals.grossRevenue)}
+              helper={`${ownerModel.totals.totalOrders} pedidos importados`}
+              icon={DollarSign}
+              tone="good"
+            />
+            <MetricCard
+              title="Custo final"
+              value={money(ownerModel.totals.finalOperationalCost)}
+              helper="custo da loja + custo dos motoboys"
+              icon={Truck}
+            />
+          </section>
+
+          <section className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
+            <Card className="rounded-lg shadow-none">
+              <CardHeader>
+                <CardTitle>Resumo importado</CardTitle>
+                <CardDescription>
+                  Os três arquivos alimentam a leitura sem precisar trocar de tela.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-5">
+                <div className="grid gap-3 md:grid-cols-3">
+                  {orderOptions.length ? (
+                    <ImportPicker
+                      title="Excel de pedidos"
+                      value={selectedOrderImportId}
+                      options={orderOptions}
+                      onChange={setSelectedOrderImportId}
+                    />
+                  ) : null}
+                  {driverOptions.length ? (
+                    <ImportPicker
+                      title="Excel de entregadores"
+                      value={selectedDriverImportId}
+                      options={driverOptions}
+                      onChange={setSelectedDriverImportId}
+                    />
+                  ) : null}
+                  {restitutionOptions.length ? (
+                    <ImportPicker
+                      title="Excel de restituicao"
+                      value={selectedRestitutionImportId}
+                      options={restitutionOptions}
+                      onChange={setSelectedRestitutionImportId}
+                    />
+                  ) : null}
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                  <MetricCard
+                    title="Pedidos importados"
+                    value={ownerModel.totals.totalOrders}
+                    helper={dateRangeLabel(ownerModel.ordersSummary?.dateFrom, ownerModel.ordersSummary?.dateTo)}
+                    icon={ShoppingCart}
+                    tone="good"
+                  />
+                  <MetricCard
+                    title="Receita pedidos"
+                    value={money(ownerModel.ordersSummary?.totals?.grossRevenue ?? 0)}
+                    helper={`${ownerModel.totals.deliveredOrders} entregues`}
+                    icon={DollarSign}
+                    tone="good"
+                  />
+                  <MetricCard
+                    title="Receita motoboys"
+                    value={money(ownerModel.driversSummary?.totals?.grossRevenue ?? 0)}
+                    helper={`${ownerModel.totals.totalDrivers} entregadores`}
+                    icon={Truck}
+                  />
+                  <MetricCard
+                    title="Restituicao"
+                    value={money(ownerModel.totals.restitutionTotal)}
+                    helper={dateRangeLabel(ownerModel.restitutionSummary?.dateFrom, ownerModel.restitutionSummary?.dateTo)}
+                    icon={Warehouse}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-lg shadow-none">
+              <CardHeader>
+                <CardTitle>Custo final</CardTitle>
+                <CardDescription>
+                  Valor final = custo total da loja + custo dos motoboys.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="rounded-lg border bg-white p-4">
+                  <p className="text-sm text-muted-foreground">Valor final consolidado</p>
+                  <p className="mt-2 text-3xl font-semibold">{money(ownerModel.totals.finalOperationalCost)}</p>
+                </div>
+                <div className="grid gap-3">
+                  <MetricCard
+                    title="Custo loja"
+                    value={money(ownerModel.restitutionSummary?.totals?.storeCostTotal ?? 0)}
+                    helper="alimentado pela planilha diaria"
+                    icon={Warehouse}
+                  />
+                  <MetricCard
+                    title="Custo motoboys"
+                    value={money(ownerModel.restitutionSummary?.totals?.driverCostTotal ?? 0)}
+                    helper="custo operacional de entrega"
+                    icon={Bike}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          <section className="grid gap-4 lg:grid-cols-3">
+            <Card className="rounded-lg shadow-none lg:col-span-2">
+              <CardHeader>
+                <CardTitle>Financeiro do dia</CardTitle>
+                <CardDescription>
+                  Margem depois de comissao, taxas, custos, descontos e reembolsos.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                <MetricCard
+                  title="Faturamento"
+                  value={money(ownerModel.totals.grossRevenue)}
+                  helper="pedidos entregues"
+                  icon={DollarSign}
+                />
+                <MetricCard
+                  title="Comissao"
+                  value={money(ownerModel.totals.platformCommissions)}
+                  helper="plataforma estimada"
+                  icon={DollarSign}
+                  tone={ownerModel.totals.platformCommissions > 0 ? "risk" : "default"}
+                />
+                <MetricCard
+                  title="Produto"
+                  value={money(ownerModel.totals.productCosts)}
+                  helper="custo vendido"
+                  icon={Boxes}
+                />
+                <MetricCard
+                  title="Entrega"
+                  value={money(ownerModel.totals.deliveryCosts)}
+                  helper="custo logistico"
+                  icon={Bike}
+                />
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-lg shadow-none">
+              <CardHeader>
+                <CardTitle>Capacidade e estoque</CardTitle>
+                <CardDescription>Indicadores ao vivo da operacao.</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm">
+                <div>
+                  <div className="mb-2 flex items-center justify-between text-sm">
+                    <span className="font-medium">Capacidade usada</span>
+                    <span>{ownerModel.totals.capacityUsedPercent}%</span>
+                  </div>
+                  <Progress value={ownerModel.totals.capacityUsedPercent} />
+                </div>
+                <div className="flex justify-between border-b pb-2">
+                  <span className="text-muted-foreground">Motoboys livres</span>
+                  <strong>{ownerModel.totals.availableDrivers}</strong>
+                </div>
+                <div className="flex justify-between border-b pb-2">
+                  <span className="text-muted-foreground">Com 1 pedido</span>
+                  <strong>{ownerModel.totals.driversWithOne}</strong>
+                </div>
+                <div className="flex justify-between border-b pb-2">
+                  <span className="text-muted-foreground">Lotados</span>
+                  <strong>{ownerModel.totals.driversWithTwo}</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Estoque critico</span>
+                  <strong>{ownerModel.totals.criticalStockCount}</strong>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+        </section>
+
+        <Tabs defaultValue="daily-closing" className="gap-4">
           <TabsList className="w-full justify-start overflow-x-auto">
-            <TabsTrigger value="overview">Resumo</TabsTrigger>
             <TabsTrigger value="daily-closing">Fechamento Diario</TabsTrigger>
             <TabsTrigger value="orders">Pedidos</TabsTrigger>
             <TabsTrigger value="drivers">Entregadores</TabsTrigger>
             <TabsTrigger value="restitution">Restituicao</TabsTrigger>
             <TabsTrigger value="import">Importar</TabsTrigger>
           </TabsList>
-
-          <TabsContent value="overview" className="space-y-6">
-            {isLoading ? (
-              <LoadingGrid />
-            ) : (
-              <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-                <MetricCard
-                  title="Pedidos hoje"
-                  value={operational.totalOrdersToday}
-                  helper={`${operational.activeOrders} em andamento`}
-                  icon={PackageCheck}
-                  tone="good"
-                />
-                <MetricCard
-                  title="Atrasados"
-                  value={operational.lateOrders}
-                  helper={`${operational.criticalOrders} pedidos criticos`}
-                  icon={AlertTriangle}
-                  tone={operational.lateOrders > 0 ? "risk" : "default"}
-                />
-                <MetricCard
-                  title="Aguardando motoboy"
-                  value={operational.waitingOrders}
-                  helper={`${operational.availableDrivers} motoboys disponiveis`}
-                  icon={Clock3}
-                />
-                <MetricCard
-                  title="Margem liquida"
-                  value={pct(financial.netMarginPercent)}
-                  helper={money(financial.netMargin)}
-                  icon={TrendingUp}
-                  tone={financial.netMarginPercent < 10 ? "risk" : "good"}
-                />
-              </section>
-            )}
-
-            <section className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
-              <Card className="rounded-lg shadow-none">
-                <CardHeader>
-                  <CardTitle>Resumo importado</CardTitle>
-                  <CardDescription>
-                    Escolha qual Excel alimenta cada bloco do dashboard.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-5">
-                  <div className="grid gap-3 md:grid-cols-3">
-                    {orderOptions.length ? (
-                      <ImportPicker
-                        title="Excel de pedidos"
-                        value={selectedOrderImportId}
-                        options={orderOptions}
-                        onChange={setSelectedOrderImportId}
-                      />
-                    ) : null}
-                    {driverOptions.length ? (
-                      <ImportPicker
-                        title="Excel de entregadores"
-                        value={selectedDriverImportId}
-                        options={driverOptions}
-                        onChange={setSelectedDriverImportId}
-                      />
-                    ) : null}
-                    {restitutionOptions.length ? (
-                      <ImportPicker
-                        title="Excel de restituicao"
-                        value={selectedRestitutionImportId}
-                        options={restitutionOptions}
-                        onChange={setSelectedRestitutionImportId}
-                      />
-                    ) : null}
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                    <MetricCard
-                      title="Pedidos importados"
-                      value={ordersSummary?.totals?.totalOrders ?? 0}
-                      helper={dateRangeLabel(ordersSummary?.dateFrom, ordersSummary?.dateTo)}
-                      icon={ShoppingCart}
-                      tone="good"
-                    />
-                    <MetricCard
-                      title="Receita pedidos"
-                      value={money(ordersSummary?.totals?.grossRevenue ?? 0)}
-                      helper={`${ordersSummary?.totals?.deliveredOrders ?? 0} entregues`}
-                      icon={DollarSign}
-                      tone="good"
-                    />
-                    <MetricCard
-                      title="Receita motoboys"
-                      value={money(driversSummary?.totals?.grossRevenue ?? 0)}
-                      helper={`${driversSummary?.totals?.totalDrivers ?? 0} entregadores`}
-                      icon={Truck}
-                    />
-                    <MetricCard
-                      title="Restituicao"
-                      value={money(restitutionSummary?.totals?.restitutionTotal ?? 0)}
-                      helper={dateRangeLabel(restitutionSummary?.dateFrom, restitutionSummary?.dateTo)}
-                      icon={Warehouse}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="rounded-lg shadow-none">
-                <CardHeader>
-                  <CardTitle>Custo final</CardTitle>
-                  <CardDescription>
-                    Valor final = custo total da loja + custo dos motoboys.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="rounded-lg border bg-white p-4">
-                    <p className="text-sm text-muted-foreground">Valor final consolidado</p>
-                    <p className="mt-2 text-3xl font-semibold">{money(finalOperationalCost)}</p>
-                  </div>
-                  <div className="grid gap-3">
-                    <MetricCard
-                      title="Custo loja"
-                      value={money(restitutionSummary?.totals?.storeCostTotal ?? 0)}
-                      helper="alimentado pela planilha diaria"
-                      icon={Warehouse}
-                    />
-                    <MetricCard
-                      title="Custo motoboys"
-                      value={money(restitutionSummary?.totals?.driverCostTotal ?? 0)}
-                      helper="custo operacional de entrega"
-                      icon={Bike}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            <section className="grid gap-4 lg:grid-cols-3">
-              <Card className="rounded-lg shadow-none lg:col-span-2">
-                <CardHeader>
-                  <CardTitle>Financeiro do dia</CardTitle>
-                  <CardDescription>
-                    Margem depois de comissao, taxas, custos, descontos e reembolsos.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                  <MetricCard
-                    title="Faturamento"
-                    value={money(financial.grossRevenue)}
-                    helper="pedidos entregues"
-                    icon={DollarSign}
-                  />
-                  <MetricCard
-                    title="Comissao"
-                    value={money(financial.platformCommissions)}
-                    helper="plataforma estimada"
-                    icon={DollarSign}
-                    tone={financial.platformCommissions > 0 ? "risk" : "default"}
-                  />
-                  <MetricCard
-                    title="Produto"
-                    value={money(financial.productCosts)}
-                    helper="custo vendido"
-                    icon={Boxes}
-                  />
-                  <MetricCard
-                    title="Entrega"
-                    value={money(financial.deliveryCosts)}
-                    helper="custo logistico"
-                    icon={Bike}
-                  />
-                </CardContent>
-              </Card>
-
-              <Card className="rounded-lg shadow-none">
-                <CardHeader>
-                  <CardTitle>Capacidade e estoque</CardTitle>
-                  <CardDescription>Indicadores ao vivo da operacao.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm">
-                  <div>
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="font-medium">Capacidade usada</span>
-                      <span>{operational.capacityUsedPercent}%</span>
-                    </div>
-                    <Progress value={operational.capacityUsedPercent} />
-                  </div>
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="text-muted-foreground">Motoboys livres</span>
-                    <strong>{operational.availableDrivers}</strong>
-                  </div>
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="text-muted-foreground">Com 1 pedido</span>
-                    <strong>{operational.driversWithOne}</strong>
-                  </div>
-                  <div className="flex justify-between border-b pb-2">
-                    <span className="text-muted-foreground">Lotados</span>
-                    <strong>{operational.driversWithTwo}</strong>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Estoque critico</span>
-                    <strong>{criticalStockCount}</strong>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-          </TabsContent>
 
           <TabsContent value="daily-closing" className="space-y-6">
             <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
@@ -749,26 +769,26 @@ export default function Home() {
                 <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                   <MetricCard
                     title="Entregadores"
-                    value={driversSummary.totals.totalDrivers ?? 0}
-                    helper={`${driversSummary.totals.deliveredOrders ?? 0} pedidos entregues`}
+                    value={driversSummary?.totals?.totalDrivers ?? 0}
+                    helper={`${driversSummary?.totals?.deliveredOrders ?? 0} pedidos entregues`}
                     icon={Truck}
                   />
                   <MetricCard
                     title="Faturamento"
-                    value={money(driversSummary.totals.grossRevenue ?? 0)}
+                    value={money(driversSummary?.totals?.grossRevenue ?? 0)}
                     helper="total da aba"
                     icon={DollarSign}
                     tone="good"
                   />
                   <MetricCard
                     title="Dinheiro"
-                    value={money(driversSummary.totals.cashTotal ?? 0)}
+                    value={money(driversSummary?.totals?.cashTotal ?? 0)}
                     helper="pagamentos em dinheiro"
                     icon={DollarSign}
                   />
                   <MetricCard
                     title="Online"
-                    value={money(driversSummary.totals.onlineTotal ?? 0)}
+                    value={money(driversSummary?.totals?.onlineTotal ?? 0)}
                     helper="Pix + credito"
                     icon={TrendingUp}
                   />
@@ -780,7 +800,7 @@ export default function Home() {
                     <CardDescription>Resumo da planilha de fechamento por entregadores.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-2">
-                    {(driversSummary.drivers ?? []).slice(0, 12).map((row: any) => (
+                    {(driversSummary?.drivers ?? []).slice(0, 12).map((row: any) => (
                       <div key={row.name} className="grid gap-2 border-b py-2 text-sm md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
                         <span className="truncate font-medium">{row.name}</span>
                         <span>{row.deliveredOrders} pedidos</span>
@@ -789,7 +809,7 @@ export default function Home() {
                         <span>{money(row.total)}</span>
                       </div>
                     ))}
-                    {!driversSummary.drivers?.length ? <EmptyState text="Sem linhas de entregadores no workbook." /> : null}
+                    {!driversSummary?.drivers?.length ? <EmptyState text="Sem linhas de entregadores no workbook." /> : null}
                   </CardContent>
                 </Card>
               </>
@@ -810,17 +830,17 @@ export default function Home() {
                   />
                   <MetricCard
                     title="Restituicao"
-                    value={money(restitutionSummary.totals.restitutionTotal ?? 0)}
+                    value={money(restitutionSummary?.totals?.restitutionTotal ?? 0)}
                     helper="total agregado"
                     icon={DollarSign}
                     tone="good"
                   />
                   <MetricCard
                     title="Margem"
-                    value={money(restitutionSummary.totals.totalNetMargin ?? 0)}
+                    value={money(restitutionSummary?.totals?.totalNetMargin ?? 0)}
                     helper={pct(
-                      restitutionSummary.totals.grossRevenue > 0
-                        ? (restitutionSummary.totals.totalNetMargin / restitutionSummary.totals.grossRevenue) * 100
+                      restitutionSummary?.totals?.grossRevenue > 0
+                        ? ((restitutionSummary?.totals?.totalNetMargin ?? 0) / (restitutionSummary?.totals?.grossRevenue ?? 1)) * 100
                         : 0
                     )}
                     icon={TrendingUp}
@@ -828,7 +848,7 @@ export default function Home() {
                   />
                   <MetricCard
                     title="Comissao"
-                    value={money(restitutionSummary.totals.marketplaceCommission ?? 0)}
+                    value={money(restitutionSummary?.totals?.marketplaceCommission ?? 0)}
                     helper="marketplace"
                     icon={AlertTriangle}
                   />

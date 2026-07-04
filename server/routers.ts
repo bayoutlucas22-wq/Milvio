@@ -29,6 +29,7 @@ import {
   getDailyClosingByDate,
   getLastDailyClosing,
   getDailyClosingHistory,
+  getExecutiveSummary,
   getSystemSetting,
   getAllSystemSettings,
 } from "./queries";
@@ -422,6 +423,12 @@ export const appRouter = router({
 
   // ============ DASHBOARD ============
   dashboard: router({
+    getExecutiveSummary: publicProcedure
+      .input(z.object({ limit: z.number().min(1).max(30).default(7) }).optional())
+      .query(async ({ input }) => {
+        return await getExecutiveSummary(input?.limit ?? 7);
+      }),
+
     getOperationalMetrics: protectedProcedure.query(async () => {
       const todayOrders = await getTodayOrders();
       const activeOrders = await getActiveOrders();
