@@ -369,3 +369,71 @@ export const systemSettings = mysqlTable("systemSettings", {
 
 export type SystemSetting = typeof systemSettings.$inferSelect;
 export type InsertSystemSetting = typeof systemSettings.$inferInsert;
+
+/**
+ * Zé Delivery API integration tables.
+ */
+export const apiCredentials = mysqlTable("apiCredentials", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  clientId: varchar("clientId", { length: 255 }).notNull(),
+  clientSecret: varchar("clientSecret", { length: 255 }).notNull(),
+  merchantIds: text("merchantIds").notNull(),
+  scope: varchar("scope", { length: 255 }).default("orders/read reports/read").notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  lastSyncedAt: timestamp("lastSyncedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ApiCredential = typeof apiCredentials.$inferSelect;
+export type InsertApiCredential = typeof apiCredentials.$inferInsert;
+
+export const apiSyncLogs = mysqlTable("apiSyncLogs", {
+  id: int("id").autoincrement().primaryKey(),
+  apiCredentialId: int("apiCredentialId").notNull(),
+  endpoint: varchar("endpoint", { length: 255 }).notNull(),
+  status: mysqlEnum("status", ["success", "failed", "partial"]).notNull(),
+  recordsProcessed: int("recordsProcessed").default(0).notNull(),
+  errorMessage: text("errorMessage"),
+  syncedAt: timestamp("syncedAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ApiSyncLog = typeof apiSyncLogs.$inferSelect;
+export type InsertApiSyncLog = typeof apiSyncLogs.$inferInsert;
+
+export const apiKpiCache = mysqlTable("apiKpiCache", {
+  id: int("id").autoincrement().primaryKey(),
+  merchantId: varchar("merchantId", { length: 255 }).notNull(),
+  grossRevenue: decimal("grossRevenue", { precision: 12, scale: 2 }).notNull(),
+  netMargin: decimal("netMargin", { precision: 12, scale: 2 }).notNull(),
+  totalOrders: int("totalOrders").notNull(),
+  deliveredOrders: int("deliveredOrders").notNull(),
+  cancelledOrders: int("cancelledOrders").notNull(),
+  platformCommissions: decimal("platformCommissions", { precision: 12, scale: 2 }).notNull(),
+  operationalCosts: decimal("operationalCosts", { precision: 12, scale: 2 }).notNull(),
+  dataSource: mysqlEnum("dataSource", ["api", "excel", "hybrid"]).default("api").notNull(),
+  syncedAt: timestamp("syncedAt").notNull(),
+  expiresAt: timestamp("expiresAt").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ApiKpiCache = typeof apiKpiCache.$inferSelect;
+export type InsertApiKpiCache = typeof apiKpiCache.$inferInsert;
+
+export const orderEvents = mysqlTable("orderEvents", {
+  id: int("id").autoincrement().primaryKey(),
+  eventId: varchar("eventId", { length: 255 }).notNull().unique(),
+  orderId: varchar("orderId", { length: 100 }).notNull(),
+  merchantId: varchar("merchantId", { length: 255 }).notNull(),
+  eventType: mysqlEnum("eventType", ["CREATED", "CONFIRMED", "DISPATCHED", "CANCELLED", "CONCLUDED", "EDITED"]).notNull(),
+  sourceAppId: varchar("sourceAppId", { length: 255 }),
+  isAcknowledged: boolean("isAcknowledged").default(false).notNull(),
+  acknowledgedAt: timestamp("acknowledgedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  eventCreatedAt: datetime("eventCreatedAt"),
+});
+
+export type OrderEvent = typeof orderEvents.$inferSelect;
+export type InsertOrderEvent = typeof orderEvents.$inferInsert;

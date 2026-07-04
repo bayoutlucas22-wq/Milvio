@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Card,
   CardContent,
@@ -16,16 +17,18 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { getLoginUrl } from "@/const";
+import { dateRangeLabel, money, pct } from "@/features/profit/format";
 import { buildOwnerDashboardModel, buildOwnerRecommendations } from "@/lib/owner-dashboard";
 import { trpc } from "@/lib/trpc";
 import {
   ArrowLeft,
   Boxes,
   ChevronRight,
+  BarChart3,
   DollarSign,
   Info,
   LogIn,
+  ExternalLink,
   RefreshCcw,
   TrendingUp,
   Truck,
@@ -33,26 +36,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
-
-function money(value: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(value);
-}
-
-function pct(value: number) {
-  return `${value.toFixed(1)}%`;
-}
-
-function dateRangeLabel(dateFrom?: string, dateTo?: string) {
-  if (!dateFrom && !dateTo) return "Periodo nao identificado";
-  if (dateFrom && dateTo) {
-    return `${new Date(`${dateFrom}T00:00:00`).toLocaleDateString("pt-BR")} a ${new Date(`${dateTo}T00:00:00`).toLocaleDateString("pt-BR")}`;
-  }
-  const value = dateFrom ?? dateTo ?? "";
-  return new Date(`${value}T00:00:00`).toLocaleDateString("pt-BR");
-}
 
 function StatCard({
   title,
@@ -95,6 +78,9 @@ function StatCard({
 export default function Owner() {
   const { user, isAuthenticated } = useAuth();
   const [showBasePartialHelp, setShowBasePartialHelp] = useState(false);
+  const [clientId, setClientId] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [merchantIds, setMerchantIds] = useState("");
 
   const summariesQuery = trpc.imports.getLatestSummaries.useQuery(undefined, {
     retry: false,
@@ -122,6 +108,26 @@ export default function Owner() {
     retry: false,
     refetchOnWindowFocus: false,
   });
+  const apiCredentialsQuery = trpc.api.getCredentials.useQuery(undefined, {
+    enabled: isAuthenticated,
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
+  const merchantId = apiCredentialsQuery.data?.merchantIds?.[0] ?? "";
+  const apiKpiQuery = trpc.api.getMerchantKPIs.useQuery(
+    { merchantId, forceRefresh: false },
+    {
+      enabled: isAuthenticated && Boolean(merchantId),
+      retry: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+  const saveCredentialsMutation = trpc.api.setCredentials.useMutation({
+    onSuccess: async () => {
+      await apiCredentialsQuery.refetch();
+    },
+  });
+  const verifyCredentialsMutation = trpc.api.verifyCredentials.useMutation();
 
   const summaries = summariesQuery.data ?? {};
   const ownerModel = buildOwnerDashboardModel({
@@ -134,6 +140,7 @@ export default function Owner() {
   const latestClosing = executiveQuery.data?.latestClosing;
   const topFiles = ownerModel.importCatalog.slice(0, 4);
   const validationTone = ownerModel.readingMode === "lucro_real" ? "good" : "risk";
+  const apiKpi = apiKpiQuery.data;
 
   return (
     <main className="min-h-screen bg-stone-50 text-stone-950">
@@ -189,7 +196,7 @@ export default function Owner() {
               Atualizar
             </Button>
             {!isAuthenticated ? (
-              <Button size="sm" onClick={() => (window.location.href = getLoginUrl())}>
+              <Button size="sm" onClick={() => (window.location.href = "/login")}>
                 <LogIn className="h-4 w-4" />
                 Entrar
               </Button>
@@ -372,6 +379,118 @@ export default function Owner() {
               <p>
                 A ordem é simples: vender bem, gastar menos e evitar perda.
               </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <Card className="rounded-2xl shadow-none">
+            <CardHeader>
+              <CardTitle>Conector Zé Delivery</CardTitle>
+              <CardDescription>Credenciais e leitura direta da API.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm">
+              <div className="rounded-xl border bg-white p-4">
+                <p className="font-medium">Status</p>
+                <p className="text-muted-foreground">
+                  {apiCredentialsQuery.data ? "Credenciais salvas" : "Ainda não configurado"}
+                </p>
+              </div>
+              <div className="rounded-xl border bg-white p-4">
+                <p className="font-medium">Merchant atual</p>
+                <p className="text-muted-foreground">{merchantId || "Nenhum merchant configurado"}</p>
+              </div>
+              <div className="grid gap-3">
+                <label className="space-y-2">
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Client ID
+                  </span>
+                  <Input
+                    value={clientId}
+                    onChange={(event) => setClientId(event.target.value)}
+                    placeholder="Cole o client id"
+                  />
+                </label>
+                <label className="space-y-2">
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Client Secret
+                  </span>
+                  <Input
+                    value={clientSecret}
+                    onChange={(event) => setClientSecret(event.target.value)}
+                    type="password"
+                    placeholder="Cole o client secret"
+                  />
+                </label>
+                <label className="space-y-2">
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Merchant IDs
+                  </span>
+                  <Input
+                    value={merchantIds}
+                    onChange={(event) => setMerchantIds(event.target.value)}
+                    placeholder="merchant-1, merchant-2"
+                  />
+                </label>
+                <p className="text-xs text-muted-foreground">
+                  Valide os dados no portal do vendedor:
+                  {" "}
+                  <a
+                    href="https://seu.ze.delivery"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 font-medium text-sky-700 underline-offset-4 hover:underline"
+                  >
+                    seu.ze.delivery
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  size="sm"
+                  disabled={!clientId || !clientSecret || !merchantIds}
+                  onClick={() =>
+                    saveCredentialsMutation.mutate({
+                      clientId,
+                      clientSecret,
+                      merchantIds: merchantIds.split(",").map((item) => item.trim()).filter(Boolean),
+                    })
+                  }
+                >
+                  Salvar credenciais
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={!clientId || !clientSecret || !merchantId}
+                  onClick={() =>
+                    verifyCredentialsMutation.mutate({
+                      clientId,
+                      clientSecret,
+                      merchantId: merchantId || "demo-merchant",
+                    })
+                  }
+                >
+                  Validar API
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => void apiCredentialsQuery.refetch()}>
+                  Recarregar
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-2xl shadow-none">
+            <CardHeader>
+              <CardTitle>KPI da API</CardTitle>
+              <CardDescription>Quando existir merchant configurado, a tela lê direto da origem.</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 md:grid-cols-2">
+              <StatCard title="Receita API" value={money(Number(apiKpi?.grossRevenue ?? 0))} helper="vindo da API" icon={Boxes} />
+              <StatCard title="Margem API" value={money(Number(apiKpi?.netMargin ?? 0))} helper="vindo da API" icon={TrendingUp} />
+              <StatCard title="Pedidos" value={apiKpi?.totalOrders ?? 0} helper="total lido da API" icon={Warehouse} />
+              <StatCard title="Cancelados" value={apiKpi?.cancelledOrders ?? 0} helper="eventos operacionais" icon={Truck} />
             </CardContent>
           </Card>
         </section>

@@ -11,8 +11,8 @@ import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 // Writes browser logs directly to files, trimmed when exceeding size limit
 // =============================================================================
 
-const PROJECT_ROOT = import.meta.dirname;
-const LOG_DIR = path.join(PROJECT_ROOT, ".manus-logs");
+const PROJECT_ROOT = path.resolve(import.meta.dirname, "app");
+const LOG_DIR = path.join(import.meta.dirname, ".manus-logs");
 const MAX_LOG_SIZE_BYTES = 1 * 1024 * 1024; // 1MB per log file
 const TRIM_TARGET_BYTES = Math.floor(MAX_LOG_SIZE_BYTES * 0.6); // Trim to 60% to avoid constant re-trimming
 
@@ -156,14 +156,14 @@ export default defineConfig({
   plugins,
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
+      "@": path.resolve(import.meta.dirname, "app", "client", "src"),
+      "@shared": path.resolve(import.meta.dirname, "app", "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  envDir: path.resolve(import.meta.dirname),
-  root: path.resolve(import.meta.dirname, "client"),
-  publicDir: path.resolve(import.meta.dirname, "client", "public"),
+  envDir: import.meta.dirname,
+  root: path.resolve(import.meta.dirname, "app", "client"),
+  publicDir: path.resolve(import.meta.dirname, "app", "client", "public"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,

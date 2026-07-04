@@ -4,6 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { getDb } from "./db";
+import { zeDeliveryRouter } from "./integrations/ze-delivery/router";
 import {
   getAllProducts,
   getProductById,
@@ -65,6 +66,7 @@ export const appRouter = router({
       } as const;
     }),
   }),
+  api: zeDeliveryRouter,
 
   // ============ PRODUCTS ============
   products: router({

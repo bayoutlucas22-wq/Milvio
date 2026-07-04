@@ -15,6 +15,13 @@
       "when": 1783138563186,
       "tag": "0001_warm_sage",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1783139000000,
+      "tag": "0002_ze_delivery_integration",
+      "breakpoints": true
     }
   ]
 }

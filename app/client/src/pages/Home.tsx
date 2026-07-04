@@ -16,13 +16,14 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { getLoginUrl } from "@/const";
+import { asNumber, dateRangeLabel, money, pct } from "@/features/profit/format";
 import { buildOwnerDashboardModel, buildOwnerRecommendations } from "@/lib/owner-dashboard";
 import { trpc } from "@/lib/trpc";
 import {
   AlertTriangle,
   Bike,
   Boxes,
+  BarChart3,
   Clock3,
   DollarSign,
   FileUp,
@@ -48,31 +49,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
-function money(value: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(value);
-}
-
-function pct(value: number) {
-  return `${value.toFixed(1)}%`;
-}
-
-function asNumber(value: unknown) {
-  const parsed = Number(value ?? 0);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
-
-function dateRangeLabel(dateFrom?: string, dateTo?: string) {
-  if (!dateFrom && !dateTo) return "Periodo nao identificado";
-  if (dateFrom && dateTo) {
-    return `${new Date(`${dateFrom}T00:00:00`).toLocaleDateString("pt-BR")} a ${new Date(`${dateTo}T00:00:00`).toLocaleDateString("pt-BR")}`;
-  }
-  const value = dateFrom ?? dateTo ?? "";
-  return new Date(`${value}T00:00:00`).toLocaleDateString("pt-BR");
-}
 
 function fileToBase64(file: File) {
   return new Promise<string>((resolve, reject) => {
@@ -339,12 +315,6 @@ export default function Home() {
                 Aba do owner
               </Button>
             </Link>
-            <Link href="/presentation">
-              <Button variant="outline" size="sm">
-                <Smartphone className="h-4 w-4" />
-                Presentation
-              </Button>
-            </Link>
             <Button
               variant="outline"
               size="sm"
@@ -360,7 +330,7 @@ export default function Home() {
               Atualizar
             </Button>
             {!isAuthenticated ? (
-              <Button size="sm" onClick={() => (window.location.href = getLoginUrl())}>
+              <Button size="sm" onClick={() => (window.location.href = "/login")}>
                 <LogIn className="h-4 w-4" />
                 Entrar
               </Button>
