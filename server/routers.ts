@@ -1,10 +1,9 @@
 import { z } from "zod";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
-import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { getDb } from "./db";
-import { zeDeliveryRouter } from "./integrations/ze-delivery/router";
+import { zeDeliveryRouter } from "./zeDeliveryRouter";
 import {
   getAllProducts,
   getProductById,
@@ -55,7 +54,6 @@ import {
 const decimalString = (value: number) => value.toString();
 
 export const appRouter = router({
-  system: systemRouter,
   auth: router({
     me: publicProcedure.query((opts) => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

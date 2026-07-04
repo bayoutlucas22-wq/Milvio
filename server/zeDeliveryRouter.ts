@@ -1,8 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { protectedProcedure, router } from "../../_core/trpc";
-import { createApiCredential, createApiSyncLog, getApiCredentialsByUserId, getCachedKPI, cacheKPI, updateApiCredential } from "./db";
-import { createZeDeliveryClient } from "./client";
+import { protectedProcedure, router } from "./_core/trpc";
+import { createApiCredential, createApiSyncLog, getApiCredentialsByUserId, getCachedKPI, cacheKPI, updateApiCredential } from "./zeDeliveryDb";
+import { createZeDeliveryClient } from "./zeDeliveryClient";
 
 export const zeDeliveryRouter = router({
   setCredentials: protectedProcedure

@@ -1,5 +1,5 @@
 import type { Express, Request, Response } from "express";
-import { upsertOrderEvent } from "../integrations/ze-delivery/db";
+import { upsertOrderEvent } from "../zeDeliveryDb";
 
 export function registerZeDeliveryWebhook(app: Express) {
   app.post("/api/webhooks/ze-delivery", async (req: Request, res: Response) => {

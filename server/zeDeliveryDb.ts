@@ -1,5 +1,5 @@
 import { and, desc, eq } from "drizzle-orm";
-import { getDb } from "../../db";
+import { getDb } from "./db";
 import {
   ApiCredential,
   ApiKpiCache,
@@ -13,7 +13,7 @@ import {
   orderEvents,
   apiCredentials,
   apiSyncLogs,
-} from "../../../drizzle/schema";
+} from "../drizzle/schema";
 
 export async function getApiCredentialsByUserId(userId: number): Promise<ApiCredential | undefined> {
   const db = await getDb();

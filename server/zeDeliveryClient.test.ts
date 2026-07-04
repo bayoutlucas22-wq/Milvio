@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import axios from "axios";
-import { ZeDeliveryClient } from "./client";
+import { ZeDeliveryClient } from "./zeDeliveryClient";
 
 vi.mock("axios", () => ({
   default: {

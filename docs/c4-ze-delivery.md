@@ -83,8 +83,8 @@ flowchart TB
   end
 
   subgraph Server["Server"]
-    ZeClient["server/integrations/ze-delivery/client.ts"]
-    ZeRouter["server/integrations/ze-delivery/router.ts"]
+    ZeClient["server/zeDeliveryClient.ts"]
+    ZeRouter["server/zeDeliveryRouter.ts"]
     ZeWebhook["server/webhooks/ze-delivery.ts"]
     ParseWorkbook["parseWorkbookImport()"]
     ParseRows["extractNormalizedImportRows()"]
@@ -135,7 +135,7 @@ flowchart TB
 
 - `client/` contains the React UI.
 - `server/` contains the Express/tRPC backend.
-- `server/integrations/ze-delivery/` contains the Zé Delivery API connector.
+- `server/zeDeliveryClient.ts`, `server/zeDeliveryRouter.ts`, and `server/zeDeliveryDb.ts` contain the Zé Delivery API connector.
 - `server/webhooks/ze-delivery.ts` receives real-time order events.
 - `drizzle/` contains MySQL schema and migrations.
 - `fixtures/xlsx/` contains legacy XLS samples for local validation.
