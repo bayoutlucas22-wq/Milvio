@@ -497,6 +497,173 @@ function buildRestitutionSummaryFromRows(
   };
 }
 
+type RestitutionBatchLike = {
+  importId: string;
+  reportType?: string;
+  fileName?: string;
+  importedRows?: number;
+  dateFrom?: Date | null;
+  dateTo?: Date | null;
+};
+
+type RestitutionRowLike = {
+  importId: string;
+  dateLabel: string;
+  grossRevenue?: unknown;
+  storeCostTotal?: unknown;
+  driverCostTotal?: unknown;
+  finalCostAmount?: unknown;
+  totalNetMargin?: unknown;
+  netMarginPercent?: unknown;
+  restitutionFreight?: unknown;
+  restitutionMarkup?: unknown;
+  marketplaceCommission?: unknown;
+  restitutionPromotions?: unknown;
+  restitutionTotal?: unknown;
+  manualAdjustments?: unknown;
+};
+
+function parseImportDateLabel(value?: string | null) {
+  if (!value) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+
+  const brDate = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (brDate) {
+    const [, day, month, year] = brDate;
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  }
+
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString().slice(0, 10);
+}
+
+function buildMonthLabel(month: string) {
+  const [year, monthNumber] = month.split("-");
+  return `${monthNumber}/${year}`;
+}
+
+function roundMoney(value: number) {
+  return Math.round(value * 100) / 100;
+}
+
+export function buildMonthlyRestitutionIntelligence(
+  batches: RestitutionBatchLike[],
+  rows: RestitutionRowLike[]
+) {
+  const restitutionBatches = batches.filter(
+    (batch) => batch.reportType === "restitution_summary" || !batch.reportType
+  );
+  const validImportIds = new Set(restitutionBatches.map((batch) => batch.importId));
+  const uniqueRowsByDate = new Map<string, RestitutionRowLike>();
+
+  for (const row of rows) {
+    if (!validImportIds.has(row.importId)) continue;
+    const isoDate = parseImportDateLabel(row.dateLabel);
+    if (!isoDate || uniqueRowsByDate.has(isoDate)) continue;
+    uniqueRowsByDate.set(isoDate, row);
+  }
+
+  const datedRows = [...uniqueRowsByDate.entries()]
+    .map(([date, row]) => ({ date, month: date.slice(0, 7), row }))
+    .sort((left, right) => left.date.localeCompare(right.date));
+
+  const months = new Map<
+    string,
+    {
+      month: string;
+      label: string;
+      days: number;
+      grossRevenue: number;
+      storeCostTotal: number;
+      driverCostTotal: number;
+      finalCostAmount: number;
+      totalNetMargin: number;
+      restitutionTotal: number;
+      marketplaceCommission: number;
+    }
+  >();
+
+  for (const item of datedRows) {
+    const current = months.get(item.month) ?? {
+      month: item.month,
+      label: buildMonthLabel(item.month),
+      days: 0,
+      grossRevenue: 0,
+      storeCostTotal: 0,
+      driverCostTotal: 0,
+      finalCostAmount: 0,
+      totalNetMargin: 0,
+      restitutionTotal: 0,
+      marketplaceCommission: 0,
+    };
+
+    current.days += 1;
+    current.grossRevenue += toNumber(item.row.grossRevenue);
+    current.storeCostTotal += toNumber(item.row.storeCostTotal);
+    current.driverCostTotal += toNumber(item.row.driverCostTotal);
+    current.finalCostAmount += toNumber(item.row.finalCostAmount);
+    current.totalNetMargin += toNumber(item.row.totalNetMargin);
+    current.restitutionTotal += toNumber(item.row.restitutionTotal);
+    current.marketplaceCommission += toNumber(item.row.marketplaceCommission);
+    months.set(item.month, current);
+  }
+
+  const monthRows = [...months.values()].map((month) => ({
+    ...month,
+    grossRevenue: roundMoney(month.grossRevenue),
+    storeCostTotal: roundMoney(month.storeCostTotal),
+    driverCostTotal: roundMoney(month.driverCostTotal),
+    finalCostAmount: roundMoney(month.finalCostAmount),
+    totalNetMargin: roundMoney(month.totalNetMargin),
+    restitutionTotal: roundMoney(month.restitutionTotal),
+    marketplaceCommission: roundMoney(month.marketplaceCommission),
+    netMarginPercent: month.grossRevenue > 0 ? roundMoney((month.totalNetMargin / month.grossRevenue) * 100) : 0,
+  }));
+
+  if (monthRows.length < 2) return null;
+
+  const totals = monthRows.reduce(
+    (sum, month) => ({
+      grossRevenue: roundMoney(sum.grossRevenue + month.grossRevenue),
+      storeCostTotal: roundMoney(sum.storeCostTotal + month.storeCostTotal),
+      driverCostTotal: roundMoney(sum.driverCostTotal + month.driverCostTotal),
+      finalCostAmount: roundMoney(sum.finalCostAmount + month.finalCostAmount),
+      totalNetMargin: roundMoney(sum.totalNetMargin + month.totalNetMargin),
+      restitutionTotal: roundMoney(sum.restitutionTotal + month.restitutionTotal),
+      marketplaceCommission: roundMoney(sum.marketplaceCommission + month.marketplaceCommission),
+    }),
+    {
+      grossRevenue: 0,
+      storeCostTotal: 0,
+      driverCostTotal: 0,
+      finalCostAmount: 0,
+      totalNetMargin: 0,
+      restitutionTotal: 0,
+      marketplaceCommission: 0,
+    }
+  );
+  const dateFrom = datedRows[0]?.date;
+  const dateTo = datedRows[datedRows.length - 1]?.date;
+  const importedRowsTotal = restitutionBatches.reduce((sum, batch) => sum + toNumber(batch.importedRows), 0);
+
+  return {
+    reportType: "monthly_restitution_intelligence" as const,
+    dateFrom,
+    dateTo,
+    monthCount: monthRows.length,
+    fileCount: restitutionBatches.length,
+    totalRows: datedRows.length,
+    uniqueDays: datedRows.length,
+    importedRowsTotal,
+    totals: {
+      ...totals,
+      netMarginPercent: totals.grossRevenue > 0 ? roundMoney((totals.totalNetMargin / totals.grossRevenue) * 100) : 0,
+    },
+    months: monthRows,
+    story: `Base mensal consolidada de ${monthRows[0]?.label} a ${monthRows[monthRows.length - 1]?.label}.`,
+  };
+}
+
 export async function getLatestImportedSummaries() {
   const db = await getDb();
   if (!db) return null;
@@ -558,6 +725,23 @@ export async function getLatestImportedSummaries() {
       .from(importRestitutionRows)
       .where(eq(importRestitutionRows.importId, restitutionBatch.importId));
     result["excel_ingest:restitution_summary"] = buildRestitutionSummaryFromRows(restitutionBatch, restitutionRows);
+  }
+
+  const restitutionBatches = batches.filter((batch) => batch.reportType === "restitution_summary");
+  if (restitutionBatches.length > 0) {
+    const allRestitutionRows = [];
+    for (const batch of restitutionBatches) {
+      const rows = await db
+        .select()
+        .from(importRestitutionRows)
+        .where(eq(importRestitutionRows.importId, batch.importId));
+      allRestitutionRows.push(...rows);
+    }
+
+    const monthlyIntelligence = buildMonthlyRestitutionIntelligence(restitutionBatches, allRestitutionRows);
+    if (monthlyIntelligence) {
+      result["excel_ingest:monthly_restitution_intelligence"] = monthlyIntelligence;
+    }
   }
 
   return result;

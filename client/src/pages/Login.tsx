@@ -26,7 +26,7 @@ export default function Login() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
         <header className="flex items-center justify-between">
           <Badge className="rounded-full bg-slate-950 px-3 py-1 text-slate-50">Login</Badge>
-          <Link href="/">
+          <Link href="/owner">
             <Button variant="outline" size="sm" className="rounded-full bg-white/80 backdrop-blur">
               Voltar
             </Button>
@@ -43,8 +43,8 @@ export default function Login() {
                 Entre no app e valide o Zé Delivery no mesmo lugar.
               </h1>
               <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                Primeiro você autentica o app. Depois salva as credenciais do Zé Delivery e valida
-                se os dados do merchant estão certos antes de começar a puxar KPI.
+                Primeiro você autentica o app. Depois salva as credenciais do Zé Delivery ou entra
+                em modo demo para validar o fluxo agora e trocar pela chave real amanhã.
               </p>
             </div>
 
@@ -124,15 +124,17 @@ export default function Login() {
                     seu.ze.delivery
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
+                  <span className="block pt-1">
+                    Deixe Client ID e Client Secret vazios para abrir a versão mock hoje.
+                  </span>
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <Button
-                    disabled={!clientId || !clientSecret || merchantList.length === 0}
                     onClick={() =>
                       saveCredentialsMutation.mutate({
                         clientId,
                         clientSecret,
-                        merchantIds: merchantList,
+                        merchantIds: merchantList.length > 0 ? merchantList : ["demo-merchant"],
                       })
                     }
                   >
@@ -140,12 +142,11 @@ export default function Login() {
                   </Button>
                   <Button
                     variant="outline"
-                    disabled={!clientId || !clientSecret || merchantList.length === 0}
                     onClick={() =>
                       verifyCredentialsMutation.mutate({
                         clientId,
                         clientSecret,
-                        merchantId: merchantList[0] ?? "",
+                        merchantId: merchantList[0] ?? "demo-merchant",
                       })
                     }
                   >

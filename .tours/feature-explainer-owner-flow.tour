@@ -1,0 +1,71 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Owner Flow Tour",
+  "description": "Walkthrough of the owner-first flow: how the app reads imported XLS data, merges it into a profit story, and connects the Zé Delivery API.",
+  "ref": "HEAD",
+  "steps": [
+    {
+      "directory": "client/src",
+      "title": "UI Surface",
+      "description": "This is the only user-facing app surface we keep visible in the product path. Everything else in the tour feeds this owner-centric experience."
+    },
+    {
+      "file": "client/src/App.tsx",
+      "line": 11,
+      "title": "Route Entry",
+      "description": "The router sends `/` straight to the Owner page, so the main product opens on the dashboard the manager cares about instead of a multi-tab home screen."
+    },
+    {
+      "file": "client/src/pages/Owner.tsx",
+      "line": 184,
+      "title": "Owner Model",
+      "description": "This page builds the owner model from imported summaries, operational data, financial data, and stock risk. That is the single source of truth for the visible dashboard."
+    },
+    {
+      "file": "client/src/lib/owner-dashboard.ts",
+      "line": 63,
+      "title": "Business Logic",
+      "description": "Here the imported summaries become totals, validation flags, and reading mode. If the orders and restitution files are present, the system can call the view 'lucro real'."
+    },
+    {
+      "file": "client/src/lib/import-catalog.ts",
+      "line": 34,
+      "title": "Merged Files View",
+      "description": "This helper groups many spreadsheet imports into a single business summary by report type. That keeps the UI focused on what each file family contributes, not on a long raw list."
+    },
+    {
+      "file": "client/src/lib/manager-demo.ts",
+      "line": 127,
+      "title": "Plain-Language Story",
+      "description": "The demo snapshot turns the real totals into a manager-friendly narrative: how much entered, how much was paid out, and which move improves profit first."
+    },
+    {
+      "file": "server/demoSeed.ts",
+      "line": 41,
+      "title": "Fixture Preload",
+      "description": "When the database is empty, this loader reads the XLSX fixtures and seeds the same import path the app uses manually. That keeps demo data and persisted data aligned."
+    },
+    {
+      "file": "server/excelImportService.ts",
+      "line": 131,
+      "title": "Shared Import Path",
+      "description": "Manual uploads and automated seeding both end here. This is where the workbook is parsed, persisted, and written into the summary tables that power the Owner page."
+    },
+    {
+      "file": "server/zeDeliveryRouter.ts",
+      "line": 36,
+      "title": "Zé Delivery Bridge",
+      "description": "The Zé API lives behind one router with mock and live behavior. That lets the owner connect credentials, validate the portal, and keep the same UI working tomorrow with real keys."
+    },
+    {
+      "file": "client/src/pages/Login.tsx",
+      "line": 11,
+      "title": "Onboarding Gate",
+      "description": "This login screen keeps the onboarding simple: authenticate the app, then link or validate Zé Delivery credentials without leaving the product path."
+    },
+    {
+      "title": "What To Read Next",
+      "description": "If you follow these anchors in order, you can trace the full story from the Owner tab down to spreadsheet ingestion and the Zé Delivery integration."
+    }
+  ]
+}

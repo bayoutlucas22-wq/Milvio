@@ -4,9 +4,12 @@ import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
+import { registerSwaggerDocs } from "./swagger";
 import { registerStorageProxy } from "./storageProxy";
 import { registerZeDeliveryWebhook } from "../webhooks/ze-delivery";
+import { registerZeMockApi } from "../zeMockApi";
 import { appRouter } from "../routers";
+import { seedDemoWorkbookImports } from "../demoSeed";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 
@@ -38,6 +41,8 @@ async function startServer() {
   registerStorageProxy(app);
   registerOAuthRoutes(app);
   registerZeDeliveryWebhook(app);
+  registerZeMockApi(app);
+  registerSwaggerDocs(app);
   // tRPC API
   app.use(
     "/api/trpc",
@@ -51,6 +56,12 @@ async function startServer() {
     await setupVite(app, server);
   } else {
     serveStatic(app);
+  }
+
+  try {
+    await seedDemoWorkbookImports();
+  } catch (error) {
+    console.warn("[DemoSeed] Failed to preload workbook fixtures:", error);
   }
 
   const preferredPort = parseInt(process.env.PORT || "3000");

@@ -19,7 +19,7 @@ flowchart LR
   ZeDelivery -->|gera relatórios operacionais| ExcelFiles
 
   ExcelFiles -.->|importação manual| ProfitSystem
-  ZeAPI -->|KPIs, Repasses, Pedidos e Produtos| ProfitSystem
+  ZeAPI -->|KPIs operacionais, repasses, histórico e webhooks| ProfitSystem
 
   ProfitSystem -->|mostra lucro, margem e recomendações| Owner
 ```
@@ -36,8 +36,8 @@ flowchart LR
     API["tRPC API"]
     
     subgraph Automation["Módulos de Automação"]
-      Connector["API Connector\n(OAuth2 + Fetcher)"]
-      Webhooks["Webhook Receiver\n(Real-time updates)"]
+      Connector["API Connector\n(/auth + merchant reports)"]
+      Webhooks["Webhook Receiver\n(Signed order events)"]
     end
     
     Ingest["Excel parsing + normalization"]
@@ -59,8 +59,8 @@ flowchart LR
   API --> Exec
 
   API --> Connector
-  Connector -->|busca KPIs e Repasses| ZePublicAPI
-  ZePublicAPI -->|notifica eventos de pedidos| Webhooks
+  Connector -->|auth, KPIs, repasses, histórico| ZePublicAPI
+  ZePublicAPI -->|ORDER_EVENTS + webhook payloads| Webhooks
 
   Ingest -->|salva linhas normalizadas| DB
   Connector -->|salva dados da API| DB
@@ -135,8 +135,9 @@ flowchart TB
 
 - `client/` contains the React UI.
 - `server/` contains the Express/tRPC backend.
-- `server/zeDeliveryClient.ts`, `server/zeDeliveryRouter.ts`, and `server/zeDeliveryDb.ts` contain the Zé Delivery API connector.
-- `server/webhooks/ze-delivery.ts` receives real-time order events.
+- `server/zeDeliveryClient.ts`, `server/zeDeliveryRouter.ts`, and `server/zeDeliveryDb.ts` contain the Zé Delivery API connector and mock fallback.
+- `server/webhooks/ze-delivery.ts` receives real-time order events and stores them in `orderEvents`.
+- `client/src/pages/Login.tsx` supports either live credentials or mock/demo mode.
 - `drizzle/` contains MySQL schema and migrations.
 - `fixtures/xlsx/` contains legacy XLS samples for local validation.
 
