@@ -1,0 +1,100 @@
+{
+  "source": {
+    "json_files": 90,
+    "report_files_by_type": {
+      "commissions": 15,
+      "promotions": 15,
+      "freight": 15,
+      "incentives": 15,
+      "markup": 15,
+      "manual_payments": 15
+    },
+    "unique_week_labels": [
+      "1 a 5",
+      "14 a 18",
+      "23 a 27",
+      "24 a 28",
+      "27 a 28",
+      "27 a 31",
+      "31 a 35",
+      "36 a 40",
+      "40 a 44",
+      "44 a 48",
+      "45 a 48",
+      "49 a 1",
+      "5 a 9",
+      "9 a 13"
+    ],
+    "weeks_per_type": {
+      "commissions": 14,
+      "promotions": 14,
+      "freight": 14,
+      "incentives": 14,
+      "markup": 14,
+      "manual_payments": 14
+    },
+    "month_keys_present": [
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07"
+    ]
+  },
+  "business_summary": {
+    "commissions": -44817.83,
+    "freight": 20700.7,
+    "markup": 58727.03,
+    "promotions": 69634.04,
+    "manual_payments": -3166.94,
+    "incentives": -2730.8,
+    "proxy_total": 98346.2
+  },
+  "observations": [
+    "The strongest seasonal concentration is in Nov/Dec 2025, followed by a sharp post-holiday drop.",
+    "The manual payments series changes sign in 2026, turning negative in the later months.",
+    "Incentives are tiny compared with the other reimbursement lines and do not move the overall curve much.",
+    "The documents are structured as order-level reimbursement summaries, which matches the official Zé Seller API reports model."
+  ],
+  "top_partner_mentions": [
+    [
+      "Mercearia e Deposito da Lagoa",
+      82595
+    ]
+  ],
+  "data_model_reality": {
+    "official_api_confirms": [
+      "Merchant KPIs are available by period with MONTH/WEEK/DAY/HOUR granularity.",
+      "Order reimbursement summaries are paginated and tied to a merchantId and a start/end date window.",
+      "Operational incentives are weekly summaries tied to isoYear and isoWeek.",
+      "The docs explicitly treat financial reporting as separate report families, not a single all-in-one profit ledger."
+    ],
+    "what_the_repo_data_can_say": [
+      "Which weeks and months are strongest or weakest.",
+      "Which reimbursement components dominate the seasonal swings.",
+      "Which partner appears most frequently in the extracted reports.",
+      "Which products and drivers contribute most inside the current extracts."
+    ],
+    "what_it_cannot_prove_alone": [
+      "True profit after every operational cost.",
+      "Total platform margin without company-side costs.",
+      "Causal reasons for the seasonal spike without external commercial context."
+    ]
+  },
+  "recommendation": {
+    "plain_language": "Use these JSONs as a clean business reading layer: the data clearly shows end-of-year seasonality and a manual-payment change, but the official API docs mean this is still a reimbursement/reporting view, not a full profit statement.",
+    "next_questions": [
+      "Which products dominate the November/December peak?",
+      "Which weeks drive the manual-payment negative shift?",
+      "Can the same structure be mapped to merchantId and API report periods later?"
+    ]
+  }
+}

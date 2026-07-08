@@ -1,0 +1,118 @@
+[
+  {
+    "source_file": "/app/airflow_dbt/sql/dump_xlsl/Relatorios-Semana-5-a-9-ccaca598-3834-4145-ac05-c97e833eba3b/Relatorio-Pagamentos-Manuais-Semana-5-a-9-866b830d-7b5c-4779-b2da-571f005df268.xlsx",
+    "folder_name": "Relatorios-Semana-5-a-9-ccaca598-3834-4145-ac05-c97e833eba3b",
+    "report_type": "manual_payments",
+    "sheet_name": "Pagamento Manual",
+    "headers": [
+      "Parceiro",
+      "Descrição",
+      "Tipo de Pagamento",
+      "Restituição"
+    ],
+    "rows": [
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "POC_81119_IRRF JANEIRO_ComissAo Marketplace",
+        "Tipo de Pagamento": "Comissão Marketplace",
+        "Restituição": 26.18
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W06",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -329.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W07",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -545.52
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_CARNAVAL",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 122.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_14_FEV",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_CARNAVAL",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 63.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_15_FEV",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W08",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -466.55
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_CARNAVAL",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 69.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_16_FEV",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_CARNAVAL",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 87.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_17_FEV",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_CARNAVAL",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 31.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_Brahma 473ml - Pack EconOmico (12 unidades)_PEDIDO_220160413",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_Brahma 473ml - Pack EconOmico (12 unidades)_PEDIDO_930717226",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -1.85
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_Brahma 473ml - Pack EconOmico (12 unidades)_PEDIDO_235928083",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W09",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -398.47
+      }
+    ]
+  }
+]

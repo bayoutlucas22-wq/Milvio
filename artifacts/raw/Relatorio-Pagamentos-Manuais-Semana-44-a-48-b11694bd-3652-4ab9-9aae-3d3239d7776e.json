@@ -1,0 +1,2404 @@
+[
+  {
+    "source_file": "/app/airflow_dbt/sql/dump_xlsl/Relatorios-Semana-44-a-48-73d7e564-2b83-4357-beb0-4903a3bce278/Relatorio-Pagamentos-Manuais-Semana-44-a-48-b11694bd-3652-4ab9-9aae-3d3239d7776e.xlsx",
+    "folder_name": "Relatorios-Semana-44-a-48-73d7e564-2b83-4357-beb0-4903a3bce278",
+    "report_type": "manual_payments",
+    "sheet_name": "Pagamento Manual",
+    "headers": [
+      "Parceiro",
+      "Descrição",
+      "Tipo de Pagamento",
+      "Restituição"
+    ],
+    "rows": [
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "POC_81119_IRRF SETEMBRO_ComissAo Marketplace",
+        "Tipo de Pagamento": "Comissão Marketplace",
+        "Restituição": 22.1
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "POC_81119_IRRF OUTUBRO_ComissAo Marketplace",
+        "Tipo de Pagamento": "Comissão Marketplace",
+        "Restituição": 22.84
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_FIXO_FINADOS",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 99.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_FINADOS",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_887195819",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_433726585",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_544756970",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_415255577",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_127067485",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_289462631",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_936653487",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_362706306",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_PEDIDO_325872003",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_27OUT_AO_02NOV",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -4.78
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_INTERFOOD_27OUT_AO_02NOV",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -2.07
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_27OUT_AO_02NOV",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.55
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_03NOV_AO_09NOV",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -2.84
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_10NOV_AO_16NOV",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -1.48
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_INTERFOOD_10NOV_AO_16NOV",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -2.07
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_10NOV_AO_16NOV",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.84
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_887155499",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_312248965",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_114817069",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_534222561",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_789389939",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_224626002",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_654972471",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_939436010",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_738324987",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_135126132",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_707075059",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 6.1
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_739737977",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_348372109",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 6.1
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_308724309",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 6.1
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_185917178",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_737889545",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_431361969",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_491297162",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_266604366",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_110243037",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_363270223",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_752461809",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_377845604",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_677612456",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_315916745",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_950491416",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_506316272",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_519310519",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_999819545",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_774081769",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 6.1
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_452475216",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 6.1
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_541256464",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_863831588",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_382026241",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_868648151",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_363861787",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_409119415",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_103002911",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_104217548",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_113318898",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_121437181",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_121704218",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_121825414",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_121916464",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_134296365",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_138434835",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_139802900",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 16.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_143046147",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_144884986",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_146347696",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_155436851",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_157067856",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_158570783",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_161928446",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_162126075",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_172050760",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_181576894",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_183256663",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_185924646",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_190616687",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_190734579",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_191985400",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_193729269",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_197005945",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_197476378",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_197640483",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 3.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_198382949",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_206435827",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_207786033",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_213180653",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_217190762",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_221146156",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_223560174",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_223900769",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_225541590",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_234473359",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_238190947",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_243230026",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_243366383",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_251856265",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_257125419",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_259047279",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_260080928",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_263279918",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_263671431",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_264149995",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_266604366",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_268402149",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_268573355",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_273388625",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_278540281",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_280906240",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_281436479",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_285362649",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_287920789",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_289133960",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_289962882",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_290507434",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_291623312",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_296061349",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_299483764",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_305585734",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_307147152",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_308724309",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_309170577",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_313555465",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_314499232",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_316635603",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_318087721",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_320562645",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_323083916",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_327927449",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_330724923",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_330809347",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 3.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_341301371",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_342172788",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_347039856",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_350136578",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_352624472",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_352929737",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_353778382",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_354296341",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_359082904",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_363211131",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_363861787",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_367960391",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_370535872",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_371008824",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_373642632",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_377845604",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_377947869",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_378310472",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_382026241",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_389017664",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_389803495",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_395833216",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_400648349",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_400986980",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_409119415",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_409671603",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_414205636",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_417219930",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_418416771",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_426682202",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_429604693",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_431361969",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_435222206",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_443518674",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_452475216",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_452831632",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_454241784",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_455603947",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_460784676",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_462367546",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_464296087",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_472830916",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_473253396",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_474154509",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_474187318",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_475345466",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_483518280",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_488742954",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_490247286",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_490487050",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_497011844",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_497386660",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_502658955",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_503394176",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_506316272",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_508324699",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_513249129",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_520338983",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_520726520",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_522684868",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_524424150",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_525192778",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_526052664",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_528550124",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_529266675",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_530556463",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_534730141",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_543830731",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_545265682",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_546054023",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_548044263",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_549030412",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_551692293",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_557002310",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_559217317",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_561372442",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_561887216",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_562309314",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_564371206",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_567436206",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_569858657",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_580137251",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_582248491",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_583524241",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_584681634",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_587973309",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_590786736",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_595580586",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_602209065",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_607528868",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 3.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_611554612",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_611578285",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_611623500",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_613093058",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_615260346",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_617415790",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_617577309",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_621882350",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_630153142",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_638807522",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_639054028",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_642479959",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_643200915",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_647813705",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_657118762",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_657836388",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_660339036",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_661334642",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_662686402",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_668624608",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_675136001",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_677612456",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_678736657",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_685227786",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_688208663",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_693910521",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_694963877",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_696125033",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_696235152",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_696348264",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_709092398",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_709387875",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_723937006",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_734061212",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_734290028",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_738324987",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_738757663",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_739737977",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 3.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_740696150",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_742117714",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_742408713",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_744256409",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_746873774",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_752461809",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_757784755",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_763780688",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_764187653",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_767276263",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_770148376",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_771927532",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_772916713",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_775273804",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_778320085",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_779355096",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_785804180",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_786779157",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_792802340",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_793647183",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_795356733",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_795359256",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_798468424",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_814223041",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_815195503",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_816922499",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_817676573",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_820320576",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_824607220",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_827827359",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_828303435",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_829877105",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_833057717",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_833812929",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_837103024",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_839420206",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_842375907",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_844634995",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_849529981",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_852675949",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_857407898",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_857836797",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_861407977",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_863578716",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_863620427",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_867479112",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_870399216",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_885579904",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_889415603",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_889840791",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_897847290",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_900376612",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_902756017",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_904468830",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 3.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_906409292",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_910613043",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_914600480",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_915598468",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_915693527",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_917682612",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_919181641",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_922477727",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_923429482",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_923888000",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_924713911",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_924968705",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_926352062",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_927573486",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_929929046",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_936386718",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_939436010",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_939846313",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_943308197",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_946084357",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_947873099",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_958732165",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_962100473",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_964164288",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_968749358",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_973245386",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_975593933",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_976340204",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_979693381",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_980634239",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -1.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_985165112",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_985646437",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_45_PARA_O_PEDIDO_993668905",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_996179949",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": -2.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECALCULO_VALORES_DE_FRETE_REFEERENTE_A_SEMANA_46_PARA_O_PEDIDO_999819545",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 4.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_46_PEDIDO_470478947",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_46_PEDIDO_638807522",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_46_PEDIDO_654972471",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_46_PEDIDO_703697493",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_46_PEDIDO_880207543",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_46_PEDIDO_916487846",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_CONSCIENCIA_NEGRA_20_NOV",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 149.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_20_NOV",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_CONSCIENCIA_NEGRA_21_NOV",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 95.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_21_NOV",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_243385513",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_531767889",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 9.98
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_807909470",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -1.85
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_338195884",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_708939698",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_279535564",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_191110343",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_652257845",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_575601466",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_402559147",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 4.99
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_959201973",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -0.93
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_843493989",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 4.99
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_772242277",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_426154088",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_927955862",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_539944132",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_962437723",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_133628955",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_566759513",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_634152715",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_875419955",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_371044772",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_484511410",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_494586528",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_443128986",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_968071418",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_154279607",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_418259012",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_641194270",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_47_PEDIDO_623215142",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 7.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "POC_81119_IRRF NOVEMBRO_ComissAo Marketplace",
+        "Tipo de Pagamento": "Comissão Marketplace",
+        "Restituição": 54.67
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_FINAL_DA_LIBERTADORES_29_NOV",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 298.5
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_ALTA_DEMANDA_30_NOV",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 137.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RECOMPOSICAO_DESCONTO_INDEVIDO_CUSTEIO_PROMOCAO_PRODUTOS_MARKETPLACE_SEMANA_41",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": 1.02
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_48_PEDIDO_582412865",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 13.48
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_48_PEDIDO_695216910",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 9.48
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_48_PEDIDO_764511306",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 9.48
+      }
+    ]
+  }
+]

@@ -1,0 +1,49 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Docker/local runtime
+*.pid
+docker-data/
+
+# Generated archives and local exports
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Raw spreadsheet dumps are source extracts, not app source code.
+airflow_dbt/sql/dump_xlsl/
+
+# Keep canonical JSON data, ignore ad-hoc exports
+exports/
+reports/

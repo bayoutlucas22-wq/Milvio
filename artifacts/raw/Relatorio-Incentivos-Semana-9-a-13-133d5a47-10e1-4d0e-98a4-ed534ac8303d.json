@@ -1,0 +1,270 @@
+[
+  {
+    "source_file": "/app/airflow_dbt/sql/dump_xlsl/Relatorios-Semana-9-a-13-d4352213-3972-436e-b565-ab8cd80f234e/Relatorio-Incentivos-Semana-9-a-13-133d5a47-10e1-4d0e-98a4-ed534ac8303d.xlsx",
+    "folder_name": "Relatorios-Semana-9-a-13-d4352213-3972-436e-b565-ab8cd80f234e",
+    "report_type": "incentives",
+    "sheet_name": "Incentivos",
+    "headers": [
+      "Parceiro",
+      "Semana",
+      "Total de Pedidos",
+      "Indicadores",
+      "Fechamento da Semana",
+      "Meta",
+      "Incentivo/Dedução",
+      "Restituição"
+    ],
+    "rows": [
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 13,
+        "Total de Pedidos": 325,
+        "Indicadores": "Taxa de Aceitação",
+        "Fechamento da Semana": "0%",
+        "Meta": "Menor ou igual a 92%",
+        "Incentivo/Dedução": -0.5,
+        "Restituição": -162.5
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 13,
+        "Total de Pedidos": 325,
+        "Indicadores": "Tempo Médio de Liberação",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 87%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 13,
+        "Total de Pedidos": 325,
+        "Indicadores": "Disponibilidade",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 94%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 13,
+        "Total de Pedidos": 325,
+        "Indicadores": "Entrega em 35 minutos",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 13,
+        "Total de Pedidos": 325,
+        "Indicadores": "Portfólio Ideal",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 12,
+        "Total de Pedidos": 350,
+        "Indicadores": "Taxa de Aceitação",
+        "Fechamento da Semana": "0%",
+        "Meta": "Menor ou igual a 92%",
+        "Incentivo/Dedução": -0.5,
+        "Restituição": -175.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 12,
+        "Total de Pedidos": 350,
+        "Indicadores": "Tempo Médio de Liberação",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 87%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 12,
+        "Total de Pedidos": 350,
+        "Indicadores": "Disponibilidade",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 94%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 12,
+        "Total de Pedidos": 350,
+        "Indicadores": "Entrega em 35 minutos",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 12,
+        "Total de Pedidos": 350,
+        "Indicadores": "Portfólio Ideal",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 11,
+        "Total de Pedidos": 337,
+        "Indicadores": "Taxa de Aceitação",
+        "Fechamento da Semana": "0%",
+        "Meta": "Menor ou igual a 92%",
+        "Incentivo/Dedução": -0.5,
+        "Restituição": -168.5
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 11,
+        "Total de Pedidos": 337,
+        "Indicadores": "Tempo Médio de Liberação",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 87%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 11,
+        "Total de Pedidos": 337,
+        "Indicadores": "Disponibilidade",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 94%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 11,
+        "Total de Pedidos": 337,
+        "Indicadores": "Entrega em 35 minutos",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 11,
+        "Total de Pedidos": 337,
+        "Indicadores": "Portfólio Ideal",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 10,
+        "Total de Pedidos": 302,
+        "Indicadores": "Taxa de Aceitação",
+        "Fechamento da Semana": "0%",
+        "Meta": "Menor ou igual a 92%",
+        "Incentivo/Dedução": -0.5,
+        "Restituição": -151.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 10,
+        "Total de Pedidos": 302,
+        "Indicadores": "Tempo Médio de Liberação",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 87%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 10,
+        "Total de Pedidos": 302,
+        "Indicadores": "Disponibilidade",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 94%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 10,
+        "Total de Pedidos": 302,
+        "Indicadores": "Entrega em 35 minutos",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 10,
+        "Total de Pedidos": 302,
+        "Indicadores": "Portfólio Ideal",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 9,
+        "Total de Pedidos": 279,
+        "Indicadores": "Taxa de Aceitação",
+        "Fechamento da Semana": "0%",
+        "Meta": "Menor ou igual a 92%",
+        "Incentivo/Dedução": -0.5,
+        "Restituição": -139.5
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 9,
+        "Total de Pedidos": 279,
+        "Indicadores": "Tempo Médio de Liberação",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 87%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 9,
+        "Total de Pedidos": 279,
+        "Indicadores": "Disponibilidade",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 94%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 9,
+        "Total de Pedidos": 279,
+        "Indicadores": "Entrega em 35 minutos",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 9,
+        "Total de Pedidos": 279,
+        "Indicadores": "Portfólio Ideal",
+        "Fechamento da Semana": "50%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      }
+    ]
+  }
+]

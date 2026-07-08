@@ -1,0 +1,172 @@
+[
+  {
+    "source_file": "/app/airflow_dbt/sql/dump_xlsl/Relatorios-Semana-24-a-28-a1942107-b1d9-46db-acef-2b260b342bdc/Relatorio-Pagamentos-Manuais-Semana-24-a-28-cbe002ed-779b-45bb-980f-09829f6cd467.xlsx",
+    "folder_name": "Relatorios-Semana-24-a-28-a1942107-b1d9-46db-acef-2b260b342bdc",
+    "report_type": "manual_payments",
+    "sheet_name": "Pagamento Manual",
+    "headers": [
+      "Parceiro",
+      "Descrição",
+      "Tipo de Pagamento",
+      "Restituição"
+    ],
+    "rows": [
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W26",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -583.32
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_FIXO_BRASIL_VS_ESCOCIA_24_JUN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 108.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_RETROATIVO_TAXA_ADICIONAL_DE_PESO_SEMANA26",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 24.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "POC_81119_IRRF_JUNHO_COMISSO_MARKETPLACE",
+        "Tipo de Pagamento": "Comissão Marketplace",
+        "Restituição": 61.28
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W27",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -717.31
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_FIXO_BRASIL_VS_JAPAO_29_JUN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 122.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_FIXO_BRASIL_VS_NORUEGA_05_JUL",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 441.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "ATINGIU_NUMERO_DE_ENTREGADORES_NEGOCIADO_05_JUL",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 250.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_RETROATIVO_TAXA_ADICIONAL_DE_PESO_SEMANA27",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W25",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -421.47
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL473MLPACKECONMICO12UNIDADES_PEDIDO_260833915",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": -1.11
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_FIXO_BRASIL_VS_HAITI_19_JUN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 138.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_RETROATIVO_TAXA_ADICIONAL_DE_PESO_SEMANA25",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 12.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W24",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -516.44
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICAPILSEN473MLPACKECONMICO12UNIDADES_PEDIDO_898431803",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.32
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA473MLPACKECONMICO12UNIDADES_PEDIDO_829686017",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICAPILSEN473MLPACKECONMICO12UNIDADES_PEDIDO_111889006",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.64
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL473MLPACKECONMICO12UNIDADES_PEDIDO_470491515",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICAPILSEN473MLPACKECONMICO12UNIDADES_PEDIDO_346988879",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICAPILSEN473MLPACKECONMICO12UNIDADES_PEDIDO_507319987",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICAPILSEN473MLPACKECONMICO12UNIDADES_PEDIDO_774428635",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICAPILSEN473MLPACKECONMICO12UNIDADES_PEDIDO_421352497",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA473MLPACKECONMICO12UNIDADES_PEDIDO_669508139",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_BRAHMA473MLPACKECONMICO12UNIDADES_PEDIDO_395543082",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 0.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_FIXO_BRASIL_VS_MARROCOS_13_JUN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 117.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_RETROATIVO_TAXA_ADICIONAL_DE_FRETE",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 41.94
+      }
+    ]
+  }
+]

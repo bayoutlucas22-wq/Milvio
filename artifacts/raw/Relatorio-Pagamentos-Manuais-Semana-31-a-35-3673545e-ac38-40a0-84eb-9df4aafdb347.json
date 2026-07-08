@@ -1,0 +1,412 @@
+[
+  {
+    "source_file": "/app/airflow_dbt/sql/dump_xlsl/Relatorios-Semana-31-a-35-8f6e2c0e-c11a-40ec-8c08-0cac4e1da821/Relatorio-Pagamentos-Manuais-Semana-31-a-35-3673545e-ac38-40a0-84eb-9df4aafdb347.xlsx",
+    "folder_name": "Relatorios-Semana-31-a-35-8f6e2c0e-c11a-40ec-8c08-0cac4e1da821",
+    "report_type": "manual_payments",
+    "sheet_name": "Pagamento Manual",
+    "headers": [
+      "Parceiro",
+      "Descrição",
+      "Tipo de Pagamento",
+      "Restituição"
+    ],
+    "rows": [
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_998916945",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_771308940",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_622335280",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_751109590",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_DIAGEO_28JUL_AO_03AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -11.63
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_RED_BULL_28JUL_AO_03AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -6.35
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_28JUL_AO_03AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.88
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_286580836",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 5.7
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_382227260",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_998777801",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_976804705",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 5.7
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_614587846",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 3.8
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_392972242",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 5.7
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_879868489",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_973211199",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_229814641",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.8
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_866647242",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_260458420",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.8
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_698603377",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 3.6
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_966373271",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.8
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_933747264",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_218708885",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 5.41
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_791794193",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.8
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_158694246",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.8
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_677604432",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_475911831",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_774163441",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_ANTARCTICA PILSEN 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_898766244",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.8
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_AJUSTE_MPA_W30_BRAHMA 473ML _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_327279386",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 1.9
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_RED_BULL_04AGO_AO_10AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -4.24
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_INTERFOOD_04AGO_AO_10AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -1.16
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_FIXO_10_AGOSTO_8H_AS_16H59",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 164.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_DIA_DOS_PAIS",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_485869759",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_273891470",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_825486391",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 5.08
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ORIGINAL 473ML  _ PACK ECONOMICO (12 UNIDADES)_PEDIDO_384512733",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 5.08
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_DIAGEO_11AGO_AO_17AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -3.99
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_RED_BULL_11AGO_AO_17AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -2.97
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_11AGO_AO_17AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.52
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_VINICOLA_SALTON_11AGO_AO_17AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -1.32
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_COMARY_INDUSTRIA_DE_BEBIDAS_LTDA_11AGO_AO_17AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.3
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_11AGO_AO_17AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.55
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_854634068",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_811858245",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_507990824",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_516186185",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_101343574",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_543059029",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_386382390",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_DIAGEO_18AGO_AO_24AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -3.99
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_RED_BULL_18AGO_AO_24AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -2.97
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_18AGO_AO_24AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.52
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_Vinicola_SALTON_18AGO_AO_24AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -1.32
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_COMARY_INDUSTRIA_DE_BEBIDAS_LTDA_18AGO_AO_24AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.3
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_18AGO_AO_24AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.55
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  - PACK ECONOMICO (12 UNIDADES)_PEDIDO_657992131",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 4.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "AJUSTE_MPA_ANTARCTICA PILSEN 473ML  - PACK ECONOMICO (12 UNIDADES)_PEDIDO_626880772",
+        "Tipo de Pagamento": "Markup",
+        "Restituição": 4.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_640996377",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 2.01
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "POC_81119_IRRF AGOSTO_ComissAo Marketplace",
+        "Tipo de Pagamento": "Comissão Marketplace",
+        "Restituição": 34.69
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_DIAGEO_25AGO_AO_31AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -3.99
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_RED_BULL_25AGO_AO_31AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -2.97
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_25AGO_AO_31AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.52
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_Vinicola_SALTON_25AGO_AO_31AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -1.32
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_COMARY_INDUSTRIA_DE_BEBIDAS_LTDA_25AGO_AO_31AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.3
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_25AGO_AO_31AGO",
+        "Tipo de Pagamento": "Descontos Marketplace",
+        "Restituição": -0.55
+      }
+    ]
+  }
+]
