@@ -1,6 +1,6 @@
 COMPOSE ?= docker compose
 
-.PHONY: help up down build rebuild logs clean analytics
+.PHONY: help up down build rebuild logs clean analytics knowledge
 
 help:
 	@printf '%s\n' "Available targets:"
@@ -10,6 +10,7 @@ help:
 	@printf '%s\n' "  make rebuild  Rebuild and start the app"
 	@printf '%s\n' "  make logs     Follow frontend logs"
 	@printf '%s\n' "  make analytics Rebuild analytics.json from raw reports"
+	@printf '%s\n' "  make knowledge Rebuild swagger knowledge for Ollama"
 	@printf '%s\n' "  make clean    Remove Docker build cache for this project"
 
 up:
@@ -30,6 +31,9 @@ logs:
 
 analytics:
 	python3 scripts/build_analytics.py
+
+knowledge:
+	python3 scripts/build_swagger_knowledge.py
 
 clean:
 	$(COMPOSE) down --volumes --remove-orphans

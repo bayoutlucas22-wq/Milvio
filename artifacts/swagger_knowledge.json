@@ -1,0 +1,2260 @@
+{
+  "source_file": "swagger_ambev.json",
+  "title": "Zé Seller Public API",
+  "version": "1.0",
+  "openapi": "3.0.3",
+  "servers": [
+    {
+      "url": "https://seller-public-api.release.ze.delivery",
+      "description": "Development server"
+    },
+    {
+      "url": "https://seller-public-api.ze.delivery",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": ""
+    },
+    {
+      "name": "Events",
+      "description": "## Visão geral\n\nOs endpoints do grupo **Events** da Seller Public API expõe o fluxo de **sincronização assíncrona** de mudanças de status de pedidos no Zé Delivery por meio de **consultas periódicas (polling)** e de **confirmação de consumo (ack)** dos eventos já processados. É voltado a parceiros que precisam acompanhar o ciclo dos pedidos sem depender de webhook.\n\n## Quando usar os endpoints Events ?\n\n- Quando for necessário **consumir alterações de status de pedidos** (criação, confirmação, despacho, cancelamento, conclusão, conforme os tipos expostos pela API).\n- Quando o modelo de integração do parceiro for **polling** em vez de webhook.\n\n\n## Relação entre os endpoints\n\nO fluxo típico é **consultar eventos pendentes**, **processar cada evento na sua aplicação** e **confirmar o consumo** para que esses eventos não voltem nas próximas consultas.\n\n```mermaid\nflowchart LR\n  P[\"GET /events:polling — lista eventos pendentes\"] --> B[\"Sua aplicação processa cada evento\"]\n  B --> A[\"POST /events/acknowledgment - Sua aplicação confirma que processou o evento\"]\n  A --> P\n```"
+    },
+    {
+      "name": "Logistics",
+      "description": "## Visão geral\n\nOs endpoints do grupo **Logistics** da Seller Public API concentram o **ciclo de vida operacional da entrega** de um pedido no Zé Delivery: **consulta** dos detalhes de entrega, **rastreamento passo a passo** do entregador (coleta no PDV, início de rota, chegada ao destino e finalização), **validação do código de entrega** e **cancelamento** pelo entregador quando a entrega não puder ser concluída. Todas as rotas exigem autenticação e referenciam o pedido pelo identificador na plataforma.\n\n## Quando usar os endpoints Logistics ?\n\n- Quando for necessário **consultar dados operacionais da entrega** de um pedido, incluindo entregador, `pickupCode` e endereço de destino.\n- Quando o sistema de logística precisar **reportar cada etapa da jornada do entregador**: coleta no PDV, início de rota, chegada ao endereço do cliente e conclusão da entrega.\n- Quando for necessário **validar o código de entrega** (`deliveryCode`) apresentado no momento da retirada ou entrega.\n- Quando o entregador não conseguir completar a entrega e precisar **solicitar o cancelamento** com o motivo apropriado.\n\n## Quando não usar os endpoints Logistics ?\n\n- Para **aceitar, rejeitar ou cancelar pedidos administrativamente** — use o grupo **Orders** (`/orders/{orderNumber}/confirm`, `/requestCancellation`, `/cancel`).\n- Para **sincronizar eventos de status de pedido** ou substituir polling de fila — use o grupo **Events**.\n- Para **consultar ou alterar catálogo, preços ou disponibilidade de produtos** — use **Products** e **Merchants**.\n- Para **obter ou renovar token** — use **Authentication** (`client_credentials`).\n\n## Relação entre os endpoints\n\nO fluxo típico começa com a **consulta dos detalhes de entrega**, que fornece o `pickupCode` necessário para a coleta no PDV. Em seguida, o entregador **coleta o pedido**, **inicia a rota**, **sinaliza chegada** ao destino e **valida o código de entrega**. Por fim, **finaliza a entrega** com sucesso ou **cancela** por motivo operacional.\n\n```mermaid\nflowchart TD\n  G[\"GET /logistics/delivery/{orderNumber} — detalhes da entrega\"] --> P[\"POST /logistics/orderPicked/{orderNumber} — pedido coletado no PDV\"]\n  P --> SR[\"POST /logistics/startRoute/{orderNumber} — início de rota\"]\n  SR --> A[\"POST /logistics/arrived/{orderNumber} — chegada ao destino\"]\n  A --> VC[\"POST /logistics/validateCode/{orderNumber} — validar deliveryCode\"]\n  VC --> D{\"Entrega concluída?\"}\n  D -->|Sim| F[\"POST /logistics/finishDelivery/{orderNumber} — finalizar entrega\"]\n  D -->|Não, problema operacional| C[\"POST /logistics/cancel/{orderNumber} — cancelamento pelo entregador\"]\n```"
+    },
+    {
+      "name": "Merchants",
+      "description": "## Visão geral\n\nOs endpoints do grupo **Merchants** da Seller Public API tratam do **estabelecimento (PDV / seller)** no Zé Delivery: **consulta de informações operacionais e cadastrais** do merchant e **abertura e fechamento da loja** (disponibilidade operacional do ponto). Complementam o grupo **Products**, que cobre catálogo e disponibilidade de itens; aqui o foco é a operação do **PDV como estabelecimento**, não a gestão SKU a SKU.\n\n## Quando usar os endpoints Merchants ?\n\n- Quando precisar do **status e metadados do estabelecimento** (disponibilidade, informações básicas, indicadores resumo como portfólio ideal, conforme o contrato da resposta).\n- Quando for necessário **abrir ou fechar o PDV** na plataforma, com motivo quando o fechamento exigir justificativa.\n\n## Quando não usar os endpoints Merchants ?\n\n- Para **alterar disponibilidade de produtos ou SKUs específicos** — use os endpoints do grupo **Products** (por exemplo disponibilidade de item).\n- Para **detalhes de pedidos ou ciclo de pedido** — use **Orders** e, para acompanhamento de eventos, **Events**.\n- Para **histórico de pedidos finalizados** — use **Orders**.\n- Para **KPIs e relatórios financeiros** — use **Reports**.\n\n## Relação entre os endpoints\n\nAs rotas são **independentes**: você pode consultar dados do merchant ou alterar disponibilidade da loja conforme a necessidade do seu fluxo, sem ordem fixa obrigatória entre elas.\n\n```mermaid\nflowchart TD\n  G[\"GET /merchants/{merchantId} — informações do estabelecimento\"]\n  A[\"POST /merchants/{merchantId}/availability — abrir ou fechar a loja\"]\n```"
+    },
+    {
+      "name": "Orders",
+      "description": "## Visão geral\n\nOs endpoints do grupo **Orders** da Seller Public API concentram o **ciclo de vida operacional** de um pedido no Zé Delivery: **consulta** dos detalhes a partir do número do pedido na plataforma, **confirmação** de aceite pelo estabelecimento ou parceiro, **solicitação de cancelamento ou rejeição** com código de motivo e **cancelamento direto** em fluxo administrativo ou operacional. Quando habilitados para a sua integração, entram ainda a **edição e a restauração de itens** após a confirmação. Todas as rotas exigem autenticação e referenciam o pedido pelo identificador na plataforma.\n\n## Quando usar os endpoints Orders ?\n\n- Quando for necessário **consultar estado e dados completos** de um pedido para o qual você já possui o número válido na plataforma.\n- Quando o estabelecimento precisar **aceitar o pedido** ou **solicitar cancelamento ou rejeição** com código adequado ao status e às regras de negócio.\n- Quando o seu contrato de integração permitir **cancelar o pedido de forma direta**, com motivo obrigatório conforme o contrato da API.\n- Quando, após a confirmação, for preciso **ajustar itens** (remoção ou substituição) ou **restaurar** a composição anterior do pedido, conforme disponibilidade da rota para o seu caso.\n\n## Quando não usar os endpoints Orders ?\n\n- Para **sincronizar mudanças de status** ou evitar **consultas repetidas em massa** como se fosse fila de trabalho — use o grupo **Events** (polling e confirmação de consumo dos eventos).\n- Para **catálogo, preço ou disponibilidade de produtos** — use **Products** e **Merchants** quando aplicável.\n- Para **obter ou renovar token** — use **Authentication** (`client_credentials`).\n\n## Relação entre os endpoints\n\nO fluxo típico é **consultar o pedido**, **confirmar** ou **solicitar cancelamento**; em paralelo ao seu modelo de negócio pode existir **cancelamento direto**. Depois da confirmação, quando aplicável, seguem passos opcionais de **atualização de itens** e **restauração**.\n\n```mermaid\nflowchart TD\n  G[\"GET /orders/{orderNumber} — detalhes do pedido\"] --> D{\"Decisão do parceiro\"}\n  D -->|Aceitar| C[\"POST /orders/{orderNumber}/confirm — aceite do pedido\"]\n  D -->|Rejeitar ou solicitar cancelamento| R[\"POST /orders/{orderNumber}/requestCancellation — solicitação com motivo\"]\n  D -->|Cancelamento direto autorizado| X[\"POST /orders/{orderNumber}/cancel — cancelamento operacional\"]\n  C --> I{\"Ajustar itens?\"}\n  I -->|Sim| U[\"PUT /orders/{orderNumber}/items — atualização de itens\"]\n  U --> Z{\"Desfazer edição?\"}\n  Z -->|Sim| S[\"POST /orders/{orderNumber}/restore — restaurar composição\"]\n  I -->|Não| N[\"Seguir operação / logística\"]\n```"
+    },
+    {
+      "name": "Products",
+      "description": "## Visão geral\n\nOs endpoints do grupo **Products** da Seller Public API cobrem a **gestão de catálogo e oferta** no Zé Delivery em dois eixos: rotas **padrão** (disponibilidade, criação e atualização de itens, oferta/preço do item, promoções em lote e listagem paginada do menu) e rotas **`/external-catalog`**, restritas a **SKUs exclusivos do parceiro** em verticais específicas (disponibilidade de produto e de options, preços de SKU e de option, e upsert em lote do catálogo externo). Todas as rotas exigem autenticação. Endpoints de catálogo externo **não substituem** o catálogo oficial da plataforma.\n\n## Quando usar os endpoints Products ?\n\n- Quando for necessário **ligar ou desligar disponibilidade** de SKU no PDV (catálogo gerenciado pelo parceiro, conforme escopo) ou, no **catálogo externo**, de produtos ou **options** (variantes/toppings) criados pela integração.\n- Quando precisar **criar ou atualizar itens** de produto por estabelecimento, **ajustar oferta** (preço/desconto) de um item ou fazer **upsert em lote** de itens ou promoções para vários merchants.\n- Quando for preciso **listar itens do menu** de um merchant com paginação e filtro por identificadores externos.\n- Quando a integração usar **catálogo externo**: **sincronização em lote** de SKUs, **atualização de preço** de produto ou de option por `externalCode`, conforme contrato da vertical.\n\n## Quando não usar os endpoints Products ?\n\n- Para **pedidos** (consulta, confirmação, cancelamento) — use o grupo **Orders** e, para sincronização de mudanças, **Events**.\n- Para **abrir ou fechar o estabelecimento** (PDV) — use **Merchants** (`availability` do merchant), não a disponibilidade de produto individual.\n- Para **obter ou renovar token** — use **Authentication** (`client_credentials`).\n- Para **SKUs do catálogo padrão do Zé** ou fluxos fora do escopo acordado — não use rotas de catálogo externo nem operações de item sem autorização explícita.\n\n## Relação entre os endpoints\n\nNo **fluxo padrão**, costuma-se **consultar o menu** (`GET`), **criar ou atualizar itens** (POST/PUT por merchant), ajustar **disponibilidade** ou **oferta** quando aplicável, e usar **upsert em lote** ou **promos** para sincronização ampla. No **catálogo externo**, o fluxo típico é **upsert do catálogo** em lote, seguido de ajustes pontuais de **preço** e **disponibilidade** de produtos e options.\n\n```mermaid\nflowchart TB\n  subgraph padrao[\"Catálogo padrão / parceiro\"]\n    direction TB\n    M[\"GET /merchants/{merchantId}/menu/items — listar menu\"]\n    A[\"POST /merchants/{merchantId}/products/availability — on/off SKU\"]\n    C[\"POST /merchants/{merchantId}/products/items — criar item\"]\n    U[\"PUT /merchants/{merchantId}/products/items — atualizar item\"]\n    O[\"POST /merchants/{merchantId}/products/itemOffer — oferta/preço\"]\n    B[\"PUT /merchants/products/items — upsert em lote\"]\n    P[\"PUT /merchants/products/promos — promoções em lote\"]\n    M --> A --> C --> U --> O --> B --> P\n  end\n```\n\n```mermaid\nflowchart TB\n  subgraph ext[\"Catálogo externo\"]\n    direction TB\n    E1[\"PUT /external-catalog/catalog/products — upsert em lote\"]\n    E2[\"POST /external-catalog/merchants/{merchantId}/products/availability — disponibilidade SKU\"]\n    E3[\"POST /external-catalog/merchants/{merchantId}/options/availability — disponibilidade option\"]\n    E4[\"PUT /external-catalog/merchants/{merchantId}/products/{externalCode}/price — preço SKU\"]\n    E5[\"PUT /external-catalog/merchants/{merchantId}/options/{externalCode}/price — preço option\"]\n    E1 --> E2 --> E3 --> E4 --> E5\n  end\n```\n\nEm **ambos** os quadros, a cadeia vertical é **ordem sugerida de leitura**, **não** sequência obrigatória de chamadas: use apenas os endpoints necessários ao seu fluxo (por exemplo, criar/atualizar item, disponibilidade e oferta podem ser chamados conforme a operação; em lote, upsert de itens e promos são independentes entre si quando aplicável)."
+    },
+    {
+      "name": "Reports",
+      "description": "## Visão geral\n\nOs endpoints do grupo **Reports** da Seller Public API concentram consultas de **relatórios operacionais e financeiros** do PDV. Eles são voltados para integradores que precisam alimentar dashboards, rotinas de conciliação, plataformas de gestão financeira, WMS, OMS ou ERPs com dados estruturados do Zé Delivery.\n\nNesta seção ficam consultas de leitura, como KPIs do estabelecimento e relatórios financeiros. Esses endpoints não executam ações operacionais no pedido ou no catálogo; eles organizam informações para análise, acompanhamento e conciliação.\n\n## Quando usar os endpoints Reports ?\n\n- Quando o integrador precisar consultar **KPIs consolidados do PDV** por período para dashboards ou monitoramento.\n- Quando for necessário consultar **repasses na granularidade do pedido**, com valores finais de componentes financeiros como frete, cupom, markup, sampling, descontos e comissões.\n- Quando for necessário consultar **incentivos operacionais semanais**, com valor por pedido válido, quantidade de pedidos válidos e valor total repassado na semana.\n- Quando o objetivo for automatizar rotinas de relatório ou conciliação que hoje dependeriam de acesso manual ao Seu Zé ou suporte operacional.\n\n## Quando não usar os endpoints Reports ?\n\n- Para consultar detalhes completos ou estado operacional de um pedido específico — use **Orders**.\n- Para acompanhar eventos de status em tempo real ou evitar polling direto em massa — use **Events**.\n- Para abrir/fechar loja ou consultar dados cadastrais do estabelecimento — use **Merchants**.\n- Para catálogo, preço, disponibilidade ou gestão SKU a SKU — use **Products**.\n- Para obter ou renovar token — use **Authentication** (`client_credentials`).\n\n## Relação entre os endpoints\n\nOs endpoints desta seção são independentes e podem ser usados conforme a necessidade de relatório do integrador. A visão financeira completa será construída de forma incremental: o resumo de repasses por pedido cobre apenas informações atreladas ao pedido, e o resumo de incentivos operacionais cobre apenas incentivos semanais por meta/qualidade operacional. Nenhum deles detalha a memória de cálculo de cada componente.\n\n```mermaid\nflowchart TD\n  K[\"GET /merchants/{merchantId}/kpis — KPIs consolidados do PDV\"]\n  R[\"GET /merchants/{merchantId}/reimbursements/orders/summaries — resumo de repasses por pedido\"]\n  O[\"GET /merchants/{merchantId}/reports/operational-incentives — resumo de incentivos operacionais\"]\n```"
+    },
+    {
+      "name": "Webhooks",
+      "description": "## Visão geral\n\nOs endpoints do grupo **Webhooks** permitem **consultar** e **criar/atualizar** a configuração de entrega de eventos para a URL do seu sistema.\n\n### Configurações\n\nQuando **`active` está habilitado**, o Zé passa a **enviar eventos para a URL que o voce configurou**; com `active` desabilitado, não há envio para esse endpoint.\n\nAlém de `active` habilitado, é **necessário** definir **quais eventos** você deseja receber. Use o **`PATCH /webhooks`** e configure os eventos no campo **`subscribedEvents`**.\n\n## Política de resposta HTTP, retries e acknowledgment\n\nEm caso de **entrega bem-sucedida** — ou seja, enviamos o evento para a **URL** configurada e ela retornou sucesso —, o evento é tratado como consumido, então é feito o **acknowledgment** e **deixa de aparecer no polling** do grupo **Events**. \n\nAbaixo estão os casos que seguimos em cada status de resposta que veio da sua API:\n\n- **Qualquer status 2xx** é interpretado como **processamento com sucesso**; nesse caso fazemos o **ack** do evento (ele **não volta** no polling).\n- Se a sua URL responder **404**, **não realizamos novas tentativas** de envio: consideramos que a **rota não existe** no endpoint configurado.\n- Para **qualquer outro status de erro** (resposta que não seja 2xx e que não seja esse caso de 404), realizamos **até 3 tentativas** de entrega.\n\n## Validação de autenticidade do evento\n\nNas requisições HTTP para a sua API são enviados os headers **`X-App-Signature`** e **`X-App-Timestamp`**.\n\nO **`X-App-Timestamp`** é o instante do envio em **segundos** (timestamp Unix), útil por exemplo para limitar janelas de replay no seu lado.\n\nO **`X-App-Signature`** é a **assinatura de integridade da requisição**: calculada com **SHA-256** sobre o **timestamp e o payload bruto** do JSON recebidos no corpo da requisição, usando como segredo o valor **`hash`** obtido na criação do webhook via `PATCH /webhooks`. O cabeçalho costuma seguir o padrão **`sha256=<digest_hexadecimal>`**.\n\nPara validar, reproduza o digest com o timestamp + corpo bruto (`{timestamp}.{body}`) e o mesmo segredo `hash`, compare com o valor em **`X-App-Signature`** (após o prefixo `sha256=`) e só então processe o evento.\n\n## Quando usar os endpoints Webhooks?\n\n- Quando quiser **receber notificações em tempo real** na sua própria URL em vez de depender só de consultas periódicas.\n- Para **ativar ou pausar** o envio (`active`), **alterar a URL** ou **ajustar os tipos de evento** (`subscribedEvents` no `PATCH`; na resposta e na listagem, **`subscriptions`**).\n- Para **obter a configuração atual** (incluindo `hash` para validação de assinatura), use a listagem.\n\n## Relação entre os endpoints\n\nO fluxo típico é **definir ou atualizar a configuração** com `PATCH /webhooks` e, quando necessário, **consultar o estado** com `GET /webhooks`. Após a primeira criação, guarde o `hash` retornado para validar o cabeçalho `X-App-Signature` nas entregas.\n\n```mermaid\nflowchart TD\n  D[\"POST na sua URL quando active = true\"]\n  D --> R{\"Status HTTP?\"}\n  R -->|2xx| A[\"Ack — evento some do polling\"]\n  R -->|404| N[\"Sem retry — rota inexistente\"]\n  R -->|Outro erro| T[\"Até 3 tentativas de envio\"]\n```"
+    },
+    {
+      "name": "Changelog",
+      "description": "## 2026-06-22\n\n- **Endpoint(s) impactado(s):** `GET /merchants/{merchantId}/reports/operational-incentives`\n- **Tipo de mudança:** Nova feature\n- **Descrição:** A documentação pública da API passa a incluir o endpoint de incentivos operacionais, com detalhes de rota, parâmetros e estrutura de resposta para uso por parceiros.\n- **🔹 Antes vs Depois**\n- **Antes:** O endpoint de incentivos operacionais não estava documentado na especificação pública da API.\n- **Depois:**\n```json\n{\n  \"operationalIncentives\": [\n    {\n      \"amountPerOrder\": {\n        \"value\": 0,\n        \"currency\": \"BRL\"\n      },\n      \"totalAmount\": {\n        \"value\": 0,\n        \"currency\": \"BRL\"\n      },\n      \"validOrders\": 0\n    }\n  ]\n}\n```\n- **🔹 Impacto para parceiros:** Ajuste opcional — parceiros que precisam consultar dados de incentivos operacionais podem agora utilizar o endpoint documentado; não há alteração em contratos existentes.\n\n## 2026-06-16\n\n- **Endpoint(s) impactado(s):** `GET /merchants/{merchantId}/reimbursements/orders/summaries`\n- **Tipo de mudança:** Nova feature\n- **Descrição:** A documentação pública da API passa a incluir o endpoint de resumos de pedidos para reembolso, com detalhes de rota, parâmetros e estrutura de resposta para uso por parceiros.\n- **🔹 Antes vs Depois**\n- **Antes:** O endpoint de resumos de pedidos para reembolso não estava documentado na especificação pública da API.\n- **Depois:**\n```json\n{\n  \"merchantId\": \"string\",\n  \"startDate\": \"string\",\n  \"endDate\": \"string\",\n  \"orders\": [\n    {\n      \"displayId\": \"string\",\n      \"createdAt\": \"string\",\n      \"total\": {\n        \"otherFees\": {\n          \"value\": 0,\n          \"currency\": \"BRL\"\n        },\n        \"discount\": {\n          \"value\": 0,\n          \"currency\": \"BRL\"\n        },\n        \"orderReimbursement\": {\n          \"value\": 0,\n          \"currency\": \"BRL\"\n        }\n      },\n      \"otherFees\": [\n        {\n          \"type\": \"DELIVERY_FEE\",\n          \"price\": {\n            \"value\": 0,\n            \"currency\": \"BRL\"\n          }\n        }\n      ],\n      \"discounts\": [\n        {\n          \"description\": \"string\",\n          \"amount\": {\n            \"value\": 0,\n            \"currency\": \"BRL\"\n          }\n        }\n      ],\n      \"extensions\": {\n        \"financialDetails\": {\n          \"isoWeek\": 0,\n          \"isoYear\": 0\n        }\n      }\n    }\n  ],\n  \"pageInfo\": {\n    \"currentPage\": 0,\n    \"pageSize\": 0,\n    \"totalItems\": 0,\n    \"hasNextPage\": true\n  }\n}\n```\n- **🔹 Impacto para parceiros:** Ajuste opcional — parceiros que precisam consultar resumos financeiros de pedidos para fins de reembolso podem agora utilizar o endpoint documentado; não há alteração em contratos existentes.\n\n## 2026-05-28\n\n- **Endpoint(s) impactado(s):** `GET /orders/{orderNumber}`\n`PUT /orders/{orderNumber}/items`\n- **Tipo de mudança:** Nova feature\n- **Descrição:** O campo `hasLimitedPromotion` passa a integrar o esquema de itens do pedido: na resposta de consulta de pedido (`GET /orders/{orderNumber}`), cada item do array `items` pode indicar se possui promoção limitada por quantidade; no payload de atualização de itens (`PUT /orders/{orderNumber}/items`), o campo `hasLimitedPromotion` pode ser enviado em `removedItems` para identificar itens com esse tipo de promoção.\n- **🔹 Antes vs Depois**\n- **Antes:**\n```json\n[\n  {\n    \"id\": 0,\n    \"index\": 0,\n    \"name\": \"string\",\n    \"externalCode\": \"string\",\n    \"unit\": \"UNIT\",\n    \"quantity\": 0,\n    \"unitPrice\": {\n      \"value\": 0,\n      \"currency\": \"string\"\n    },\n    \"totalPrice\": {\n      \"value\": 0,\n      \"currency\": \"string\"\n    }\n  }\n]\n```\n- **Depois:**\n```json\n[\n  {\n    \"id\": 0,\n    \"index\": 0,\n    \"name\": \"string\",\n    \"externalCode\": \"string\",\n    \"unit\": \"UNIT\",\n    \"quantity\": 0,\n    \"hasLimitedPromotion\": true,\n    \"unitPrice\": {\n      \"value\": 0,\n      \"currency\": \"string\"\n    },\n    \"totalPrice\": {\n      \"value\": 0,\n      \"currency\": \"string\"\n    }\n  }\n]\n```\n- **🔹 Impacto para parceiros:** Ajuste opcional — o campo `hasLimitedPromotion` passa a estar disponível em cada item retornado por `GET /orders/{orderNumber}` e pode ser informado nos itens de `removedItems` em `PUT /orders/{orderNumber}/items`; integrações existentes não precisam de alteração, mas podem consumir ou enviar o novo campo para identificar e tratar promoções limitadas por quantidade.\n\n## 2026-05-05\n\n- **Tipo de mudança:** Nova feature\n- **Descrição:** A documentação pública da API passa a incluir o endpoint de histórico de pedidos (`GET /order-history`), com detalhes de rota, parâmetros e estrutura de resposta para uso por parceiros.\n- **🔹 Antes vs Depois**\n- **Antes:** O endpoint de histórico de pedidos não estava documentado na especificação pública da API.\n- **Depois:** Passa a existir documentação do endpoint de histórico de pedidos, acessível na referência pública da API.\n- **🔹 Impacto para parceiros:** Nenhum impacto — não há alteração em contratos de request ou response existentes; apenas documentação adicional do endpoint.\n\n## 2026-05-04\n\n- **Endpoint(s) impactado(s):** `GET /merchants/{merchantId}/menu/items`\n- **Tipo de mudança:** Nova feature\n- **Descrição:** O payload de resposta da listagem paginada de itens do cardápio passa a incluir a propriedade `isPortfolioIdeal`, indicando se o item é considerado ideal para o portfólio do parceiro.\n- **🔹 Antes vs Depois**\n- **Antes:**\n```json\n{\n  \"productId\": 0,\n  \"externalProductId\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"AVAILABLE\",\n  \"image\": { \"URL\": \"string\" },\n  \"ean\": \"string\",\n  \"isFavorite\": true,\n  \"brand\": { \"id\": \"string\", \"name\": \"string\" },\n  \"categories\": [{ \"id\": \"string\", \"name\": \"string\" }],\n  \"priceDetails\": {\n    \"price\": 0,\n    \"discount\": {\n      \"endsAt\": \"string\",\n      \"id\": \"string\",\n      \"startsAt\": \"string\",\n      \"values\": [\n        {\n          \"value\": 0,\n          \"finalUnitPrice\": 0,\n          \"minQuantity\": 0,\n          \"maxQuantity\": 0,\n          \"valueType\": \"FIXED_AMOUNT\"\n        }\n      ]\n    },\n    \"sellerDiscount\": {\n      \"active\": true,\n      \"percentageValues\": [0],\n      \"current\": {\n        \"createdAt\": \"string\",\n        \"discountPercentageValue\": 0,\n        \"id\": \"string\",\n        \"scheduleType\": \"ALWAYS\",\n        \"active\": true,\n        \"reason\": \"string\",\n        \"updatedAt\": \"string\",\n        \"username\": \"string\"\n      }\n    },\n    \"takeRateSeller\": {\n      \"active\": true,\n      \"feeAmount\": 0,\n      \"feePercentage\": 0,\n      \"netPrice\": 0\n    }\n  }\n}\n```\n- **Depois:**\n```json\n{\n  \"productId\": 0,\n  \"externalProductId\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"AVAILABLE\",\n  \"image\": { \"URL\": \"string\" },\n  \"ean\": \"string\",\n  \"isFavorite\": true,\n  \"isPortfolioIdeal\": true,\n  \"brand\": { \"id\": \"string\", \"name\": \"string\" },\n  \"categories\": [{ \"id\": \"string\", \"name\": \"string\" }],\n  \"priceDetails\": {\n    \"price\": 0,\n    \"discount\": {\n      \"endsAt\": \"string\",\n      \"id\": \"string\",\n      \"startsAt\": \"string\",\n      \"values\": [\n        {\n          \"value\": 0,\n          \"finalUnitPrice\": 0,\n          \"minQuantity\": 0,\n          \"maxQuantity\": 0,\n          \"valueType\": \"FIXED_AMOUNT\"\n        }\n      ]\n    },\n    \"sellerDiscount\": {\n      \"active\": true,\n      \"percentageValues\": [0],\n      \"current\": {\n        \"createdAt\": \"string\",\n        \"discountPercentageValue\": 0,\n        \"id\": \"string\",\n        \"scheduleType\": \"ALWAYS\",\n        \"active\": true,\n        \"reason\": \"string\",\n        \"updatedAt\": \"string\",\n        \"username\": \"string\"\n      }\n    },\n    \"takeRateSeller\": {\n      \"active\": true,\n      \"feeAmount\": 0,\n      \"feePercentage\": 0,\n      \"netPrice\": 0\n    }\n  }\n}\n```\n- **🔹 Impacto para parceiros:** Ajuste opcional — a propriedade `isPortfolioIdeal` passa a estar disponível em cada item retornado; integrações existentes não precisam de alteração, mas podem consumir o novo campo para sinalizar recomendações de portfólio.\n\n<br>\n<hr/>\n<br>\n\n- **Endpoint(s) impactado(s):** `GET /webhooks`\n`PATCH /webhooks`\n- **Tipo de mudança:** Nova feature\n- **Descrição:** A documentação pública da API passa a incluir os endpoints de gerenciamento de webhooks, permitindo que parceiros consultem e configurem a URL de destino dos eventos de pedido.\n- **🔹 Antes vs Depois**\n- **Antes:** Endpoints não documentados na especificação pública.\n- **Depois:**\n```json\n[\n  {\n    \"clientId\": \"string\",\n    \"hash\": \"string\",\n    \"endpoint\": \"string\",\n    \"active\": true,\n    \"subscriptions\": [\"ORDER_EVENTS\"]\n  }\n]\n```\n- **🔹 Impacto para parceiros:** Ajuste opcional — parceiros que desejam receber eventos de pedido via webhook podem agora consultar (`GET /webhooks`) e configurar (`PATCH /webhooks`) o endpoint de destino conforme o contrato publicado.\n\n## 2026-04-23\n\n- **Tipo de mudança:** Nova feature\n- **Descrição:** A documentação pública passa a oferecer o fluxo **Quero integrar com o Zé**: nova opção na navegação do portal que abre um modal com formulário para manifestação de interesse em integrar com o Zé Delivery.\n- **🔹 Antes vs Depois**\n- **Antes:** No portal da documentação da API não existia um caminho dedicado para quem deseja iniciar o processo de integração.\n- **Depois:** Passa a existir uma entrada explícita no menu da documentação que abre, em modal, o formulário de interesse em integração.\n- **🔹 Impacto para parceiros:** Nenhum impacto — não há alteração em endpoints, autenticação ou payloads; apenas conteúdo e experiência complementares na documentação.\n\n## 2026-04-16\n\n- **Tipo de mudança:** Melhoria\n- **Descrição:** A documentação pública da API passa a incluir uma seção de perguntas frequentes (FAQ), com respostas às dúvidas mais comuns de integração.\n- **🔹 Antes vs Depois**\n- **Antes:** Não havia FAQ publicado junto à documentação da API.\n- **Depois:** Passa a existir material de FAQ acessível na documentação, alinhado às dúvidas recorrentes de quem integra.\n- **🔹 Impacto para parceiros:** Nenhum impacto — não há mudança de rotas, verbos HTTP nem de contratos de request ou response; apenas documentação adicional.\n\n## 2026-04-06\n\n- **Endpoint(s) impactado(s):** `GET /merchants/{merchantId}/menu/items`\n- **Tipo de mudança:** Breaking change\n- **Descrição:** Na listagem paginada de itens do cardápio, quando a resposta incluir o objeto `current` em `priceDetails.sellerDiscount`, o contrato público passa a exigir a propriedade `scheduleType`, com valores definidos pelo enum publicado no esquema.\n- **🔹 Antes vs Depois**\n- **Antes:**\n```json\n{\n  \"current\": {\n    \"createdAt\": \"string\",\n    \"discountPercentageValue\": 0,\n    \"id\": \"string\",\n    \"active\": true,\n    \"reason\": \"string\",\n    \"updatedAt\": \"string\",\n    \"username\": \"string\"\n  }\n}\n```\n- **Depois:**\n```json\n{\n  \"current\": {\n    \"createdAt\": \"string\",\n    \"discountPercentageValue\": 0,\n    \"id\": \"string\",\n    \"scheduleType\": \"ALWAYS\",\n    \"active\": true,\n    \"reason\": \"string\",\n    \"updatedAt\": \"string\",\n    \"username\": \"string\"\n  }\n}\n```\n- **🔹 Impacto para parceiros:** Ajuste obrigatório — quem consome `priceDetails.sellerDiscount.current` precisa aceitar de forma estável a chave `scheduleType` e interpretar os valores enumerados conforme o contrato, sempre que `current` estiver presente.\n- **Breaking change (se aplicável):** Integrações que fixam o conjunto de campos de `current`, ignoram propriedades desconhecidas ou falham ao deserializar chaves novas podem quebrar ao receber `scheduleType`. Atualize leitura ou validação da resposta para tratar `scheduleType` como parte de `current`, conforme o esquema publicado."
+    },
+    {
+      "name": "FAQ",
+      "description": "\n\n## Visão geral\n\n**O que é a Seller Public API do Zé Delivery?**\n\nA Seller Public API é a interface oficial que permite que parceiros integrem seus sistemas ao Zé Delivery, possibilitando operações como:\n\n- Recebimento e gestão de pedidos\n- Atualização de catálogo (produtos, preços, disponibilidade)\n- Integração logística\n- Consulta de eventos e status\n- Gestão de lojas\n\nEla foi projetada para suportar múltiplos modelos de negócio e integrações escaláveis.\n\n**Quem pode se integrar com o Zé Delivery?**\n\nEmpresas que possuam, obrigatoriamente:\n\n- Sistema próprio (OMS, WMS, ERP, marketplace, etc.)\n- Capacidade técnica de integração via API, a ser validada pelo time técnico do Zé Delivery\n- Acordo comercial com o Zé Delivery\n\n## Por onde começar\n\n**Como iniciar uma integração com o Zé Delivery?**\n\nO processo segue estas etapas:\n\n1. Aprovação da integração pelo time comercial do Zé\n2. Pré-onboarding — validação técnica pelo time técnico do Zé\n3. Kickoff técnico — liberação de credenciais em ambiente de testes\n4. Desenvolvimento e teste da integração — pelo integrador, conforme a documentação, em ambiente de testes\n5. Homologação e aprovação dos testes — pelo time técnico do Zé\n6. Liberação de credenciais em produção\n7. Go-live controlado — alinhado com o time comercial do Zé\n8. Rollout — alinhado com o time comercial do Zé\n\n**Existe ambiente de testes?**\n\nSim. URLs base:\n\n- **Development:** `https://seller-public-api.release.ze.delivery`\n- **Production:** `https://seller-public-api.ze.delivery`\n\n**Preciso falar com o time do Zé para integrar?**\n\nSim. É necessário alinhamento com o time comercial para aprovação da integração. Se aprovado, o time comercial direciona o contato do time técnico para o início das atividades.\n\n## Sobre a API\n\n**Como obtenho minhas credenciais?**\n\nAs credenciais em ambiente de teste e de produção são fornecidas pelo time técnico do Zé durante o onboarding.\n\n**Como funciona a autenticação?**\n\nA Seller Public API utiliza OAuth2 no fluxo **client_credentials**.\n\nPara se autenticar:\n\n1. Envie `client_id` e `client_secret` para o endpoint `/auth`\n2. A API retornará um `access_token`\n3. Utilize esse token nas próximas requisições\n\n👉 O token precisa ser gerado apenas uma vez e possui validade de **24 horas**. Nesse período, não é necessário autenticar novamente a cada requisição.\n\nQuando o token expirar:\n\n1. Chame novamente o endpoint `/auth`\n2. Gere um novo `access_token`\n3. Continue utilizando a API normalmente\n\nBoas práticas:\n\n- Armazene (cache) o token no seu sistema\n- Evite gerar token a cada requisição\n- Monitore o tempo de expiração (`expire_in`)\n\nErros comuns:\n\n- **401 Unauthorized** — token inválido ou expirado\n\n**Como funciona o processo de homologação da integração?**\n\n1. O parceiro recebe credenciais de ambiente de desenvolvimento (dev)\n2. Realiza a integração com os endpoints liberados para o seu escopo\n3. Executa os testes de integração de forma independente\n4. Quando estiver pronto, agenda uma validação com o time do Zé\n5. Durante a validação, são realizados testes em conjunto (em tempo real)\n\nSe aprovado:\n\n- O time técnico do Zé comunica o time comercial sobre a homologação\n- Após aprovação do comercial, são liberadas as credenciais de produção\n\n👉 Esse processo reforça qualidade, segurança e estabilidade antes do go-live.\n\n**Quais são os tipos de resposta da API (sync vs async)?**\n\nA API trabalha com dois tipos de resposta:\n\n**Síncrona (sync)**\n\n- Retorno imediato da operação\n- Status HTTP típico: **200 OK**\n\n**Assíncrona (async)**\n\n- A requisição é aceita para processamento e finalizada posteriormente\n- Status HTTP típico: **202 Accepted**\n\n👉 Em fluxos assíncronos, acompanhe o processamento via eventos (polling).\n\n**Como funciona o catálogo no Zé Delivery?**\n\nExistem dois modelos:\n\n**Catálogo padrão do Zé (fluxo padrão)**\n\n- Catálogo interno, gerenciado pelo Zé Delivery\n- Utilizado na maioria das integrações\n\n**Catálogo externo do parceiro (em validação)**\n\n- O parceiro pode criar e gerenciar o próprio catálogo via API\n- Usado em integrações específicas (ex.: novas verticais ou modelos de negócio)\n\n👉 O uso de catálogo externo depende de validação e alinhamento com o time do Zé.\n\n**Por que não tenho acesso a todos os endpoints?**\n\nA API segue o princípio de *least privilege*: você só acessa os endpoints necessários, conforme o escopo de integração alinhado com o time do Zé Delivery.\n\n**Posso solicitar novos acessos?**\n\nSim, mediante alinhamento com os times comercial e técnico do Zé.\n\n## Monitoramento\n\n**Como monitorar minha integração?**\n\nRecomenda-se acompanhamento diário, com alertas para instabilidade ou erros, observando:\n\n- Taxa de erro\n- Latência\n- Volume de requisições\n- Status de pedidos\n\n**Existe uma status page da API do Zé Delivery?**\n\nAtualmente não disponibilizamos uma status page pública para acompanhamento da disponibilidade da API.\n\n👉 Estamos evoluindo essa frente; futuramente será disponibilizada uma status page para parceiros, com visibilidade sobre:\n\n- Disponibilidade dos serviços\n- Incidentes em andamento\n- Histórico de indisponibilidades\n\nEssa evolução faz parte da melhoria de observabilidade e transparência da API para o ecossistema de parceiros.\n\n**Como fico sabendo de mudanças na API?**\n\n- **Hoje:** via **Changelog** nesta documentação.\n- **Futuro:** versionamento e alertas automáticos."
+    },
+    {
+      "name": "Quero integrar com o Zé",
+      "description": ""
+    }
+  ],
+  "paths": [
+    {
+      "method": "POST",
+      "path": "/auth",
+      "tags": [
+        "Authentication"
+      ],
+      "summary": "API Authentication",
+      "description": "Com este método, será possível realizar a autenticação na API utilizando protocolo OAuth2. Com isso retornará um access_token que irá dar permissão de acesso a API.",
+      "operation_id": "auth",
+      "parameters": [
+        {
+          "name": "grant_type",
+          "in": "query",
+          "required": true,
+          "description": "Deverá sempre ser utilizado `client_credentials`"
+        },
+        {
+          "name": "scope",
+          "in": "query",
+          "required": true,
+          "description": "Atualmente temos somente o `orders/read` como escopo possível."
+        }
+      ],
+      "responses": []
+    },
+    {
+      "method": "POST",
+      "path": "/callbacks/order-events-webhook",
+      "tags": [
+        "Events"
+      ],
+      "summary": "Webhook — POST recebido na sua URL",
+      "description": "Esta operação **não** existe na Zé Seller Public API como rota a ser chamada por você. Ela documenta a **requisição HTTP** que a plataforma envia para a **URL** cadastrada em `PATCH /webhooks` quando a inscrição inclui `ORDER_EVENTS` e há um evento a entregar.\n\n**Método e corpo:** `POST` com `Content-Type: application/json` e corpo conforme o **schema ao lado**.\n\n**Resposta esperada:** seu endpoint deve responder com código HTTP **2xx** para indicar recebimento processado; outros códigos podem implicar políticas de retentativa conforme a plataforma (404 não há retentativa e para os demais erros há 3 tentativas).\n\n**Nota:** o método publicado neste host (`POST /callbacks/order-events-webhook`) existe apenas para fins de documentação; **não** é o caminho que recebe o webhook — o caminho é o da sua própria URL configurada.\n\n**Nota:** use os headers **`X-App-Signature`** e **`X-App-Timestamp`** para validar a requisição.\n\n<br>\n\n```mermaid\nsequenceDiagram\n  participant SPA as Zé Seller Public API\n  participant API as Seu Sistema\n  SPA->>API: POST https://seu.webhook.com\n  Note right of API: Processa a requisição\n  API-->>SPA: 200 Evento processado com sucesso\n```",
+      "operation_id": "webhookOrderEventsInboundContract",
+      "parameters": [
+        {
+          "name": "X-App-Signature",
+          "in": "header",
+          "required": true,
+          "description": "é a **assinatura de integridade da requisição**: calculada com **SHA-256** sobre o **timestamp e o payload bruto** do JSON recebidos no corpo da requisição, usando como segredo o valor **`hash`** obtido na criação do webhook via `PATCH /webhooks`. O cabeçalho costuma seguir o padrão **`sha256=<digest_hexadecimal>`**."
+        },
+        {
+          "name": "X-App-Timestamp",
+          "in": "header",
+          "required": true,
+          "description": "Timestamp da requisição em segundos (Unix timestamp). Utilize para validar o **`X-App-Signature`**."
+        },
+        {
+          "name": "Content-Type",
+          "in": "header",
+          "required": true,
+          "description": "Tipo de mídia do corpo."
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/events/acknowledgment",
+      "tags": [
+        "Events"
+      ],
+      "summary": "Events acknowledgment",
+      "description": "### Objetivo\n\nAcknowledge — notificar a API que eventos foram consumidos para que não sejam retornados novamente no polling.\n\n### Quando usar\n\nApós consumir com sucesso eventos obtidos por `GET /events:polling`, envie ack com lista de `EventAcknowledgementInput`.\n\n### Quando NÃO usar\n\nNão usar para sinalizar falha de processamento (ack indica consumo bem-sucedido).\n\n### Importante\n\nRequer `Authorization`. Recebe array de objetos com `id`, `orderId`, `eventType`. Retorna `202` informando que vai ser processada a requisição.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Note over Parceiro,API: Após processar eventos obtidos em GET /events:polling\n  Parceiro->>API: POST /events/acknowledgment\n  API-->>Parceiro: 202 — requisição aceita (eventos não voltam no próximo polling)\n```",
+      "operation_id": "postEventsAcknwoledgment",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/events:polling",
+      "tags": [
+        "Events"
+      ],
+      "summary": "Events polling",
+      "description": "### Objetivo\n\nExpor eventos de alteração de pedidos (CREATED, CONFIRMED, DISPATCHED, CANCELLED, CONCLUDED) via polling.\n\n### Quando usar\n\nPara sincronização assíncrona de eventos: consumir mudanças de status de pedidos. Quando o parceiro não usa webhook e prefere polling.\n\n### Quando NÃO usar\n\nNão usar para consultas ad-hoc de detalhes do pedido (chamar `/orders/{orderNumber}` para detalhes). Não usar sem informar `x-polling-merchants` header com os merchantIds.\n\n### Importante\n\nRequer header `x-polling-merchants` (lista de merchant ids) e `Authorization`. Pode filtrar por `eventType`. Schema de resposta: array de `EventPollingOutput`.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /events:polling\n  API-->>Parceiro: 200 — eventos ainda não confirmados\n```",
+      "operation_id": "getEventsByPolling",
+      "parameters": [
+        {
+          "name": "x-polling-merchants",
+          "in": "header",
+          "required": true,
+          "description": "Os ids dos estabelecimentos requirido."
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "eventType",
+          "in": "query",
+          "required": false,
+          "description": "Status dos eventos do pedido"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "500"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/external-catalog/catalog/products",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Upsert external catalog products",
+      "description": "### Objetivo\n\nRealizar upsert (criação/atualização em lote) do catálogo exclusivo do parceiro — sincronização em lote de SKUs destinados à vertical da integração.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário fazer onboarding inicial do catálogo exclusivo do parceiro.\n- Realizar sincronizações periódicas de muitos SKUs (bulk) criados pelo parceiro.\n- O catálogo enviado refere-se exclusivamente a produtos que não existem no catálogo oficial do Zé.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Criar ou atualizar produtos do catálogo padrão do Zé.\n- Sincronizações de SKUs que já pertençam ao marketplace padrão ou que sejam compartilhados entre verticais.\n- Operações unitárias frequentes (usar endpoints unitários para updates single-item).\n\n### Importante\n\nMétodo: `PUT`. Path: `/external-catalog/catalog/products`. Autenticação: header `Authorization: Bearer <token>` obrigatório. Body (application/json): array de objetos produto (bulk). Para cada produto, seguir o schema do catálogo externo (identificadores `externalProductId`/`externalCode`, `name`, `description`, `price`, `images`, `options`, etc.). Respostas: normalmente `202 Accepted` (processamento assíncrono); `400`, `401`, `403`, `422` por item ou geral; `500` para erro servidor. Observações técnicas: Endpoint é assíncrono — processamento em background; cada item pode ter validações individuais que resultem em erros parciais. Monitorar mensagens/erros de retorno/reporting. Respeitar limites operacionais (tamanho de payload/rate limits) definidos por contrato técnico — validar antes de enviar lotes muito grandes. Mantém isolamento por vertical: não cria nem altera o catálogo oficial do Zé.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PUT /external-catalog/catalog/products\n  API-->>Parceiro: 202 — processamento assíncrono\n```",
+      "operation_id": "upsertCatalogProduct",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external-catalog/merchants/{merchantId}/options/availability",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update external catalog option availability",
+      "description": "### Objetivo\n\nControlar a disponibilidade granular (on/off) de *options* (variantes/toppings) de SKUs exclusivos do parceiro.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário marcar uma option como disponível ou indisponível para um merchant específico.\n- A option pertence a um SKU gerenciado no catálogo externo.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Controlar availability de opções que pertencem a produtos do catálogo padrão do Zé.\n- Controlar options em escala global fora do escopo da vertical de integração.\n\n### Importante\n\nMétodo: `POST`. Path: `/external-catalog/merchants/{merchantId}/options/availability`. Autenticação: header `Authorization: Bearer <token>` obrigatório. Parâmetros: `merchantId` (path). Body (application/json): objeto com `externalOptionCode` ou identificador equivalente e `available` boolean. Respostas: `200 OK` em caso de sucesso; `400`, `401`, `403`, `404`, `422`, `500` conforme validações/erros. Observações: alteração afeta somente a option no contexto do merchant e da vertical; validar existência da option no catálogo externo antes de executar.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /external-catalog/merchants/{merchantId}/options/availability\n  API-->>Parceiro: 200 em caso de sucesso\n```",
+      "operation_id": "updateCatalogOptionAvailability",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/external-catalog/merchants/{merchantId}/options/{externalCode}/price",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update external catalog option price",
+      "description": "### Objetivo\n\nAtualizar o preço de uma *option* (variante/topping) pertencente a um SKU exclusivo do catálogo externo, identificado por `externalCode`.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- A option (variante) pertence a um SKU criado via integração externa.\n- O parceiro precisa ajustar preços de variantes/toppings gerenciadas no catálogo externo.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Atualizar preços de produtos do catálogo padrão do Zé.\n- Atualizações de pricing em SKUs ABI já cadastrados.\n- Atualizações massivas do marketplace fora do escopo do catálogo externo.\n\n### Importante\n\nMétodo: `PUT`. Path: `/external-catalog/merchants/{merchantId}/options/{externalCode}/price`. Autenticação: header `Authorization: Bearer <token>` obrigatório. Parâmetros: `merchantId` (path); `externalCode` (path) — identificador da option no catálogo do parceiro. Body (application/json): objeto `price` com campos mínimos: `value` (number) — preço atual (obrigatório). `originalValue` (number) — preço original (obrigatório quando aplicável). `currency` (string) — ex.: `BRL` (recomendado). Respostas comuns: `202 Accepted` (processamento assíncrono), `400`, `401`, `403`, `404`, `422`, `500`. Observações: alteração aplica-se somente à option identificada por `externalCode`; validar se a option existe no catálogo externo antes de enviar.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PUT /external-catalog/merchants/{merchantId}/options/{externalCode}/price\n  API-->>Parceiro: 202 ou código de erro conforme validação\n```",
+      "operation_id": "updateCatalogOptionPrice",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        },
+        {
+          "name": "externalCode",
+          "in": "path",
+          "required": true,
+          "description": "O código externo do produto (option) a ser atualizado, definido pelo parceiro e único dentro do catálogo externo."
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external-catalog/merchants/{merchantId}/products/availability",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update external catalog product availability",
+      "description": "### Objetivo\n\nAtualizar a disponibilidade (on/off) de **SKUs exclusivos criados pelo parceiro**, destinados a uma vertical específica dentro do Zé Delivery.\n\n### Quando usar\n\nUtilize este endpoint **somente** quando:\n\n- O SKU foi criado pelo parceiro via integração.\n- O SKU **não existe no catálogo padrão do Zé**.\n- O produto será consumido exclusivamente dentro da vertical associada a esta integração.\n\n### Quando NÃO usar\n\nEste endpoint **não deve ser utilizado** para:\n\n- Produtos do catálogo padrão do Zé.\n- SKUs ABI já existentes na base.\n- Atualizações de disponibilidade de produtos padrão do marketplace.\n- Fluxos genéricos de catálogo.\n\n### Importante\n\nEste é um endpoint **específico para catálogos externos/parceiros**. Ele não substitui nem altera o comportamento do catálogo oficial do Zé Delivery.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /external-catalog/merchants/{merchantId}/products/availability\n  API-->>Parceiro: 200 em caso de sucesso\n```",
+      "operation_id": "updateCatalogAvailability",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/external-catalog/merchants/{merchantId}/products/{externalCode}/price",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update external catalog product price",
+      "description": "### Objetivo\n\nAtualizar o preço de venda de um SKU exclusivo criado pelo parceiro, identificado por `externalCode`.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- O SKU foi criado via integração externa e não existe no catálogo oficial do Zé.\n- For necessário ajustar o preço de venda do SKU em produção.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Atualizar preços de SKUs do catálogo padrão do Zé.\n- Alterar preços de itens que são compartilhados entre verticais sem autorização.\n\n### Importante\n\nMétodo: `PUT`. Path: `/external-catalog/merchants/{merchantId}/products/{externalCode}/price`. Autenticação: header `Authorization: Bearer <token>` obrigatório. Parâmetros: `merchantId` (path); `externalCode` (path) — identificador do SKU no sistema do parceiro. Body (application/json): objeto `price` com campos mínimos: `value` (number) — preço final cobrado. `originalValue` (number) — preço original (sem desconto), quando aplicável. `currency` (string) — ex.: `BRL`. Respostas: `202 Accepted` (assíncrono) ou `200`/`4xx`/`5xx` conforme validação/erro. Observações: payload deve obedecer às regras de preço (ex.: `value` > 0; se `originalValue` informado calcule desconto conforme regra local). Garantir que o `externalCode` aponta para um SKU gerenciado pelo parceiro.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PUT /external-catalog/merchants/{merchantId}/products/{externalCode}/price\n  API-->>Parceiro: 202 ou resposta conforme validação\n```",
+      "operation_id": "updateCatalogPrice",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        },
+        {
+          "name": "externalCode",
+          "in": "path",
+          "required": true,
+          "description": "O código externo do produto a ser atualizado, definido pelo parceiro e único dentro do catálogo externo."
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/logistics/arrived/{orderNumber}",
+      "tags": [
+        "Logistics"
+      ],
+      "summary": "Arrived Order",
+      "description": "### Objetivo\n\nInformar que o pedido chegou ao destino (entregador chegou no endereço do cliente).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário sinalizar a chegada do entregador ao endereço do cliente, antes da tentativa de entrega ou entrega final.\n- O body com o `email` do entregador estiver disponível.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Confirmar que a entrega foi concluída — use `/logistics/finishDelivery/{orderNumber}`.\n- Registrar outros eventos anteriores da jornada (coleta, início de rota).\n\n### Importante\n\nRequer header `Authorization: Bearer <token>`. Body com `email` do entregador é obrigatório. Retorna `202` quando aceito para processamento. Schema do body: `ArrivedOrderInput`.\n\n```mermaid\nsequenceDiagram\n  participant Entregador as Seu sistema (entregador)\n  participant API as Zé Seller Public API\n  Entregador->>API: POST /logistics/arrived/{orderNumber}\n  Note right of API: Body: { email }\n  API-->>Entregador: 202 Aceito para processamento\n```",
+      "operation_id": "arrivedOrder",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/logistics/cancel/{orderNumber}",
+      "tags": [
+        "Logistics"
+      ],
+      "summary": "Delivery Order Cancel",
+      "description": "### Objetivo\n\nPermitir que o entregador solicite o cancelamento do pedido por motivos operacionais (ex.: `NOT_FOUND`, `RISK_AREA`).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- O entregador não conseguir completar a entrega por motivos documentados no enum de razões disponível.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Cancelamentos administrativos que não passaram pelo fluxo do entregador — use `/orders/{orderNumber}/cancel` conforme escopo e permissões do parceiro.\n- Rejeição de pedido antes da confirmação pelo estabelecimento — use `/orders/{orderNumber}/requestCancellation`.\n\n### Importante\n\nRequer header `Authorization: Bearer <token>`. Body obrigatório com `email` do entregador e `reason` (enum de motivos, ex.: `NOT_FOUND`, `RISK_AREA`).\n\n```mermaid\nsequenceDiagram\n  participant Entregador as Seu sistema (entregador)\n  participant API as Zé Seller Public API\n  Entregador->>API: POST /logistics/cancel/{orderNumber}\n  Note right of API: Body: { email, reason }\n  API-->>Entregador: 202 Cancelamento aceito para processamento\n```",
+      "operation_id": "deliveryOrderCancel",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/logistics/delivery/{orderNumber}",
+      "tags": [
+        "Logistics"
+      ],
+      "summary": "Delivery details",
+      "description": "### Objetivo\n\nRecuperar detalhes de entrega de um pedido (nome do cliente, entregador, preços, `pickupCode`, endereço).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário realizar consultas operacionais sobre rota e dados do entregador para execução da entrega.\n- For preciso verificar o `pickupCode` para coleta do pedido no PDV.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Alterar o status de entrega do pedido (use os endpoints POST do grupo Logistics).\n- Obter dados completos do pedido além das informações de entrega (use `GET /orders/{orderNumber}`).\n\n### Importante\n\nRequer header `Authorization: Bearer <token>`. Schema de resposta: `DeliveryDetailsOutput`.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /logistics/delivery/{orderNumber}\n  API-->>Parceiro: 200 com detalhes da entrega (entregador, pickupCode, endereço)\n```",
+      "operation_id": "getDeliveryDetailsByNumber",
+      "parameters": [
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/logistics/finishDelivery/{orderNumber}",
+      "tags": [
+        "Logistics"
+      ],
+      "summary": "Finish Route",
+      "description": "### Objetivo\n\nMarcar o pedido como entregue (finalizar rota e status do pedido).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- A entrega foi concluída com sucesso pelo entregador.\n- O body com o `email` do entregador estiver disponível; `lat`/`long` são opcionais para registro de geolocalização.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Cancelar ou reverter o status de entrega — use `/logistics/cancel/{orderNumber}` para cancelamentos pelo entregador.\n- Sinalizar etapas intermediárias (coleta, rota, chegada) — use os endpoints de evento correspondentes antes de finalizar.\n\n### Importante\n\nRequer header `Authorization: Bearer <token>`. Retorna `202` quando aceito para processamento. Schema do body: `OrderDeliveredInput`.\n\n```mermaid\nsequenceDiagram\n  participant Entregador as Seu sistema (entregador)\n  participant API as Zé Seller Public API\n  Entregador->>API: POST /logistics/finishDelivery/{orderNumber}\n  Note right of API: Body: { email, lat?, long? }\n  API-->>Entregador: 202 Pedido marcado como entregue\n```",
+      "operation_id": "finishDelivery",
+      "parameters": [
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/logistics/orderPicked/{orderNumber}",
+      "tags": [
+        "Logistics"
+      ],
+      "summary": "Order Picked",
+      "description": "### Objetivo\n\nInformar que o entregador pegou o pedido no PDV (marcar pickup).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário confirmar que o entregador recebeu fisicamente o pedido no ponto de venda.\n- O body obrigatório com o `email` do entregador estiver disponível.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Indicar chegada ao endereço do cliente ou entrega final — use `/logistics/arrived/{orderNumber}` ou `/logistics/finishDelivery/{orderNumber}`.\n- Registrar outros eventos da jornada do entregador antes da coleta.\n\n### Importante\n\nRequer header `Authorization: Bearer <token>`. Retorna `202` quando aceito para processamento. Schema do body: `PickedOrderInput`.\n\n```mermaid\nsequenceDiagram\n  participant Entregador as Seu sistema (entregador)\n  participant API as Zé Seller Public API\n  Entregador->>API: POST /logistics/orderPicked/{orderNumber}\n  Note right of API: Body: { email }\n  API-->>Entregador: 202 Aceito para processamento\n```",
+      "operation_id": "orderPicked",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/logistics/startRoute/{orderNumber}",
+      "tags": [
+        "Logistics"
+      ],
+      "summary": "Start Route Order",
+      "description": "### Objetivo\n\nInformar início de rota/coleta pelo entregador (rota iniciada).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- O entregador iniciar a rota de entrega após coletar o pedido no PDV.\n- O body com o `email` do entregador estiver disponível.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Sinalizar chegada ao endereço do cliente — use `/logistics/arrived/{orderNumber}`.\n- Confirmar a entrega final — use `/logistics/finishDelivery/{orderNumber}`.\n\n### Importante\n\nRequer header `Authorization: Bearer <token>`. Retorna `202` quando aceito para processamento. Schema do body: `startRouteOrderInput`.\n\n```mermaid\nsequenceDiagram\n  participant Entregador as Seu sistema (entregador)\n  participant API as Zé Seller Public API\n  Entregador->>API: POST /logistics/startRoute/{orderNumber}\n  Note right of API: Body: { email }\n  API-->>Entregador: 202 Aceito para processamento\n```",
+      "operation_id": "startRouteOrder",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/logistics/validateCode/{orderNumber}",
+      "tags": [
+        "Logistics"
+      ],
+      "summary": "Validate Code",
+      "description": "### Objetivo\n\nValidar o código de entrega (`deliveryCode`) informado no momento da entrega ou retirada do pedido.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário verificar se o `deliveryCode` informado pelo entregador ou cliente é válido para o pedido em questão.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Autorização de pagamento ou verificação de identidade além da validação do código de entrega.\n- Confirmar a conclusão da entrega — use `/logistics/finishDelivery/{orderNumber}` após validar o código.\n\n### Importante\n\nRequer header `Authorization: Bearer <token>`. Body obrigatório com `deliveryCode`. Retorna `200` em caso de código válido. Schema do body: `ValidateCodeInput`.\n\n```mermaid\nsequenceDiagram\n  participant Entregador as Seu sistema (entregador)\n  participant API as Zé Seller Public API\n  Entregador->>API: POST /logistics/validateCode/{orderNumber}\n  Note right of API: Body: { deliveryCode }\n  API-->>Entregador: 200 Código validado com sucesso\n```",
+      "operation_id": "validateCode",
+      "parameters": [
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/merchants/products/items",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Upsert product items",
+      "description": "### Objetivo\n\nUpsert em lote (atualizar múltiplos produtos) — sincronização inicial ou periódica de catálogo parceiro.\n\n### Quando usar\n\nOnboarding inicial de catálogo exclusivo do parceiro ou sincronização de muitos SKUs.\n\n### Quando NÃO usar\n\nPara atualizações unitárias frequentes (usar endpoints unitários); não criar produtos no catálogo oficial do Zé.\n\n### Importante\n\nRecurso assíncrono: retorna `202` para processamento; validações por item podem retornar `422`. Requer `Authorization`. Limitações de tamanho de payload não documentadas explicitamente no Swagger — validar com infraestrutura antes de enviar grandes lotes.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PUT /merchants/products/items\n  API-->>Parceiro: 202 — processamento assíncrono\n```",
+      "operation_id": "upsertProductItems",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/merchants/products/promos",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update product promotions",
+      "description": "### Objetivo\n\nAtualizar promoções de produtos para múltiplos estabelecimentos em lote.\n\n### Quando usar\n\nAplicar/retirar campanhas/promos para vários merchants de uma só vez.\n\n### Quando NÃO usar\n\nPara promoções que impactam catálogo padrão sem acordo; não usar para promoções ad-hoc sem campos obrigatórios.\n\n### Importante\n\nEstrutura: array de `ProductPromoInput`. Regras: se `isEnabled=true`, `percentage` e `scheduleType` são obrigatórios, caso contrário não devem ser enviados. Deve ser usado productId ou externalProductId em ambos os casos. Requer `Authorization`. Retorna `202` quando aceito.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PUT /merchants/products/promos\n  API-->>Parceiro: 202 quando aceito\n```",
+      "operation_id": "updateProductPromos",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/merchants/{merchantId}",
+      "tags": [
+        "Merchants"
+      ],
+      "summary": "Get merchant information",
+      "description": "### Objetivo\n\nRecuperar informações do estabelecimento (status, availability, basicInfo, idealPortfolio, etc).\n\n### Quando usar\n\nQuando precisar do status operacional do PDV e metadados úteis para operação/decisões.\n\n### Quando NÃO usar\n\nNão usar como substituto de integrações profundas de catálogo/WMS; dados são informativos.\n\n### Importante\n\nRequer `Authorization`. Schema de resposta: `MerchantInformationResponse`. Campos como `idealPortfolio` fornecem métricas (totalProducts, totalActiveProducts).\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /merchants/{merchantId}\n  API-->>Parceiro: 200 com dados do estabelecimento\n```",
+      "operation_id": "getMerchantInformation",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/merchants/{merchantId}/availability",
+      "tags": [
+        "Merchants"
+      ],
+      "summary": "Make merchant availability",
+      "description": "### Objetivo\n\nAbrir ou fechar um estabelecimento (operational availability) no Zé.\n\n### Quando usar\n\nPara operação de abertura (`operation: AVAILABLE`) ou fechamento (`operation: CLOSED`) do PDV com razão obrigatória quando `CLOSED`.\n\n### Quando NÃO usar\n\nNão usar para alterar disponibilidade de produtos individuais (use `products/availability`).\n\n### Importante\n\nBody com `operation` enum (`AVAILABLE` | `CLOSED`); `reasons` obrigatório quando `CLOSED`. Requer `Authorization`. Retornos: 200/422 conforme validação.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /merchants/{merchantId}/availability\n  API-->>Parceiro: 200 ou 422 conforme validação\n```",
+      "operation_id": "merchantsAvailability",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/merchants/{merchantId}/kpis",
+      "tags": [
+        "Reports"
+      ],
+      "summary": "Get Merchant KPIs",
+      "description": "### Objetivo\n\nPermitir que o **integrador** consulte, de forma programática, os principais **KPIs operacionais de um PDV (seller)** para utilização em dashboards próprios, monitoramento de performance e automações. O endpoint fornece métricas consolidadas por período (granularidade) e data de referência, retornando indicadores estruturados por grupo.\n\n### Quando usar\n\nUtilize este endpoint somente quando: O integrador precisar **consultar KPIs consolidados de um PDV específico**. For necessário **alimentar dashboards externos ou sistemas próprios** com métricas de desempenho do seller. Houver necessidade de analisar métricas agregadas por período (`MONTH`, `WEEK`, `DAY` ou `HOUR`).\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para: Consultar detalhes de pedidos individuais (use endpoints de Orders). Criar, atualizar ou enviar dados de performance. Substituir endpoints de catálogo, estoque ou operações transacionais.\n\n### Importante\n\nEste endpoint é **somente leitura (read-only)**. O acesso exige autenticação OAuth2 (`client_credentials`) e permissionamento específico para leitura de KPIs. O retorno é consolidado por PDV e por período — não há detalhamento por pedido. A granularidade e a data de referência são obrigatórias e impactam diretamente o cálculo das métricas. O integrador deve respeitar o rate limit configurado para a aplicação. O endpoint faz parte da **Seller Public API (catálogo padrão)** e não está relacionado a catálogo externo, marketplace ou integrações de parceiro customizadas.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /merchants/{merchantId}/kpis\n  API-->>Parceiro: 200 com KPIs agregados por período\n```",
+      "operation_id": "getMerchantKPIs",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        },
+        {
+          "name": "granularity",
+          "in": "query",
+          "required": false,
+          "description": "A granularidade dos KPIs a serem retornados."
+        },
+        {
+          "name": "referenceDate",
+          "in": "query",
+          "required": false,
+          "description": "Data de referência para os KPIs (formato ISO 8601: YYYY-MM-DD)."
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/merchants/{merchantId}/menu/items",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Get merchant items",
+      "description": "### Objetivo\n\nBuscar itens do menu de um estabelecimento (paginação e filtro por `externalProductIds`).\n\n### Quando usar\n\nPara listar produtos expostos de um merchant (paginação via `page` e `pageSize`).\n\n### Quando NÃO usar\n\nNão usar para modificar itens; para detalhes completos do produto usar endpoints de produto.\n\n### Importante\n\nRequer `Authorization`. `pageSize` tem limites (`min=5`, `max=30`) e `page` padrão = 1 segundo Swagger. Schema de resposta: `merchantItemsResponse`.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /merchants/{merchantId}/menu/items\n  API-->>Parceiro: 200 com itens paginados\n```",
+      "operation_id": "getMerchantItems",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "required": false,
+          "description": "O número da página"
+        },
+        {
+          "name": "pageSize",
+          "in": "query",
+          "required": false,
+          "description": "O número de itens por página"
+        },
+        {
+          "name": "externalProductIds",
+          "in": "query",
+          "required": false,
+          "description": "Os ids externos dos itens. Retorna todos se não for informado."
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/merchants/{merchantId}/orders/history",
+      "tags": [
+        "Orders"
+      ],
+      "summary": "Histórico de pedidos finalizados do estabelecimento",
+      "description": "### Objetivo\n\nConsultar, de forma paginada, o histórico de pedidos **finalizados** de um estabelecimento (`merchantId`) em um determinado período. A resposta traz uma visão resumida de cada pedido — cliente, pagamento, valores, avaliação e histórico de status — adequada para construção de relatórios, dashboards e telas de consulta.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário listar pedidos **já finalizados** de um estabelecimento (por exemplo, pedidos concluídos ou cancelados), dentro de um intervalo de datas.\n- Houver um `merchantId` válido ao qual o parceiro tenha acesso.\n- For desejável paginar os resultados (`page`, `pageSize`) e/ou ordená-los pela data de criação (`sort`).\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Consulta de pedidos **em andamento** (ainda não finalizados): eles não são retornados por este endpoint.\n- Acompanhamento em tempo real do ciclo de vida de pedidos: utilizar `events:polling` em conjunto com `getOrderByNumber`.\n- Recuperação de detalhes completos de um pedido específico (itens, taxas, descontos detalhados, cliente completo): utilizar `getOrderByNumber`.\n- Operações de escrita ou alteração de pedidos (confirmar, cancelar, restaurar, atualizar itens).\n\n### Importante\n\nRequer header `Authorization: Bearer <token>` e o parceiro deve ter permissão sobre o `merchantId` consultado. Somente pedidos que já concluíram seu ciclo de vida (ex.: `CONCLUDED` e `CANCELLED`) são retornados — pedidos em andamento são omitidos do resultado.\n\n**Limites de período:**\n\n- `startDate` não pode ser anterior a **6 meses** contados a partir da data atual.\n- O intervalo entre `startDate` e `endDate` não pode exceder **3 meses** por consulta.\n- Para cobrir intervalos maiores, fracionar a consulta em múltiplas chamadas com janelas de até 3 meses, sempre dentro dos últimos 6 meses.\n\nQuando `startDate` e `endDate` não forem informados, o período padrão é dos últimos 30 dias até o momento atual; quando informados, devem estar em ISO 8601 e `endDate` deve ser maior ou igual a `startDate`. O `pageSize` aceita valores entre 1 e 50 (padrão 20). O campo `hasNext` na resposta indica se há mais páginas a consultar. Dados sensíveis do cliente (ex.: nome) podem ser omitidos quando o parceiro não tiver permissão para acessá-los.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /merchants/{merchantId}/orders/history?startDate&endDate&page&pageSize&sort\n  API-->>Parceiro: 200 com página de pedidos finalizados\n  Parceiro->>API: GET /merchants/{merchantId}/orders/history?page=N+1 (enquanto hasNext = true)\n  API-->>Parceiro: 200 com próxima página\n```",
+      "operation_id": "getOrderHistory",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        },
+        {
+          "name": "startDate",
+          "in": "query",
+          "required": false,
+          "description": "Data inicial do período de consulta no formato ISO 8601 (UTC). Quando não informada, é considerada 30 dias antes de `endDate`. Não pode ser anterior a 6 meses contados a partir da data atual."
+        },
+        {
+          "name": "endDate",
+          "in": "query",
+          "required": false,
+          "description": "Data final do período de consulta no formato ISO 8601 (UTC). Quando não informada, é considerada a data/hora atual. Deve ser maior ou igual a `startDate`, e o intervalo entre `startDate` e `endDate` não pode exceder 3 meses por consulta."
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "required": false,
+          "description": "O número da página, iniciando em 1."
+        },
+        {
+          "name": "pageSize",
+          "in": "query",
+          "required": false,
+          "description": "O número de itens por página."
+        },
+        {
+          "name": "sort",
+          "in": "query",
+          "required": false,
+          "description": "Ordenação dos pedidos pela data de criação. `asc` para ordem crescente e `desc` para ordem decrescente."
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/merchants/{merchantId}/products/availability",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update product availability",
+      "description": "### Objetivo\n\nAtualizar disponibilidade (on/off) de um SKU do estabelecimento (produto ou `externalProductId`).\n\n### Quando usar\n\nQuando o parceiro precisa marcar um produto específico como disponível ou indisponível no PDV.\n\n### Quando NÃO usar\n\nPara atualizar produtos do catálogo padrão do Zé (aplicável somente a SKUs gerenciados pelo parceiro quando apropriado).\n\n### Importante\n\nBody aceita `productId` (integer) **ou** `externalProductId` (string) e `available` boolean. Requer `Authorization`. Retorna `200` com objeto de confirmação.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /merchants/{merchantId}/products/availability\n  API-->>Parceiro: 200 com confirmação\n```",
+      "operation_id": "updateProductAvailability",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/merchants/{merchantId}/products/itemOffer",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update item offer",
+      "description": "### Objetivo\n\nAtualizar/definir oferta (price/discount) de um item no estabelecimento.\n\n### Quando usar\n\nAplicar preço ou promoção em um item específico do merchant (price + originalValue).\n\n### Quando NÃO usar\n\nPara alterar o catálogo global do Zé ou preços de SKUs do catálogo padrão (sem acordo).\n\n### Importante\n\nRequer `merchantId` e `price` com `value` e `originalValue` (`value > 0`, `originalValue ≥ value`). Requer `Authorization`. Retorna `202` quando processado.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /merchants/{merchantId}/products/itemOffer\n  API-->>Parceiro: 202 quando aceito\n```",
+      "operation_id": "updateItemOffer",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/merchants/{merchantId}/products/items",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Create product item",
+      "description": "### Objetivo\n\nCriar (`POST`) um item de produto para um estabelecimento (inclui price, images, category, tags).\n\n### Quando usar\n\n`POST`: criar SKUs exclusivos do parceiro para o merchant (catálogo externo/partner-managed).\n\n### Quando NÃO usar\n\nNão usar para criar SKUs que pertencem ao catálogo padrão do Zé sem autorização. Evitar duplicar `productId` vs `externalProductId` — a regra do Swagger indica que **exatamente um** dos identificadores é obrigatório.\n\n### Importante\n\nRegras de validação: exatamente um de `productId` ou `externalProductId` deve ser enviado; se `price` informado, `value` e `originalValue` são obrigatórios; imagens têm `image` obrigatório. Requer `Authorization`. Respostas podem retornar `202` (async processing) ou erros `422`/`400`.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /merchants/{merchantId}/products/items\n  API-->>Parceiro: 202 ou erro de validação\n```",
+      "operation_id": "createProductItem",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/merchants/{merchantId}/products/items",
+      "tags": [
+        "Products"
+      ],
+      "summary": "Update product item",
+      "description": "### Objetivo\n\nAtualizar (`PUT`) um item de produto para um estabelecimento (inclui price, images, category, tags).\n\n### Quando usar\n\n`PUT`: atualizar metadados do item (nome, descrição, preço, imagens).\n\n### Quando NÃO usar\n\nNão usar para alterar SKUs que pertencem ao catálogo padrão do Zé sem autorização. Evitar duplicar `productId` vs `externalProductId` — a regra do Swagger indica que **exatamente um** dos identificadores é obrigatório.\n\n### Importante\n\nRegras de validação: exatamente um de `productId` ou `externalProductId` deve ser enviado; se `price` informado, `value` e `originalValue` são obrigatórios; imagens têm `image` obrigatório. Requer `Authorization`. Respostas podem retornar `202` (async processing) ou erros `422`/`400`.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PUT /merchants/{merchantId}/products/items\n  API-->>Parceiro: 202 ou erro de validação\n```",
+      "operation_id": "updateProductItem",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/merchants/{merchantId}/reimbursements/orders/summaries",
+      "tags": [
+        "Reports"
+      ],
+      "summary": "Resumo de repasses por pedido",
+      "description": "### Objetivo\n\nEssa consulta faz parte do grupo de 4 relatórios financeiros de repasses do Zé aos estabelecimentos que operam conosco:\n\n- Repasses calculados por pedido.\n- Repasses de incentivos operacionais semanais.\n- Repasses de pagamentos por ajustes manuais.\n- Repasses de pagamentos online.\n\nEssa consulta retorna, de forma paginada, o item 1: o resumo dos repasses financeiros diretamente calculados por pedido, e atrelados a um estabelecimento (`merchantId`) em um período financeiro. Os valores retornados por pedido são:\n\n- **Markup:** markup na venda de produtos Ambev.\n- **Frete:** diferença entre os valores de entrega negociado com o estabelecimento e os pagos pelo cliente, incluindo taxas adicionais.\n- **Cupons e Descontos:** valores de cupons e descontos aplicados nos pedidos.\n- **Taxas e Comissões:** cobranças de plataforma e marketplace.\n\nCaso haja dúvidas dos cálculos, consulte:\n\n- Para Pagamentos Online: [Pagamento Online | Portal do Parceiro](https://faq-parceiro-zedelivery.sprinklr.com/categories/pagamento-online/6218f5ea48c139668dedaf4e).\n- Para todos os outros repasses: [Pagamento | Portal do Parceiro](https://faq-parceiro-zedelivery.sprinklr.com/categories/pagamento/6218f5ea48c139668dedaf53).\n\nAs datas informadas servem para selecionar semanas ISO fechadas, e a resposta traz os pedidos encontrados nessas semanas, com valores finais calculados em cada pedido.\n\n### Quando usar\n\nUtilize este endpoint quando:\n\n- For necessário consultar resumos de repasse por pedido de um estabelecimento.\n- Houver um `merchantId` válido ao qual o parceiro tenha acesso.\n- O período de consulta estiver definido por `startDate` e `endDate`, ambos no formato `YYYY-MM-DD`.\n- For desejável paginar os resultados usando `page` e `pageSize`.\n- For necessário filtrar a consulta por um pedido específico, desde que ele pertença ao período financeiro informado.\n- O objetivo for apoiar conciliação financeira na granularidade do pedido.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Consultar detalhes completos de um pedido específico.\n- Acompanhar o ciclo de vida operacional do pedido em tempo real.\n- Criar, atualizar, cancelar ou restaurar pedidos.\n- Obter a visão financeira completa do seller.\n- Detalhar a memória de cálculo de cada componente financeiro.\n\n### Importante\n\nRequer header `Authorization: Bearer <token>` e o parceiro deve ter permissão sobre o `merchantId` consultado.\n\nOs campos `startDate` e `endDate` são obrigatórios e devem ser enviados no formato `YYYY-MM-DD`, por exemplo `2026-05-18`. Valores com horário completo, como `2026-05-18T00:00:00.000Z`, não fazem parte do contrato deste endpoint.\n\n**Como o período é interpretado:**\n\n- A API usa `startDate` e `endDate` para descobrir quais semanas ISO fazem parte do intervalo informado.\n- Uma semana ISO começa na segunda-feira e termina no domingo.\n- Não é possível consultar a semana atual enquanto ela ainda estiver em andamento; somente semanas ISO já fechadas são aceitas.\n- O período deve estar dentro do mesmo ano e pode cobrir, no máximo, as últimas 5 semanas ISO fechadas.\n- Como a busca é feita por semana ISO, a API consulta as semanas inteiras selecionadas. Por isso, a resposta pode trazer pedidos pertencentes a essas semanas mesmo quando a data do pedido estiver fora do recorte literal de `startDate` e `endDate`.\n\nExemplo: `startDate=2026-05-18` e `endDate=2026-05-24` selecionam a semana ISO 21 de 2026. Já `startDate=2026-05-01` e `endDate=2026-05-31` selecionam as semanas ISO 18 a 22 de 2026.\n\nNa resposta, cada pedido traz `extensions.financialDetails.isoWeek` e `extensions.financialDetails.isoYear`, indicando a semana financeira usada como referência para aquele resumo.\n\nO filtro `orderNumber` é opcional. Quando informado, ele restringe a busca ao pedido enviado dentro das semanas ISO selecionadas por `startDate` e `endDate`. Se o pedido não pertencer ao período financeiro informado, ele não será retornado.\n\nEste endpoint só traz informações financeiras atreladas ao pedido e expõe os valores finais resumidos de cada componente. Ele não representa a visão financeira completa do seller e não detalha a memória de cálculo de cada valor.\n\n**Paginação:**\n\n- `page` é opcional, inicia em 1 e usa 1 como valor padrão.\n- `pageSize` é opcional, usa 100 como valor padrão e aceita valores entre 1 e 200.\n- O campo `pageInfo.hasNextPage` indica se há mais páginas disponíveis.\n\nValores monetários são retornados como objetos com `value` e `currency`. Para este endpoint, a moeda retornada é `BRL`.\n\n**Componentes financeiros retornados:**\n\n- `MARKUP`: markup na venda de produtos Ambev.\n- `DELIVERY_FEE`: frete; diferença entre os valores de entrega negociado com o estabelecimento e os pagos pelo cliente, incluindo taxas adicionais.\n- `discounts`: valor restituído do cupom utilizado no pedido.\n- `SAMPLING_GIFTS`: valor de produtos vendidos a preço simbólico no Zé para experimentação do cliente.\n- `MARKETPLACE_DISCOUNT`: restituição de promoção aplicada automaticamente pelo Zé nos produtos.\n- `TAKE_RATE`: comissão aplicada na venda de produtos marketplace.\n- `SERVICE_FEE`: percentual cobrado sobre o valor do pedido, conforme contrato com o estabelecimento.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET summaries com merchantId, startDate, endDate e paginação\n  API->>API: Seleciona semanas ISO fechadas\n  API-->>Parceiro: 200 com orders, pageInfo e financialDetails\n  Parceiro->>API: GET summaries com page=N+1\n  API-->>Parceiro: 200 com próxima página, se existir\n```",
+      "operation_id": "getOrderReimbursementSummaries",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticacao para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        },
+        {
+          "name": "startDate",
+          "in": "query",
+          "required": true,
+          "description": "Data inicial do período financeiro no formato YYYY-MM-DD. A API usa `startDate` e `endDate` para selecionar semanas ISO completas; somente semanas ISO já fechadas podem ser consultadas."
+        },
+        {
+          "name": "endDate",
+          "in": "query",
+          "required": true,
+          "description": "Data final do período financeiro no formato YYYY-MM-DD. Deve estar no mesmo ano de `startDate`; o período pode cobrir, no máximo, as últimas 5 semanas ISO fechadas."
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "required": false,
+          "description": "O numero da pagina, iniciando em 1."
+        },
+        {
+          "name": "pageSize",
+          "in": "query",
+          "required": false,
+          "description": "O numero de itens por pagina."
+        },
+        {
+          "name": "orderNumber",
+          "in": "query",
+          "required": false,
+          "description": "Número do pedido para filtrar a consulta dentro do período financeiro informado."
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/merchants/{merchantId}/reports/operational-incentives",
+      "tags": [
+        "Reports"
+      ],
+      "summary": "Resumo de repasses de incentivos operacionais",
+      "description": "### Objetivo\n\nEssa consulta faz parte do grupo de 4 relatórios financeiros de repasses do Zé aos estabelecimentos que operam conosco:\n \n1. Repasses calculados por pedido.\n2. Repasses de incentivos operacionais semanais.\n3. Repasses de pagamentos por ajustes manuais.\n4. Repasses de pagamentos online.\n \nEssa consulta retorna o item 2: o resumo dos repasses de incentivos operacionais semanais apurados para um estabelecimento (`merchantId`) em uma semana ISO específica.\n \nIncentivos operacionais são valores repassados ao estabelecimento quando há apuração positiva em campanhas ou regras operacionais semanais vigentes. A resposta traz os valores consolidados da semana consultada, incluindo:\n \n- Valor por pedido válido: valor de incentivo considerado para cada pedido válido na semana.\n- Pedidos válidos: quantidade de pedidos considerados no cálculo do incentivo.\n- Valor total: soma final do incentivo operacional apurado para a semana.\n \nCaso haja dúvidas sobre conceitos financeiros ou demais repasses, consulte:\n\n- Para Pagamentos Online: [Pagamento Online | Portal do Parceiro](https://faq-parceiro-zedelivery.sprinklr.com/categories/pagamento-online/6218f5ea48c139668dedaf4e).\n- Para todos os outros repasses: [Pagamento | Portal do Parceiro](https://faq-parceiro-zedelivery.sprinklr.com/categories/pagamento/6218f5ea48c139668dedaf53).\n\n### Quando usar\n\nUtilize este endpoint quando:\n\n- For necessário consultar o resumo semanal de incentivos operacionais de um estabelecimento.\n- Houver um `merchantId` válido ao qual o parceiro tenha acesso.\n- A semana financeira estiver definida por `isoYear` e `isoWeek`.\n- O objetivo for apoiar conciliação financeira de incentivos operacionais semanais.\n- A consulta precisar validar o valor por pedido válido, a quantidade de pedidos válidos e o total repassado na semana.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Consultar repasses financeiros calculados pedido a pedido; para isso, use `GET /merchants/{merchantId}/reimbursements/orders/summaries`.\n- Consultar detalhes completos de um pedido específico.\n- Acompanhar o ciclo de vida operacional do pedido em tempo real.\n- Criar, atualizar, cancelar ou restaurar pedidos.\n- Obter a visão financeira completa do seller.\n- Detalhar a memória de cálculo, metas, elegibilidade ou regras internas da campanha de incentivo.\n- Consultar várias semanas em uma única chamada.\n- Consultar KPIs operacionais. Para isso, use o endpoint de KPIs `GET /merchants/{merchantId}/kpis`.\n\n### Importante\n\nRequer header `Authorization: Bearer <token>` e o parceiro deve ter permissão sobre o `merchantId` consultado.\n\nOs campos `isoYear` e `isoWeek` são obrigatórios:\n\n- `isoYear` deve ser um número inteiro positivo, por exemplo `2026`.\n- `isoWeek` deve ser um número inteiro entre `1` e `53`.\n- A combinação de `isoYear` e `isoWeek` deve representar uma semana ISO existente. Alguns anos não possuem semana ISO 53.\n\nUma semana ISO começa na segunda-feira e termina no domingo. Este endpoint consulta uma única semana por chamada; ele não aceita `startDate`, `endDate`, paginação ou filtro por pedido.\n\n**Janela de consulta:**\n\n- Na segunda-feira e na terça-feira, a semana imediatamente anterior ainda não fica disponível. A API permite consultar as 4 semanas ISO fechadas anteriores a ela.\n- De quarta-feira a domingo, a API permite consultar as últimas 5 semanas ISO fechadas antes da semana atual, começando pela semana ISO imediatamente anterior.\n- A semana atual nunca fica disponível enquanto ainda está em andamento.\n- Quando a semana informada está fora da janela liberada, a API retorna `404 Not Found`.\n\nExemplo: em uma quarta-feira da semana ISO 22 de 2026, é possível consultar as semanas ISO 21, 20, 19, 18 e 17. Em uma segunda-feira ou terça-feira da semana ISO 22 de 2026, é possível consultar as semanas ISO 20, 19, 18 e 17; a semana ISO 21 ainda não está liberada.\n\nQuando não houver resumo de incentivo operacional para o estabelecimento e a semana informados, a API também retorna `404 Not Found`.\n\nValores monetários são retornados como objetos com `value` e `currency`. Para este endpoint, a moeda retornada é `BRL`.\n\n**Campos retornados:**\n\n- `operationalIncentives`: lista com o resumo consolidado de incentivos operacionais da semana consultada.\n- `amountPerOrder.value`: valor de incentivo por pedido válido.\n- `amountPerOrder.currency`: moeda do valor por pedido válido.\n- `totalAmount.value`: valor total do incentivo operacional repassado na semana.\n- `totalAmount.currency`: moeda do valor total.\n- `validOrders`: quantidade de pedidos válidos considerados no cálculo.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  participant Financeiro as Motor financeiro\n  Parceiro->>API: GET operational-incentives com merchantId, isoYear e isoWeek\n  API->>API: Valida permissao e janela de semana ISO\n  API->>Financeiro: Consulta resumo de incentivo da semana\n  Financeiro-->>API: total, valor por pedido e pedidos validos\n  API-->>Parceiro: 200 com operationalIncentives\n```",
+      "operation_id": "getOperationalIncentives",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "merchantId",
+          "in": "path",
+          "required": true,
+          "description": "O id do estabelecimento"
+        },
+        {
+          "name": "isoYear",
+          "in": "query",
+          "required": true,
+          "description": "Ano ISO da semana financeira consultada. Deve ser um número inteiro positivo."
+        },
+        {
+          "name": "isoWeek",
+          "in": "query",
+          "required": true,
+          "description": "Semana financeira no padrão ISO. Deve ser um número inteiro entre 1 e 53 e existir no ano ISO informado em `isoYear`."
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orders/{orderNumber}",
+      "tags": [
+        "Orders"
+      ],
+      "summary": "Detalhes do pedido",
+      "description": "### Objetivo\n\nRecuperar os detalhes de um pedido a partir do seu número na plataforma Zé Delivery.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário consultar o estado e dados completos de um pedido (items, total, merchant, delivery, customer — conforme permissões).\n- Houver um `orderNumber` válido gerado pela plataforma.\n- O parceiro tiver autorização para ver os dados sensíveis (aplicável somente se houver acordo legal).\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Polling massivo de listas de pedidos (usar `events:polling` para eventos).\n- Recuperar pedidos não pertencentes ao escopo do parceiro sem autorização.\n- Operações de escrita/alteração de pedido.\n\n### Importante\n\nAo consultar um pedido, um mesmo produto pode aparecer na resposta em **até duas linhas separadas**, com o mesmo identificador e os mesmos dados. As únicas diferenças entre essas duas linhas são os campos de `unitPrice`, onde um possui um valor promocional (mais baixo) e outro não, e o campo `hasLimitedPromotion`, que indica se aquela parte do produto foi vendida com a promoção:\n\n- `hasLimitedPromotion = true`: parte do produto vendida com preço promocional (ainda dentro da quantidade que tem desconto).\n- `hasLimitedPromotion = false`: parte do produto vendida pelo preço normal, seja porque a quantidade comprada passou do limite da promoção, seja porque o produto não tinha promoção.\n\nPor isso, ao processar a resposta, considere que a identificação única de uma linha de produto no pedido é a combinação **identificador do produto + `hasLimitedPromotion`**.\n<br>\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /orders/{orderNumber}\n  API-->>Parceiro: 200 com detalhes do pedido\n```",
+      "operation_id": "getOrderByNumber",
+      "parameters": [
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        },
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/{orderNumber}/cancel",
+      "tags": [
+        "Orders"
+      ],
+      "summary": "Cancelar pedido",
+      "description": "### Objetivo\n\nCancelar um pedido em qualquer status (fluxo administrativo/operacional).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- For necessário cancelar o pedido por motivos operacionais (ex.: falta de estoque, operação com problema).\n- O parceiro tiver autorização para executar cancelamentos diretos.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Rejeição de pedido antes de confirmação sem usar os códigos corretos em `requestCancellation` (conforme política/fluxo acordado).\n- Cancelamentos sem justificativa correta (usar `code` obrigatória).\n\n### Importante\n\nBody requer `code` entre os valores permitidos (ex.: `POC_STOCKOUT`, `OPER_ISSUES`, `DELIVERY_ISSUE`, etc.). Retorna `202` quando aceita para processamento; `422` para erro de validação de negócio. Requer `Authorization` header.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /orders/{orderNumber}/confirm\n  API-->>Parceiro: 202 aceite em processamento\n  Parceiro->>API: POST /orders/{orderNumber}/cancel\n  API-->>Parceiro: 202 cancelamento em processamento\n```",
+      "operation_id": "cancelOrder",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/{orderNumber}/confirm",
+      "tags": [
+        "Orders"
+      ],
+      "summary": "Confirmar pedido",
+      "description": "### Objetivo\n\nConfirmar/aceitar um pedido no sistema do Zé (aceitação pelo estabelecimento/parceiro).\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- O estabelecimento/parceiro confirma que irá preparar o pedido.\n- É necessário informar `preparationTime`, `orderExternalCode` ou `createdAt` adicionais (opcionais).\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Cancelar pedidos (usar `/requestCancellation` ou `/cancel`).\n- Confirmar pedidos já confirmados sem validação (verificar status antes de confirmar).\n\n### Importante\n\nRecurso idempotente a nível de negócio — confirmar sem checar status pode gerar rejeições; o endpoint retorna `202` quando a requisição é aceita para processamento. Requer `Authorization` header. Campos possíveis no body: `preparationTime` (minutos), `orderExternalCode`, `createdAt`. Validar formato `createdAt` ISO UTC se informado.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /orders/{orderNumber}\n  API-->>Parceiro: 200 com detalhes do pedido\n  Parceiro->>API: POST /orders/{orderNumber}/confirm\n  API-->>Parceiro: 202 aceite em processamento\n```",
+      "operation_id": "confirmOrder",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/orders/{orderNumber}/items",
+      "tags": [
+        "Orders"
+      ],
+      "summary": "Atualizar itens do pedido",
+      "description": "### Objetivo\n\nAjustar os itens de um pedido já confirmado, removendo produtos indisponíveis ou substituindo-os por alternativas equivalentes, sem alterar o restante do contrato público descrito no Swagger.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- O pedido estiver em status que permite edição de itens após a confirmação pelo estabelecimento (conforme regras da plataforma).\n- For necessário registrar remoções ou substituições antes da preparação ou da operação logística subsequente.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Alterar pedidos que ainda não foram confirmados (o fluxo esperado é consulta, depois confirmação ou solicitação de cancelamento).\n- Substituir o cancelamento do pedido quando a intenção for encerrar o pedido por completo (use os fluxos de cancelamento documentados no grupo Orders).\n\n### Importante\n\nA alteração de itens só é aceita quando o pedido está no status **CONFIRMED**. Em qualquer outro status, a API recusa a chamada. Para desfazer mudanças e voltar à composição anterior do pedido, use o endpoint de restauração do pedido, no mesmo grupo Orders.\n\nUm mesmo produto pode aparecer no pedido em **até duas linhas separadas**, com o mesmo identificador e os mesmos dados. As únicas diferenças entre essas duas linhas são os campos de `unitPrice`, onde um possui um valor promocional (mais baixo) e outro não, e o campo `hasLimitedPromotion`, que indica se aquela parte do produto foi vendida com a promoção:\n\n- `hasLimitedPromotion = true`: parte do produto vendida com preço promocional (ainda dentro da quantidade que tem desconto).\n- `hasLimitedPromotion = false`: parte do produto vendida pelo preço normal, seja porque a quantidade comprada passou do limite da promoção, seja porque o produto não tinha promoção.\n\nPor isso, na edição de itens, o que identifica uma linha de produto de forma única é a combinação **identificador do produto + `hasLimitedPromotion`**. Ao remover quantidade ou substituir um item, envie o campo `hasLimitedPromotion` para a API saber em qual das duas linhas mexer. Se você não enviar esse campo, a API atua na linha com `hasLimitedPromotion = false`, caso ela exista.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /orders/{orderNumber}/confirm\n  API-->>Parceiro: 202 aceite em processamento\n  Parceiro->>API: PUT /orders/{orderNumber}/items (pedido em CONFIRMED, hasLimitedPromotion por item)\n  API-->>Parceiro: resposta de sucesso conforme contrato\n```",
+      "operation_id": "updateOrderItems",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "204",
+        "400",
+        "401",
+        "403",
+        "404",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/{orderNumber}/requestCancellation",
+      "tags": [
+        "Orders"
+      ],
+      "summary": "Solicitar cancelamento do pedido",
+      "description": "### Objetivo\n\nSolicitar o cancelamento ou rejeição de um pedido, informando o código de motivo apropriado.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- O estabelecimento não puder atender o pedido (ex.: `UNAVAILABLE_ITEM`, `RESTAURANT_WITHOUT_DELIVERY_PERSON` etc.).\n- O pedido ainda estiver em status que permite `requestCancellation` conforme regras de negócio.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Cancelamentos feitos por entregador (use endpoints de logística quando aplicável).\n- Substituir o fluxo de cancelamento em massa sem observar regras por status do pedido.\n\n### Importante\n\nBody requer um `code` dentre os códigos documentados (ex.: `UNAVAILABLE_ITEM`, `SYSTEMIC_ISSUES`, etc.). Ver regras: se pedido já confirmado, apenas alguns códigos são aceitos; se não confirmado, outros códigos são aceitos — seguir a enumeração do Swagger. Retorna `202` quando aceita para processamento; erros `422` podem indicar validações de negócio sobre o status atual do pedido. Requer `Authorization` header.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: POST /orders/{orderNumber}/requestCancellation\n  API-->>Parceiro: 202 solicitação aceita para processamento\n```",
+      "operation_id": "requestOrderCancellation",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "202",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/{orderNumber}/restore",
+      "tags": [
+        "Orders"
+      ],
+      "summary": "Restaurar pedido editado",
+      "description": "### Objetivo\n\nReverter as alterações feitas nos itens de um pedido confirmado, restaurando a composição anteriormente vigente na plataforma, quando essa operação é suportada pelo estado atual do pedido.\n\n### Quando usar\n\nUtilize este endpoint somente quando:\n\n- Já tiver sido aplicada uma atualização de itens no pedido e for necessário desfazê-la.\n- O pedido estiver em condições que permitem restauração segundo as regras de negócio expostas pela API.\n\n### Quando NÃO usar\n\nEste endpoint não deve ser utilizado para:\n\n- Substituir o cancelamento ou a solicitação de cancelamento quando o objetivo for encerrar o pedido.\n- Corrigir dados que não dependem do fluxo de edição de itens (consulte os demais endpoints do grupo Orders).\n\n### Importante\n\nEm geral, a restauração aplica-se a pedidos confirmados que tenham passado por edição de itens; se o pedido não estiver elegível, a API retorna erro de validação. Em caso de sucesso, a resposta segue o que está definido no contrato público deste recurso.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PUT /orders/{orderNumber}/items\n  API-->>Parceiro: resposta de sucesso conforme contrato\n  Parceiro->>API: POST /orders/{orderNumber}/restore\n  API-->>Parceiro: resposta de sucesso conforme contrato\n```",
+      "operation_id": "restoreOrder",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        },
+        {
+          "name": "orderNumber",
+          "in": "path",
+          "required": true,
+          "description": "O número do pedido na plataforma Zé Delivery"
+        }
+      ],
+      "responses": [
+        "204",
+        "400",
+        "401",
+        "403",
+        "404",
+        "422",
+        "500"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks",
+      "tags": [
+        "Webhooks"
+      ],
+      "summary": "Listar webhook do cliente",
+      "description": "### Objetivo\n\nConsultar a configuração de webhook associada ao cliente autenticado na Seller Public API.\n\n### Quando usar\n\nPara exibir ou auditar URL, estado ativo/inativo e inscrições de eventos em painéis ou ferramentas internas. Para confirmar se já existe webhook cadastrado antes de um `PATCH /webhooks`, ou para recuperar o `hash` quando a configuração já existia e o segredo ainda é o mesmo persistido na plataforma.\n\n### Quando NÃO usar\n\nNão lista eventos como no `GET - events:polling`. Para criar ou alterar as configurações do webhook, use `PATCH /webhooks`.\n\n### Importante\n\nSe não houver registro, a resposta é um array vazio. Quando há configuração, a API retorna um array com exatamente um objeto contendo identificação do cliente, segredo, endpoint, indicador de ativo e lista de inscrições. Requer header `Authorization` com token válido.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: GET /webhooks\n  API-->>Parceiro: 200 — array com 0 ou 1 item\n```",
+      "operation_id": "getWebhooks",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "500"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/webhooks",
+      "tags": [
+        "Webhooks"
+      ],
+      "summary": "Configurar webhook",
+      "description": "### Objetivo\n\nRegistrar ou atualizar a configuração de webhook do cliente autenticado na Seller Public API: URL de entrega dos eventos, se o webhook está ativo e quais categorias de eventos o parceiro deseja receber.\n\n### Quando usar\n\nQuando o parceiro optar por notificações enviadas pela plataforma para um endpoint próprio em substituição ao fluxo de polling.\n\n### Quando NÃO usar\n\nNão usar apenas para ler a configuração atual — para isso utilize `GET /webhooks`. Este endpoint não entrega a fila de eventos; ele apenas persiste a política de entrega (URL, ativo, inscrições).\n\n### Importante\n\nCada credencial de cliente mantém uma única configuração de webhook (comportamento de upsert). Na primeira criação, a resposta inclui o campo `hash` (segredo em hexadecimal) usado para validar entregas no seu endpoint; nas atualizações seguintes, o `hash` não é devolvido no corpo — armazene o segredo com segurança na primeira resposta bem-sucedida. O campo `endpoint` é obrigatório e deve ser uma URI válida. É necessário header `Authorization` com token válido para a API.\n\n```mermaid\nsequenceDiagram\n  participant Parceiro as Seu sistema\n  participant API as Zé Seller Public API\n  Parceiro->>API: PATCH /webhooks\n  API-->>Parceiro: 200 — configuração persistida\n```",
+      "operation_id": "patchWebhooks",
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "description": "token de autenticação para acessar o recurso"
+        }
+      ],
+      "responses": [
+        "200",
+        "400",
+        "401",
+        "403",
+        "500"
+      ]
+    }
+  ],
+  "schemas": {
+    "AcceptedResponse": {
+      "type": "object",
+      "description": "Requisição aceita e em processamento. O corpo da resposta pode ser vazio.",
+      "required": [],
+      "properties": []
+    },
+    "Address": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "city",
+        "complement",
+        "coordinates",
+        "country",
+        "formattedAddress",
+        "neighborhood",
+        "postalCode",
+        "state",
+        "streetName",
+        "streetNumber"
+      ]
+    },
+    "ArrivedOrderInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "email"
+      ],
+      "properties": [
+        "email"
+      ]
+    },
+    "AuthBadRequestError": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "error"
+      ]
+    },
+    "AuthError": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "message"
+      ]
+    },
+    "AuthInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "client_id",
+        "client_secret"
+      ],
+      "properties": [
+        "client_id",
+        "client_secret"
+      ]
+    },
+    "AuthOutput": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "access_token",
+        "expire_in",
+        "token_type"
+      ]
+    },
+    "CancelOrderInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "code"
+      ],
+      "properties": [
+        "code"
+      ]
+    },
+    "Currency": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "currency",
+        "value"
+      ]
+    },
+    "Customer": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "documentNumber",
+        "email",
+        "name",
+        "phone"
+      ]
+    },
+    "Delivery": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "deliveredBy",
+        "deliveryAddress",
+        "pickupCode",
+        "returnDate",
+        "schedule"
+      ]
+    },
+    "DeliveryCancelOrderInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "email",
+        "reason"
+      ],
+      "properties": [
+        "email",
+        "reason"
+      ]
+    },
+    "DeliveryDetailsOutput": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "customerName",
+        "deliveryMan",
+        "deliveryPrice",
+        "merchant",
+        "orderDisplayId"
+      ]
+    },
+    "Discount": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "amount",
+        "target"
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "code",
+        "messages",
+        "title",
+        "type"
+      ]
+    },
+    "EventAcknowledgementInput": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "eventType",
+        "id",
+        "orderId"
+      ]
+    },
+    "EventPollingOutput": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "createdAt",
+        "eventId",
+        "eventType",
+        "orderId",
+        "orderURL",
+        "sourceAppId"
+      ]
+    },
+    "Fee": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "name",
+        "price",
+        "receivedBy",
+        "type"
+      ]
+    },
+    "Merchant": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "id"
+      ]
+    },
+    "MerchantInformationResponse": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "basicInfo",
+        "status"
+      ]
+    },
+    "MerchantItem": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "brand",
+        "categories",
+        "description",
+        "ean",
+        "externalProductId",
+        "image",
+        "isFavorite",
+        "isPortfolioIdeal",
+        "name",
+        "priceDetails",
+        "productId",
+        "status"
+      ]
+    },
+    "MerchantKPIMetric": {
+      "type": "object",
+      "description": "Representação de uma métrica KPI: tipo numérico (INTEGER, PERCENTAGE ou FLOAT) e valor em string.",
+      "required": [],
+      "properties": [
+        "type",
+        "value"
+      ]
+    },
+    "MerchantKPIsRequest": {
+      "type": "object",
+      "description": "O campo referenceDate é a data de referência para a consulta dos KPIs, e a granularidade é o nível de agregação temporal dos dados (MONTH, WEEK, DAY ou HOUR). Por exemplo, com referenceDate = 2026-03-00:00:00.000Z e granularity = WEEK, o endpoint retorna os KPIs consolidados do dia 06º de março de 2026.",
+      "required": [
+        "referenceDate",
+        "granularity"
+      ],
+      "properties": [
+        "granularity",
+        "referenceDate"
+      ]
+    },
+    "MerchantKPIsResponse": {
+      "type": "object",
+      "description": "Resposta com os KPIs operacionais do estabelecimento.",
+      "required": [
+        "kpis"
+      ],
+      "properties": [
+        "kpis"
+      ]
+    },
+    "OperationalIncentiveMoney": {
+      "type": "object",
+      "description": "Valor monetário retornado no resumo de incentivos operacionais. A moeda retornada neste endpoint é sempre BRL.",
+      "required": [
+        "value",
+        "currency"
+      ],
+      "properties": [
+        "currency",
+        "value"
+      ]
+    },
+    "OperationalIncentiveSummary": {
+      "type": "object",
+      "description": "Resumo consolidado do incentivo operacional calculado para uma semana ISO.",
+      "required": [
+        "amountPerOrder",
+        "totalAmount",
+        "validOrders"
+      ],
+      "properties": [
+        "amountPerOrder",
+        "totalAmount",
+        "validOrders"
+      ]
+    },
+    "OperationalIncentivesResponse": {
+      "type": "object",
+      "description": "Resposta do resumo semanal de repasses de incentivos operacionais para o estabelecimento consultado.",
+      "required": [
+        "operationalIncentives"
+      ],
+      "properties": [
+        "operationalIncentives"
+      ]
+    },
+    "OrderConfirmInput": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "createdAt",
+        "orderExternalCode",
+        "preparationTime",
+        "reason"
+      ]
+    },
+    "OrderDeliveredInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "email"
+      ],
+      "properties": [
+        "email",
+        "lat",
+        "long"
+      ]
+    },
+    "OrderHistoryItem": {
+      "type": "object",
+      "description": "Resumo de um pedido finalizado para fins de histórico/relatório.",
+      "required": [],
+      "properties": [
+        "customerComment",
+        "customerName",
+        "date",
+        "deliveryType",
+        "discount",
+        "discountDescription",
+        "items",
+        "number",
+        "payment",
+        "rating",
+        "shippingFee",
+        "status",
+        "statusHistory",
+        "subTotal",
+        "total"
+      ]
+    },
+    "OrderHistoryItemSku": {
+      "type": "object",
+      "description": "Item (SKU) que compõe o pedido.",
+      "required": [],
+      "properties": [
+        "name",
+        "quantity",
+        "subTotal",
+        "unitPrice"
+      ]
+    },
+    "OrderHistoryPayment": {
+      "type": "object",
+      "description": "Forma de pagamento associada ao pedido.",
+      "required": [],
+      "properties": [
+        "category",
+        "type"
+      ]
+    },
+    "OrderHistoryRating": {
+      "type": "object",
+      "description": "Avaliação registrada pelo cliente para o pedido. Vem como `null` quando o pedido ainda não foi avaliado.",
+      "required": [],
+      "properties": [
+        "description",
+        "reasons",
+        "value"
+      ]
+    },
+    "OrderHistoryResponse": {
+      "type": "object",
+      "description": "Resposta paginada do histórico de pedidos finalizados do estabelecimento.",
+      "required": [],
+      "properties": [
+        "hasNext",
+        "items",
+        "page",
+        "pageSize"
+      ]
+    },
+    "OrderHistoryStatusEntry": {
+      "type": "object",
+      "description": "Entrada do histórico de status do pedido.",
+      "required": [],
+      "properties": [
+        "date",
+        "description",
+        "reasons",
+        "status"
+      ]
+    },
+    "OrderItem": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "externalCode",
+        "hasLimitedPromotion",
+        "id",
+        "index",
+        "name",
+        "quantity",
+        "totalPrice",
+        "unit",
+        "unitPrice"
+      ]
+    },
+    "OrderOutput": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "coupon",
+        "createdAt",
+        "customer",
+        "delivery",
+        "discounts",
+        "displayId",
+        "extraInfo",
+        "items",
+        "merchant",
+        "orderTiming",
+        "otherFees",
+        "payments",
+        "salesChannel",
+        "serviceFee",
+        "status",
+        "statusHistory",
+        "takeout",
+        "total",
+        "type"
+      ]
+    },
+    "OrderReimbursementDiscount": {
+      "type": "object",
+      "description": "Valor restituído de cupom utilizado no pedido.",
+      "required": [],
+      "properties": [
+        "amount",
+        "description"
+      ]
+    },
+    "OrderReimbursementExtensions": {
+      "type": "object",
+      "description": "Informações complementares do resumo de repasse.",
+      "required": [],
+      "properties": [
+        "financialDetails"
+      ]
+    },
+    "OrderReimbursementFinancialDetails": {
+      "type": "object",
+      "description": "Informações da semana ISO usada como referência no cálculo financeiro do resumo. A semana ISO começa na segunda-feira e termina no domingo.",
+      "required": [],
+      "properties": [
+        "isoWeek",
+        "isoYear"
+      ]
+    },
+    "OrderReimbursementMoney": {
+      "type": "object",
+      "description": "Valor monetário retornado nos resumos de repasse. A moeda retornada neste endpoint é sempre BRL.",
+      "required": [],
+      "properties": [
+        "currency",
+        "value"
+      ]
+    },
+    "OrderReimbursementOtherFee": {
+      "type": "object",
+      "description": "Componente financeiro considerado no resumo de repasse do pedido.",
+      "required": [],
+      "properties": [
+        "price",
+        "type"
+      ]
+    },
+    "OrderReimbursementPageInfo": {
+      "type": "object",
+      "description": "Informações de paginação da consulta de resumos de repasse.",
+      "required": [],
+      "properties": [
+        "currentPage",
+        "hasNextPage",
+        "pageSize",
+        "totalItems"
+      ]
+    },
+    "OrderReimbursementSummariesResponse": {
+      "type": "object",
+      "description": "Resposta paginada dos resumos de repasse por pedido do estabelecimento. O período retornado corresponde às semanas ISO fechadas selecionadas por `startDate` e `endDate`.",
+      "required": [],
+      "properties": [
+        "endDate",
+        "merchantId",
+        "orders",
+        "pageInfo",
+        "startDate"
+      ]
+    },
+    "OrderReimbursementSummary": {
+      "type": "object",
+      "description": "Resumo de repasse de um pedido.",
+      "required": [],
+      "properties": [
+        "createdAt",
+        "discounts",
+        "displayId",
+        "extensions",
+        "otherFees",
+        "total"
+      ]
+    },
+    "OrderReimbursementSummaryTotal": {
+      "type": "object",
+      "description": "Totais financeiros consolidados do repasse do pedido. O campo `discount` consolida os valores restituídos de cupons utilizados no pedido.",
+      "required": [],
+      "properties": [
+        "discount",
+        "orderReimbursement",
+        "otherFees"
+      ]
+    },
+    "OrderStatusEnum": {
+      "type": "string",
+      "description": "Os status possíveis do pedido, `CREATED` para quando o pedido é realizado, `CONFIRMED` para quando um pedido foi aceito por um estabelecimento, `DISPATCHED` para quando um pedido é despachado para uma pessoa entregadora, `CANCELLED` para quando há algum tipo de cancelamento, `CONCLUDED` para quando um pedido é entregue e `EDITED` para quando um pedido é editado.",
+      "required": [],
+      "properties": []
+    },
+    "Payment": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "methods"
+      ]
+    },
+    "PaymentMethodEnum": {
+      "type": "string",
+      "description": "Os meios de pagamento disponíveis na plataforma, `CASH` para pagamentos em dinheiro, `CREDIT` para pagamentos na entrega, `DIGITAL_WALLET` para pagamentos na plataforma, `CREDIT_DEBIT` para outro método de pagamento, `PIX` para pagamentos feitos no app através do PIX e `OTHER` para pagamento no app através do NUPAY.",
+      "required": [],
+      "properties": []
+    },
+    "PaymentTypeEnum": {
+      "type": "string",
+      "description": "As opções de tipo de pagamento, `PENDING` para pagamento na entrega ou dinheiro, e `PREPAID` para pagamento direto na plataforma.",
+      "required": [],
+      "properties": []
+    },
+    "PickedOrderInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "email"
+      ],
+      "properties": [
+        "email"
+      ]
+    },
+    "ProductCreateRequest": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "category",
+        "description",
+        "externalProductId",
+        "images",
+        "name",
+        "price",
+        "tags"
+      ]
+    },
+    "ProductPromoInputDisabled": {
+      "type": "object",
+      "description": "Promoção desativada: apenas isEnabled false e identificação do produto.",
+      "required": [
+        "isEnabled"
+      ],
+      "properties": [
+        "externalProductId",
+        "isEnabled",
+        "merchantId",
+        "productId"
+      ]
+    },
+    "ProductPromoInputEnabled": {
+      "type": "object",
+      "description": "Promoção ativada: informar percentual e tipo de agendamento.",
+      "required": [
+        "isEnabled",
+        "percentage",
+        "scheduleType"
+      ],
+      "properties": [
+        "externalProductId",
+        "isEnabled",
+        "merchantId",
+        "percentage",
+        "productId",
+        "scheduleType"
+      ]
+    },
+    "RappiAdapterCatalog": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "statusCode"
+      ]
+    },
+    "RappiCancelOrder": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "code"
+      ]
+    },
+    "RequestOrderCancellation": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "code"
+      ]
+    },
+    "ServiceFee": {
+      "type": "object",
+      "description": "Informações sobre o peso do pedido, quando isHeavyBag é true, o pedido é considerado pesado e a taxa de serviço é aplicada.",
+      "required": [],
+      "properties": [
+        "isHeavyBag",
+        "total"
+      ]
+    },
+    "StatusHistory": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "createdAt",
+        "status"
+      ]
+    },
+    "Takeout": {
+      "type": null,
+      "description": "Informações sobre retirada do pedido. Campo obrigatório para pedidos do tipo `TAKEOUT`.",
+      "required": [],
+      "properties": [
+        "mode",
+        "takeoutDateTime"
+      ]
+    },
+    "UpdateCatalogAvailabilityRequest": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "available",
+        "externalCode",
+        "productId"
+      ]
+    },
+    "UpdateCatalogOptionAvailabilityRequest": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "available",
+        "optionId"
+      ]
+    },
+    "UpdateCatalogOptionPriceRequest": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "price"
+      ]
+    },
+    "UpdateCatalogProductPriceRequest": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "fullPrice",
+        "price"
+      ]
+    },
+    "UpdateItemOfferRequest": {
+      "type": "object",
+      "description": "Exatamente um de productId ou externalProductId é obrigatório (não os dois). price.value e price.originalValue obrigatórios; value > 0, originalValue > 0 e originalValue ≥ value.",
+      "required": [
+        "price",
+        "merchantId"
+      ],
+      "properties": [
+        "externalProductId",
+        "price",
+        "productId"
+      ]
+    },
+    "UpdateOrderItem": {
+      "type": "object",
+      "description": "Representa um item para atualização do pedido. Exatamente um de productId ou externalProductId deve ser informado (não ambos).",
+      "required": [
+        "quantity"
+      ],
+      "properties": [
+        "externalProductId",
+        "hasLimitedPromotion",
+        "productId",
+        "quantity"
+      ]
+    },
+    "UpdateOrderItemsRequest": {
+      "type": "object",
+      "description": "Payload para atualização de itens do pedido. Pelo menos um dos campos removedItems ou replacedItems deve ser informado. Cada array aceita no máximo 30 itens.",
+      "required": [],
+      "properties": [
+        "removedItems",
+        "replacedItems"
+      ]
+    },
+    "UpdateOrderNewItem": {
+      "type": "object",
+      "description": "Representa o novo item para atualização do pedido. Exatamente um de productId ou externalProductId deve ser informado (não ambos).",
+      "required": [
+        "quantity"
+      ],
+      "properties": [
+        "externalProductId",
+        "productId",
+        "quantity"
+      ]
+    },
+    "UpdateProductItemRequest": {
+      "type": "object",
+      "description": "Exatamente um de productId ou externalProductId é obrigatório (não os dois). Opcionais: images (cada item com image obrigatório), tags, price (se enviar: value e originalValue obrigatórios).",
+      "required": [
+        "name",
+        "description",
+        "category"
+      ],
+      "properties": [
+        "category",
+        "description",
+        "externalProductId",
+        "images",
+        "name",
+        "price",
+        "productId",
+        "tags"
+      ]
+    },
+    "UpsertCatalogProductRequest": {
+      "type": "object",
+      "description": null,
+      "required": [],
+      "properties": [
+        "brandId",
+        "category",
+        "description",
+        "externalProductId",
+        "images",
+        "merchantId",
+        "optionGroups",
+        "price",
+        "tags",
+        "title"
+      ]
+    },
+    "ValidateCodeInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "deliveryCode"
+      ],
+      "properties": [
+        "deliveryCode"
+      ]
+    },
+    "Webhook": {
+      "type": "object",
+      "description": "Configuração persistida do webhook (resposta de listagem; também corresponde ao corpo após a primeira criação via PATCH).",
+      "required": [
+        "clientId",
+        "hash",
+        "endpoint",
+        "active",
+        "subscriptions"
+      ],
+      "properties": [
+        "active",
+        "clientId",
+        "endpoint",
+        "hash",
+        "subscriptions"
+      ]
+    },
+    "WebhookDeliveryOrderEventData": {
+      "type": "object",
+      "description": "Objeto enviado em `data` quando a entrega é de evento de pedido (`eventType` da entrega = `ORDER_EVENTS`). Corresponde ao modelo de evento de pedido da plataforma, **sem** o campo `acknowledgedBy` (reconhecimento trata-se apenas do fluxo de polling na API).",
+      "required": [
+        "eventId",
+        "eventType",
+        "orderId",
+        "createdAt",
+        "merchantId"
+      ],
+      "properties": [
+        "createdAt",
+        "eventId",
+        "eventType",
+        "merchantId",
+        "orderId"
+      ]
+    },
+    "WebhookDeliveryPayload": {
+      "type": "object",
+      "description": "Corpo JSON (`Content-Type: application/json`) do **POST** que a plataforma envia à **URL de webhook** configurada (tag Webhooks), quando há entrega de notificação. Não é um endpoint que você chama na Zé Seller Public API — é o contrato da requisição que **você recebe** no seu servidor.",
+      "required": [
+        "clientId",
+        "eventType",
+        "correlationId"
+      ],
+      "properties": [
+        "clientId",
+        "correlationId",
+        "data",
+        "eventType"
+      ]
+    },
+    "WebhookPatchRequest": {
+      "type": "object",
+      "description": null,
+      "required": [
+        "endpoint"
+      ],
+      "properties": [
+        "active",
+        "endpoint",
+        "subscribedEvents"
+      ]
+    },
+    "WebhookSubscriptionType": {
+      "type": "string",
+      "description": "Tipo de inscrição do webhook.",
+      "required": [],
+      "properties": []
+    },
+    "WebhookUpsertResponse": {
+      "type": "object",
+      "description": "O `hash` vem somente na primeira criação; após isso, o corpo retorna `clientId`, `endpoint`, `active` e `subscriptions` (sem `hash`).",
+      "required": [
+        "clientId",
+        "endpoint",
+        "active",
+        "subscriptions"
+      ],
+      "properties": [
+        "active",
+        "clientId",
+        "endpoint",
+        "hash",
+        "subscriptions"
+      ]
+    },
+    "ZeSellerAuthRemoveAccess": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "statusCode"
+      ]
+    },
+    "merchantAvaiabilityInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "operation"
+      ],
+      "properties": [
+        "operation",
+        "reasons"
+      ]
+    },
+    "merchantItemsResponse": {
+      "type": null,
+      "description": null,
+      "required": [],
+      "properties": [
+        "currentPage",
+        "items",
+        "pageSize",
+        "totalItems",
+        "totalPages"
+      ]
+    },
+    "startRouteOrderInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "email"
+      ],
+      "properties": [
+        "email"
+      ]
+    },
+    "upsertProductItemsInput": {
+      "type": null,
+      "description": null,
+      "required": [
+        "items"
+      ],
+      "properties": [
+        "items"
+      ]
+    }
+  },
+  "retrieval_notes": [
+    "Use this OpenAPI-derived knowledge as documented API context only.",
+    "Do not infer commercial rules that are not present in the documentation.",
+    "When analyzing reports, separate API capabilities from financial conclusions."
+  ]
+}
