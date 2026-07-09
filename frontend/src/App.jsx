@@ -170,10 +170,10 @@ function SalesTab({ sales }) {
     <div className="tab-grid sales-view">
       <MetricStrip
         items={[
-          ['Faturamento vendas', money(sales.faturamento_vendas_total)],
-          ['Pedidos com produto', integer(sales.pedidos_com_linha_de_produto)],
-          ['Média por dia ativo', money(averageActiveDay)],
-          ['Melhor dia', `${strongestDay.label} · ${money(strongestDay.faturamento_vendas)}`],
+          ['Faturamento vendas', money(sales.faturamento_vendas_total), 'Soma de (quantidade × preço unitário) por linha de produto. Não inclui frete, promoções nem restituições. Não é o valor recebido — é a receita bruta estimada de mercadoria.'],
+          ['Pedidos com produto', integer(sales.pedidos_com_linha_de_produto), 'Pedidos que possuem pelo menos uma linha de produto nos relatórios. Pedidos sem produto no report (ex: apenas frete) não entram nessa conta.'],
+          ['Média por dia ativo', money(averageActiveDay), 'Faturamento total dividido pelos dias com ao menos um pedido registrado. Dias sem nenhum pedido no report são excluídos da média.'],
+          ['Melhor dia', `${strongestDay.label} · ${money(strongestDay.faturamento_vendas)}`, 'Dia com o maior faturamento de produto no mês. Pode ser influenciado por pedidos de alto ticket ou lotes atípicos.'],
         ]}
       />
 
@@ -267,10 +267,10 @@ function OverviewTab({ data }) {
     <div className="tab-grid">
       <MetricStrip
         items={[
-          ['Resultado proxy', money(data.headline.proxy_total)],
-          ['Semana mais forte', data.headline.strongest_week.week_label],
-          ['Semana mais fraca', data.headline.weakest_week.week_label],
-          ['Arquivos JSON', integer(data.scope.json_files)],
+          ['Resultado proxy', money(data.headline.proxy_total), 'Soma de todos os componentes: markup + incentivos - comissões - frete - promoções - pagamentos manuais. Não é lucro líquido — não inclui custo de produto, impostos ou despesas internas.'],
+          ['Semana mais forte', data.headline.strongest_week.week_label, 'Semana com o maior resultado proxy no período. Pode ser influenciada por ajustes manuais pontuais.'],
+          ['Semana mais fraca', data.headline.weakest_week.week_label, 'Semana com o menor resultado proxy. Verifique se houve lançamentos negativos atípicos ou alta de comissões.'],
+          ['Arquivos JSON', integer(data.scope.json_files), 'Quantidade de relatórios brutos processados. Cada arquivo representa um relatório semanal ou mensal do Zé Delivery.'],
         ]}
       />
 
@@ -320,10 +320,10 @@ function LossesTab({ data }) {
     <div className="tab-grid two-col">
       <MetricStrip
         items={[
-          ['Maior perda', data.components.losses[0]?.label ?? '-'],
-          ['Valor da maior perda', money(data.components.losses[0]?.value ?? 0)],
-          ['Ajuste manual liquido', money(data.components.totals.manual_payments)],
-          ['Incentivos liquidos', money(data.components.totals.incentives)],
+          ['Maior perda', data.components.losses[0]?.label ?? '-', 'Componente financeiro com maior impacto negativo no período. Pode ser comissão, frete ou promoção — depende do mix de reports carregados.'],
+          ['Valor da maior perda', money(data.components.losses[0]?.value ?? 0), '⚠️ Valor pode estar subestimado. Ele reflete apenas os relatórios processados. Reports faltando, erros de mapeamento de campo ou lançamentos duplicados podem distorcer esse número.'],
+          ['Ajuste manual liquido', money(data.components.totals.manual_payments), 'Soma líquida dos pagamentos manuais lançados pelo Zé Delivery. Pode ser positivo (crédito) ou negativo (débito). Verifique os registros individualmente na lista abaixo.'],
+          ['Incentivos liquidos', money(data.components.totals.incentives), 'Total de incentivos recebidos no período. Valores positivos aumentam o resultado. Confirme com o extrato oficial — algumas semanas podem não ter report de incentivos.'],
         ]}
       />
 
@@ -510,14 +510,63 @@ function StudyTab({ data }) {
   )
 }
 
+function MetricTile({ label, value, tooltip }) {
+  const [show, setShow] = useState(false)
+  return (
+    <div
+      className="metric-tile"
+      style={{ position: 'relative', cursor: tooltip ? 'help' : 'default' }}
+      onMouseEnter={() => tooltip && setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
+      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+        {label}
+        {tooltip && (
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" style={{ color: '#9aaa9e', flexShrink: 0 }}>
+            <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
+            <text x="8" y="12" textAnchor="middle" fontSize="10" fill="currentColor" fontWeight="700">?</text>
+          </svg>
+        )}
+      </span>
+      <strong>{value}</strong>
+      {tooltip && show && (
+        <div style={{
+          position: 'absolute',
+          bottom: 'calc(100% + 8px)',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 99,
+          width: '240px',
+          padding: '10px 12px',
+          background: '#1b2820',
+          color: '#e2ede5',
+          fontSize: '12px',
+          lineHeight: '1.5',
+          borderRadius: '8px',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+          pointerEvents: 'none',
+        }}>
+          {tooltip}
+          <div style={{
+            position: 'absolute',
+            top: '100%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '6px solid #1b2820',
+          }} />
+        </div>
+      )}
+    </div>
+  )
+}
+
 function MetricStrip({ items }) {
   return (
     <div className="metric-strip">
-      {items.map(([label, value]) => (
-        <div className="metric-tile" key={label}>
-          <span>{label}</span>
-          <strong>{value}</strong>
-        </div>
+      {items.map(([label, value, tooltip]) => (
+        <MetricTile key={label} label={label} value={value} tooltip={tooltip} />
       ))}
     </div>
   )

@@ -20,6 +20,56 @@ function shortMoney(value) {
   return `${sign}R$${Math.round(abs)}`
 }
 
+function InfoTile({ label, value, tooltip, valueStyle }) {
+  const [show, setShow] = useState(false)
+  return (
+    <div
+      className="metric-tile"
+      style={{ position: 'relative', cursor: 'help' }}
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
+      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+        {label}
+        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" style={{ color: '#9aaa9e', flexShrink: 0 }}>
+          <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
+          <text x="8" y="12" textAnchor="middle" fontSize="10" fill="currentColor" fontWeight="700">?</text>
+        </svg>
+      </span>
+      <strong style={valueStyle}>{value}</strong>
+      {show && (
+        <div style={{
+          position: 'absolute',
+          bottom: 'calc(100% + 8px)',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 99,
+          width: '240px',
+          padding: '10px 12px',
+          background: '#1b2820',
+          color: '#e2ede5',
+          fontSize: '12px',
+          lineHeight: '1.55',
+          borderRadius: '8px',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+          pointerEvents: 'none',
+        }}>
+          {tooltip}
+          <div style={{
+            position: 'absolute',
+            top: '100%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            borderLeft: '6px solid transparent',
+            borderRight: '6px solid transparent',
+            borderTop: '6px solid #1b2820',
+          }} />
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Extract week label from filename like "raw/Relatorio-Comissoes-Semana-24-a-28-..."
 function extractWeekLabel(filename) {
   const match = filename.match(/Semana-(\d+-a-\d+)/i)
@@ -127,22 +177,27 @@ export default function ArtifactExplorer() {
         <>
           {/* Top KPI strip — all weeks combined */}
           <div className="metric-strip">
-            <div className="metric-tile">
-              <span>Comissão Total (todas as semanas)</span>
-              <strong style={{ color: totalComm < 0 ? '#ef4444' : undefined }}>{money(totalComm)}</strong>
-            </div>
-            <div className="metric-tile">
-              <span>Vendas Brutas (todas as semanas)</span>
-              <strong>{money(totalSales)}</strong>
-            </div>
-            <div className="metric-tile">
-              <span>Total de Pedidos</span>
-              <strong>{integer(totalOrders)}</strong>
-            </div>
-            <div className="metric-tile">
-              <span>Semanas analisadas</span>
-              <strong>{weeks.length}</strong>
-            </div>
+            <InfoTile
+              label="Comissão Total (todas as semanas)"
+              value={money(totalComm)}
+              valueStyle={{ color: totalComm < 0 ? '#ef4444' : undefined }}
+              tooltip="⚠️ Soma das comissões cobradas pelo Zé Delivery em todas as semanas carregadas. Valor negativo = custo para você. Pode estar incompleto se algum relatório de semana estiver faltando na pasta raw/."
+            />
+            <InfoTile
+              label="Vendas Brutas (todas as semanas)"
+              value={money(totalSales)}
+              tooltip="Estimativa de receita bruta: quantidade × preço unitário de venda por linha de produto. Não é o valor recebido — não desconta comissão, frete, promoções ou impostos. Pode divergir do extrato real do Zé se linhas estiverem zeradas ou com preço ausente."
+            />
+            <InfoTile
+              label="Total de Pedidos"
+              value={integer(totalOrders)}
+              tooltip="Contagem de IDs de pedido únicos encontrados nos relatórios de comissão. Um mesmo pedido com múltiplos produtos é contado uma única vez. Pedidos sem ID preenchido no report são ignorados."
+            />
+            <InfoTile
+              label="Semanas analisadas"
+              value={weeks.length}
+              tooltip={`Quantidade de arquivos raw/Relatorio-Comissoes-Semana-* encontrados e processados com sucesso. Se esse número for menor do que o esperado, verifique se todos os relatórios semanais estão na pasta artifacts/raw/.`}
+            />
           </div>
 
           {/* Main trend chart — commission week by week */}
@@ -205,29 +260,31 @@ export default function ArtifactExplorer() {
             {selectedWeek && (
               <>
                 <div className="metric-strip" style={{ marginBottom: '20px' }}>
-                  <div className="metric-tile">
-                    <span>Comissão</span>
-                    <strong style={{ color: selectedWeek.commission < 0 ? '#ef4444' : undefined }}>
-                      {money(selectedWeek.commission)}
-                    </strong>
-                  </div>
-                  <div className="metric-tile">
-                    <span>Vendas Brutas</span>
-                    <strong>{money(selectedWeek.grossSales)}</strong>
-                  </div>
-                  <div className="metric-tile">
-                    <span>Pedidos</span>
-                    <strong>{integer(selectedWeek.orders)}</strong>
-                  </div>
-                  <div className="metric-tile">
-                    <span>Top Produto</span>
-                    <strong style={{ fontSize: '0.85rem' }}>
-                      {selectedWeek.topProduct.length > 25
-                        ? selectedWeek.topProduct.slice(0, 25) + '…'
-                        : selectedWeek.topProduct}
-                    </strong>
-                  </div>
+                  <InfoTile
+                    label="Comissão"
+                    value={money(selectedWeek.commission)}
+                    valueStyle={{ color: selectedWeek.commission < 0 ? '#ef4444' : undefined }}
+                    tooltip="⚠️ Valor calculado pela API do Zé Delivery (endpoint Reports/repasses) e registrado nos relatórios financeiros brutos. Representa o custo de comissão cobrado por pedido entregue. Valor negativo = desconto do seu repasse. Pode divergir do extrato oficial se linhas de produtos estiverem zeradas, faltando ou com campos mapeados incorretamente."
+                  />
+                  <InfoTile
+                    label="Vendas Brutas"
+                    value={money(selectedWeek.grossSales)}
+                    tooltip="Estimativa calculada localmente: soma de (quantidade × preço unitário de venda) por linha do relatório de comissão. Não vem diretamente do Zé — é uma aproximação. Não inclui frete, promoções, incentivos ou impostos. Divergências são esperadas se produtos tiverem preço zerado ou ausente no relatório."
+                  />
+                  <InfoTile
+                    label="Pedidos"
+                    value={integer(selectedWeek.orders)}
+                    tooltip="Contagem de IDs de pedido únicos (campo 'No. do Pedido') nesta semana. Um pedido com múltiplos produtos aparece uma única vez. Pedidos sem ID preenchido são ignorados. Verifique com o relatório de repasses do Zé para confirmar o total real de pedidos faturados."
+                  />
+                  <InfoTile
+                    label="Top Produto"
+                    value={selectedWeek.topProduct.length > 25
+                      ? selectedWeek.topProduct.slice(0, 25) + '…'
+                      : selectedWeek.topProduct}
+                    tooltip={`Produto com maior volume de comissão cobrada nesta semana: ${selectedWeek.topProduct}. Comissão alta neste produto pode indicar alto giro ou taxa de comissão elevada. Confira se a taxa aplicada está correta no catálogo do Zé Delivery.`}
+                  />
                 </div>
+
 
                 {/* Top 10 products this week */}
                 <h3 style={{ marginBottom: '12px' }}>Top Produtos — {selectedWeek.label}</h3>
