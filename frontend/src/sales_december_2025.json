@@ -1,0 +1,177 @@
+{
+  "periodo": "2025-12-01 a 2025-12-31",
+  "pasta": "artifacts/raw/Relatorios-Semana-49-a-1-8a4afff5-29c8-421c-8f55-a3637bd37b50",
+  "faturamento_vendas_total": 194023.7,
+  "observacao": "Não há linhas nos dias 2025-12-01 e 2025-12-02 dentro desta pasta. Total calculado por produto vendido: quantidade/unidades x preço unitário, unindo Comissões e Markup sem somar frete/promoções.",
+  "linhas_produto_deduplicadas": 3934,
+  "pedidos_com_linha_de_produto": 2518,
+  "source_totals_before_dedupe": {
+    "commissions": 32587.45,
+    "markup": 161436.25
+  },
+  "source_rows": {
+    "commissions": 1082,
+    "markup": 2852
+  },
+  "source_orders": {
+    "commissions": 752,
+    "markup": 2268
+  },
+  "daily": [
+    {
+      "data": "2025-12-01",
+      "faturamento_vendas": 0,
+      "pedidos_com_linha_de_produto": 0
+    },
+    {
+      "data": "2025-12-02",
+      "faturamento_vendas": 0,
+      "pedidos_com_linha_de_produto": 0
+    },
+    {
+      "data": "2025-12-03",
+      "faturamento_vendas": 3543.36,
+      "pedidos_com_linha_de_produto": 54
+    },
+    {
+      "data": "2025-12-04",
+      "faturamento_vendas": 3483.7,
+      "pedidos_com_linha_de_produto": 40
+    },
+    {
+      "data": "2025-12-05",
+      "faturamento_vendas": 5340.37,
+      "pedidos_com_linha_de_produto": 77
+    },
+    {
+      "data": "2025-12-06",
+      "faturamento_vendas": 11797.69,
+      "pedidos_com_linha_de_produto": 160
+    },
+    {
+      "data": "2025-12-07",
+      "faturamento_vendas": 9076.55,
+      "pedidos_com_linha_de_produto": 130
+    },
+    {
+      "data": "2025-12-08",
+      "faturamento_vendas": 0,
+      "pedidos_com_linha_de_produto": 0
+    },
+    {
+      "data": "2025-12-09",
+      "faturamento_vendas": 1389.2,
+      "pedidos_com_linha_de_produto": 16
+    },
+    {
+      "data": "2025-12-10",
+      "faturamento_vendas": 3095.81,
+      "pedidos_com_linha_de_produto": 48
+    },
+    {
+      "data": "2025-12-11",
+      "faturamento_vendas": 5276.65,
+      "pedidos_com_linha_de_produto": 64
+    },
+    {
+      "data": "2025-12-12",
+      "faturamento_vendas": 6131.74,
+      "pedidos_com_linha_de_produto": 88
+    },
+    {
+      "data": "2025-12-13",
+      "faturamento_vendas": 10689.67,
+      "pedidos_com_linha_de_produto": 152
+    },
+    {
+      "data": "2025-12-14",
+      "faturamento_vendas": 8024.89,
+      "pedidos_com_linha_de_produto": 109
+    },
+    {
+      "data": "2025-12-15",
+      "faturamento_vendas": 0,
+      "pedidos_com_linha_de_produto": 0
+    },
+    {
+      "data": "2025-12-16",
+      "faturamento_vendas": 2135.06,
+      "pedidos_com_linha_de_produto": 26
+    },
+    {
+      "data": "2025-12-17",
+      "faturamento_vendas": 6849.98,
+      "pedidos_com_linha_de_produto": 85
+    },
+    {
+      "data": "2025-12-18",
+      "faturamento_vendas": 4127.45,
+      "pedidos_com_linha_de_produto": 53
+    },
+    {
+      "data": "2025-12-19",
+      "faturamento_vendas": 6422.08,
+      "pedidos_com_linha_de_produto": 78
+    },
+    {
+      "data": "2025-12-20",
+      "faturamento_vendas": 9119.91,
+      "pedidos_com_linha_de_produto": 131
+    },
+    {
+      "data": "2025-12-21",
+      "faturamento_vendas": 8945.1,
+      "pedidos_com_linha_de_produto": 130
+    },
+    {
+      "data": "2025-12-22",
+      "faturamento_vendas": 0,
+      "pedidos_com_linha_de_produto": 0
+    },
+    {
+      "data": "2025-12-23",
+      "faturamento_vendas": 4808.53,
+      "pedidos_com_linha_de_produto": 64
+    },
+    {
+      "data": "2025-12-24",
+      "faturamento_vendas": 17897.91,
+      "pedidos_com_linha_de_produto": 210
+    },
+    {
+      "data": "2025-12-25",
+      "faturamento_vendas": 12986.11,
+      "pedidos_com_linha_de_produto": 165
+    },
+    {
+      "data": "2025-12-26",
+      "faturamento_vendas": 7752.9,
+      "pedidos_com_linha_de_produto": 108
+    },
+    {
+      "data": "2025-12-27",
+      "faturamento_vendas": 3752.09,
+      "pedidos_com_linha_de_produto": 39
+    },
+    {
+      "data": "2025-12-28",
+      "faturamento_vendas": 10393,
+      "pedidos_com_linha_de_produto": 127
+    },
+    {
+      "data": "2025-12-29",
+      "faturamento_vendas": 2208.52,
+      "pedidos_com_linha_de_produto": 29
+    },
+    {
+      "data": "2025-12-30",
+      "faturamento_vendas": 8406.88,
+      "pedidos_com_linha_de_produto": 95
+    },
+    {
+      "data": "2025-12-31",
+      "faturamento_vendas": 20368.55,
+      "pedidos_com_linha_de_produto": 240
+    }
+  ]
+}

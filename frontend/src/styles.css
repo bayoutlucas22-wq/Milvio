@@ -226,6 +226,13 @@ button {
   min-height: 260px;
 }
 
+.panel-note {
+  margin: -4px 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .recharts-wrapper text {
   fill: #56645b;
   font-size: 12px;
@@ -236,6 +243,104 @@ button {
 .data-table {
   display: grid;
   gap: 9px;
+}
+
+.sales-view > .work-panel:nth-child(2) {
+  grid-column: span 8;
+}
+
+.sales-view > .work-panel:nth-child(3) {
+  grid-column: span 4;
+}
+
+.sales-view > .work-panel:nth-child(4),
+.sales-view > .work-panel:nth-child(5) {
+  grid-column: span 6;
+}
+
+.sales-split {
+  display: grid;
+  gap: 10px;
+}
+
+.sales-source-cards {
+  display: grid;
+  gap: 9px;
+}
+
+.sales-source-card {
+  display: grid;
+  gap: 4px;
+  padding: 11px;
+  border: 1px solid #e2eadf;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.sales-source-card span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sales-source-card strong {
+  font-size: 20px;
+}
+
+.sales-source-card small {
+  color: var(--muted);
+}
+
+.owner-reading {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #b7d7c0;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(31, 122, 59, 0.1), rgba(255, 255, 255, 0.8)),
+    var(--surface-2);
+  line-height: 1.58;
+}
+
+.owner-reading strong {
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.owner-reading span {
+  color: var(--muted);
+}
+
+.sales-table {
+  max-height: 420px;
+  display: grid;
+  gap: 8px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.sales-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #e2eadf;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.sales-row.muted {
+  background: #fbfcfa;
+  color: var(--muted);
+}
+
+.sales-row span {
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .rank-row,
@@ -485,7 +590,11 @@ button {
 
   .tab-grid > .work-panel:nth-child(2),
   .tab-grid > .work-panel:nth-child(3),
-  .tab-grid.two-col .work-panel {
+  .tab-grid.two-col .work-panel,
+  .sales-view > .work-panel:nth-child(2),
+  .sales-view > .work-panel:nth-child(3),
+  .sales-view > .work-panel:nth-child(4),
+  .sales-view > .work-panel:nth-child(5) {
     grid-column: 1 / -1;
   }
 
@@ -520,7 +629,8 @@ button {
 
   .rank-row,
   .product-row,
-  .data-row {
+  .data-row,
+  .sales-row {
     grid-template-columns: 1fr;
   }
 }

@@ -5,7 +5,6 @@ import os
 from pathlib import Path
 from typing import Any
 
-import requests
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from redis import Redis
@@ -13,7 +12,7 @@ from redis.exceptions import RedisError
 
 
 ANALYTICS_PATH = Path(os.getenv("ANALYTICS_PATH", "/data/artifacts/analytics.json"))
-SWAGGER_KNOWLEDGE_PATH = Path(os.getenv("SWAGGER_KNOWLEDGE_PATH", "/data/artifacts/swagger_knowledge.json"))
+ARTIFACTS_DIR = Path("/data/artifacts")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 CACHE_KEY = os.getenv("ANALYTICS_CACHE_KEY", "app-milvio:analytics:v1")
 CACHE_SECONDS = int(os.getenv("ANALYTICS_CACHE_SECONDS", "3600"))
@@ -42,7 +41,6 @@ def health() -> dict[str, Any]:
         "ok": True,
         "redis": redis_ok,
         "analytics_exists": ANALYTICS_PATH.exists(),
-        "swagger_knowledge_exists": SWAGGER_KNOWLEDGE_PATH.exists(),
     }
 
 
@@ -62,6 +60,36 @@ def refresh_analytics() -> dict[str, Any]:
     data = read_analytics_file()
     write_cache(data)
     return {"source": "file", "cached": True, "data": data}
+
+
+@app.get("/api/artifacts")
+def list_artifacts() -> list[str]:
+    if not ARTIFACTS_DIR.exists():
+        return []
+    
+    files = []
+    for path in ARTIFACTS_DIR.rglob("*.json"):
+        files.append(str(path.relative_to(ARTIFACTS_DIR)))
+    return files
+
+
+@app.get("/api/artifacts/content")
+def get_artifact_content(path: str) -> Any:
+    if not path:
+        raise HTTPException(status_code=400, detail="Path is required")
+    
+    target_path = ARTIFACTS_DIR / path
+    
+    try:
+        # Prevent directory traversal
+        target_path.resolve().relative_to(ARTIFACTS_DIR.resolve())
+    except ValueError:
+        raise HTTPException(status_code=403, detail="Access denied")
+        
+    if not target_path.exists():
+        raise HTTPException(status_code=404, detail="Artifact not found")
+        
+    return json.loads(target_path.read_text(encoding='utf-8'))
 
 
 def read_cache() -> dict[str, Any] | None:
@@ -94,10 +122,5 @@ def read_analytics_file() -> dict[str, Any]:
         raise HTTPException(status_code=404, detail="analytics.json not found")
     return json.loads(ANALYTICS_PATH.read_text())
 
-
-def read_swagger_knowledge() -> dict[str, Any] | None:
-    if not SWAGGER_KNOWLEDGE_PATH.exists():
-        return None
-    return json.loads(SWAGGER_KNOWLEDGE_PATH.read_text())
 
 

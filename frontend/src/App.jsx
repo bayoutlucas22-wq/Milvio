@@ -23,10 +23,14 @@ import {
   GraduationCap,
   PackageSearch,
   Route,
+  ShoppingCart,
   WalletCards,
+  FolderOpen
 } from 'lucide-react'
 import fallbackAnalytics from './analytics.json'
+import decemberSales from './sales_december_2025.json'
 import { compactDate, integer, money, monthLabel } from './lib/format'
+import ArtifactExplorer from './ArtifactExplorer'
 
 const REPORT_LABELS = {
   commissions: 'Comissões',
@@ -49,11 +53,13 @@ const COMPONENT_COLORS = {
 
 const TABS = [
   { id: 'overview', label: 'Painel', icon: ChartNoAxesCombined },
+  { id: 'sales', label: 'Vendas', icon: ShoppingCart },
   { id: 'losses', label: 'Perdas', icon: CircleDollarSign },
   { id: 'trend', label: 'Semanas', icon: Route },
   { id: 'operation', label: 'Operação', icon: PackageSearch },
   { id: 'map', label: 'Mapa', icon: GitFork },
   { id: 'study', label: 'Estudo', icon: GraduationCap },
+  { id: 'artifacts', label: 'Artifacts', icon: FolderOpen },
 ]
 
 export default function App() {
@@ -131,12 +137,125 @@ export default function App() {
         </section>
 
         {activeTab === 'overview' && <OverviewTab data={analytics} />}
+        {activeTab === 'sales' && <SalesTab sales={decemberSales} />}
         {activeTab === 'losses' && <LossesTab data={analytics} />}
         {activeTab === 'trend' && <TrendTab data={analytics} />}
         {activeTab === 'operation' && <OperationTab data={analytics} />}
         {activeTab === 'map' && <MapTab data={analytics} />}
         {activeTab === 'study' && <StudyTab data={analytics} />}
+        {activeTab === 'artifacts' && <ArtifactExplorer />}
       </main>
+    </div>
+  )
+}
+
+function SalesTab({ sales }) {
+  const daily = sales.daily.map((row) => ({
+    ...row,
+    label: compactDate(row.data),
+    day: row.data.slice(-2),
+  }))
+  const activeDays = daily.filter((row) => row.faturamento_vendas > 0)
+  const strongestDay = activeDays.reduce((best, row) => (
+    row.faturamento_vendas > best.faturamento_vendas ? row : best
+  ), activeDays[0])
+  const averageActiveDay = sales.faturamento_vendas_total / Math.max(activeDays.length, 1)
+  const sourceRows = Object.entries(sales.source_totals_before_dedupe).map(([key, value]) => ({
+    key,
+    label: REPORT_LABELS[key] ?? key,
+    value,
+  }))
+
+  return (
+    <div className="tab-grid sales-view">
+      <MetricStrip
+        items={[
+          ['Faturamento vendas', money(sales.faturamento_vendas_total)],
+          ['Pedidos com produto', integer(sales.pedidos_com_linha_de_produto)],
+          ['Média por dia ativo', money(averageActiveDay)],
+          ['Melhor dia', `${strongestDay.label} · ${money(strongestDay.faturamento_vendas)}`],
+        ]}
+      />
+
+      <Panel title="Faturamento dia a dia">
+        <p className="panel-note">
+          Dezembro/2025 calculado por produto vendido: unidades x preço unitário. Frete, restituições e promoções não entram como venda.
+        </p>
+        <ChartFrame>
+          <ResponsiveContainer width="100%" height={340}>
+            <ComposedChart data={daily}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" />
+              <YAxis tickFormatter={(value) => shortMoney(value)} />
+              <Tooltip
+                formatter={(value, name) => [
+                  name === 'faturamento_vendas' ? money(value) : integer(value),
+                  name === 'faturamento_vendas' ? 'Faturamento' : 'Pedidos',
+                ]}
+                labelFormatter={(_, rows) => rows?.[0]?.payload?.label ?? 'Dia'}
+              />
+              <Bar dataKey="faturamento_vendas" name="Faturamento" fill={COMPONENT_COLORS.proxy_total} radius={[5, 5, 0, 0]} />
+              <Line dataKey="pedidos_com_linha_de_produto" name="Pedidos" stroke={COMPONENT_COLORS.blue} strokeWidth={2.5} dot={false} />
+              <Legend />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </ChartFrame>
+      </Panel>
+
+      <Panel title="Origem do cálculo">
+        <div className="sales-split">
+          <ChartFrame>
+            <ResponsiveContainer width="100%" height={260}>
+              <PieChart>
+                <Pie data={sourceRows} dataKey="value" nameKey="label" innerRadius={58} outerRadius={96} paddingAngle={4}>
+                  {sourceRows.map((row) => (
+                    <Cell key={row.key} fill={row.key === 'markup' ? COMPONENT_COLORS.markup : COMPONENT_COLORS.commissions} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value) => money(value)} />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </ChartFrame>
+          <div className="sales-source-cards">
+            {sourceRows.map((row) => (
+              <div className="sales-source-card" key={row.key}>
+                <span>{row.label}</span>
+                <strong>{money(row.value)}</strong>
+                <small>
+                  {integer(sales.source_rows[row.key])} linhas · {integer(sales.source_orders[row.key])} pedidos
+                </small>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Panel>
+
+      <Panel title="Leitura rápida para dono">
+        <div className="owner-reading">
+          <strong>O número de venda do período é {money(sales.faturamento_vendas_total)}.</strong>
+          <span>
+            Ele representa mercadoria vendida nos reports de comissões e markup, não lucro líquido. O próximo passo é descontar custo da mercadoria,
+            comissão, frete, impostos e operação.
+          </span>
+          <span>
+            Os maiores dias foram datas de fim de ano, especialmente {strongestDay.label}. Dias zerados indicam ausência de linhas nesta pasta,
+            não necessariamente loja fechada.
+          </span>
+        </div>
+      </Panel>
+
+      <Panel title="Tabela diária">
+        <div className="sales-table">
+          {daily.map((row) => (
+            <div className={row.faturamento_vendas === 0 ? 'sales-row muted' : 'sales-row'} key={row.data}>
+              <strong>{row.label}</strong>
+              <span>{integer(row.pedidos_com_linha_de_produto)} pedidos com produto</span>
+              <b>{money(row.faturamento_vendas)}</b>
+            </div>
+          ))}
+        </div>
+      </Panel>
     </div>
   )
 }
