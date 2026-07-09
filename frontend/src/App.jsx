@@ -565,7 +565,9 @@ function MongoTab({ state }) {
         {state.error && <div className="mongo-empty negative">Falha ao ler o Mongo: {state.error}</div>}
         {!state.loading && !state.error && (
           <div className="mongo-collection-list">
-            {collections.map((collection) => (
+            {collections
+              .filter(c => c.name === 'artifacts')
+              .map((collection) => (
               <MongoCollectionCard key={collection.name} collection={collection} />
             ))}
           </div>
