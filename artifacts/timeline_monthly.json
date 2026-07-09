@@ -1,0 +1,145 @@
+[
+  {
+    "month": "2025-07",
+    "faturamento": 12000.07,
+    "comissao": -1742.57,
+    "markup": 916.15,
+    "frete": 1623.18,
+    "desconto": 3058.64,
+    "pedidos": 273,
+    "resultado_proxy": 3855.39,
+    "days": 27
+  },
+  {
+    "month": "2025-08",
+    "faturamento": 15571.91,
+    "comissao": -2336.94,
+    "markup": 2643.99,
+    "frete": 1580.4,
+    "desconto": 4094.65,
+    "pedidos": 303,
+    "resultado_proxy": 5982.09,
+    "days": 25
+  },
+  {
+    "month": "2025-09",
+    "faturamento": 11678.02,
+    "comissao": -1753.98,
+    "markup": 1260.78,
+    "frete": 515.97,
+    "desconto": 3110.43,
+    "pedidos": 274,
+    "resultado_proxy": 3133.2,
+    "days": 23
+  },
+  {
+    "month": "2025-10",
+    "faturamento": 16886.69,
+    "comissao": -2685.23,
+    "markup": 1771.16,
+    "frete": 1304.47,
+    "desconto": 4951.52,
+    "pedidos": 318,
+    "resultado_proxy": 5341.9,
+    "days": 26
+  },
+  {
+    "month": "2025-11",
+    "faturamento": 46668.42,
+    "comissao": -7441.87,
+    "markup": 19070.44,
+    "frete": -91.74,
+    "desconto": 14161.22,
+    "pedidos": 578,
+    "resultado_proxy": 25698.03,
+    "days": 26
+  },
+  {
+    "month": "2025-12",
+    "faturamento": 39626.38,
+    "comissao": -6476.4,
+    "markup": 11038.95,
+    "frete": 1217.11,
+    "desconto": 7684.03,
+    "pedidos": 752,
+    "resultado_proxy": 13463.71,
+    "days": 26
+  },
+  {
+    "month": "2026-01",
+    "faturamento": 8169.64,
+    "comissao": -1172.63,
+    "markup": 2764.3,
+    "frete": 434.38,
+    "desconto": 1011.88,
+    "pedidos": 81,
+    "resultado_proxy": 3037.93,
+    "days": 4
+  },
+  {
+    "month": "2026-02",
+    "faturamento": 15787.34,
+    "comissao": -2239.22,
+    "markup": 4097.45,
+    "frete": 1220.35,
+    "desconto": 4412.81,
+    "pedidos": 235,
+    "resultado_proxy": 7491.37,
+    "days": 22
+  },
+  {
+    "month": "2026-03",
+    "faturamento": 22230.22,
+    "comissao": -3096.81,
+    "markup": 3272.12,
+    "frete": 697.12,
+    "desconto": 4822.8,
+    "pedidos": 419,
+    "resultado_proxy": 5695.23,
+    "days": 26
+  },
+  {
+    "month": "2026-04",
+    "faturamento": 27340.01,
+    "comissao": -4006.56,
+    "markup": 2926.52,
+    "frete": 732.69,
+    "desconto": 5781.15,
+    "pedidos": 528,
+    "resultado_proxy": 5433.78,
+    "days": 27
+  },
+  {
+    "month": "2026-05",
+    "faturamento": 4921.09,
+    "comissao": -705.63,
+    "markup": 180.51,
+    "frete": 68.11,
+    "desconto": 880.73,
+    "pedidos": 113,
+    "resultado_proxy": 423.7,
+    "days": 3
+  },
+  {
+    "month": "2026-06",
+    "faturamento": 46248.52,
+    "comissao": -6875.5,
+    "markup": 6512.79,
+    "frete": 8142.18,
+    "desconto": 10031.77,
+    "pedidos": 451,
+    "resultado_proxy": 17811.25,
+    "days": 26
+  },
+  {
+    "month": "2026-07",
+    "faturamento": 28430.19,
+    "comissao": -4284.45,
+    "markup": 2271.93,
+    "frete": 3256.48,
+    "desconto": 5632.41,
+    "pedidos": 135,
+    "resultado_proxy": 6876.36,
+    "days": 6
+  }
+]

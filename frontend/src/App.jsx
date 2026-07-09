@@ -31,6 +31,7 @@ import fallbackAnalytics from './analytics.json'
 import decemberSales from './sales_december_2025.json'
 import { compactDate, integer, money, monthLabel } from './lib/format'
 import ArtifactExplorer from './ArtifactExplorer'
+import FaturamentoTab from './FaturamentoTab'
 
 const REPORT_LABELS = {
   commissions: 'Comissões',
@@ -53,6 +54,7 @@ const COMPONENT_COLORS = {
 
 const TABS = [
   { id: 'overview', label: 'Painel', icon: ChartNoAxesCombined },
+  { id: 'faturamento', label: 'Faturamento', icon: Route },
   { id: 'sales', label: 'Vendas', icon: ShoppingCart },
   { id: 'losses', label: 'Perdas', icon: CircleDollarSign },
   { id: 'trend', label: 'Semanas', icon: Route },
@@ -143,6 +145,7 @@ export default function App() {
         {activeTab === 'operation' && <OperationTab data={analytics} />}
         {activeTab === 'map' && <MapTab data={analytics} />}
         {activeTab === 'study' && <StudyTab data={analytics} />}
+        {activeTab === 'faturamento' && <FaturamentoTab />}
         {activeTab === 'artifacts' && <ArtifactExplorer />}
       </main>
     </div>
