@@ -52,74 +52,14 @@ const TABS = [
   { id: 'faturamento', label: 'Faturamento', icon: ChartNoAxesCombined },
   { id: 'research', label: 'Research', icon: BookOpen },
   { id: 'operation', label: 'Operação', icon: PackageSearch },
-  { id: 'mongo', label: 'Mongo', icon: Database },
-  { id: 'artifacts', label: 'Artifacts', icon: FolderTree },
 ]
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('faturamento')
-  const [payload, setPayload] = useState({ source: 'bundle', data: fallbackAnalytics })
-  const [mongoPayload, setMongoPayload] = useState({ loading: true, data: null, error: '' })
-  const [artifactPayload, setArtifactPayload] = useState({ loading: true, data: [], error: '' })
   const ActiveIcon = TABS.find((tab) => tab.id === activeTab)?.icon ?? Boxes
-  const analytics = payload.data
+  const analytics = fallbackAnalytics
 
-  useEffect(() => {
-    let active = true
-    fetch('/api/analytics')
-      .then((response) => {
-        if (!response.ok) throw new Error(`analytics request failed: ${response.status}`)
-        return response.json()
-      })
-      .then((response) => {
-        if (active) setPayload({ source: response.source ?? 'api', data: response.data })
-      })
-      .catch(() => {
-        if (active) setPayload({ source: 'bundle', data: fallbackAnalytics })
-      })
 
-    return () => {
-      active = false
-    }
-  }, [])
-
-  useEffect(() => {
-    let active = true
-    fetch('/api/mongo/overview')
-      .then((response) => {
-        if (!response.ok) throw new Error(`mongo request failed: ${response.status}`)
-        return response.json()
-      })
-      .then((response) => {
-        if (active) setMongoPayload({ loading: false, data: response, error: '' })
-      })
-      .catch((error) => {
-        if (active) setMongoPayload({ loading: false, data: null, error: error.message })
-      })
-
-    return () => {
-      active = false
-    }
-  }, [])
-
-  useEffect(() => {
-    let active = true
-    fetch('/api/artifacts')
-      .then((response) => {
-        if (!response.ok) throw new Error(`artifacts request failed: ${response.status}`)
-        return response.json()
-      })
-      .then((response) => {
-        if (active) setArtifactPayload({ loading: false, data: response, error: '' })
-      })
-      .catch((error) => {
-        if (active) setArtifactPayload({ loading: false, data: [], error: error.message })
-      })
-
-    return () => {
-      active = false
-    }
-  }, [])
 
   return (
     <div className="analysis-shell">
@@ -154,9 +94,7 @@ export default function App() {
       <main className="workspace">
         <header className="topbar">
           <div>
-            <p className="section-kicker">
-              2023 → jan/2025 · visão anual fechada · {integer(analytics.scope.json_files)} artifacts
-            </p>
+
             <h1>Milvio — Dashboard Financeiro Zé Delivery</h1>
           </div>
         </header>
@@ -166,11 +104,9 @@ export default function App() {
           <span>{TABS.find((tab) => tab.id === activeTab)?.label}</span>
         </section>
 
-        {activeTab === 'faturamento' && <FaturamentoTab />}
+        {activeTab === 'faturamento' && <FaturamentoTab setActiveTab={setActiveTab} />}
         {activeTab === 'research' && <ResearchTab />}
         {activeTab === 'operation' && <OperationTab data={analytics} />}
-        {activeTab === 'mongo' && <MongoTab state={mongoPayload} />}
-        {activeTab === 'artifacts' && <ArtifactsTab state={artifactPayload} />}
       </main>
     </div>
   )
@@ -433,10 +369,10 @@ function TrendTab({ data }) {
 }
 
 function OperationTab({ data }) {
-  const FAT_BRUTO     = 295558.50  // reference only — what customers paid to Zé
-  const totalComm     = data.components.totals.commissions
-  const proxyTotal    = data.headline.proxy_total  // what Zé actually pays Milvinho
-  const topProducts   = data.breakdowns.top_products
+  const FAT_BRUTO = 295558.50  // reference only — what customers paid to Zé
+  const totalComm = data.components.totals.commissions
+  const proxyTotal = data.headline.proxy_total  // what Zé actually pays Milvinho
+  const topProducts = data.breakdowns.top_products
 
   return (
     <div className="tab-grid two-col">
@@ -445,8 +381,8 @@ function OperationTab({ data }) {
       <div className="operation-summary-grid">
         {[
           { label: 'Faturamento (referência)', value: FAT_BRUTO, sub: 'o que clientes pagaram ao Zé', color: '#60a5fa' },
-          { label: 'Comissão cobrada', value: totalComm, sub: `${(Math.abs(totalComm)/FAT_BRUTO*100).toFixed(1)}% do faturamento`, color: '#ef4444' },
-          { label: '= Resultado transferido', value: proxyTotal, sub: `~${money(Math.round(proxyTotal/14))}/semana`, color: 'var(--green)', big: true },
+          { label: 'Comissão cobrada', value: totalComm, sub: `${(Math.abs(totalComm) / FAT_BRUTO * 100).toFixed(1)}% do faturamento`, color: '#ef4444' },
+          { label: '= Resultado transferido', value: proxyTotal, sub: `~${money(Math.round(proxyTotal / 14))}/semana`, color: 'var(--green)', big: true },
         ].map(item => (
           <div key={item.label} className="metric-tile">
             <span>{item.label}</span>
@@ -531,174 +467,7 @@ function OperationTab({ data }) {
 
 
 
-function MongoTab({ state }) {
-  const collections = state.data?.collections ?? []
-  const totalDocs = collections.reduce((sum, item) => sum + (item.documents || 0), 0)
-  const biggest = collections[0]
 
-  return (
-    <div className="tab-grid two-col mongo-view">
-      <div className="work-panel mongo-hero" style={{ gridColumn: '1 / -1' }}>
-        <h2>O que tem no Mongo</h2>
-        <p>
-          Essa tela mostra as coleções que já estão carregadas no banco, quantos documentos existem em cada uma e uma amostra do conteúdo.
-          É a visão de inspeção para entender o que entrou de verdade no banco.
-        </p>
-      </div>
-
-      <div className="operation-summary-grid">
-        {[
-          { label: 'Banco', value: state.data?.db ?? 'milvio', sub: 'base ativa do app', color: '#277da1' },
-          { label: 'Coleções', value: collections.length, sub: 'tabelas do Mongo', color: '#1f7a3b' },
-          { label: 'Documentos', value: totalDocs, sub: 'linhas somadas das coleções', color: '#b93b2f' },
-        ].map((item) => (
-          <div key={item.label} className="metric-tile">
-            <span>{item.label}</span>
-            <strong style={{ color: item.color }}>{item.value}</strong>
-            <span style={{ color: 'var(--muted)', fontSize: '11px' }}>{item.sub}</span>
-          </div>
-        ))}
-      </div>
-
-      <Panel title="Coleções carregadas">
-        {state.loading && <div className="mongo-empty">Carregando o Mongo...</div>}
-        {state.error && <div className="mongo-empty negative">Falha ao ler o Mongo: {state.error}</div>}
-        {!state.loading && !state.error && (
-          <div className="mongo-collection-list">
-            {collections
-              .filter(c => c.name === 'artifacts')
-              .map((collection) => (
-              <MongoCollectionCard key={collection.name} collection={collection} />
-            ))}
-          </div>
-        )}
-      </Panel>
-
-      <Panel title="Coleção maior">
-        {biggest ? (
-          <div className="mongo-focus">
-            <div className="mongo-focus-head">
-              <strong>{biggest.name}</strong>
-              <span>{integer(biggest.documents)} documentos</span>
-            </div>
-            <p>Campos visíveis: {biggest.fields.join(', ') || 'sem campos amostrados'}</p>
-            <pre>{JSON.stringify(biggest.sample, null, 2)}</pre>
-          </div>
-        ) : (
-          <div className="mongo-empty">Ainda não há coleção para mostrar.</div>
-        )}
-      </Panel>
-    </div>
-  )
-}
-
-function ArtifactsTab({ state }) {
-  const [query, setQuery] = useState('')
-  const [selectedFolder, setSelectedFolder] = useState('')
-  const [page, setPage] = useState(1)
-  const itemsPerPage = 20
-  const files = state.data ?? []
-
-  const groups = files.reduce((acc, path) => {
-    const parts = path.split('/')
-    const folder = parts[0] || 'root'
-    if (!acc[folder]) acc[folder] = []
-    acc[folder].push(path)
-    return acc
-  }, {})
-
-  const folderNames = Object.keys(groups).sort()
-  const visibleFolders = selectedFolder ? [selectedFolder] : folderNames
-  const filtered = visibleFolders.flatMap((folder) => (
-    (groups[folder] ?? []).filter((path) => path.toLowerCase().includes(query.toLowerCase()))
-  ))
-  
-  const totalPages = Math.ceil(filtered.length / itemsPerPage)
-  const paginated = filtered.slice((page - 1) * itemsPerPage, page * itemsPerPage)
-
-  useEffect(() => {
-    setPage(1)
-  }, [query, selectedFolder])
-
-  return (
-    <div className="tab-grid two-col artifacts-view">
-      <div className="work-panel" style={{ gridColumn: '1 / -1' }}>
-        <h2>Artifacts organizados</h2>
-        <p className="panel-note">
-          A leitura agora acompanha a estrutura nova do `raw`, agrupada por origem. Use a busca para achar um arquivo e o filtro para abrir uma pasta semanal.
-        </p>
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Buscar arquivo..."
-            style={{ flex: '1 1 240px', padding: '10px 12px', borderRadius: '12px', border: '1px solid var(--line)' }}
-          />
-          <button type="button" className="mongo-sample-toggle" onClick={() => { setQuery(''); setSelectedFolder('') }}>
-            Limpar
-          </button>
-        </div>
-        <div className="mongo-field-chips" style={{ marginBottom: '14px' }}>
-          <span onClick={() => setSelectedFolder('')} style={{ cursor: 'pointer' }}>Todas</span>
-          {folderNames.map((folder) => (
-            <span key={folder} onClick={() => setSelectedFolder(folder)} style={{ cursor: 'pointer' }}>
-              {folder}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <Panel title="Lista">
-        {state.loading && <div className="mongo-empty">Carregando artifacts...</div>}
-        {state.error && <div className="mongo-empty negative">Falha ao ler artifacts: {state.error}</div>}
-        {!state.loading && !state.error && (
-          <div className="mongo-collection-list">
-            {paginated.map((path) => (
-              <div key={path} className="mongo-card">
-                <div className="mongo-card-head">
-                  <div>
-                    <strong>{path.split('/').slice(-1)[0]}</strong>
-                    <span>{path}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-            
-            {totalPages > 1 && (
-              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', marginTop: '16px' }}>
-                <button 
-                  disabled={page === 1}
-                  onClick={() => setPage(p => Math.max(1, p - 1))}
-                  style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--line)', background: 'var(--surface)' }}
-                >
-                  Anterior
-                </button>
-                <span style={{ fontSize: '14px', color: 'var(--muted)' }}>Página {page} de {totalPages}</span>
-                <button 
-                  disabled={page === totalPages}
-                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-                  style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--line)', background: 'var(--surface)' }}
-                >
-                  Próxima
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-      </Panel>
-
-      <Panel title="Resumo">
-        <StudyBlock
-          rows={[
-            `Arquivos encontrados: ${files.length}`,
-            `Pastas na raiz: ${folderNames.length}`,
-            'A tela agora acompanha a estrutura nova do raw, com agrupamento por pasta semanal de origem.',
-          ]}
-        />
-      </Panel>
-    </div>
-  )
-}
 
 
 function KPI({ label, value, sub, color }) {

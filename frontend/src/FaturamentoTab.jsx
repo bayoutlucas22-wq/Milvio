@@ -48,12 +48,13 @@ const CustomTooltip = ({ active, payload, label }) => {
   )
 }
 
-export default function FaturamentoTab() {
+export default function FaturamentoTab({ setActiveTab }) {
   const [daily, setDaily] = useState([])
   const [monthly, setMonthly] = useState([])
   const [loading, setLoading] = useState(true)
   const [view, setView] = useState('monthly')
   const [selectedMonth, setSelectedMonth] = useState(null)
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
   useEffect(() => {
     Promise.all([
@@ -106,44 +107,87 @@ export default function FaturamentoTab() {
 
       {/* Resultado financeiro do Zé */}
       <section className="work-panel" style={{ background: 'linear-gradient(135deg,#173224,#224633)', borderColor: '#2d5a3d', color: '#e2ede5' }}>
-        <h2 style={{ color: '#d9f6df', fontSize: '24px' }}>Resultado financeiro do Zé</h2>
-        <p style={{ color: '#8aaf9a', fontSize: '13px', marginTop: '6px' }}>
-          O <strong style={{ color: '#93c5fd' }}>faturamento bruto</strong> foi R${money(totalFat)}.
-          Isso é o que entrou no caixa via venda. Aqui não entram as despesas do dono.
-          Abaixo está o acerto do período, com o que soma e o que tira do caixa:
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div>
+            <h2 style={{ color: '#d9f6df', fontSize: '24px' }}>Resultado financeiro do Zé</h2>
+            <p style={{ color: '#8aaf9a', fontSize: '13px', marginTop: '6px' }}>
+              O <strong style={{ color: '#93c5fd' }}>faturamento bruto</strong> foi R${money(totalFat)}.
+              Isso é o que entrou no caixa via venda. Aqui não entram as despesas do dono.
+            </p>
+          </div>
+          <button 
+            onClick={() => setIsDetailsOpen(!isDetailsOpen)}
+            style={{ 
+              background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', 
+              color: '#fff', padding: '6px 12px', borderRadius: '20px', cursor: 'pointer', fontSize: '12px', fontWeight: 600
+            }}>
+            {isDetailsOpen ? 'Ocultar Detalhes' : 'Ver Detalhes do Acerto'}
+          </button>
+        </div>
 
-        <div className="financial-split-grid">
-          {[
-            { label: 'Promoções', value: totalDesc, color: '#7b5ea7', sign: '+' },
-            { label: 'Markup', value: totalMarkup, color: '#4f772d', sign: '+' },
-            { label: 'Frete', value: totalFrete, color: '#277da1', sign: '+' },
-            { label: 'Incentivos', value: INCENTIVOS, color: INCENTIVOS >= 0 ? '#4f772d' : '#f87171', sign: INCENTIVOS >= 0 ? '+' : '' },
-            { label: 'Pag. Manuais', value: PAG_MANUAIS, color: PAG_MANUAIS >= 0 ? '#4f772d' : '#f87171', sign: PAG_MANUAIS >= 0 ? '+' : '' },
-            { label: 'Comissões', value: totalComm, color: '#f87171', sign: '−' },
-          ].map(item => (
-            <div key={item.label} style={{ padding: '10px 6px', borderRadius: '6px', background: 'rgba(255,255,255,0.04)', textAlign: 'center' }}>
-              <div style={{ fontSize: '10px', color: '#8aaf9a', marginBottom: '3px' }}>{item.sign} {item.label}</div>
-              <strong style={{ color: item.color, fontSize: '13px' }}>{money(item.value)}</strong>
+        <div className="financial-summary-grid" style={{ marginTop: '20px' }}>
+          <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(39,125,161,0.12)', border: '1px solid #1e4a5a', color: '#cde7ff' }}>
+            <div style={{ fontSize: '12px', color: '#8fb9dc', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Faturamento bruto</div>
+            <strong style={{ color: '#93c5fd', fontSize: '32px', display: 'block', marginBottom: '8px' }}>{money(totalFat)}</strong>
+            <span style={{ fontSize: '14px' }}>Receita bruta das vendas. É o que entrou pelas vendas. Ainda não é lucro.</span>
+          </div>
+          <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(239,68,68,0.1)', border: '1px solid #7f1d1d', textAlign: 'center' }}>
+            <div style={{ fontSize: '12px', color: '#fca5a5', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.8px' }}>O Zé paga ao Milvinho</div>
+            <strong style={{ fontSize: '36px', fontWeight: 800, color: '#ef4444' }}>{money(proxyTotal)}</strong>
+            <div style={{ fontSize: '14px', color: '#8aaf9a', marginTop: '8px' }}>~{money(Math.round(proxyTotal/weeksCount))}/semana · {weeksCount} semanas</div>
+          </div>
+        </div>
+
+        {isDetailsOpen && (
+          <div style={{ marginTop: '24px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+            <p style={{ color: '#8aaf9a', fontSize: '14px', marginBottom: '16px' }}>
+              Abaixo está o acerto do período, com o que soma e o que tira do caixa:
+            </p>
+            <div className="financial-split-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+              {[
+                { label: 'Promoções', value: totalDesc, color: '#a78bfa', sign: '+' },
+                { label: 'Markup', value: totalMarkup, color: '#4ade80', sign: '+' },
+                { label: 'Frete', value: totalFrete, color: '#38bdf8', sign: '+' },
+                { label: 'Incentivos', value: INCENTIVOS, color: INCENTIVOS >= 0 ? '#4ade80' : '#f87171', sign: INCENTIVOS >= 0 ? '+' : '' },
+                { label: 'Pag. Manuais', value: PAG_MANUAIS, color: PAG_MANUAIS >= 0 ? '#4ade80' : '#f87171', sign: PAG_MANUAIS >= 0 ? '+' : '' },
+                { label: 'Comissões', value: totalComm, color: '#f87171', sign: '−' },
+              ].map(item => (
+                <div key={item.label} style={{ padding: '16px', borderRadius: '8px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
+                  <div style={{ fontSize: '13px', color: '#8aaf9a', marginBottom: '6px', fontWeight: 600 }}>{item.sign} {item.label}</div>
+                  <strong style={{ color: item.color, fontSize: '18px' }}>{money(item.value)}</strong>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
 
-        <div className="financial-summary-grid">
-          <div style={{ padding: '14px 16px', borderRadius: '16px', background: 'rgba(39,125,161,0.12)', border: '1px solid #1e4a5a', fontSize: '13px', color: '#cde7ff', minHeight: '118px' }}>
-            <div style={{ fontSize: '11px', color: '#8fb9dc', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Faturamento bruto</div>
-            <strong style={{ color: '#93c5fd', fontSize: '24px', display: 'block', marginBottom: '6px' }}>{money(totalFat)}</strong>
-            Receita bruta das vendas. É o que entrou pelas vendas. Ainda não é lucro.
+        <div style={{ marginTop: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px', color: '#cfe2d5', padding: '16px 20px', borderRadius: '14px', background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)' }}>
+          <style>
+            {`
+              @keyframes attention-zoom {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.9); }
+                50% { transform: scale(1.15); box-shadow: 0 0 40px 20px rgba(245, 158, 11, 0.8), 0 0 60px 10px rgba(255, 255, 255, 0.3); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+              }
+              .btn-rombo {
+                animation: attention-zoom 1.5s infinite;
+                animation-delay: 5s;
+              }
+            `}
+          </style>
+          <div>
+            ⚠️ Esse valor ainda <strong style={{ color: '#fde68a' }}>não é lucro</strong>.
+            Ainda faltam CMV, impostos, salários e outras despesas para fechar a conta do depósito.
           </div>
-          <div style={{ padding: '14px', borderRadius: '8px', background: 'rgba(96,211,148,0.15)', border: '1px solid #2d7a3d', textAlign: 'center' }}>
-            <div style={{ fontSize: '11px', color: '#8aaf9a', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.8px' }}>= O Zé paga ao Milvinho</div>
-            <strong style={{ fontSize: '28px', fontWeight: 800, color: '#60d394' }}>{money(proxyTotal)}</strong>
-            <div style={{ fontSize: '12px', color: '#8aaf9a', marginTop: '4px' }}>~{money(Math.round(proxyTotal/weeksCount))}/semana · {weeksCount} semanas</div>
-          </div>
-        </div>
-        <div style={{ marginTop: '12px', fontSize: '12px', color: '#cfe2d5', padding: '12px 14px', borderRadius: '14px', background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)' }}>
-          ⚠️ Esse valor ainda <strong style={{ color: '#fde68a' }}>não é lucro</strong>.
-          Ainda faltam CMV, impostos, salários e outras despesas para fechar a conta do depósito.
+          <button 
+            className="btn-rombo"
+            onClick={() => setActiveTab('research')}
+            style={{
+              background: '#f59e0b', color: '#78350f', border: 'none', padding: '10px 20px', borderRadius: '24px',
+              fontWeight: 800, cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '14px', transition: 'all 0.3s ease'
+            }}>
+            Entender o Rombo ➔
+          </button>
         </div>
       </section>
 

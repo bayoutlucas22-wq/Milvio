@@ -4,6 +4,8 @@ import {
   ComposedChart, Line, Area
 } from 'recharts'
 import { BookOpen, TrendingDown, Target, Zap, AlertTriangle, Truck } from 'lucide-react'
+import MilvioBot from './MilvioBot'
+import TrapTour from './TrapTour'
 
 const money = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v)
 
@@ -38,6 +40,9 @@ export default function ResearchTab() {
           Vamos cruzar o prometido pelo algoritmo com a realidade dos <strong>39.390 pedidos processados</strong> nos últimos 3 anos.
         </p>
       </div>
+
+      <MilvioBot />
+      <TrapTour />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
         
