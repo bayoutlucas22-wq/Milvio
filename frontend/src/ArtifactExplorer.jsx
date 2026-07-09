@@ -89,7 +89,8 @@ export default function ArtifactExplorer() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/artifacts/content?path=analytics.json')
+    // Fetch from public/ static file — works on Vercel and locally
+    fetch('/analytics.json')
       .then(r => r.json())
       .then(data => { setAnalytics(data); setLoading(false) })
       .catch(() => setLoading(false))

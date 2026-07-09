@@ -1,0 +1,1563 @@
+{
+  "scope": {
+    "source": "Relatorios do Zé Delivery",
+    "json_files": 90,
+    "report_rows": 115649,
+    "weeks": 14,
+    "months": 8
+  },
+  "headline": {
+    "proxy_total": 129963.36,
+    "strongest_week": {
+      "week_label": "44 a 48",
+      "week_key": "44-a-48",
+      "start_date": "2025-10-28",
+      "end_date": "2025-11-30",
+      "month_key": "2025-10",
+      "commissions": -4015.93,
+      "promotions": 8889.12,
+      "freight": 173.58,
+      "incentives": -942.5,
+      "markup": 9764.25,
+      "manual_payments": 2008.29,
+      "proxy_total": 15876.81
+    },
+    "weakest_week": {
+      "week_label": "1 a 5",
+      "week_key": "1-a-5",
+      "start_date": "2025-12-29",
+      "end_date": "2026-01-04",
+      "month_key": "2025-12",
+      "commissions": -1730.86,
+      "promotions": 1611.6,
+      "freight": 583.16,
+      "incentives": -329.0,
+      "markup": 3206.17,
+      "manual_payments": 292.58,
+      "proxy_total": 3633.65
+    }
+  },
+  "components": {
+    "totals": {
+      "commissions": -44817.83,
+      "promotions": 80550.5,
+      "freight": 41401.4,
+      "incentives": -2730.8,
+      "markup": 58727.03,
+      "manual_payments": -3166.94
+    },
+    "losses": [
+      {
+        "key": "commissions",
+        "label": "Comissões",
+        "value": -44817.83
+      },
+      {
+        "key": "manual_payments",
+        "label": "Pagamentos Manuais",
+        "value": -3166.94
+      },
+      {
+        "key": "incentives",
+        "label": "Incentivos",
+        "value": -2730.8
+      }
+    ],
+    "gains": [
+      {
+        "key": "promotions",
+        "label": "Promoções",
+        "value": 80550.5
+      },
+      {
+        "key": "markup",
+        "label": "Markup",
+        "value": 58727.03
+      },
+      {
+        "key": "freight",
+        "label": "Fretes",
+        "value": 41401.4
+      }
+    ]
+  },
+  "series": {
+    "weekly": [
+      {
+        "week_label": "27 a 31",
+        "week_key": "27-a-31",
+        "start_date": "2025-07-01",
+        "end_date": "2025-08-03",
+        "month_key": "2025-07",
+        "commissions": -1925.35,
+        "promotions": 3597.66,
+        "freight": 3468.14,
+        "incentives": 551.0,
+        "markup": 1220.73,
+        "manual_payments": 8.45,
+        "proxy_total": 6920.64
+      },
+      {
+        "week_label": "31 a 35",
+        "week_key": "31-a-35",
+        "start_date": "2025-07-29",
+        "end_date": "2025-08-31",
+        "month_key": "2025-07",
+        "commissions": -2154.18,
+        "promotions": 3760.54,
+        "freight": 2939.02,
+        "incentives": 290.0,
+        "markup": 2339.38,
+        "manual_payments": 251.51,
+        "proxy_total": 7426.27
+      },
+      {
+        "week_label": "36 a 40",
+        "week_key": "36-a-40",
+        "start_date": "2025-09-03",
+        "end_date": "2025-10-05",
+        "month_key": "2025-09",
+        "commissions": -2139.19,
+        "promotions": 4452.97,
+        "freight": 1441.36,
+        "incentives": 155.5,
+        "markup": 1437.02,
+        "manual_payments": -65.43,
+        "proxy_total": 5282.23
+      },
+      {
+        "week_label": "40 a 44",
+        "week_key": "40-a-44",
+        "start_date": "2025-09-30",
+        "end_date": "2025-11-02",
+        "month_key": "2025-09",
+        "commissions": -2392.39,
+        "promotions": 4774.25,
+        "freight": 2190.18,
+        "incentives": -162.5,
+        "markup": 2142.58,
+        "manual_payments": 470.25,
+        "proxy_total": 7022.37
+      },
+      {
+        "week_label": "44 a 48",
+        "week_key": "44-a-48",
+        "start_date": "2025-10-28",
+        "end_date": "2025-11-30",
+        "month_key": "2025-10",
+        "commissions": -4015.93,
+        "promotions": 8889.12,
+        "freight": 173.58,
+        "incentives": -942.5,
+        "markup": 9764.25,
+        "manual_payments": 2008.29,
+        "proxy_total": 15876.81
+      },
+      {
+        "week_label": "45 a 48",
+        "week_key": "45-a-48",
+        "start_date": "2025-11-04",
+        "end_date": "2025-11-30",
+        "month_key": "2025-11",
+        "commissions": -3333.6,
+        "promotions": 7807.99,
+        "freight": -347.72,
+        "incentives": -942.5,
+        "markup": 8758.52,
+        "manual_payments": 1790.94,
+        "proxy_total": 13733.63
+      },
+      {
+        "week_label": "49 a 1",
+        "week_key": "49-a-1",
+        "start_date": "2025-12-03",
+        "end_date": "2026-01-04",
+        "month_key": "2025-12",
+        "commissions": -5918.17,
+        "promotions": 8196.36,
+        "freight": 2719.82,
+        "incentives": -916.0,
+        "markup": 10597.08,
+        "manual_payments": 500.07,
+        "proxy_total": 15179.16
+      },
+      {
+        "week_label": "1 a 5",
+        "week_key": "1-a-5",
+        "start_date": "2025-12-29",
+        "end_date": "2026-01-04",
+        "month_key": "2025-12",
+        "commissions": -1730.86,
+        "promotions": 1611.6,
+        "freight": 583.16,
+        "incentives": -329.0,
+        "markup": 3206.17,
+        "manual_payments": 292.58,
+        "proxy_total": 3633.65
+      },
+      {
+        "week_label": "5 a 9",
+        "week_key": "5-a-9",
+        "start_date": "2026-02-05",
+        "end_date": "2026-03-01",
+        "month_key": "2026-02",
+        "commissions": -1908.5,
+        "promotions": 4313.42,
+        "freight": 2292.92,
+        "incentives": -557.5,
+        "markup": 3860.79,
+        "manual_payments": -1346.0,
+        "proxy_total": 6655.14
+      },
+      {
+        "week_label": "9 a 13",
+        "week_key": "9-a-13",
+        "start_date": "2026-02-24",
+        "end_date": "2026-03-29",
+        "month_key": "2026-02",
+        "commissions": -3399.9,
+        "promotions": 6014.53,
+        "freight": 1523.54,
+        "incentives": -796.5,
+        "markup": 3487.27,
+        "manual_payments": -2336.43,
+        "proxy_total": 4492.51
+      },
+      {
+        "week_label": "14 a 18",
+        "week_key": "14-a-18",
+        "start_date": "2026-03-31",
+        "end_date": "2026-05-03",
+        "month_key": "2026-03",
+        "commissions": -4739.83,
+        "promotions": 7919.81,
+        "freight": 1620.08,
+        "incentives": 768.0,
+        "markup": 3128.52,
+        "manual_payments": -2695.74,
+        "proxy_total": 6000.84
+      },
+      {
+        "week_label": "23 a 27",
+        "week_key": "23-a-27",
+        "start_date": "2026-06-02",
+        "end_date": "2026-07-05",
+        "month_key": "2026-06",
+        "commissions": -4588.12,
+        "promotions": 7983.69,
+        "freight": 8904.95,
+        "incentives": 151.2,
+        "markup": 4088.87,
+        "manual_payments": -1349.42,
+        "proxy_total": 15191.17
+      },
+      {
+        "week_label": "24 a 28",
+        "week_key": "24-a-28",
+        "start_date": "2026-06-09",
+        "end_date": "2026-07-07",
+        "month_key": "2026-06",
+        "commissions": -3917.95,
+        "promotions": 6896.04,
+        "freight": 8675.13,
+        "incentives": 0.0,
+        "markup": 3130.04,
+        "manual_payments": -911.39,
+        "proxy_total": 13871.87
+      },
+      {
+        "week_label": "27 a 28",
+        "week_key": "27-a-28",
+        "start_date": "2026-06-29",
+        "end_date": "2026-07-07",
+        "month_key": "2026-06",
+        "commissions": -2653.86,
+        "promotions": 4332.52,
+        "freight": 5217.24,
+        "incentives": 0.0,
+        "markup": 1565.81,
+        "manual_payments": 215.38,
+        "proxy_total": 8677.09
+      }
+    ],
+    "monthly": [
+      {
+        "month_key": "2025-07",
+        "commissions": -4079.53,
+        "promotions": 7358.2,
+        "freight": 6407.16,
+        "incentives": 841.0,
+        "markup": 3560.11,
+        "manual_payments": 259.96,
+        "proxy_total": 14346.91
+      },
+      {
+        "month_key": "2025-09",
+        "commissions": -4531.58,
+        "promotions": 9227.22,
+        "freight": 3631.54,
+        "incentives": -7.0,
+        "markup": 3579.6,
+        "manual_payments": 404.82,
+        "proxy_total": 12304.59
+      },
+      {
+        "month_key": "2025-10",
+        "commissions": -4015.93,
+        "promotions": 8889.12,
+        "freight": 173.58,
+        "incentives": -942.5,
+        "markup": 9764.25,
+        "manual_payments": 2008.29,
+        "proxy_total": 15876.81
+      },
+      {
+        "month_key": "2025-11",
+        "commissions": -3333.6,
+        "promotions": 7807.99,
+        "freight": -347.72,
+        "incentives": -942.5,
+        "markup": 8758.52,
+        "manual_payments": 1790.94,
+        "proxy_total": 13733.63
+      },
+      {
+        "month_key": "2025-12",
+        "commissions": -7649.03,
+        "promotions": 9807.96,
+        "freight": 3302.98,
+        "incentives": -1245.0,
+        "markup": 13803.25,
+        "manual_payments": 792.65,
+        "proxy_total": 18812.81
+      },
+      {
+        "month_key": "2026-02",
+        "commissions": -5308.39,
+        "promotions": 10327.95,
+        "freight": 3816.46,
+        "incentives": -1354.0,
+        "markup": 7348.06,
+        "manual_payments": -3682.43,
+        "proxy_total": 11147.65
+      },
+      {
+        "month_key": "2026-03",
+        "commissions": -4739.83,
+        "promotions": 7919.81,
+        "freight": 1620.08,
+        "incentives": 768.0,
+        "markup": 3128.52,
+        "manual_payments": -2695.74,
+        "proxy_total": 6000.84
+      },
+      {
+        "month_key": "2026-06",
+        "commissions": -11159.94,
+        "promotions": 19212.25,
+        "freight": 22797.32,
+        "incentives": 151.2,
+        "markup": 8784.72,
+        "manual_payments": -2045.43,
+        "proxy_total": 37740.12
+      }
+    ]
+  },
+  "breakdowns": {
+    "top_products": [
+      {
+        "product": "Spaten 473ml",
+        "commission_total": 0.0,
+        "markup_total": 9596.03,
+        "units": 20526.0
+      },
+      {
+        "product": "Brahma 300ml | Apenas o Líquido",
+        "commission_total": 0.0,
+        "markup_total": 5296.94,
+        "units": 36622.0
+      },
+      {
+        "product": "Cerveja Corona Extra 330ml",
+        "commission_total": 0.0,
+        "markup_total": 4971.31,
+        "units": 10054.0
+      },
+      {
+        "product": "Stella Pure Gold 330ml",
+        "commission_total": 0.0,
+        "markup_total": 4762.84,
+        "units": 11454.0
+      },
+      {
+        "product": "Stella Pure Gold 473ml",
+        "commission_total": 0.0,
+        "markup_total": 4748.32,
+        "units": 16558.0
+      },
+      {
+        "product": "Antarctica Pilsen 300ml | Apenas o Líquido",
+        "commission_total": 0.0,
+        "markup_total": 4594.14,
+        "units": 39127.0
+      },
+      {
+        "product": "Stella Artois 473ml",
+        "commission_total": 0.0,
+        "markup_total": 3893.23,
+        "units": 8827.0
+      },
+      {
+        "product": "Original 473ml",
+        "commission_total": 0.0,
+        "markup_total": 2075.94,
+        "units": 6005.0
+      },
+      {
+        "product": "Stella Artois 330ml",
+        "commission_total": 0.0,
+        "markup_total": 1979.36,
+        "units": 4472.0
+      },
+      {
+        "product": "Corona 473ml",
+        "commission_total": 0.0,
+        "markup_total": 1901.44,
+        "units": 3542.0
+      },
+      {
+        "product": "Spaten 330ml",
+        "commission_total": 0.0,
+        "markup_total": 1648.26,
+        "units": 4081.0
+      },
+      {
+        "product": "Spaten 350ml",
+        "commission_total": 0.0,
+        "markup_total": 1379.95,
+        "units": 3136.0
+      }
+    ],
+    "promotion_buckets": [
+      {
+        "label": "Cupom",
+        "value": 58220.02
+      },
+      {
+        "label": "Desconto Zé",
+        "value": 10426.06
+      },
+      {
+        "label": "Brindes",
+        "value": 987.96
+      }
+    ],
+    "top_drivers": [
+      {
+        "label": "kauanssantos050706@gmail.com",
+        "value": 6290.66
+      },
+      {
+        "label": "tg.fernandes.silva@gmail.com",
+        "value": 5562.32
+      },
+      {
+        "label": "ml0626048@gmail.com",
+        "value": 4866.31
+      },
+      {
+        "label": "juliano32soares@gmail.com",
+        "value": 4188.7
+      },
+      {
+        "label": "harlintonleal18@gmail.com",
+        "value": 3527.31
+      },
+      {
+        "label": "dglucas05@gmail.com",
+        "value": 2315.54
+      },
+      {
+        "label": "lucas.sana14@gmail.com",
+        "value": 2023.68
+      },
+      {
+        "label": "patrick.rodrigues0818@gmail.com",
+        "value": 1803.0
+      },
+      {
+        "label": "mirandadasilvaalisson@gmail.com",
+        "value": 1785.34
+      },
+      {
+        "label": "arianealexia777@gmail.com",
+        "value": 919.32
+      }
+    ],
+    "delivery_types": [
+      {
+        "label": "Comum",
+        "value": 41401.4
+      },
+      {
+        "label": "Retirada",
+        "value": 0.0
+      },
+      {
+        "label": "Pedidos por Entregador",
+        "value": 0.0
+      },
+      {
+        "label": "Frete por Entregador",
+        "value": 0.0
+      }
+    ],
+    "manual_types": [
+      {
+        "label": "Frete",
+        "value": 11579.77
+      },
+      {
+        "label": "Incentivos",
+        "value": 3521.5
+      },
+      {
+        "label": "Comissão Marketplace",
+        "value": 652.97
+      },
+      {
+        "label": "Cupom",
+        "value": 61.53
+      },
+      {
+        "label": "Markup",
+        "value": 10.47
+      },
+      {
+        "label": "Descontos Marketplace",
+        "value": -260.28
+      },
+      {
+        "label": "Plataforma",
+        "value": -18732.9
+      }
+    ],
+    "manual_descriptions_negative": [
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W27",
+        "value": -2869.24
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W01",
+        "value": -2263.12
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_W52",
+        "value": -1215.89
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W26",
+        "value": -1166.64
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W24",
+        "value": -1032.88
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W25",
+        "value": -842.94
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W09",
+        "value": -796.94
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_W51",
+        "value": -789.53
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W18",
+        "value": -727.65
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_W50",
+        "value": -726.65
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W17",
+        "value": -695.87
+      },
+      {
+        "label": "TAXA_DE_PLATAFORMA_26W14",
+        "value": -688.12
+      }
+    ],
+    "incentive_indicators": [
+      {
+        "label": "Tempo Médio de Liberação",
+        "value": 831.5,
+        "orders": 17162.0,
+        "closing": [
+          "50%"
+        ],
+        "target": [
+          "Maior ou igual a 87%"
+        ]
+      },
+      {
+        "label": "Entregas em até 35min",
+        "value": 624.8,
+        "orders": 5915.0,
+        "closing": [
+          "40%"
+        ],
+        "target": [
+          "90%"
+        ]
+      },
+      {
+        "label": "Disponibilidade",
+        "value": 451.5,
+        "orders": 23077.0,
+        "closing": [
+          "40%",
+          "50%"
+        ],
+        "target": [
+          "Maior ou igual a 94%",
+          "Maior ou igual a 96%"
+        ]
+      },
+      {
+        "label": "Entrega em 35 minutos",
+        "value": 420.5,
+        "orders": 17162.0,
+        "closing": [
+          "50%"
+        ],
+        "target": [
+          "Maior ou igual a 90%"
+        ]
+      },
+      {
+        "label": "Tempo médio de liberação",
+        "value": 294.4,
+        "orders": 5915.0,
+        "closing": [
+          "40%"
+        ],
+        "target": [
+          "87%"
+        ]
+      },
+      {
+        "label": "Portfólio Ideal",
+        "value": 0.0,
+        "orders": 23077.0,
+        "closing": [
+          "40%",
+          "50%"
+        ],
+        "target": [
+          "Maior ou igual a 90%"
+        ]
+      },
+      {
+        "label": "Taxa de aceitação",
+        "value": 0.0,
+        "orders": 5915.0,
+        "closing": [
+          "40%"
+        ],
+        "target": [
+          "95%"
+        ]
+      },
+      {
+        "label": "Taxa de Aceitação",
+        "value": -5353.5,
+        "orders": 17162.0,
+        "closing": [
+          "0%"
+        ],
+        "target": [
+          "Menor ou igual a 92%"
+        ]
+      }
+    ]
+  },
+  "field_map": {
+    "reports": {
+      "commissions": {
+        "label": "Comissões",
+        "sheet_name": "Comissão por Produto",
+        "fields": [
+          {
+            "name": "Parceiro",
+            "role": "dimensao"
+          },
+          {
+            "name": "No. do Pedido",
+            "role": "chave"
+          },
+          {
+            "name": "Data do Pedido",
+            "role": "tempo"
+          },
+          {
+            "name": "Horário do Pedido",
+            "role": "tempo"
+          },
+          {
+            "name": "Produto",
+            "role": "dimensao"
+          },
+          {
+            "name": "Quantidade",
+            "role": "medida"
+          },
+          {
+            "name": "Preço Unitário de Venda",
+            "role": "medida"
+          },
+          {
+            "name": "Comissão Marketplace (%)",
+            "role": "medida"
+          },
+          {
+            "name": "Comissão Unitária",
+            "role": "medida"
+          },
+          {
+            "name": "Comissão Total",
+            "role": "medida"
+          }
+        ]
+      },
+      "promotions": {
+        "label": "Promoções",
+        "sheet_name": "Resumo Promoções",
+        "fields": [
+          {
+            "name": "Parceiro",
+            "role": "dimensao"
+          },
+          {
+            "name": "No. do Pedido",
+            "role": "chave"
+          },
+          {
+            "name": "Data do Pedido",
+            "role": "tempo"
+          },
+          {
+            "name": "Horário do Pedido",
+            "role": "tempo"
+          },
+          {
+            "name": "Restituição Cupom",
+            "role": "medida"
+          },
+          {
+            "name": "Restituição Desconto Zé",
+            "role": "medida"
+          },
+          {
+            "name": "Restituição Brindes",
+            "role": "medida"
+          },
+          {
+            "name": "Restituição Total",
+            "role": "medida"
+          }
+        ]
+      },
+      "freight": {
+        "label": "Fretes",
+        "sheet_name": "Resumo",
+        "fields": [
+          {
+            "name": "Parceiro",
+            "role": "dimensao"
+          },
+          {
+            "name": "No. do Pedido",
+            "role": "chave"
+          },
+          {
+            "name": "Data do Pedido",
+            "role": "tempo"
+          },
+          {
+            "name": "Horário do Pedido",
+            "role": "tempo"
+          },
+          {
+            "name": "Tipo de Entrega",
+            "role": "dimensao"
+          },
+          {
+            "name": "E-mail do entregador",
+            "role": "dimensao"
+          },
+          {
+            "name": "Pago pelo Cliente",
+            "role": "dimensao"
+          },
+          {
+            "name": "Frete Total Negociado",
+            "role": "medida"
+          },
+          {
+            "name": "Restituição",
+            "role": "medida"
+          }
+        ]
+      },
+      "incentives": {
+        "label": "Incentivos",
+        "sheet_name": "Incentivos",
+        "fields": [
+          {
+            "name": "Parceiro",
+            "role": "dimensao"
+          },
+          {
+            "name": "Semana",
+            "role": "chave"
+          },
+          {
+            "name": "Total de Pedidos",
+            "role": "medida"
+          },
+          {
+            "name": "Indicadores",
+            "role": "dimensao"
+          },
+          {
+            "name": "Fechamento da Semana",
+            "role": "dimensao"
+          },
+          {
+            "name": "Meta",
+            "role": "medida"
+          },
+          {
+            "name": "Incentivo/Dedução",
+            "role": "dimensao"
+          },
+          {
+            "name": "Restituição",
+            "role": "medida"
+          }
+        ]
+      },
+      "markup": {
+        "label": "Markup",
+        "sheet_name": "Markup por Produto",
+        "fields": [
+          {
+            "name": "Parceiro",
+            "role": "dimensao"
+          },
+          {
+            "name": "Pedido",
+            "role": "chave"
+          },
+          {
+            "name": "Data",
+            "role": "tempo"
+          },
+          {
+            "name": "Horário",
+            "role": "tempo"
+          },
+          {
+            "name": "Produto",
+            "role": "dimensao"
+          },
+          {
+            "name": "Unidades vendidas no Pedido",
+            "role": "dimensao"
+          },
+          {
+            "name": "Preço Unitário de Venda",
+            "role": "medida"
+          },
+          {
+            "name": "Markup Aplicado",
+            "role": "medida"
+          },
+          {
+            "name": "Referência Markup [PV / (1+Markup)]",
+            "role": "medida"
+          },
+          {
+            "name": "Preço de Compra Ambev",
+            "role": "medida"
+          },
+          {
+            "name": "Referência Ambev",
+            "role": "dimensao"
+          },
+          {
+            "name": "Restituição Unitária",
+            "role": "medida"
+          },
+          {
+            "name": "Restituição Total",
+            "role": "medida"
+          }
+        ]
+      },
+      "manual_payments": {
+        "label": "Pagamentos Manuais",
+        "sheet_name": "Pagamento Manual",
+        "fields": [
+          {
+            "name": "Parceiro",
+            "role": "dimensao"
+          },
+          {
+            "name": "Descrição",
+            "role": "dimensao"
+          },
+          {
+            "name": "Tipo de Pagamento",
+            "role": "dimensao"
+          },
+          {
+            "name": "Restituição",
+            "role": "medida"
+          }
+        ]
+      }
+    },
+    "flow": {
+      "nodes": [
+        {
+          "id": "reports",
+          "label": "Relatorios Zé",
+          "group": "origin"
+        },
+        {
+          "id": "orders",
+          "label": "Pedidos e Semanas",
+          "group": "bridge"
+        },
+        {
+          "id": "losses",
+          "label": "Perdas e Ajustes",
+          "group": "analysis"
+        },
+        {
+          "id": "actions",
+          "label": "Decisões do Dono",
+          "group": "action"
+        },
+        {
+          "id": "report:commissions",
+          "label": "Comissões",
+          "group": "report"
+        },
+        {
+          "id": "field:commissions:Parceiro",
+          "label": "Parceiro",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:commissions:No. do Pedido",
+          "label": "No. do Pedido",
+          "group": "chave"
+        },
+        {
+          "id": "field:commissions:Data do Pedido",
+          "label": "Data do Pedido",
+          "group": "tempo"
+        },
+        {
+          "id": "field:commissions:Horário do Pedido",
+          "label": "Horário do Pedido",
+          "group": "tempo"
+        },
+        {
+          "id": "field:commissions:Produto",
+          "label": "Produto",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:commissions:Quantidade",
+          "label": "Quantidade",
+          "group": "medida"
+        },
+        {
+          "id": "field:commissions:Preço Unitário de Venda",
+          "label": "Preço Unitário de Venda",
+          "group": "medida"
+        },
+        {
+          "id": "field:commissions:Comissão Marketplace (%)",
+          "label": "Comissão Marketplace (%)",
+          "group": "medida"
+        },
+        {
+          "id": "field:commissions:Comissão Unitária",
+          "label": "Comissão Unitária",
+          "group": "medida"
+        },
+        {
+          "id": "field:commissions:Comissão Total",
+          "label": "Comissão Total",
+          "group": "medida"
+        },
+        {
+          "id": "report:promotions",
+          "label": "Promoções",
+          "group": "report"
+        },
+        {
+          "id": "field:promotions:Parceiro",
+          "label": "Parceiro",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:promotions:No. do Pedido",
+          "label": "No. do Pedido",
+          "group": "chave"
+        },
+        {
+          "id": "field:promotions:Data do Pedido",
+          "label": "Data do Pedido",
+          "group": "tempo"
+        },
+        {
+          "id": "field:promotions:Horário do Pedido",
+          "label": "Horário do Pedido",
+          "group": "tempo"
+        },
+        {
+          "id": "field:promotions:Restituição Cupom",
+          "label": "Restituição Cupom",
+          "group": "medida"
+        },
+        {
+          "id": "field:promotions:Restituição Desconto Zé",
+          "label": "Restituição Desconto Zé",
+          "group": "medida"
+        },
+        {
+          "id": "field:promotions:Restituição Brindes",
+          "label": "Restituição Brindes",
+          "group": "medida"
+        },
+        {
+          "id": "field:promotions:Restituição Total",
+          "label": "Restituição Total",
+          "group": "medida"
+        },
+        {
+          "id": "report:freight",
+          "label": "Fretes",
+          "group": "report"
+        },
+        {
+          "id": "field:freight:Parceiro",
+          "label": "Parceiro",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:freight:No. do Pedido",
+          "label": "No. do Pedido",
+          "group": "chave"
+        },
+        {
+          "id": "field:freight:Data do Pedido",
+          "label": "Data do Pedido",
+          "group": "tempo"
+        },
+        {
+          "id": "field:freight:Horário do Pedido",
+          "label": "Horário do Pedido",
+          "group": "tempo"
+        },
+        {
+          "id": "field:freight:Tipo de Entrega",
+          "label": "Tipo de Entrega",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:freight:E-mail do entregador",
+          "label": "E-mail do entregador",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:freight:Pago pelo Cliente",
+          "label": "Pago pelo Cliente",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:freight:Frete Total Negociado",
+          "label": "Frete Total Negociado",
+          "group": "medida"
+        },
+        {
+          "id": "field:freight:Restituição",
+          "label": "Restituição",
+          "group": "medida"
+        },
+        {
+          "id": "report:incentives",
+          "label": "Incentivos",
+          "group": "report"
+        },
+        {
+          "id": "field:incentives:Parceiro",
+          "label": "Parceiro",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:incentives:Semana",
+          "label": "Semana",
+          "group": "chave"
+        },
+        {
+          "id": "field:incentives:Total de Pedidos",
+          "label": "Total de Pedidos",
+          "group": "medida"
+        },
+        {
+          "id": "field:incentives:Indicadores",
+          "label": "Indicadores",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:incentives:Fechamento da Semana",
+          "label": "Fechamento da Semana",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:incentives:Meta",
+          "label": "Meta",
+          "group": "medida"
+        },
+        {
+          "id": "field:incentives:Incentivo/Dedução",
+          "label": "Incentivo/Dedução",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:incentives:Restituição",
+          "label": "Restituição",
+          "group": "medida"
+        },
+        {
+          "id": "report:markup",
+          "label": "Markup",
+          "group": "report"
+        },
+        {
+          "id": "field:markup:Parceiro",
+          "label": "Parceiro",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:markup:Pedido",
+          "label": "Pedido",
+          "group": "chave"
+        },
+        {
+          "id": "field:markup:Data",
+          "label": "Data",
+          "group": "tempo"
+        },
+        {
+          "id": "field:markup:Horário",
+          "label": "Horário",
+          "group": "tempo"
+        },
+        {
+          "id": "field:markup:Produto",
+          "label": "Produto",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:markup:Unidades vendidas no Pedido",
+          "label": "Unidades vendidas no Pedido",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:markup:Preço Unitário de Venda",
+          "label": "Preço Unitário de Venda",
+          "group": "medida"
+        },
+        {
+          "id": "field:markup:Markup Aplicado",
+          "label": "Markup Aplicado",
+          "group": "medida"
+        },
+        {
+          "id": "field:markup:Referência Markup [PV / (1+Markup)]",
+          "label": "Referência Markup [PV / (1+Markup)]",
+          "group": "medida"
+        },
+        {
+          "id": "field:markup:Preço de Compra Ambev",
+          "label": "Preço de Compra Ambev",
+          "group": "medida"
+        },
+        {
+          "id": "field:markup:Referência Ambev",
+          "label": "Referência Ambev",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:markup:Restituição Unitária",
+          "label": "Restituição Unitária",
+          "group": "medida"
+        },
+        {
+          "id": "field:markup:Restituição Total",
+          "label": "Restituição Total",
+          "group": "medida"
+        },
+        {
+          "id": "report:manual_payments",
+          "label": "Pagamentos Manuais",
+          "group": "report"
+        },
+        {
+          "id": "field:manual_payments:Parceiro",
+          "label": "Parceiro",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:manual_payments:Descrição",
+          "label": "Descrição",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:manual_payments:Tipo de Pagamento",
+          "label": "Tipo de Pagamento",
+          "group": "dimensao"
+        },
+        {
+          "id": "field:manual_payments:Restituição",
+          "label": "Restituição",
+          "group": "medida"
+        }
+      ],
+      "edges": [
+        {
+          "from": "reports",
+          "to": "orders",
+          "label": "linhas e pedidos"
+        },
+        {
+          "from": "orders",
+          "to": "losses",
+          "label": "repasse, desconto, comissão"
+        },
+        {
+          "from": "losses",
+          "to": "actions",
+          "label": "margem, preço, frete, operação"
+        },
+        {
+          "from": "reports",
+          "to": "report:commissions",
+          "label": "Comissão por Produto"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Parceiro",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:No. do Pedido",
+          "label": "chave"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Data do Pedido",
+          "label": "tempo"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Horário do Pedido",
+          "label": "tempo"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Produto",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Quantidade",
+          "label": "medida"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Preço Unitário de Venda",
+          "label": "medida"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Comissão Marketplace (%)",
+          "label": "medida"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Comissão Unitária",
+          "label": "medida"
+        },
+        {
+          "from": "report:commissions",
+          "to": "field:commissions:Comissão Total",
+          "label": "medida"
+        },
+        {
+          "from": "reports",
+          "to": "report:promotions",
+          "label": "Resumo Promoções"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:Parceiro",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:No. do Pedido",
+          "label": "chave"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:Data do Pedido",
+          "label": "tempo"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:Horário do Pedido",
+          "label": "tempo"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:Restituição Cupom",
+          "label": "medida"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:Restituição Desconto Zé",
+          "label": "medida"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:Restituição Brindes",
+          "label": "medida"
+        },
+        {
+          "from": "report:promotions",
+          "to": "field:promotions:Restituição Total",
+          "label": "medida"
+        },
+        {
+          "from": "reports",
+          "to": "report:freight",
+          "label": "Resumo"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:Parceiro",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:No. do Pedido",
+          "label": "chave"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:Data do Pedido",
+          "label": "tempo"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:Horário do Pedido",
+          "label": "tempo"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:Tipo de Entrega",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:E-mail do entregador",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:Pago pelo Cliente",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:Frete Total Negociado",
+          "label": "medida"
+        },
+        {
+          "from": "report:freight",
+          "to": "field:freight:Restituição",
+          "label": "medida"
+        },
+        {
+          "from": "reports",
+          "to": "report:incentives",
+          "label": "Incentivos"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Parceiro",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Semana",
+          "label": "chave"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Total de Pedidos",
+          "label": "medida"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Indicadores",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Fechamento da Semana",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Meta",
+          "label": "medida"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Incentivo/Dedução",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:incentives",
+          "to": "field:incentives:Restituição",
+          "label": "medida"
+        },
+        {
+          "from": "reports",
+          "to": "report:markup",
+          "label": "Markup por Produto"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Parceiro",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Pedido",
+          "label": "chave"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Data",
+          "label": "tempo"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Horário",
+          "label": "tempo"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Produto",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Unidades vendidas no Pedido",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Preço Unitário de Venda",
+          "label": "medida"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Markup Aplicado",
+          "label": "medida"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Referência Markup [PV / (1+Markup)]",
+          "label": "medida"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Preço de Compra Ambev",
+          "label": "medida"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Referência Ambev",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Restituição Unitária",
+          "label": "medida"
+        },
+        {
+          "from": "report:markup",
+          "to": "field:markup:Restituição Total",
+          "label": "medida"
+        },
+        {
+          "from": "reports",
+          "to": "report:manual_payments",
+          "label": "Pagamento Manual"
+        },
+        {
+          "from": "report:manual_payments",
+          "to": "field:manual_payments:Parceiro",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:manual_payments",
+          "to": "field:manual_payments:Descrição",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:manual_payments",
+          "to": "field:manual_payments:Tipo de Pagamento",
+          "label": "dimensao"
+        },
+        {
+          "from": "report:manual_payments",
+          "to": "field:manual_payments:Restituição",
+          "label": "medida"
+        }
+      ]
+    }
+  },
+  "notes": [
+    "A leitura continua restrita aos relatórios financeiros do Zé Delivery; custo de mercadoria, imposto e despesas internas seguem fora do escopo.",
+    "As semanas do material nao sao uma sequencia continua de calendario, entao os graficos mostram amostras operacionais e nao um painel contiguo dia a dia.",
+    "O mesmo parceiro domina praticamente toda a base, o que ajuda a leitura do deposito mas limita comparacoes entre parceiros."
+  ]
+}
