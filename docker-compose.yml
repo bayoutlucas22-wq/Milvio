@@ -6,7 +6,6 @@ services:
       context: ./backend
     environment:
       ANALYTICS_PATH: /data/artifacts/analytics.json
-      SWAGGER_KNOWLEDGE_PATH: /data/artifacts/swagger_knowledge.json
       REDIS_URL: redis://redis:6379/0
     ports:
       - "8000:8000"
