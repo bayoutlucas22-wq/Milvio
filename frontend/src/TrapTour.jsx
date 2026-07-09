@@ -68,8 +68,15 @@ export default function TrapTour() {
             50% { transform: translateY(-10px) rotate(5deg); }
             100% { transform: translateY(0px) rotate(0deg); }
           }
+          @keyframes slide-in {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+          }
           .tour-bot {
             animation: float-bot 3s ease-in-out infinite;
+          }
+          .animate-step {
+            animation: slide-in 0.4s ease-out forwards;
           }
         `}
       </style>
@@ -115,11 +122,11 @@ export default function TrapTour() {
           </div>
         </div>
 
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <h2 style={{ color: current.color, margin: '0 0 12px 0', fontSize: '24px', transition: 'color 0.4s ease' }}>
+        <div key={step} className="animate-step" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <h2 style={{ color: current.color, margin: '0 0 16px 0', fontSize: '32px', transition: 'color 0.4s ease', fontWeight: 800 }}>
             {current.title}
           </h2>
-          <p style={{ color: 'var(--text)', fontSize: '16px', lineHeight: 1.6, margin: '0 0 16px 0', minHeight: '80px' }}>
+          <p style={{ color: 'var(--text)', fontSize: '18px', lineHeight: 1.7, margin: '0 0 24px 0', minHeight: '90px' }}>
             {current.description}
           </p>
           

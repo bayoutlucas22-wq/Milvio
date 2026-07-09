@@ -5,14 +5,14 @@ export default function MilvioBot() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [utterance, setUtterance] = useState(null)
   
-  const text = "Fala tu, Milvio, tranquilidade? Mermão, presta atenção nos números dessa tela. A plataforma manda aquele papo de que tu vai ter 20% de margem, mas isso é caô puro. Sabe quanto de grana tu já sangrou nessa brincadeira? Mais de 360 mil reais foram pro ralo nos últimos anos. Só de incentivo de performance, tu deixou 125 mil na mesa por causa das regras implacáveis de atraso. E no frete, o buraco é pior: tu bancou do teu bolso quase 240 mil reais pra manter os motoboys rodando, porque o Zé só te repassou uma merreca de 77 mil. \n\nQuer uma sugestão de ouro pra sair dessa armadilha? Tu tem dois caminhos: O primeiro é ligar lá e exigir a mudança do teu contrato pro modelo Entregador Autônomo. Assim, o próprio Zé paga o frete direto pro motoboy e assume a bronca da logística. O segundo caminho é repassar esse custo invisível agora mesmo: aumenta a tua taxa de entrega e sobe a margem das cervejas que não são curva A. Ficar do jeito que tá, é trabalhar de graça pra Ambev, parceiro. Pega a visão!"
+  const text = "Fala tu Milvio, tranquilidade? Mermão presta atenção nos números dessa tela. A plataforma manda aquele papo de que tu vai ter 20% de margem... mas isso é caô puro. Sabe quanto de grana tu já sangrou nessa brincadeira? Mais de 360 mil reais foram pro ralo nos últimos anos. Só de incentivo de performance, tu deixou 125 mil na mesa por causa das regras implacáveis de atraso. E no frete, o buraco é pior... tu bancou do teu bolso quase 240 mil reais pra manter os motoboys rodando... porque o Zé só te repassou uma merreca de 77 mil. \n\nQuer uma sugestão de ouro pra sair dessa armadilha? Tu tem dois caminhos. O primeiro é ligar lá e exigir a mudança do teu contrato pro modelo Entregador Autônomo. Assim, o próprio Zé paga o frete direto pro motoboy e assume a bronca da logística. O segundo caminho é repassar esse custo invisível agora mesmo: aumenta a tua taxa de entrega e sobe a margem das cervejas que não são curva A. Ficar do jeito que tá, é trabalhar de graça pra Ambev, parceiro. Pega a visão!"
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.speechSynthesis) return
 
     const u = new SpeechSynthesisUtterance(text)
-    u.rate = 1.05 // slightly faster, carioca style
-    u.pitch = 0.9 
+    u.rate = 1.15 // slightly faster for a more natural slang flow
+    u.pitch = 0.8 // deeper pitch for male voice
 
     u.onend = () => setIsPlaying(false)
     u.onerror = () => setIsPlaying(false)
@@ -20,11 +20,11 @@ export default function MilvioBot() {
     // Attempt to set voice immediately if available
     const setVoice = () => {
       const voices = window.speechSynthesis.getVoices()
-      // Prioritize Google's cloud voice or macOS premium voices (Felipe/Luciana)
-      const ptVoice = voices.find(v => v.name.includes('Google') && v.lang.includes('pt'))
-        || voices.find(v => v.name.includes('Felipe') && v.lang.includes('pt'))
-        || voices.find(v => v.name.includes('Luciana') && v.lang.includes('pt'))
-        || voices.find(v => v.name.includes('Joana') && v.lang.includes('pt'))
+      // Force male voices first (Felipe/Thiago on Mac/Windows)
+      const ptVoice = voices.find(v => v.name.includes('Felipe') && v.lang.includes('pt'))
+        || voices.find(v => v.name.includes('Thiago') && v.lang.includes('pt'))
+        || voices.find(v => v.name.includes('Antonio') && v.lang.includes('pt'))
+        || voices.find(v => v.name.includes('Google') && v.lang.includes('pt'))
         || voices.find(v => v.lang === 'pt-BR' || v.lang === 'pt_BR' || v.lang.includes('pt'))
       
       if (ptVoice) {
@@ -155,9 +155,9 @@ export default function MilvioBot() {
             margin: 0, color: '#cbd5e1', fontSize: '14px', lineHeight: 1.6, fontStyle: 'italic',
             opacity: isPlaying ? 1 : 0.7, transition: 'opacity 0.3s', whiteSpace: 'pre-wrap'
           }}>
-            "Fala tu, Milvio, tranquilidade? Mermão, presta atenção nos números dessa tela. A plataforma manda aquele papo de que tu vai ter 20% de margem, mas isso é caô puro. Sabe quanto de grana tu já sangrou nessa brincadeira? Mais de 360 mil reais foram pro ralo nos últimos anos. Só de incentivo de performance, tu deixou 125 mil na mesa por causa das regras implacáveis de atraso. E no frete, o buraco é pior: tu bancou do teu bolso quase 240 mil reais pra manter os motoboys rodando, porque o Zé só te repassou uma merreca de 77 mil. 
+            "Fala tu Milvio, tranquilidade? Mermão presta atenção nos números dessa tela. A plataforma manda aquele papo de que tu vai ter 20% de margem... mas isso é caô puro. Sabe quanto de grana tu já sangrou nessa brincadeira? Mais de 360 mil reais foram pro ralo nos últimos anos. Só de incentivo de performance, tu deixou 125 mil na mesa por causa das regras implacáveis de atraso. E no frete, o buraco é pior... tu bancou do teu bolso quase 240 mil reais pra manter os motoboys rodando... porque o Zé só te repassou uma merreca de 77 mil. 
             
-Quer uma sugestão de ouro pra sair dessa armadilha? Tu tem dois caminhos: O primeiro é ligar lá e exigir a mudança do teu contrato pro modelo Entregador Autônomo. Assim, o próprio Zé paga o frete direto pro motoboy e assume a bronca da logística. O segundo caminho é repassar esse custo invisível agora mesmo: aumenta a tua taxa de entrega e sobe a margem das cervejas que não são curva A. Ficar do jeito que tá, é trabalhar de graça pra Ambev, parceiro. Pega a visão!"
+Quer uma sugestão de ouro pra sair dessa armadilha? Tu tem dois caminhos. O primeiro é ligar lá e exigir a mudança do teu contrato pro modelo Entregador Autônomo. Assim, o próprio Zé paga o frete direto pro motoboy e assume a bronca da logística. O segundo caminho é repassar esse custo invisível agora mesmo: aumenta a tua taxa de entrega e sobe a margem das cervejas que não são curva A. Ficar do jeito que tá, é trabalhar de graça pra Ambev, parceiro. Pega a visão!"
           </p>
         </div>
       </div>

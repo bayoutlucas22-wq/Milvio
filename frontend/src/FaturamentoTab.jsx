@@ -20,10 +20,25 @@ const MONTH_LABELS = {
   '2026-07': 'Jul/26',
 }
 
-function KPI({ label, value, sub, color }) {
+function KPI({ label, value, sub, color, source, sourceHover }) {
   return (
-    <div className="metric-tile">
-      <span>{label}</span>
+    <div className="metric-tile" style={{ position: 'relative' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
+        <span style={{ paddingRight: source ? '40px' : '0' }}>{label}</span>
+        {source && (
+          <span 
+            title={sourceHover}
+            style={{ 
+            position: 'absolute', top: '12px', right: '12px',
+            fontSize: '9px', padding: '3px 6px', borderRadius: '4px', 
+            background: 'rgba(96, 165, 250, 0.1)', color: '#93c5fd', 
+            textTransform: 'uppercase', letterSpacing: '0.5px',
+            cursor: sourceHover ? 'help' : 'default'
+          }}>
+            {source} {sourceHover && 'ⓘ'}
+          </span>
+        )}
+      </div>
       <strong style={{ color: color || 'var(--text)', fontSize: '20px' }}>{value}</strong>
       {sub && <span style={{ color: 'var(--muted)', fontSize: '11px' }}>{sub}</span>}
     </div>
@@ -193,14 +208,14 @@ export default function FaturamentoTab({ setActiveTab }) {
 
       {/* KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px' }}>
-        <KPI label="O Zé Paga (Proxy Total)" value={money(proxyTotal)} sub={`~${money(Math.round(proxyTotal/weeksCount))}/semana`} color="var(--green)" />
-        <KPI label="Faturamento bruto" value={money(totalFat)} sub="o que o cliente pagou ao Zé" color="#60a5fa" />
-        <KPI label="Comissão Cobrada" value={money(totalComm)} sub={`${(Math.abs(totalComm)/totalFat*100).toFixed(1)}% do faturamento`} color="#ef4444" />
-        <KPI label="Total de Pedidos" value={integer(totalPed)} sub={`ticket médio ${money(totalPed > 0 ? totalFat/totalPed : 0)}`} />
-        <KPI label="Promoções" value={money(totalDesc)} color="#7b5ea7" sub="Zé banca os descontos" />
-        <KPI label="Markup" value={money(totalMarkup)} color={totalMarkup >= 0 ? 'var(--green)' : '#ef4444'} sub="margem acima da tabela Ambev" />
-        <KPI label="Frete" value={money(totalFrete)} color="var(--green)" sub="subsídio logístico do Zé" />
-        <KPI label={`${daily.length} dias processados`} value={`${weeksCount} semanas`} sub="dados dos relatórios raw" />
+        <KPI label="O Zé Paga (Proxy Total)" value={money(proxyTotal)} sub={`~${money(Math.round(proxyTotal/weeksCount))}/semana`} color="var(--green)" source="Fórmula" sourceHover="Faturamento + Promoções + Markup + Frete + Incentivos + Pag. Manuais − Comissões" />
+        <KPI label="Faturamento bruto" value={money(totalFat)} sub="o que o cliente pagou ao Zé" color="#60a5fa" source="Resumo" sourceHover="Coluna 'Faturamento' da aba Resumo do report bruto do Zé." />
+        <KPI label="Comissão Cobrada" value={money(totalComm)} sub={`${(Math.abs(totalComm)/totalFat*100).toFixed(1)}% do faturamento`} color="#ef4444" source="Resumo" sourceHover="Coluna 'Comissão' da aba Resumo do report bruto do Zé." />
+        <KPI label="Total de Pedidos" value={integer(totalPed)} sub={`ticket médio ${money(totalPed > 0 ? totalFat/totalPed : 0)}`} source="Resumo" sourceHover="Coluna 'Pedidos' da aba Resumo do report bruto do Zé." />
+        <KPI label="Promoções" value={money(totalDesc)} color="#7b5ea7" sub="Zé banca os descontos" source="Resumo" sourceHover="Coluna 'Desconto' da aba Resumo do report bruto do Zé." />
+        <KPI label="Markup" value={money(totalMarkup)} color={totalMarkup >= 0 ? 'var(--green)' : '#ef4444'} sub="margem acima da tabela Ambev" source="Resumo" sourceHover="Coluna 'Markup' da aba Resumo do report bruto do Zé." />
+        <KPI label="Frete" value={money(totalFrete)} color="var(--green)" sub="subsídio logístico do Zé" source="Resumo" sourceHover="Coluna 'Frete' da aba Resumo do report bruto do Zé." />
+        <KPI label={`${daily.length} dias processados`} value={`${weeksCount} semanas`} sub="dados dos relatórios raw" source="Arquivos" sourceHover="Cálculo real de arquivos JSON lidos na sua pasta local." />
       </div>
 
       {/* Toggle */}
