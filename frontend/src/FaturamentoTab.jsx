@@ -77,9 +77,17 @@ export default function FaturamentoTab() {
   const totalRes    = monthly.reduce((s, m) => s + m.resultado_proxy, 0)
   const totalPed    = monthly.reduce((s, m) => s + m.pedidos, 0)
 
+  // What Zé actually PAYS to Milvinho = Proxy Total (net of all 6 components)
+  // Faturamento = what CUSTOMERS paid to Zé — reference only, not Milvinho's income
+  const INCENTIVOS     = -2730.80
+  const PAG_MANUAIS    = -3166.94
+  const proxyTotal     = totalComm + totalMarkup + totalFrete + totalDesc + INCENTIVOS + PAG_MANUAIS
+
   const monthlyChartData = monthly.map(m => ({
     name: MONTH_LABELS[m.month] || m.month, month: m.month,
-    Faturamento: m.faturamento, Comissão: m.comissao,
+    Faturamento: m.faturamento,
+    'Resultado Zé': m.resultado_proxy,
+    Comissão: m.comissao,
     Markup: m.markup, Frete: m.frete, Promoções: m.desconto,
     Resultado: m.resultado_proxy, Pedidos: m.pedidos,
   }))
@@ -94,50 +102,60 @@ export default function FaturamentoTab() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
 
-      {/* Explicação */}
-      <section className="work-panel" style={{ background: 'linear-gradient(135deg,#f0faf3,#fff)', borderColor: '#b7d7c0' }}>
-        <h2>Entendendo os dados do Zé Delivery</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: '10px', marginTop: '12px' }}>
+      {/* Resultado financeiro do Zé */}
+      <section className="work-panel" style={{ background: 'linear-gradient(135deg,#173224,#224633)', borderColor: '#2d5a3d', color: '#e2ede5' }}>
+        <h2 style={{ color: '#d9f6df', fontSize: '24px' }}>Resultado financeiro do Zé</h2>
+        <p style={{ color: '#8aaf9a', fontSize: '13px', marginTop: '6px' }}>
+          O <strong style={{ color: '#93c5fd' }}>faturamento bruto</strong> foi R${money(totalFat)}.
+          Isso é o que entrou no caixa via venda. Aqui não entram as despesas do dono.
+          Abaixo está o acerto do período, com o que soma e o que tira do caixa:
+        </p>
+
+        <div className="financial-split-grid">
           {[
-            { icon: '💰', title: 'Faturamento', color: '#277da1',
-              desc: 'Preço × Quantidade de cada linha do Relatório de Comissões. É a receita bruta de vendas — o que o cliente pagou ao Zé por seus produtos.' },
-            { icon: '🔴', title: 'Comissão (custo)', color: '#c0392b',
-              desc: 'Taxa cobrada pelo Zé por pedido entregue (~15–20% do faturamento). É o único custo direto da plataforma. Aparece negativo no resultado.' },
-            { icon: '🟢', title: 'Markup', color: '#1f7a3b',
-              desc: 'Restituição paga pelo Zé pela diferença entre seu preço de venda e a tabela Ambev. Pode ser negativo se Ambev subiu o preço.' },
-            { icon: '🔵', title: 'Frete', color: '#277da1',
-              desc: 'Subsídio logístico do Zé. A plataforma coleta o frete do cliente e repassa uma parte para você cobrir o custo de entrega.' },
-            { icon: '🟣', title: 'Promoções', color: '#7b5ea7',
-              desc: 'Desconto dado ao cliente bancado pelo Zé. Você não perde receita — o Zé te restitui o valor promocional integralmente.' },
-            { icon: '⚡', title: 'Resultado Proxy', color: '#1b4332',
-              desc: 'Soma de comissão + markup + frete + promoções. É o balanço financeiro com o Zé, sem CMV, impostos ou despesas internas.' },
+            { label: 'Promoções', value: totalDesc, color: '#7b5ea7', sign: '+' },
+            { label: 'Markup', value: totalMarkup, color: '#4f772d', sign: '+' },
+            { label: 'Frete', value: totalFrete, color: '#277da1', sign: '+' },
+            { label: 'Incentivos', value: INCENTIVOS, color: INCENTIVOS >= 0 ? '#4f772d' : '#f87171', sign: INCENTIVOS >= 0 ? '+' : '' },
+            { label: 'Pag. Manuais', value: PAG_MANUAIS, color: PAG_MANUAIS >= 0 ? '#4f772d' : '#f87171', sign: PAG_MANUAIS >= 0 ? '+' : '' },
+            { label: 'Comissões', value: totalComm, color: '#f87171', sign: '−' },
           ].map(item => (
-            <div key={item.title} style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--line)', background: 'var(--surface)' }}>
-              <span style={{ fontSize: '16px' }}>{item.icon}</span>
-              <strong style={{ color: item.color, display: 'block', margin: '3px 0', fontSize: '13px' }}>{item.title}</strong>
-              <p style={{ margin: 0, fontSize: '11px', color: 'var(--muted)', lineHeight: 1.55 }}>{item.desc}</p>
+            <div key={item.label} style={{ padding: '10px 6px', borderRadius: '6px', background: 'rgba(255,255,255,0.04)', textAlign: 'center' }}>
+              <div style={{ fontSize: '10px', color: '#8aaf9a', marginBottom: '3px' }}>{item.sign} {item.label}</div>
+              <strong style={{ color: item.color, fontSize: '13px' }}>{money(item.value)}</strong>
             </div>
           ))}
         </div>
-        <div style={{ marginTop: '12px', padding: '10px 14px', borderRadius: '8px', background: '#fff8e1', border: '1px solid #ffe082', fontSize: '12px', color: '#7b5c00' }}>
-          ⚠️ <strong>Atenção:</strong> Os relatórios cobrem amostras de semanas (não calendário contínuo). Semanas duplicadas foram somadas.
-          Incentivos e Pagamentos Manuais não têm data por linha — veja o tab Artifacts para esses valores por semana.
+
+        <div className="financial-summary-grid">
+          <div style={{ padding: '14px 16px', borderRadius: '16px', background: 'rgba(39,125,161,0.12)', border: '1px solid #1e4a5a', fontSize: '13px', color: '#cde7ff', minHeight: '118px' }}>
+            <div style={{ fontSize: '11px', color: '#8fb9dc', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Faturamento bruto</div>
+            <strong style={{ color: '#93c5fd', fontSize: '24px', display: 'block', marginBottom: '6px' }}>{money(totalFat)}</strong>
+            Receita bruta das vendas. É o que entrou pelas vendas. Ainda não é lucro.
+          </div>
+          <div style={{ padding: '18px', borderRadius: '16px', background: 'rgba(96,211,148,0.16)', border: '1px solid #2d7a3d', textAlign: 'center', minHeight: '118px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ fontSize: '11px', color: '#aedec0', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Resultado do depósito</div>
+            <strong style={{ fontSize: '34px', fontWeight: 900, color: '#79e6a6', lineHeight: 1 }}>{money(proxyTotal)}</strong>
+            <div style={{ fontSize: '13px', color: '#aedec0', marginTop: '6px' }}>~{money(Math.round(proxyTotal/14))}/semana · 14 semanas</div>
+          </div>
+        </div>
+        <div style={{ marginTop: '12px', fontSize: '12px', color: '#cfe2d5', padding: '12px 14px', borderRadius: '14px', background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)' }}>
+          ⚠️ Esse valor ainda <strong style={{ color: '#fde68a' }}>não é lucro</strong>.
+          Ainda faltam CMV, impostos, salários e outras despesas para fechar a conta do depósito.
         </div>
       </section>
 
       {/* KPIs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px' }}>
-        <KPI label="Faturamento Total" value={money(totalFat)} sub="receita bruta (jul/25–jul/26)" color="#277da1" />
-        <KPI label="Resultado Proxy Total" value={money(totalRes)} sub="balanço com o Zé" color={totalRes >= 0 ? 'var(--green)' : '#ef4444'} />
+      <div className="kpi-grid">
+        <KPI label="Resultado do depósito" value={money(proxyTotal)} sub={`~${money(Math.round(proxyTotal/14))}/semana`} color="var(--green)" />
+        <KPI label="Faturamento bruto" value={money(totalFat)} sub="o que o cliente pagou ao Zé" color="#60a5fa" />
+        <KPI label="Comissão Cobrada" value={money(totalComm)} sub={`${(Math.abs(totalComm)/totalFat*100).toFixed(1)}% do faturamento`} color="#ef4444" />
         <KPI label="Total de Pedidos" value={integer(totalPed)} sub={`ticket médio ${money(totalPed > 0 ? totalFat/totalPed : 0)}`} />
-        <KPI label="Comissão Total Paga" value={money(totalComm)} sub={`${(Math.abs(totalComm)/totalFat*100).toFixed(1)}% do faturamento`} color="#ef4444" />
+        <KPI label="Promoções" value={money(totalDesc)} color="#7b5ea7" sub="Zé banca os descontos" />
+        <KPI label="Markup" value={money(totalMarkup)} color={totalMarkup >= 0 ? 'var(--green)' : '#ef4444'} sub="margem acima da tabela Ambev" />
+        <KPI label="Frete" value={money(totalFrete)} color="var(--green)" sub="subsídio logístico do Zé" />
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px' }}>
-        <KPI label="Markup Recebido" value={money(totalMarkup)} color={totalMarkup >= 0 ? 'var(--green)' : '#ef4444'} />
-        <KPI label="Frete Recebido" value={money(totalFrete)} color="var(--green)" />
-        <KPI label="Promoções Restituídas" value={money(totalDesc)} color="#7b5ea7" />
-        <KPI label="267 dias analisados" value="jul/2025 → jul/2026" sub="dados dos raw JSONs" />
-      </div>
+
 
       {/* Toggle */}
       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>

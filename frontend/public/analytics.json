@@ -1,6 +1,6 @@
 {
   "scope": {
-    "source": "Relatorios do Zé Delivery",
+    "source": "Artifacts do Zé Delivery",
     "json_files": 90,
     "report_rows": 115649,
     "weeks": 14,
@@ -937,7 +937,7 @@
       "nodes": [
         {
           "id": "reports",
-          "label": "Relatorios Zé",
+          "label": "Artifacts Zé",
           "group": "origin"
         },
         {
@@ -1556,7 +1556,7 @@
     }
   },
   "notes": [
-    "A leitura continua restrita aos relatórios financeiros do Zé Delivery; custo de mercadoria, imposto e despesas internas seguem fora do escopo.",
+    "A leitura continua restrita aos artifacts financeiros do Zé Delivery; custo de mercadoria, imposto e despesas internas seguem fora do escopo.",
     "As semanas do material nao sao uma sequencia continua de calendario, entao os graficos mostram amostras operacionais e nao um painel contiguo dia a dia.",
     "O mesmo parceiro domina praticamente toda a base, o que ajuda a leitura do deposito mas limita comparacoes entre parceiros."
   ]

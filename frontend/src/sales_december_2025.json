@@ -1,6 +1,6 @@
 {
   "periodo": "2025-12-01 a 2025-12-31",
-  "pasta": "artifacts/raw/Relatorios-Semana-49-a-1-8a4afff5-29c8-421c-8f55-a3637bd37b50",
+  "pasta": "artifacts/raw/artifacts-semana-49-a-1-8a4afff5-29c8-421c-8f55-a3637bd37b50",
   "faturamento_vendas_total": 194023.7,
   "observacao": "Não há linhas nos dias 2025-12-01 e 2025-12-02 dentro desta pasta. Total calculado por produto vendido: quantidade/unidades x preço unitário, unindo Comissões e Markup sem somar frete/promoções.",
   "linhas_produto_deduplicadas": 3934,

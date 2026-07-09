@@ -126,8 +126,52 @@ export default function ArtifactExplorer() {
     fill: COLORS[key],
   }))
 
+  const FAT_BRUTO     = 295558.50   // reference: what CUSTOMERS paid to Zé
+  const repasseBase   = FAT_BRUTO + totals.commissions  // NOT what Milvinho receives
+  // proxy = net of all 6 components = what Zé ACTUALLY transfers to Milvinho
+  const proxyTotal    = proxy  // already computed from analytics.json
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
+
+      {/* O que o Zé paga ao Milvinho */}
+      <section className="work-panel" style={{ background: 'linear-gradient(135deg,#1b2820,#1e3828)', borderColor: '#2d5a3d' }}>
+        <h2 style={{ color: '#b7e4c7' }}>O que o Zé paga ao Milvinho</h2>
+        <p style={{ color: '#8aaf9a', fontSize: '13px', marginTop: '6px' }}>
+          O Faturamento ({money(FAT_BRUTO)}) é o que os <strong style={{ color: '#60a5fa' }}>clientes pagaram ao Zé</strong> — referência apenas.
+          O que o Zé efetivamente transfere ao Milvinho é o net dos 6 componentes:
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gap: '8px', marginTop: '14px' }}>
+          {[
+            { label: 'Promoções', v: totals.promotions, color: '#7b5ea7', sign: '+' },
+            { label: 'Markup', v: totals.markup, color: '#4f772d', sign: '+' },
+            { label: 'Frete', v: totals.freight, color: '#277da1', sign: '+' },
+            { label: 'Incentivos', v: totals.incentives, color: totals.incentives >= 0 ? '#4f772d' : '#f87171', sign: totals.incentives >= 0 ? '+' : '' },
+            { label: 'Pag. Manuais', v: totals.manual_payments, color: totals.manual_payments >= 0 ? '#4f772d' : '#f87171', sign: totals.manual_payments >= 0 ? '+' : '' },
+            { label: 'Comissões', v: totals.commissions, color: '#f87171', sign: '−' },
+          ].map(item => (
+            <div key={item.label} style={{ padding: '10px 6px', borderRadius: '6px', background: 'rgba(255,255,255,0.04)', textAlign: 'center' }}>
+              <div style={{ fontSize: '10px', color: '#8aaf9a', marginBottom: '3px' }}>{item.sign} {item.label}</div>
+              <strong style={{ color: item.color, fontSize: '13px' }}>{money(item.v)}</strong>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: '14px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+          <div style={{ padding: '8px 14px', borderRadius: '8px', background: 'rgba(39,125,161,0.1)', border: '1px solid #1e4a5a', fontSize: '12px', color: '#8aaf9a' }}>
+            📊 <strong style={{ color: '#93c5fd' }}>Faturamento: {money(FAT_BRUTO)}</strong><br />
+            O que clientes pagaram ao Zé. Não é pagamento direto ao Milvinho.
+          </div>
+          <div style={{ padding: '14px', borderRadius: '8px', background: 'rgba(96,211,148,0.15)', border: '1px solid #2d7a3d', textAlign: 'center' }}>
+            <div style={{ fontSize: '11px', color: '#8aaf9a', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.8px' }}>= O Zé paga ao Milvinho</div>
+            <strong style={{ fontSize: '28px', fontWeight: 800, color: '#60d394' }}>{money(proxyTotal)}</strong>
+            <div style={{ fontSize: '12px', color: '#8aaf9a', marginTop: '4px' }}>~{money(Math.round(proxyTotal/14))}/semana · 14 semanas</div>
+          </div>
+        </div>
+        <div style={{ marginTop: '10px', fontSize: '11px', color: '#8aaf9a', padding: '8px 12px', borderRadius: '6px', background: 'rgba(251,191,36,0.06)', border: '1px solid rgba(251,191,36,0.15)' }}>
+          ⚠️ Esse valor NÃO inclui CMV (custo Ambev), impostos ou despesas operacionais.
+          As 6 componentes abaixo explicam semana a semana como chega nesse total.
+        </div>
+      </section>
 
       {/* KPI strip — all 6 components + resultado */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
@@ -178,7 +222,7 @@ export default function ArtifactExplorer() {
         <InfoTile
           label="Semanas / Pedidos"
           value={`${analytics.scope.weeks} sem · ${analytics.scope.report_rows.toLocaleString('pt-BR')} linhas`}
-          tooltip="Semanas únicas cobertas pelos relatórios. Não é uma sequência contínua de calendário — são amostras operacionais."
+          tooltip="Semanas únicas cobertas pelos artifacts. Não é uma sequência contínua de calendário — são amostras operacionais."
         />
       </div>
 
