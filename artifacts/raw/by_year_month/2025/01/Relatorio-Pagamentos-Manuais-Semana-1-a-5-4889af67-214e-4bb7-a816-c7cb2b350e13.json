@@ -1,0 +1,154 @@
+[
+  {
+    "source_file": "/app/airflow_dbt/sql/dump_xlsl/Relatorios-Semana-1-a-5-937f6810-dbe4-4087-b57c-cae1e7c74dfc/Relatorio-Pagamentos-Manuais-Semana-1-a-5-4889af67-214e-4bb7-a816-c7cb2b350e13.xlsx",
+    "folder_name": "Relatorios-Semana-1-a-5-937f6810-dbe4-4087-b57c-cae1e7c74dfc",
+    "report_type": "manual_payments",
+    "sheet_name": "Pagamento Manual",
+    "headers": [
+      "Parceiro",
+      "Descrição",
+      "Tipo de Pagamento",
+      "Restituição"
+    ],
+    "rows": [
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAo atinge_Semana52_Disponibilidade",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAo atinge_Semana52_Entrega em ate 35min",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAo atinge_Semana52_Taxa de Aceitacao",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAo atinge_Semana52_Tempo Medio de Liberacao",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_01_PEDIDO_422039156",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_01_PEDIDO_660099801",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_01_PEDIDO_501058773",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "RESSARCIMENTO_TAXA_LIMITE_DE_PESO_COM_ENTREGA_GRATIS_REFERENTE_A_SEMANA_01_PEDIDO_380255518",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 8.49
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "CORRECAO_INCENTIVO_28DEZ",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 10.5
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_30_DEZ",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 142.5
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_DISPONIBILIDADE_16_AS_23H59",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_31_DEZ",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 720.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_DISPONIBILIDADE_17_AS_22H59_31_DEZ",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_01_JAN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 204.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_DISPONIBILIDADE_10_AS_17H59_01_JAN",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_02_JAN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 93.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAO_ATINGIU_ENTREGAS_EM_35MIN_02_JAN",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_03_JAN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 104.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "PAGAMENTO_FIXO_04_JAN",
+        "Tipo de Pagamento": "Frete",
+        "Restituição": 90.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "TAXA_DE_PLATAFORMA_26W01",
+        "Tipo de Pagamento": "Plataforma",
+        "Restituição": -1131.56
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAo atinge_Semana01_Entrega em ate 35min",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "NAo atinge_Semana01_Tempo Medio de Liberacao",
+        "Tipo de Pagamento": "Incentivos",
+        "Restituição": 0.0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Descrição": "POC_81119_IRRF JANEIRO_ComissAo Marketplace",
+        "Tipo de Pagamento": "Comissão Marketplace",
+        "Restituição": 26.18
+      }
+    ]
+  }
+]

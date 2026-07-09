@@ -1,0 +1,242 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-9-a-13-f2a7db1d-2825-4481-aad7-880dea0aae78/Relatorio-Pagamentos-Manuais-Semana-9-a-13-cc3c9681-69e8-4bd1-bf17-f25a21e88de0.xlsx",
+  "folder_name": "Relatorios-Semana-9-a-13-f2a7db1d-2825-4481-aad7-880dea0aae78",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 111.84
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_IRB - Tatuzinho_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.19
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_M Dias_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 2.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 14.9
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 42.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 11.76
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pernod-Ricard_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.09
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_01JANa17JAN",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 21.9
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_M Dias_01JANa17JAN",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 2.04
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_01JANa17JAN",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_559564084",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_686397934",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_722408771",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_106274459",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W10_BUD_ZERO_350ML_944976759",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W10_BUD_ZERO_350ML_102478723",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W10_BUD_ZERO_350ML_900598992",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W11_BUD_ZERO_350ML_363495409",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.88
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Campari_19FEVa17MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 15.99
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_19FEVa17MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 85.9
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_M Dias_19FEVa17MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 2.35
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_19FEVa17MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 0.71
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_19FEVa17MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 37.87
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_19FEVa17MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.98
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Piracanjuba_19FEVa17MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 5.79
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_DE_FDS_1_REAL_DOMINGO",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 67
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_DE_FDS_1_REAL_SABADO",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 83
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_18MARa24MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 1.67
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_18MARa24MAR",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.82
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_DE_FDS_1_REAL_DOMINGO_W12",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_DE_FDS_1_REAL_SABADO_W12",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 67
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "RECALCULO_SEMANA_11_DEVIDO_A_INSTABILIDADE",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 70.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "RECALCULO_SEMANA_12_DEVIDO_AS_CHUVAS_22mar",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 74.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_PASCOA_DOMINGO_2024",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_PASCOA_SEXTA_2024",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 47
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_25MARa31MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 20.25
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_25MARa31MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 3.34
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_25MARa31MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 6.64
+    }
+  ]
+}

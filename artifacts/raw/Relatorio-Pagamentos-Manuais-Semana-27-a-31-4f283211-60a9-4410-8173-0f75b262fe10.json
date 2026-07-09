@@ -1,0 +1,350 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-27-a-31-f0dec31c-803c-463f-b1a6-e10f8ca35c1b/Relatorio-Pagamentos-Manuais-Semana-27-a-31-4f283211-60a9-4410-8173-0f75b262fe10.xlsx",
+  "folder_name": "Relatorios-Semana-27-a-31-f0dec31c-803c-463f-b1a6-e10f8ca35c1b",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "DESCONTO_PROD_NAOAMBEV_JUL",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 22.92
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W27_MARKUP",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": -84.6
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W27_Gelo em Cubos_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -4.6
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W27_Carvao e Lenha_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -13.96
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W27_Gelo Escama_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -7.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W27_Paratudo_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -3.12
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W27_Dreher_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -4.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_MARKUP",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": -27.1
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_Gelo em Cubos_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -3.6
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_CarvAo e Lenha_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -9.12
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_Gelo Escama_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -9.24
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_Agua sem gAs_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -0.22
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_Interfood_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -42.15
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_Garoto_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -0.34
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_Paratudo_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -3.82
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_VinIcola Salton_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -5.74
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_IRB - Tatuzinho_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -2.98
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_Muller_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -21.49
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W28_VinIcola Galiotto_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -11.2
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "RECOMPOSICAO_PRODUTOS_TABELAPADRAO_27",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 27.94
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Gelo em Cubos_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -4.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Carvao e Lenha_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -5.17
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Interfood_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -21.08
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Santa Helena_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -2.16
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Vinicola Salton_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -24.89
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Dreher_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -4.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Vinicola Campestre_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -22.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Gelo Escama_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -12.23
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Muller_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -7.1
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Viton_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -1.61
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W29_Vinicola Galiotto_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -22.39
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "DESCONTO_PROD_NAOAMBEV_JUL",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 15.79
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_MARKUP",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": -0.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Gelo em Cubos_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -8.39
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Carvao e Lenha_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -8.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Interfood_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -11.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Campari_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -15.84
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Garoto_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -2.7
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Paratudo_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -3.82
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Santa Helena_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -2.16
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Vinicola Salton_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -9.58
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Perfetti_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -0.52
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Gelo Escama_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -12.36
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Muller_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -7.63
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Viton_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -1.08
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W30_Casa Flora_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -23.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Gelo em Cubos_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -11.99
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Carvao e Lenha_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -8.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Santa Helena_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -4.08
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Vinicola Salton_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -9.58
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Dreher_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -4.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Gelo Escama_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -15.35
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Muller_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -3.92
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Viton_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -4.52
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Casa Flora_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -14.34
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_W31_Vinicola Galiotto_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": -11.2
+    }
+  ]
+}

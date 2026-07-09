@@ -1,0 +1,110 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-40-a-44-7637a7fe-6b2e-4d4c-b86a-93507fc2ddde/Relatorio-Pagamentos-Manuais-Semana-40-a-44-b4ff89b9-3460-488a-b972-44a3dd788aba.xlsx",
+  "folder_name": "Relatorios-Semana-40-a-44-7637a7fe-6b2e-4d4c-b86a-93507fc2ddde",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_SPATEN",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 42.32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "DESCONTO_PROD_NAOAMBEV_OUT",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 18.9
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "DESCONTO_PROD_NAOAMBEV_OUT",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 5.13
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_12_OUTUBRO_NAO_ATINGIU_TML_DIA_12out_DAS_11H01_14H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FRETE_DIA_12out_DAS_11H01_14H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 39
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_SPATEN_355ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 31.68
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 26
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 4
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "exclusao_valor_parcial_fraude",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 5
+    }
+  ]
+}

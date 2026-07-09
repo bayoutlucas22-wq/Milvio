@@ -1,0 +1,134 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-36-a-40-a0350b5c-a861-4a77-a409-ae3e3523ea98/Relatorio-Pagamentos-Manuais-Semana-36-a-40-3e5c9a67-a9d7-4999-986d-adea998b09f3.xlsx",
+  "folder_name": "Relatorios-Semana-36-a-40-a0350b5c-a861-4a77-a409-ae3e3523ea98",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_650048751",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 1.51
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_357050936",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 1.51
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_DIAGEO_01SET_AO_07SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -23.63
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_01SET_AO_07SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.75
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_RED_BULL_08SET_AO_14SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -4.55
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_PERNOD_RICARD_08SET_AO_14SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -2.37
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_08SET_AO_14SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.74
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_08SET_AO_14SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.1
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_437021413",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_894224002",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_RED_BULL_15SET_AO_21SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -2.97
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_Vinicola_CAMPESTRE_15SET_AO_21SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.74
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_COMARY_INDUSTRIA_DE_BEBIDAS_LTDA_15SET_AO_21SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.3
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": " PDV_81119_PROGRESSIVO_OFERTA_ESPECIAL_DIAGEO_22SET_AO_28SET ",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -21.32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": " PDV_81119_PROGRESSIVO_VINHOS_Vinicola_SALTON_22SET_AO_28SET ",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.57
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": " PDV_81119_PROGRESSIVO_VINHOS_INTERFOOD_22SET_AO_28SET ",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -2.07
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": " PDV_81119_PROGRESSIVO_VINHOS_Vinicola_GALIOTTO_22SET_AO_28SET ",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.46
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": " PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_22SET_AO_28SET ",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.55
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": " PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_29SET_AO_05OUT ",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -2.6
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": " PDV_81119_PROGRESSIVO_VINHOS_STEMPEL_29SET_AO_05OUT ",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.73
+    }
+  ]
+}

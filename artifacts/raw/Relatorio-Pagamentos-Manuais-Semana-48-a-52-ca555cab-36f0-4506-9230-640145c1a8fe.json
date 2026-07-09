@@ -1,0 +1,230 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-48-a-52-eec27213-a5b0-4c02-b3d2-4db6e36632e1/Relatorio-Pagamentos-Manuais-Semana-48-a-52-ca555cab-36f0-4506-9230-640145c1a8fe.xlsx",
+  "folder_name": "Relatorios-Semana-48-a-52-eec27213-a5b0-4c02-b3d2-4db6e36632e1",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_SKOL_BEATS_SENSES_269ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 5.98
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_DIA_10dez_DAS_10H00_14H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 24
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_GUARANA_ANTARCTICA_ZERO_350ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.38
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_CERVEJA_CORONITA_210ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 46.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_STELLA_PURE_GOLD_330ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 121.22
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_CORONA_473ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 19.44
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_DESC NOVEMBRO_Diageo",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 199.94
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_DESC NOVEMBRO_M Dias",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 2.35
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_DESC NOVEMBRO_Mondelez",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.49
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_DESC NOVEMBRO_Muller",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 46.61
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_DESC NOVEMBRO_Pepsico",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 1.39
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_DESC NOVEMBRO_Pernod-Ricard",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 91.42
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FRETE_16_DEZEMBRO_DIA_DAS_00H00_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 81
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FRETE_17_DEZEMBRO_DIA_DAS_00H00_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 96
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_CORONA_473ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_CORONITA_210ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.68
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGTO_TTV_MARKUP_PROMOCAO_STELLA_PURE_GOLD_330ML",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 108.46
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FRETE_DIA_22dez_aS_13H00_19H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 40
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_23_DEZEMBRO_DIA_DAS_00H00_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 90
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_24_DEZ_DAS_00H00_AS_16H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 167.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_24_DEZ_DAS_17H00_AS_21H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 97.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAO_RECEBEU_INCENTIVO_EXTRA_24_DEZ_DAS_22H00_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_25_DEZ_ANTES_DAS_10H00",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_25_DEZ_DAS_15H00_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 87.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_25_DEZ_DAS_10H00_AS_14H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 133
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_DIA_22dez_aS_18_NaO BATEU",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_DIA_22dez_aS_16_NaO BATEU",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_DIA_22dez_aS_19_NaO BATEU",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_DIA_22dez_aS_13_NaO BATEU",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_DIA_22dez_aS_17_NaO BATEU",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_DIA_22dez_aS_14_NaO BATEU",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_OPERACIONAL_DIA_22dez_aS_15_NaO BATEU",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_30_DE_DEZEMBRO",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 112.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_31_DE_DEZEMBRO",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 275
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_EXTRA_FESTIVIDADES_01_JANEIRO_2024",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 199.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Pagamento_Trial_25_31_12",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 133.74
+    }
+  ]
+}

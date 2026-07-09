@@ -1,0 +1,212 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-5-a-9-f804ca0e-18b6-41c1-82a6-5391faf3d825/Relatorio-Pagamentos-Manuais-Semana-5-a-9-5d558407-ceb1-4cb6-ac0e-f8a1b01392c7.xlsx",
+  "folder_name": "Relatorios-Semana-5-a-9-f804ca0e-18b6-41c1-82a6-5391faf3d825",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Trial_Beats_Tropical",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 17.92
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_10_FEV_DAS_11H_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 60
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_11_FEV_DAS_11H_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 63
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NaO_ATINGIU_TML_DIA_10_FEV_DAS_11H00_AS_14H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NaO_ATINGIU_TML_DIA_10_FEV_DAS_18H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NaO_ATINGIU_TML_DIA_11_FEV_DAS_11H00_AS_14H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NaO_ATINGIU_TML_DIA_11_FEV_DAS_18H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Trial_Halls_W04_W06",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 35.64
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_12_FEV_DAS_11H_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 129
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_13_FEV_DAS_11H_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 150
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_VARIAVEL_12_FEV_DAS_11H00_AS_14H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 73.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAO_ATINGIU_DISPONIBILIDADE_DIA_12_FEV_DAS_18H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_VARIAVEL_13_FEV_DAS_11H00_AS_14H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 79.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAO_ATINGIU_DISPONIBILIDADE_DIA_13_FEV_DAS_18H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_IRRF FEVEREIRO_Comissao Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": 13.92
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W8_HALLS_CEREJA_28G_510865952",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 1.4
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W8_HALLS_CEREJA_28G_461487392",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 1.4
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W8_HALLS_CEREJA_28G_734289792",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 1.4
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W8_HALLS_CEREJA_28G_704306851",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 1.4
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 111.84
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_IRB - Tatuzinho_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.19
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_M Dias_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 2.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 14.9
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 42.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 11.76
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pernod-Ricard_18JANa18FEV",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.09
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_01JANa17JAN",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 21.9
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_M Dias_01JANa17JAN",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 2.04
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_01JANa17JAN",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_559564084",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_686397934",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_722408771",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W9_BUD_ZERO_350ML_106274459",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 4.18
+    }
+  ]
+}

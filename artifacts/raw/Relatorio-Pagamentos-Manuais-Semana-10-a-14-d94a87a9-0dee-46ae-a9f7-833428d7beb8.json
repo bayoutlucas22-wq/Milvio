@@ -1,0 +1,188 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-10-a-14-e7b5eb85-1920-4e9e-8d2b-6a7377f82429/Relatorio-Pagamentos-Manuais-Semana-10-a-14-d94a87a9-0dee-46ae-a9f7-833428d7beb8.xlsx",
+  "folder_name": "Relatorios-Semana-10-a-14-e7b5eb85-1920-4e9e-8d2b-6a7377f82429",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAO_ATINGIU_ENTREGA_35MIN_DIA_03_MAR_DAS_18H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_03_MAR_DIA_TODO",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 114
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_05_MAR_DIA_TODO",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 40
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W10_CORONA_CERO_330ML_432017342",
+      "Tipo de Pagamento": "Amostra Grátis",
+      "Restituição": 6.98
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W10_CORONA_CERO_330ML_256639136",
+      "Tipo de Pagamento": "Amostra Grátis",
+      "Restituição": 6.98
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W10_CORONA_CERO_330ML_818933638",
+      "Tipo de Pagamento": "Amostra Grátis",
+      "Restituição": 6.98
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Oferta_Especial_Diageo_03MAR ao 09MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -2.24
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Oferta_Especial_Red Bull_03MAR ao 09MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.21
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Oferta_Especial_Diageo_24FEV ao 02MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "RECALCULO_SEMANA_10_CARNAVAL",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 404
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Progressivo_Vinhos_Interfood_10MAR ao 16MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -2.32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Trial_Vodka Smirnoff 998ml",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 11.1
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_460569392",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 2.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_615130959",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 2.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_815706047",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 2.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_669053787",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 6.99
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_219640893",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 6.99
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_596464853",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 6.99
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_415554545",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 2.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_924017039",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 2.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_120178667",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 2.01
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_24MAR_AO_30MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.03
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_OFERTA_ESPECIAL_RED_BULL_24MAR_AO_30MAR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.26
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_IRRF MARCO_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": 20.73
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "RECOMPOSICAO_DE_VALORES_DE_RESTITUICAO_PARA_CUPONS_ACIMA_DE_30_REAIS_NAO_PAGOS",
+      "Tipo de Pagamento": "Cupom",
+      "Restituição": 30
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_TAXA_LIMITE_PESO_PEDIDO_480326833",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 14.07
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_CONCHA_Y_TORO_31MAR_AO_06ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.39
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_PROGRESSIVO_VINHOS_VINICOLA_GALIOTTO_31MAR_AO_06ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.42
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_OFERTA_ESPECIAL_RED_BULL_31MAR_AO_06ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.53
+    }
+  ]
+}

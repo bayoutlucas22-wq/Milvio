@@ -1,0 +1,444 @@
+{
+  "totals": {
+    "files": 258,
+    "years": 4,
+    "months": 22
+  },
+  "years": {
+    "2023": {
+      "files": 36,
+      "rows": 39356,
+      "report_types": {
+        "comissoes": 9,
+        "descontos_e_promocoes": 9,
+        "fretes": 9,
+        "markup": 9
+      }
+    },
+    "2024": {
+      "files": 44,
+      "rows": 51905,
+      "report_types": {
+        "comissoes": 11,
+        "descontos_e_promocoes": 11,
+        "fretes": 11,
+        "markup": 11
+      }
+    },
+    "2025": {
+      "files": 150,
+      "rows": 94723,
+      "report_types": {
+        "commissions": 8,
+        "comissoes": 8,
+        "promotions": 8,
+        "descontos_e_promocoes": 8,
+        "freight": 8,
+        "fretes": 8,
+        "incentivos": 28,
+        "incentives": 15,
+        "markup": 16,
+        "manual_payments": 15,
+        "pagamentos_manuais": 28
+      }
+    },
+    "2026": {
+      "files": 28,
+      "rows": 31782,
+      "report_types": {
+        "commissions": 7,
+        "promotions": 7,
+        "freight": 7,
+        "markup": 7
+      }
+    }
+  },
+  "months": {
+    "2023/07": {
+      "files": 16,
+      "rows": 15893,
+      "report_types": {
+        "comissoes": 4,
+        "descontos_e_promocoes": 4,
+        "fretes": 4,
+        "markup": 4
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-27-a-31-96c37c70-7968-4d92-83de-ee28fe6d08a1.json",
+        "Relatorio-Comissoes-Semana-27-a-31-ba79abbe-419b-4b00-80e3-feed903c9876.json",
+        "Relatorio-Comissoes-Semana-27-a-31-dded26a4-3199-4ca5-b897-7fb1757d74ed.json",
+        "Relatorio-Comissoes-Semana-31-a-35-9f898e21-807b-4e85-af1e-fb21e254617e.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-27-a-31-829995a5-a308-4186-9ac7-1f403edcacbe.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-27-a-31-9ca57fb1-c865-4ae6-a713-e0ec780dad17.json"
+      ]
+    },
+    "2023/08": {
+      "files": 4,
+      "rows": 4401,
+      "report_types": {
+        "comissoes": 1,
+        "descontos_e_promocoes": 1,
+        "fretes": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-35-a-39-155b5813-cab2-4987-bba7-1cd302aacab6.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-35-a-39-2b66c9c1-4f63-4c78-83f1-0cabbeb6c8fe.json",
+        "Relatorio-Fretes-Semana-35-a-39-e0ebb05a-d743-47ed-a1fc-c9fa6605a7c3.json",
+        "Relatorio-Markup-Semana-35-a-39-65239b1a-a90c-4bd2-ae12-c74644a403e1.json"
+      ]
+    },
+    "2023/10": {
+      "files": 8,
+      "rows": 7944,
+      "report_types": {
+        "comissoes": 2,
+        "descontos_e_promocoes": 2,
+        "fretes": 2,
+        "markup": 2
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-40-a-44-891f8757-7a9a-41b6-8c07-bf9f67b6dbe7.json",
+        "Relatorio-Comissoes-Semana-44-a-48-c7f68147-a4b1-46a2-ad4b-a79294672c40.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-40-a-44-89a39352-b759-41b1-9301-e0247cf1b977.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-44-a-48-b9eac178-bf86-4f6d-b0bc-26d3a0beb50c.json",
+        "Relatorio-Fretes-Semana-40-a-44-7d12adec-4550-443d-bfbf-3ef7bdd35ad1.json",
+        "Relatorio-Fretes-Semana-44-a-48-a8c13866-1ed0-4b7a-aa42-db2da49dad7a.json"
+      ]
+    },
+    "2023/11": {
+      "files": 8,
+      "rows": 11118,
+      "report_types": {
+        "comissoes": 2,
+        "descontos_e_promocoes": 2,
+        "fretes": 2,
+        "markup": 2
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-48-a-52-104d5eee-2591-430c-b66e-9f4a4e1b0588.json",
+        "Relatorio-Comissoes-Semana-48-a-52-459b76d3-5254-435d-9d35-6e409f6735f6.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-48-a-52-255887ca-f6db-425d-9645-2d39745d4506.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-48-a-52-fcd4b45d-a38f-4324-bd3b-93625f6e3cf0.json",
+        "Relatorio-Fretes-Semana-48-a-52-36496de2-8d24-4f84-b3c6-528e612f29ee.json",
+        "Relatorio-Fretes-Semana-48-a-52-baf44706-3a4e-4dcf-8775-42c041567de9.json"
+      ]
+    },
+    "2024/01": {
+      "files": 12,
+      "rows": 13354,
+      "report_types": {
+        "comissoes": 3,
+        "descontos_e_promocoes": 3,
+        "fretes": 3,
+        "markup": 3
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-1-a-5-0787fb8b-a97b-4313-b21c-e69273f16642.json",
+        "Relatorio-Comissoes-Semana-1-a-5-16f7ecf4-c010-4f0e-8e29-f511952cec3a.json",
+        "Relatorio-Comissoes-Semana-5-a-9-2e0f0c5e-467d-4cc9-86a0-6cc695d4ec44.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-1-a-5-3b463407-2e31-4a5c-8bd6-dc5776d6f3c5.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-1-a-5-48a41a2c-66ad-47a8-a740-958ece24d7b6.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-5-a-9-6609e7ba-4f80-4058-93f2-2169814f4f7b.json"
+      ]
+    },
+    "2024/02": {
+      "files": 4,
+      "rows": 3765,
+      "report_types": {
+        "comissoes": 1,
+        "descontos_e_promocoes": 1,
+        "fretes": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-9-a-13-d8ec8ce5-51af-418c-be07-bbb2b1a45903.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-9-a-13-bbf6945a-d7b8-4301-8f49-b7842822a817.json",
+        "Relatorio-Fretes-Semana-9-a-13-0d444ee8-1b6f-4498-9f37-237fd2f5569d.json",
+        "Relatorio-Markup-Semana-9-a-13-14ebad09-0442-45fb-b0b0-98423671fa54.json"
+      ]
+    },
+    "2024/04": {
+      "files": 4,
+      "rows": 5034,
+      "report_types": {
+        "comissoes": 1,
+        "descontos_e_promocoes": 1,
+        "fretes": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-14-a-18-e4e18e82-0dcc-4210-8aa1-14c104bd8efa.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-14-a-18-ece4e412-60fb-4b9e-918e-242bdb3953a9.json",
+        "Relatorio-Fretes-Semana-14-a-18-617a68ef-badb-483f-9271-b2dccfdc82c9.json",
+        "Relatorio-Markup-Semana-14-a-18-3537efac-76d2-4439-9651-76db1ef2a74a.json"
+      ]
+    },
+    "2024/07": {
+      "files": 8,
+      "rows": 10264,
+      "report_types": {
+        "comissoes": 2,
+        "descontos_e_promocoes": 2,
+        "fretes": 2,
+        "markup": 2
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-27-a-31-0de91133-29c2-46ed-8cf6-2277528660dc.json",
+        "Relatorio-Comissoes-Semana-27-a-31-2e816845-7777-48a2-a097-a699048b700c.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-27-a-31-90ac2bca-e669-4917-b1f4-b9718df5c64e.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-27-a-31-f9afc600-6a61-47f1-be80-7f600563b2df.json",
+        "Relatorio-Fretes-Semana-27-a-31-28ba58e2-5857-4b14-a77f-cbb2213afcd3.json",
+        "Relatorio-Fretes-Semana-27-a-31-97582b27-07e8-4d8c-b6d6-0b34774a05f4.json"
+      ]
+    },
+    "2024/09": {
+      "files": 4,
+      "rows": 4587,
+      "report_types": {
+        "comissoes": 1,
+        "descontos_e_promocoes": 1,
+        "fretes": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-36-a-40-98ace824-fd59-4c6a-8907-3d8d9f892c69.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-36-a-40-815ff70e-5825-4f90-9ecb-5ba4f06c6e83.json",
+        "Relatorio-Fretes-Semana-36-a-40-c20ea0d5-332f-4ba5-a06a-81c79009ba3d.json",
+        "Relatorio-Markup-Semana-36-a-40-4e31bd6b-b715-4244-bdd8-ab1434588325.json"
+      ]
+    },
+    "2024/10": {
+      "files": 8,
+      "rows": 9139,
+      "report_types": {
+        "comissoes": 2,
+        "descontos_e_promocoes": 2,
+        "fretes": 2,
+        "markup": 2
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-40-a-44-a07d21e0-271b-407c-a933-b60e68107efd.json",
+        "Relatorio-Comissoes-Semana-44-a-48-c7af23ce-4595-458f-8af0-cf6c423a13b7.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-40-a-44-d6871ee6-b4db-46f8-ad33-e2b95869c8ae.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-44-a-48-04ecd661-ddab-4d31-9ea4-9976f2fb86b1.json",
+        "Relatorio-Fretes-Semana-40-a-44-0554ab90-4a91-4c57-88e7-aea484e18472.json",
+        "Relatorio-Fretes-Semana-44-a-48-8c380d6e-ec1b-46e9-a6dd-682d71cfa22e.json"
+      ]
+    },
+    "2024/12": {
+      "files": 4,
+      "rows": 5762,
+      "report_types": {
+        "comissoes": 1,
+        "descontos_e_promocoes": 1,
+        "fretes": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-1-a-5-0b548074-5271-49cd-b35d-92f978c94083.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-1-a-5-52fdf71f-cafe-48c8-b3d1-156f66e2cff4.json",
+        "Relatorio-Fretes-Semana-1-a-5-0c990613-99e2-4176-9544-8f7c5d17e1f0.json",
+        "Relatorio-Markup-Semana-1-a-5-7b45291b-3571-4387-8f3f-2e9a247cbbf4.json"
+      ]
+    },
+    "2025/01": {
+      "files": 86,
+      "rows": 3394,
+      "report_types": {
+        "incentivos": 28,
+        "incentives": 15,
+        "manual_payments": 15,
+        "pagamentos_manuais": 28
+      },
+      "files_list": [
+        "Relatorio-Incentivos-Semana-1-a-5-91f494cb-cc72-41bc-8b42-3db70b809cfe.json",
+        "Relatorio-Incentivos-Semana-1-a-5-9623961e-e616-4f5b-bbfd-044602334223.json",
+        "Relatorio-Incentivos-Semana-1-a-5-d8d31e70-0dd4-4dd8-8406-0c85141b8861.json",
+        "Relatorio-Incentivos-Semana-1-a-5-fe4bccfb-86e8-4bca-819f-1ecd351b01e8.json",
+        "Relatorio-Incentivos-Semana-10-a-14-8b8b9925-2a10-4662-beec-8c2e796d4429.json",
+        "Relatorio-Incentivos-Semana-10-a-14-d89105fd-0c13-4009-83d9-10e62caa5718.json"
+      ]
+    },
+    "2025/03": {
+      "files": 8,
+      "rows": 11154,
+      "report_types": {
+        "comissoes": 2,
+        "descontos_e_promocoes": 2,
+        "fretes": 2,
+        "markup": 2
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-10-a-14-1d1d02c4-38e5-4a71-a4bd-6f24ae516c2a.json",
+        "Relatorio-Comissoes-Semana-10-a-14-5715c649-1e2c-4260-a9ac-dfd1bee280aa.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-10-a-14-186c2757-5cc8-4027-a546-d23dcf44b387.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-10-a-14-1f851bfe-973a-440f-81ff-9492a7307214.json",
+        "Relatorio-Fretes-Semana-10-a-14-810483e9-5f2f-4df0-9530-06e8dbfdf8a4.json",
+        "Relatorio-Fretes-Semana-10-a-14-fc7c3642-883a-46ca-a0ce-caa62186bbc4.json"
+      ]
+    },
+    "2025/04": {
+      "files": 12,
+      "rows": 14817,
+      "report_types": {
+        "comissoes": 3,
+        "descontos_e_promocoes": 3,
+        "fretes": 3,
+        "markup": 3
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-14-a-18-49304e16-8d23-43c8-9576-1a20ed3d9e3f.json",
+        "Relatorio-Comissoes-Semana-18-a-22-ccb89964-b3ef-4537-b7a5-242b456ca7a0.json",
+        "Relatorio-Comissoes-Semana-18-a-22-eb44fd41-6623-42ba-9740-e3d5795f3620.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-14-a-18-37be891e-b2e3-4177-a13c-155561ae781b.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-18-a-22-4d65c7c7-e786-40c3-8e27-073616347698.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-18-a-22-bf3185c5-237b-4d07-a921-f187976b7784.json"
+      ]
+    },
+    "2025/07": {
+      "files": 16,
+      "rows": 21248,
+      "report_types": {
+        "comissoes": 2,
+        "commissions": 2,
+        "descontos_e_promocoes": 2,
+        "promotions": 2,
+        "fretes": 2,
+        "freight": 2,
+        "markup": 4
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-27-a-31-44dee110-5f29-4d0e-80b0-52d4209558d9.json",
+        "Relatorio-Comissoes-Semana-27-a-31-7062dfa4-2a86-4c82-b0a6-d02eab01c2c5.json",
+        "Relatorio-Comissoes-Semana-31-a-35-4a2b891f-21f8-42d1-a7da-d7cd5f3005f2.json",
+        "Relatorio-Comissoes-Semana-31-a-35-4c2bd299-236e-4942-9cc6-c688477e3827.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-27-a-31-3478b735-d2c0-4be1-b8a2-eb41a7ddc002.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-27-a-31-f96721e7-f0d7-461e-8531-e82f53a619eb.json"
+      ]
+    },
+    "2025/09": {
+      "files": 12,
+      "rows": 16832,
+      "report_types": {
+        "comissoes": 1,
+        "commissions": 2,
+        "descontos_e_promocoes": 1,
+        "promotions": 2,
+        "freight": 2,
+        "fretes": 1,
+        "markup": 3
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-36-a-40-14d0bf69-5712-4060-8968-f03ff6217374.json",
+        "Relatorio-Comissoes-Semana-36-a-40-1d79fce9-4a1b-4947-84e9-d0e2b6b300b3.json",
+        "Relatorio-Comissoes-Semana-40-a-44-68b2ba2e-b543-4f54-ae37-11d73c7ae18b.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-36-a-40-243c0d2e-3b13-4ff2-9698-2ff27b0f2f96.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-36-a-40-5683df98-4427-4b2a-b995-d314a25edac0.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-40-a-44-d0a584b8-8c45-421c-a777-745f221ef8af.json"
+      ]
+    },
+    "2025/10": {
+      "files": 4,
+      "rows": 8045,
+      "report_types": {
+        "commissions": 1,
+        "promotions": 1,
+        "freight": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-44-a-48-9692645b-a4e4-4fcb-8d97-8480097eedc4.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-44-a-48-6330685d-427d-4759-8f08-2bd19aaa2366.json",
+        "Relatorio-Fretes-Semana-44-a-48-295a4aac-6565-42a1-849c-1cd421425367.json",
+        "Relatorio-Markup-Semana-44-a-48-8cf9914f-cd84-4bd6-9fc6-2b15386125d7.json"
+      ]
+    },
+    "2025/11": {
+      "files": 4,
+      "rows": 6735,
+      "report_types": {
+        "commissions": 1,
+        "promotions": 1,
+        "freight": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-45-a-48-952ae58d-223a-40f9-8816-f7830251cf88.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-45-a-48-46b9b1d4-becd-4607-a513-c4a26644c661.json",
+        "Relatorio-Fretes-Semana-45-a-48-a701c984-7c74-4d75-8a12-3f40c9e68a88.json",
+        "Relatorio-Markup-Semana-45-a-48-37477cf5-f224-4add-8622-1fbf48a75cbb.json"
+      ]
+    },
+    "2025/12": {
+      "files": 8,
+      "rows": 12498,
+      "report_types": {
+        "commissions": 2,
+        "promotions": 2,
+        "freight": 2,
+        "markup": 2
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-1-a-5-d39435dc-3304-4b01-8b5a-bcc59bcf7e9a.json",
+        "Relatorio-Comissoes-Semana-49-a-1-fe17f8c7-d147-4136-8418-a75a347ccb3b.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-1-a-5-e3fb48e6-a87a-4a6c-aa6e-5c2a968475e1.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-49-a-1-f8c55232-334c-4696-b3d1-887fd8d3ac05.json",
+        "Relatorio-Fretes-Semana-1-a-5-02041919-5ca8-4e54-a107-e08e02e3c708.json",
+        "Relatorio-Fretes-Semana-49-a-1-b90363d3-6ef6-4a13-87ca-f36cf6c0e6bb.json"
+      ]
+    },
+    "2026/02": {
+      "files": 8,
+      "rows": 9264,
+      "report_types": {
+        "commissions": 2,
+        "promotions": 2,
+        "freight": 2,
+        "markup": 2
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-5-a-9-e2f73a0a-c320-4cee-8d7b-36ea0050b140.json",
+        "Relatorio-Comissoes-Semana-9-a-13-7487a851-2a2b-481b-a3e1-6b4d72c69f7a.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-5-a-9-d161773e-55fe-4d4c-bf0a-2c4f3eeb096a.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-9-a-13-0c2ad84f-906f-42e5-b0b2-87c69a03033c.json",
+        "Relatorio-Fretes-Semana-5-a-9-c840b021-06a1-44f5-b6eb-9e0fb8cd59b3.json",
+        "Relatorio-Fretes-Semana-9-a-13-c7fce361-c874-4d3f-bc41-5a15597f125d.json"
+      ]
+    },
+    "2026/03": {
+      "files": 4,
+      "rows": 7297,
+      "report_types": {
+        "commissions": 1,
+        "promotions": 1,
+        "freight": 1,
+        "markup": 1
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-14-a-18-f9bf1740-d701-42b9-bc7b-d8c4ea041dc4.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-14-a-18-5eae1ad5-48b0-46ca-afdf-1b769084a7b6.json",
+        "Relatorio-Fretes-Semana-14-a-18-84df6831-e7f8-4add-8c9a-76820410b9dc.json",
+        "Relatorio-Markup-Semana-14-a-18-79d1d21d-2bfb-47d9-ba99-1e5d9f70d078.json"
+      ]
+    },
+    "2026/06": {
+      "files": 16,
+      "rows": 15221,
+      "report_types": {
+        "commissions": 4,
+        "promotions": 4,
+        "freight": 4,
+        "markup": 4
+      },
+      "files_list": [
+        "Relatorio-Comissoes-Semana-23-a-27-d96bb6e6-5f94-4ed5-bf50-958ccf9e7a45.json",
+        "Relatorio-Comissoes-Semana-24-a-28-96198cda-1558-42e4-95fa-37ede3f73518.json",
+        "Relatorio-Comissoes-Semana-27-a-28-2bb13315-48e5-4a97-95f1-6179c176e0fa.json",
+        "Relatorio-Comissoes-Semana-27-a-28-37af1ed1-06e7-4dab-b4ea-86e6ec0a7060.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-23-a-27-159b87c7-24af-41e7-9915-19ea7e17ed0a.json",
+        "Relatorio-Descontos-e-Promocoes-Semana-24-a-28-afc23a10-ec3d-4ec4-ace0-051c6c6fc78c.json"
+      ]
+    }
+  }
+}

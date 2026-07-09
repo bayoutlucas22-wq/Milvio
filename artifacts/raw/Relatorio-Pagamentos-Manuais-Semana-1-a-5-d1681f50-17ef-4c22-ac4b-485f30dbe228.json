@@ -1,0 +1,86 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-1-a-5-106ef7ab-9272-49c0-b76b-e2f284d9cbad/Relatorio-Pagamentos-Manuais-Semana-1-a-5-d1681f50-17ef-4c22-ac4b-485f30dbe228.xlsx",
+  "folder_name": "Relatorios-Semana-1-a-5-106ef7ab-9272-49c0-b76b-e2f284d9cbad",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAO_ATINGIU_INCENTIVO_VARIAVEL_02_JANEIRO_DAS_11H00_AS_22H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "RecomposiCAo_Incentivo_Disponibilidade_Semana52",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 221
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Progressivo_Vinhos_VinIcola Salton_23DEZ ao 05JAN",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Incentivo_30_dez",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 118
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Incentivo_31_dez",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 531
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Incentivo_01_jan",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 213
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W53_STELLA_PURE_GOLD_330ML_268041642",
+      "Tipo de Pagamento": "Amostra Grátis",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Oferta_Especial_Red Bull _ ABI_13JAN ao 19JAN",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_02_FEVEREIRO",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 122
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAO_ATINGIU_ENTREGA_EM_35MIN_DIA_02_FEVEREIRO_DAS_11H00_AS_19H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Progressivo_Vinhos_Interfood_27JAN ao 02FEV",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -1.7
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Oferta_Especial_Diageo_27JAN ao 02FEV",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": -0.56
+    }
+  ]
+}

@@ -1,0 +1,908 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-14-a-18-65bb34d5-324d-4e69-8835-4840348a90b9/Relatorio-Pagamentos-Manuais-Semana-14-a-18-6ced8e75-3740-4b22-9028-60db0d3feb2d.xlsx",
+  "folder_name": "Relatorios-Semana-14-a-18-65bb34d5-324d-4e69-8835-4840348a90b9",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_650307013",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_835878196",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_462385939",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_664520305",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_707485163",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_676461035",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_614010797",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_609065169",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_974934979",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_373409770",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_449777387",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_303913929",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_851464331",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_635043097",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_118740936",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_347003454",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_796170476",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_560813187",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_636257737",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_352425517",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_956590659",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_884127517",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_670891022",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_498248494",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_568564349",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_639621154",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_858185638",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_498976568",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_481952813",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W14_STELLA_PURE_GOLD_330ML_897906592",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 46.81
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_M Dias_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 2.53
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 11.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 1.1
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_115696253",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_523517974",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_257060447",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_504382434",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_412000614",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_525729944",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_841925766",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_115461974",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_364940580",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_160661785",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_720046996",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_691078378",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_103246592",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_337178298",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_968114866",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_208149598",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_172332465",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_289863147",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_837552000",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_958078962",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_697952893",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_122106301",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_683720897",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_101609891",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W15_STELLA_PURE_GOLD_330ML_900880945",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_718968763",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_285722258",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_794885918",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_PEPSI_BLACK_350ML_101460640",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_149442394",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_PEPSI_BLACK_350ML_774934033",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_901163894",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_PEPSI_BLACK_350ML_410212378",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_928070939",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_PEPSI_BLACK_350ML_334167274",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_PEPSI_BLACK_350ML_518407113",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_248157225",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_629308285",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_786069798",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_273134321",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_209458251",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_PEPSI_BLACK_350ML_527621071",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_520186164",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_884612494",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_158650447",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W16_STELLA_PURE_GOLD_330ML_807254144",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 46.81
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_M Dias_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 3.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 2.53
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 11.91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_01ABRa07ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 1.1
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_08ABRa14ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 2.37
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_08ABRa14ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 0.23
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_08ABRa14ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 4.87
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_08ABRa14ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 1.2
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_571646114",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_679738381",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_BUD_ZERO_350ML_810574303",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.88
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_571265399",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_BUD_ZERO_350ML_892423440",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.88
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_830662575",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_997322197",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_372724235",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_830662575",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_785143408",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_615347959",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_892725959",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_805588010",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_101264522",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_997322197",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_933344702",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_114209302",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_245182712",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_785374864",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_CORONA_473ML_623520419",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W17_STELLA_PURE_GOLD_330ML_491422505",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.18
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FRETE_DIA_DE_SAO_JORGE_RJ_SEGUNDA",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FRETE_DIA_DE_SAO_JORGE_RJ_TERCA",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 50
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "IOV_PORTFOLIO_100%_W16",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 112.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_BUD_ZERO_350ML_208989018",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 3.88
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_861110728",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_997058783",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_331678581",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_256683655",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_131644358",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_656249751",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_574197847",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_317185859",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_956281300",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_828686982",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_309113539",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_753594749",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_497267446",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_471650158",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W18_CORONA_473ML_100665638",
+      "Tipo de Pagamento": "Markup",
+      "Restituição": 6.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGMTO_MANUAL_FRETE_DIA_DO_TRABALHADOR_BR_TERcA",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 16
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PGMTO_MANUAL_FRETE_DIA_DO_TRABALHADOR_BR_QUARTA",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 91
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "IOV_PORTFOLIO_INTEGRAL_SEMANA_17",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 180
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_15ABRa21ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 10.23
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_15ABRa21ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 1.68
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_22ABRa28ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 15.34
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_22ABRa28ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 0.38
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_22ABRa28ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 5.65
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_22ABRa28ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 3.54
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pernod-Ricard_22ABRa28ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 15.79
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_IRB - Tatuzinho_22ABRa28ABR",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 2.44
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 12.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Muller_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 4.28
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pepsico_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 0.87
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Pernod-Ricard_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 82.32
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Piracanjuba_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 0.99
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_VinIcola Campestre_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 2.59
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Britvic_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 0.49
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_VinIcola Salton_29ABRa05MAI",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 8.34
+    }
+  ]
+}

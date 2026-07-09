@@ -1,0 +1,74 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-36-a-40-b8341af0-7b03-434c-ac82-b226ed556663/Relatorio-Pagamentos-Manuais-Semana-36-a-40-0620dd92-c292-4d12-8eab-bcfd3495bc65.xlsx",
+  "folder_name": "Relatorios-Semana-36-a-40-b8341af0-7b03-434c-ac82-b226ed556663",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W37_SPATEN_355ML_383516235",
+      "Tipo de Pagamento": "Amostra Grátis",
+      "Restituição": 5.28
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W37_SPATEN_355ML_304420203",
+      "Tipo de Pagamento": "Amostra Grátis",
+      "Restituição": 5.28
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "TRIAL_W37_SPATEN_355ML_323224334",
+      "Tipo de Pagamento": "Amostra Grátis",
+      "Restituição": 5.28
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_09SETa15SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 0.55
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_VinIcola Salton_09SETa15SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 8.79
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Mondelez_16SETa22SET",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 8.86
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "POC_81119_IRRF SETEMBRO_ComissAo Marketplace",
+      "Tipo de Pagamento": "Comissão Marketplace",
+      "Restituição": 10.3
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_30SETa06OUT",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 47.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_VARIAVEL_06_OUTUBRO_DA_00H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 70
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_06_OUTUBRO_DA_00H00_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 70
+    }
+  ]
+}

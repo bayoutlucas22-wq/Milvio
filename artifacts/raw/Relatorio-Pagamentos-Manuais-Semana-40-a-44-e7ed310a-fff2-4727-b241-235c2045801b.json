@@ -1,0 +1,68 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-40-a-44-4213c7ea-1ed8-4ac1-b694-d4bfe2c757f8/Relatorio-Pagamentos-Manuais-Semana-40-a-44-e7ed310a-fff2-4727-b241-235c2045801b.xlsx",
+  "folder_name": "Relatorios-Semana-40-a-44-4213c7ea-1ed8-4ac1-b694-d4bfe2c757f8",
+  "report_type": "pagamentos_manuais",
+  "sheet_name": "Pagamento Manual",
+  "headers": [
+    "Parceiro",
+    "Descrição",
+    "Tipo de Pagamento",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_30SETa06OUT",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 47.48
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_VARIAVEL_06_OUTUBRO_DA_00H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 70
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_06_OUTUBRO_DA_00H00_AS_23H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 70
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "INCENTIVO_FIXO_12_OUTUBRO_DAS_10H_AS_16H59",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 49
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAO_ATINGIU_ENTREGA_EM_35MIN_DIA_13_OUTUBRO_DAS_00H00_AS_23H59",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "PDV_81119_Reembolso_Descontos_Diageo_07OUTa13OUT",
+      "Tipo de Pagamento": "Descontos Marketplace",
+      "Restituição": 39.08
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "NAoatingiu_Incentivo_Finados",
+      "Tipo de Pagamento": "Incentivos",
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Incentivo_Frete_Finados",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 62
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Descrição": "Incentivo_CopadoBrasil",
+      "Tipo de Pagamento": "Frete",
+      "Restituição": 67.5
+    }
+  ]
+}

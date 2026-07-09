@@ -1,0 +1,70 @@
+[
+  {
+    "source_file": "/app/airflow_dbt/sql/dump_xlsl/Relatorios-Semana-27-a-28-914e5c45-1f9f-4eb1-b29c-0115fc2e2e7d/Relatorio-Incentivos-Semana-27-a-28-d6d05805-e620-4e76-a5b8-30b22bc3737e.xlsx",
+    "folder_name": "Relatorios-Semana-27-a-28-914e5c45-1f9f-4eb1-b29c-0115fc2e2e7d",
+    "report_type": "incentives",
+    "sheet_name": "Incentivos",
+    "headers": [
+      "Parceiro",
+      "Semana",
+      "Total de Pedidos",
+      "Indicadores",
+      "Fechamento da Semana",
+      "Meta",
+      "Incentivo/Dedução",
+      "Restituição"
+    ],
+    "rows": [
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 27,
+        "Total de Pedidos": 467,
+        "Indicadores": "Entregas em até 35min",
+        "Fechamento da Semana": "40%",
+        "Meta": "90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 27,
+        "Total de Pedidos": 467,
+        "Indicadores": "Tempo médio de liberação",
+        "Fechamento da Semana": "40%",
+        "Meta": "87%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 27,
+        "Total de Pedidos": 467,
+        "Indicadores": "Disponibilidade",
+        "Fechamento da Semana": "40%",
+        "Meta": "Maior ou igual a 96%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 27,
+        "Total de Pedidos": 467,
+        "Indicadores": "Portfólio Ideal",
+        "Fechamento da Semana": "40%",
+        "Meta": "Maior ou igual a 90%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      },
+      {
+        "Parceiro": "Mercearia e Deposito da Lagoa",
+        "Semana": 27,
+        "Total de Pedidos": 467,
+        "Indicadores": "Taxa de aceitação",
+        "Fechamento da Semana": "40%",
+        "Meta": "95%",
+        "Incentivo/Dedução": 0,
+        "Restituição": 0
+      }
+    ]
+  }
+]

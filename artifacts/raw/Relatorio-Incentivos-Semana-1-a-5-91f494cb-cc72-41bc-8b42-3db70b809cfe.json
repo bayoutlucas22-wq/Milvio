@@ -1,0 +1,468 @@
+{
+  "source_file": "/app/artifacts/Relatorios-Semana-1-a-5-9f236666-ecc4-4104-8382-870f7aeaaf1a/Relatorio-Incentivos-Semana-1-a-5-91f494cb-cc72-41bc-8b42-3db70b809cfe.xlsx",
+  "folder_name": "Relatorios-Semana-1-a-5-9f236666-ecc4-4104-8382-870f7aeaaf1a",
+  "report_type": "incentivos",
+  "sheet_name": "Incentivos",
+  "headers": [
+    "Parceiro",
+    "Semana",
+    "Total de Pedidos",
+    "Indicadores",
+    "Fechamento da Semana",
+    "Meta",
+    "Incentivo/Dedução",
+    "Restituição"
+  ],
+  "rows": [
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Avaliação dos clientes Faixa A",
+      "Fechamento da Semana": "40%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Avaliação dos clientes Faixa B",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Avaliação dos clientes Faixa C",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Tempo médio de liberação Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "88%",
+      "Incentivo/Dedução": 0.3,
+      "Restituição": 67.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Tempo médio de liberação Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "92%",
+      "Incentivo/Dedução": 0.1,
+      "Restituição": 22.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Tempo médio de liberação Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Disponibilidade Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Disponibilidade Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "97%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 5,
+      "Total de Pedidos": 225,
+      "Indicadores": "Disponibilidade Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "100%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Avaliação dos clientes Faixa A",
+      "Fechamento da Semana": "40%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0.4,
+      "Restituição": 69.6
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Avaliação dos clientes Faixa B",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0.2,
+      "Restituição": 34.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Avaliação dos clientes Faixa C",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0.2,
+      "Restituição": 34.8
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Tempo médio de liberação Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "88%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Tempo médio de liberação Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "92%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Tempo médio de liberação Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Disponibilidade Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Disponibilidade Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "97%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 4,
+      "Total de Pedidos": 174,
+      "Indicadores": "Disponibilidade Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "100%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Avaliação dos clientes Faixa A",
+      "Fechamento da Semana": "40%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Avaliação dos clientes Faixa B",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Avaliação dos clientes Faixa C",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Tempo médio de liberação Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "88%",
+      "Incentivo/Dedução": 0.3,
+      "Restituição": 67.5
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Tempo médio de liberação Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "92%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Tempo médio de liberação Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Disponibilidade Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Disponibilidade Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "97%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 3,
+      "Total de Pedidos": 225,
+      "Indicadores": "Disponibilidade Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "100%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Avaliação dos clientes Faixa A",
+      "Fechamento da Semana": "40%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0.4,
+      "Restituição": 94
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Avaliação dos clientes Faixa B",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Avaliação dos clientes Faixa C",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Tempo médio de liberação Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "88%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Tempo médio de liberação Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "92%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Tempo médio de liberação Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Disponibilidade Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Disponibilidade Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "97%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 2,
+      "Total de Pedidos": 235,
+      "Indicadores": "Disponibilidade Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "100%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Avaliação dos clientes Faixa A",
+      "Fechamento da Semana": "40%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Avaliação dos clientes Faixa B",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Avaliação dos clientes Faixa C",
+      "Fechamento da Semana": "20%",
+      "Meta": "5%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Tempo médio de liberação Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "88%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Tempo médio de liberação Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "92%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Tempo médio de liberação Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Disponibilidade Faixa A",
+      "Fechamento da Semana": "30%",
+      "Meta": "95%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Disponibilidade Faixa B",
+      "Fechamento da Semana": "10%",
+      "Meta": "97%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    },
+    {
+      "Parceiro": "Mercearia e Deposito da Lagoa",
+      "Semana": 1,
+      "Total de Pedidos": 321,
+      "Indicadores": "Disponibilidade Faixa C",
+      "Fechamento da Semana": "10%",
+      "Meta": "100%",
+      "Incentivo/Dedução": 0,
+      "Restituição": 0
+    }
+  ]
+}
