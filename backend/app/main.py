@@ -15,7 +15,15 @@ from redis.exceptions import RedisError
 
 
 ANALYTICS_PATH = Path(os.getenv("ANALYTICS_PATH", "/data/artifacts/analytics.json"))
+ANALYTICS_V2_PATH = Path(os.getenv("ANALYTICS_V2_PATH", "/data/artifacts/analytics_v2.json"))
 ARTIFACTS_DIR = Path("/data/artifacts")
+ARTIFACTS_SOURCE_DIRS = [
+    ARTIFACTS_DIR / "raw" / "by_xlsx_source",
+    ARTIFACTS_DIR / "raw" / "by_year_month_clean",
+    ARTIFACTS_DIR / "raw" / "by_year_month",
+    ARTIFACTS_DIR / "raw",
+    ARTIFACTS_DIR,
+]
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://mongo:27017")
 MONGODB_DB = os.getenv("MONGODB_DB", "milvio")
@@ -71,13 +79,21 @@ def refresh_analytics() -> dict[str, Any]:
 
 @app.get("/api/artifacts")
 def list_artifacts() -> list[str]:
-    if not ARTIFACTS_DIR.exists():
-        return []
-    
-    files = []
-    for path in ARTIFACTS_DIR.rglob("*.json"):
-        files.append(str(path.relative_to(ARTIFACTS_DIR)))
-    return files
+    files: list[str] = []
+    seen: set[str] = set()
+    for base_dir in ARTIFACTS_SOURCE_DIRS:
+        if not base_dir.exists():
+            continue
+        for path in base_dir.rglob("*.json"):
+            try:
+                relative = str(path.relative_to(ARTIFACTS_DIR))
+            except ValueError:
+                relative = str(path)
+            if relative in seen:
+                continue
+            seen.add(relative)
+            files.append(relative)
+    return sorted(files)
 
 
 @app.get("/api/artifacts/content")
@@ -85,7 +101,7 @@ def get_artifact_content(path: str) -> Any:
     if not path:
         raise HTTPException(status_code=400, detail="Path is required")
     
-    target_path = ARTIFACTS_DIR / path
+    target_path = resolve_artifact_path(path)
     
     try:
         # Prevent directory traversal
@@ -128,49 +144,10 @@ def mongo_overview() -> dict[str, Any]:
 
 @app.get("/api/faturamento/v2")
 def faturamento_v2() -> dict[str, Any]:
-    try:
-        db = mongo_client[MONGODB_DB]
-        collection = db[MONGO_CLEAN_COLLECTION]
-        yearly: dict[str, dict[str, Any]] = {}
-
-        for doc in collection.find({}, {"_id": 0, "path": 1, "report_type": 1, "rows": 1}):
-            year = extract_year(doc.get("path") or "")
-            if year is None:
-                continue
-            bucket = yearly.setdefault(year, {
-                "year": year,
-                "documents": 0,
-                "commissions": 0.0,
-                "freight": 0.0,
-                "promotions": 0.0,
-                "markup": 0.0,
-                "manual_payments": 0.0,
-            })
-            bucket["documents"] += 1
-            report_type = normalize_report_type(str(doc.get("report_type") or ""))
-            amount = sum_document_amount(report_type, doc.get("rows") or [])
-            if report_type == "commissions":
-                bucket["commissions"] += amount
-            elif report_type == "freight":
-                bucket["freight"] += amount
-            elif report_type == "promotions":
-                bucket["promotions"] += amount
-            elif report_type == "markup":
-                bucket["markup"] += amount
-            elif report_type == "manual_payments":
-                bucket["manual_payments"] += amount
-
-        years = sorted(yearly.values(), key=lambda item: item["year"])
-        for row in years:
-          row["resultado"] = row["markup"] + row["promotions"] + row["manual_payments"] + row["freight"] + row["commissions"]
-
-        return {
-            "ok": True,
-            "collection": MONGO_CLEAN_COLLECTION,
-            "years": years,
-        }
-    except PyMongoError as exc:
-        raise HTTPException(status_code=503, detail=f"Mongo unavailable: {exc}") from exc
+    if not ANALYTICS_V2_PATH.exists():
+        raise HTTPException(status_code=404, detail="analytics_v2.json not found")
+    payload = json.loads(ANALYTICS_V2_PATH.read_text())
+    return {"ok": True, **payload}
 
 
 def read_cache() -> dict[str, Any] | None:
@@ -202,6 +179,15 @@ def read_analytics_file() -> dict[str, Any]:
     if not ANALYTICS_PATH.exists():
         raise HTTPException(status_code=404, detail="analytics.json not found")
     return json.loads(ANALYTICS_PATH.read_text())
+
+
+def resolve_artifact_path(path: str) -> Path:
+    candidate = ARTIFACTS_DIR / path
+    try:
+        candidate.resolve().relative_to(ARTIFACTS_DIR.resolve())
+        return candidate
+    except ValueError:
+        raise HTTPException(status_code=403, detail="Access denied")
 
 
 def extract_year(path: str) -> str | None:
@@ -254,4 +240,3 @@ def numeric_value(value: Any) -> float:
         except ValueError:
             return 0.0
     return 0.0
-

@@ -113,22 +113,48 @@ def get_week_label(file_name: str) -> str:
 
 def load_records() -> list[Record]:
     records: list[Record] = []
+    
+    REPORT_TYPE_MAP = {
+        "comissoes": "commissions",
+        "commissions": "commissions",
+        "descontos_e_promocoes": "promotions",
+        "promotions": "promotions",
+        "fretes": "freight",
+        "freight": "freight",
+        "incentivos": "incentives",
+        "incentives": "incentives",
+        "pagamentos_manuais": "manual_payments",
+        "manual_payments": "manual_payments",
+        "markup": "markup",
+    }
+    
     for file_path in sorted(RAW_DIR.glob("*.json")):
-        content = json.loads(file_path.read_text())
-        for item in content:
-            report_type = item["report_type"]
-            records.append(
-                Record(
-                    report_type=report_type,
-                    report_label=DISPLAY_BY_REPORT[report_type],
-                    sheet_name=item["sheet_name"],
-                    week_label=get_week_label(file_path.name),
-                    folder_name=item["folder_name"],
-                    source_file=item["source_file"],
-                    headers=item["headers"],
-                    rows=item["rows"],
+        try:
+            content = json.loads(file_path.read_text())
+            if isinstance(content, dict):
+                content = [content]
+            for item in content:
+                if not isinstance(item, dict):
+                    continue
+                raw_type = item.get("report_type", "").lower()
+                report_type = REPORT_TYPE_MAP.get(raw_type, raw_type)
+                sheet_name = item.get("sheet_name", "")
+                if report_type == "freight" and sheet_name != "Resumo":
+                    continue
+                records.append(
+                    Record(
+                        report_type=report_type,
+                        report_label=DISPLAY_BY_REPORT[report_type],
+                        sheet_name=item["sheet_name"],
+                        week_label=get_week_label(file_path.name),
+                        folder_name=item["folder_name"],
+                        source_file=item["source_file"],
+                        headers=item["headers"],
+                        rows=item["rows"],
+                    )
                 )
-            )
+        except Exception as e:
+            print(f"Skipping {file_path.name}: {e}")
     return records
 
 

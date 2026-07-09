@@ -7,7 +7,9 @@ import re
 import sys
 import zipfile
 from collections import OrderedDict
+from collections import defaultdict
 from pathlib import Path
+import shutil
 from xml.etree import ElementTree as ET
 
 NS = {
@@ -157,14 +159,34 @@ def main():
         print("No xlsx files found.")
         return 0
     count = 0
+    folder_totals: dict[Path, int] = defaultdict(int)
+    folder_success: dict[Path, int] = defaultdict(int)
+    for xlsx in xlsx_files:
+        folder_totals[xlsx.parent] += 1
+
     for xlsx in xlsx_files:
         try:
             out_path = convert_xlsx(xlsx, out_dir)
             count += 1
+            folder_success[xlsx.parent] += 1
             print(f"{xlsx} -> {out_path}")
         except Exception as exc:
             print(f"Failed {xlsx}: {exc}", file=sys.stderr)
-    print(f"Converted {count} files.")
+
+    removed_dirs = 0
+    for folder, total_count in sorted(folder_totals.items(), key=lambda item: len(item[0].parts), reverse=True):
+        if folder_success.get(folder, 0) != total_count:
+            continue
+        if not folder.exists():
+            continue
+        try:
+            shutil.rmtree(folder)
+            removed_dirs += 1
+            print(f"Removed source folder {folder}")
+        except Exception as exc:
+            print(f"Failed to remove {folder}: {exc}", file=sys.stderr)
+
+    print(f"Converted {count} files. Removed {removed_dirs} folders.")
     return 0
 
 

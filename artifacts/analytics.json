@@ -1,83 +1,83 @@
 {
   "scope": {
     "source": "Relatorios do Zé Delivery",
-    "json_files": 90,
-    "report_rows": 115649,
-    "weeks": 14,
-    "months": 8
+    "json_files": 258,
+    "report_rows": 226932,
+    "weeks": 18,
+    "months": 13
   },
   "headline": {
-    "proxy_total": 129963.36,
+    "proxy_total": 289560.66,
     "strongest_week": {
-      "week_label": "44 a 48",
-      "week_key": "44-a-48",
-      "start_date": "2025-10-28",
-      "end_date": "2025-11-30",
-      "month_key": "2025-10",
-      "commissions": -4015.93,
-      "promotions": 8889.12,
-      "freight": 173.58,
-      "incentives": -942.5,
-      "markup": 9764.25,
-      "manual_payments": 2008.29,
-      "proxy_total": 15876.81
+      "week_label": "27 a 31",
+      "week_key": "27-a-31",
+      "start_date": "2023-07-03",
+      "end_date": "2025-08-03",
+      "month_key": "2023-07",
+      "commissions": -6676.63,
+      "promotions": 14646.59,
+      "freight": 14479.67,
+      "incentives": 4107.35,
+      "markup": 6930.66,
+      "manual_payments": -471.89,
+      "proxy_total": 33015.75
     },
     "weakest_week": {
-      "week_label": "1 a 5",
-      "week_key": "1-a-5",
-      "start_date": "2025-12-29",
-      "end_date": "2026-01-04",
-      "month_key": "2025-12",
-      "commissions": -1730.86,
-      "promotions": 1611.6,
-      "freight": 583.16,
-      "incentives": -329.0,
-      "markup": 3206.17,
-      "manual_payments": 292.58,
-      "proxy_total": 3633.65
+      "week_label": "35 a 39",
+      "week_key": "35-a-39",
+      "start_date": "2023-08-28",
+      "end_date": "2023-10-01",
+      "month_key": "2023-08",
+      "commissions": -551.19,
+      "promotions": 1681.03,
+      "freight": 2003.77,
+      "incentives": 51.0,
+      "markup": 1443.24,
+      "manual_payments": 264.62,
+      "proxy_total": 4892.47
     }
   },
   "components": {
     "totals": {
-      "commissions": -44817.83,
-      "promotions": 80550.5,
-      "freight": 41401.4,
-      "incentives": -2730.8,
-      "markup": 58727.03,
-      "manual_payments": -3166.94
+      "commissions": -74666.57,
+      "promotions": 133505.85,
+      "freight": 77568.09,
+      "incentives": 4353.5,
+      "markup": 128052.82,
+      "manual_payments": 20746.97
     },
     "losses": [
       {
         "key": "commissions",
         "label": "Comissões",
-        "value": -44817.83
-      },
-      {
-        "key": "manual_payments",
-        "label": "Pagamentos Manuais",
-        "value": -3166.94
-      },
-      {
-        "key": "incentives",
-        "label": "Incentivos",
-        "value": -2730.8
+        "value": -74666.57
       }
     ],
     "gains": [
       {
         "key": "promotions",
         "label": "Promoções",
-        "value": 80550.5
+        "value": 133505.85
       },
       {
         "key": "markup",
         "label": "Markup",
-        "value": 58727.03
+        "value": 128052.82
       },
       {
         "key": "freight",
         "label": "Fretes",
-        "value": 41401.4
+        "value": 77568.09
+      },
+      {
+        "key": "manual_payments",
+        "label": "Pagamentos Manuais",
+        "value": 20746.97
+      },
+      {
+        "key": "incentives",
+        "label": "Incentivos",
+        "value": 4353.5
       }
     ]
   },
@@ -86,72 +86,184 @@
       {
         "week_label": "27 a 31",
         "week_key": "27-a-31",
-        "start_date": "2025-07-01",
+        "start_date": "2023-07-03",
         "end_date": "2025-08-03",
-        "month_key": "2025-07",
-        "commissions": -1925.35,
-        "promotions": 3597.66,
-        "freight": 3468.14,
-        "incentives": 551.0,
-        "markup": 1220.73,
-        "manual_payments": 8.45,
-        "proxy_total": 6920.64
+        "month_key": "2023-07",
+        "commissions": -6676.63,
+        "promotions": 14646.59,
+        "freight": 14479.67,
+        "incentives": 4107.35,
+        "markup": 6930.66,
+        "manual_payments": -471.89,
+        "proxy_total": 33015.75
       },
       {
         "week_label": "31 a 35",
         "week_key": "31-a-35",
-        "start_date": "2025-07-29",
+        "start_date": "2023-07-31",
         "end_date": "2025-08-31",
-        "month_key": "2025-07",
-        "commissions": -2154.18,
-        "promotions": 3760.54,
-        "freight": 2939.02,
-        "incentives": 290.0,
-        "markup": 2339.38,
-        "manual_payments": 251.51,
-        "proxy_total": 7426.27
+        "month_key": "2023-07",
+        "commissions": -4842.71,
+        "promotions": 8655.14,
+        "freight": 4817.05,
+        "incentives": 801.6,
+        "markup": 6030.99,
+        "manual_payments": 465.9,
+        "proxy_total": 15927.97
       },
       {
-        "week_label": "36 a 40",
-        "week_key": "36-a-40",
-        "start_date": "2025-09-03",
-        "end_date": "2025-10-05",
-        "month_key": "2025-09",
-        "commissions": -2139.19,
-        "promotions": 4452.97,
-        "freight": 1441.36,
-        "incentives": 155.5,
-        "markup": 1437.02,
-        "manual_payments": -65.43,
-        "proxy_total": 5282.23
+        "week_label": "35 a 39",
+        "week_key": "35-a-39",
+        "start_date": "2023-08-28",
+        "end_date": "2023-10-01",
+        "month_key": "2023-08",
+        "commissions": -551.19,
+        "promotions": 1681.03,
+        "freight": 2003.77,
+        "incentives": 51.0,
+        "markup": 1443.24,
+        "manual_payments": 264.62,
+        "proxy_total": 4892.47
       },
       {
         "week_label": "40 a 44",
         "week_key": "40-a-44",
-        "start_date": "2025-09-30",
+        "start_date": "2023-10-02",
         "end_date": "2025-11-02",
-        "month_key": "2025-09",
-        "commissions": -2392.39,
-        "promotions": 4774.25,
-        "freight": 2190.18,
-        "incentives": -162.5,
-        "markup": 2142.58,
-        "manual_payments": 470.25,
-        "proxy_total": 7022.37
+        "month_key": "2023-10",
+        "commissions": -4045.24,
+        "promotions": 7614.34,
+        "freight": 4909.53,
+        "incentives": 235.2,
+        "markup": 5854.82,
+        "manual_payments": 1070.34,
+        "proxy_total": 15638.98
       },
       {
         "week_label": "44 a 48",
         "week_key": "44-a-48",
-        "start_date": "2025-10-28",
+        "start_date": "2023-10-30",
         "end_date": "2025-11-30",
-        "month_key": "2025-10",
-        "commissions": -4015.93,
-        "promotions": 8889.12,
-        "freight": 173.58,
-        "incentives": -942.5,
-        "markup": 9764.25,
-        "manual_payments": 2008.29,
-        "proxy_total": 15876.81
+        "month_key": "2023-10",
+        "commissions": -5449.95,
+        "promotions": 11954.54,
+        "freight": 4610.02,
+        "incentives": -113.35,
+        "markup": 14752.69,
+        "manual_payments": 2697.64,
+        "proxy_total": 28451.59
+      },
+      {
+        "week_label": "48 a 52",
+        "week_key": "48-a-52",
+        "start_date": "2023-11-27",
+        "end_date": "2023-12-31",
+        "month_key": "2023-11",
+        "commissions": -2163.77,
+        "promotions": 3530.58,
+        "freight": 4223.9,
+        "incentives": 1116.4,
+        "markup": 7636.11,
+        "manual_payments": 4407.76,
+        "proxy_total": 18750.98
+      },
+      {
+        "week_label": "1 a 5",
+        "week_key": "1-a-5",
+        "start_date": "2024-01-01",
+        "end_date": "2026-01-04",
+        "month_key": "2024-01",
+        "commissions": -4743.0,
+        "promotions": 5633.59,
+        "freight": 6804.68,
+        "incentives": 452.4,
+        "markup": 12020.45,
+        "manual_payments": 2212.4,
+        "proxy_total": 22380.52
+      },
+      {
+        "week_label": "5 a 9",
+        "week_key": "5-a-9",
+        "start_date": "2024-01-29",
+        "end_date": "2026-03-01",
+        "month_key": "2024-01",
+        "commissions": -2853.23,
+        "promotions": 5769.01,
+        "freight": 4041.21,
+        "incentives": -467.5,
+        "markup": 8766.38,
+        "manual_payments": -482.18,
+        "proxy_total": 14773.68
+      },
+      {
+        "week_label": "9 a 13",
+        "week_key": "9-a-13",
+        "start_date": "2024-02-26",
+        "end_date": "2026-03-29",
+        "month_key": "2024-02",
+        "commissions": -4073.19,
+        "promotions": 7198.74,
+        "freight": 3540.1,
+        "incentives": -634.1,
+        "markup": 5797.07,
+        "manual_payments": -1402.66,
+        "proxy_total": 10425.95
+      },
+      {
+        "week_label": "14 a 18",
+        "week_key": "14-a-18",
+        "start_date": "2024-04-01",
+        "end_date": "2026-05-03",
+        "month_key": "2024-04",
+        "commissions": -7347.22,
+        "promotions": 11957.56,
+        "freight": 5389.05,
+        "incentives": 776.8,
+        "markup": 10950.01,
+        "manual_payments": -820.2,
+        "proxy_total": 20906.0
+      },
+      {
+        "week_label": "36 a 40",
+        "week_key": "36-a-40",
+        "start_date": "2024-09-03",
+        "end_date": "2025-10-05",
+        "month_key": "2024-09",
+        "commissions": -5121.49,
+        "promotions": 10528.57,
+        "freight": 3998.86,
+        "incentives": 311.0,
+        "markup": 4439.79,
+        "manual_payments": 100.96,
+        "proxy_total": 14257.69
+      },
+      {
+        "week_label": "10 a 14",
+        "week_key": "10-a-14",
+        "start_date": "2025-03-03",
+        "end_date": "2025-04-06",
+        "month_key": "2025-03",
+        "commissions": -3318.4,
+        "promotions": 4164.37,
+        "freight": 3190.62,
+        "incentives": 0.0,
+        "markup": 8014.22,
+        "manual_payments": 1356.92,
+        "proxy_total": 13407.73
+      },
+      {
+        "week_label": "18 a 22",
+        "week_key": "18-a-22",
+        "start_date": "2025-04-29",
+        "end_date": "2025-06-01",
+        "month_key": "2025-04",
+        "commissions": -3068.84,
+        "promotions": 4955.19,
+        "freight": 2974.92,
+        "incentives": -576.0,
+        "markup": 7276.09,
+        "manual_payments": 11101.78,
+        "proxy_total": 22663.14
       },
       {
         "week_label": "45 a 48",
@@ -161,11 +273,11 @@
         "month_key": "2025-11",
         "commissions": -3333.6,
         "promotions": 7807.99,
-        "freight": -347.72,
+        "freight": -173.86,
         "incentives": -942.5,
         "markup": 8758.52,
         "manual_payments": 1790.94,
-        "proxy_total": 13733.63
+        "proxy_total": 13907.49
       },
       {
         "week_label": "49 a 1",
@@ -175,67 +287,11 @@
         "month_key": "2025-12",
         "commissions": -5918.17,
         "promotions": 8196.36,
-        "freight": 2719.82,
+        "freight": 1359.91,
         "incentives": -916.0,
         "markup": 10597.08,
         "manual_payments": 500.07,
-        "proxy_total": 15179.16
-      },
-      {
-        "week_label": "1 a 5",
-        "week_key": "1-a-5",
-        "start_date": "2025-12-29",
-        "end_date": "2026-01-04",
-        "month_key": "2025-12",
-        "commissions": -1730.86,
-        "promotions": 1611.6,
-        "freight": 583.16,
-        "incentives": -329.0,
-        "markup": 3206.17,
-        "manual_payments": 292.58,
-        "proxy_total": 3633.65
-      },
-      {
-        "week_label": "5 a 9",
-        "week_key": "5-a-9",
-        "start_date": "2026-02-05",
-        "end_date": "2026-03-01",
-        "month_key": "2026-02",
-        "commissions": -1908.5,
-        "promotions": 4313.42,
-        "freight": 2292.92,
-        "incentives": -557.5,
-        "markup": 3860.79,
-        "manual_payments": -1346.0,
-        "proxy_total": 6655.14
-      },
-      {
-        "week_label": "9 a 13",
-        "week_key": "9-a-13",
-        "start_date": "2026-02-24",
-        "end_date": "2026-03-29",
-        "month_key": "2026-02",
-        "commissions": -3399.9,
-        "promotions": 6014.53,
-        "freight": 1523.54,
-        "incentives": -796.5,
-        "markup": 3487.27,
-        "manual_payments": -2336.43,
-        "proxy_total": 4492.51
-      },
-      {
-        "week_label": "14 a 18",
-        "week_key": "14-a-18",
-        "start_date": "2026-03-31",
-        "end_date": "2026-05-03",
-        "month_key": "2026-03",
-        "commissions": -4739.83,
-        "promotions": 7919.81,
-        "freight": 1620.08,
-        "incentives": 768.0,
-        "markup": 3128.52,
-        "manual_payments": -2695.74,
-        "proxy_total": 6000.84
+        "proxy_total": 13819.25
       },
       {
         "week_label": "23 a 27",
@@ -245,11 +301,11 @@
         "month_key": "2026-06",
         "commissions": -4588.12,
         "promotions": 7983.69,
-        "freight": 8904.95,
+        "freight": 4452.48,
         "incentives": 151.2,
         "markup": 4088.87,
         "manual_payments": -1349.42,
-        "proxy_total": 15191.17
+        "proxy_total": 10738.69
       },
       {
         "week_label": "24 a 28",
@@ -259,11 +315,11 @@
         "month_key": "2026-06",
         "commissions": -3917.95,
         "promotions": 6896.04,
-        "freight": 8675.13,
+        "freight": 4337.57,
         "incentives": 0.0,
         "markup": 3130.04,
         "manual_payments": -911.39,
-        "proxy_total": 13871.87
+        "proxy_total": 9534.3
       },
       {
         "week_label": "27 a 28",
@@ -273,93 +329,143 @@
         "month_key": "2026-06",
         "commissions": -2653.86,
         "promotions": 4332.52,
-        "freight": 5217.24,
+        "freight": 2608.62,
         "incentives": 0.0,
         "markup": 1565.81,
         "manual_payments": 215.38,
-        "proxy_total": 8677.09
+        "proxy_total": 6068.47
       }
     ],
     "monthly": [
       {
-        "month_key": "2025-07",
-        "commissions": -4079.53,
-        "promotions": 7358.2,
-        "freight": 6407.16,
-        "incentives": 841.0,
-        "markup": 3560.11,
-        "manual_payments": 259.96,
-        "proxy_total": 14346.91
+        "month_key": "2023-07",
+        "commissions": -11519.35,
+        "promotions": 23301.73,
+        "freight": 19296.72,
+        "incentives": 4908.95,
+        "markup": 12961.66,
+        "manual_payments": -5.99,
+        "proxy_total": 48943.72
       },
       {
-        "month_key": "2025-09",
-        "commissions": -4531.58,
-        "promotions": 9227.22,
-        "freight": 3631.54,
-        "incentives": -7.0,
-        "markup": 3579.6,
-        "manual_payments": 404.82,
-        "proxy_total": 12304.59
+        "month_key": "2023-08",
+        "commissions": -551.19,
+        "promotions": 1681.03,
+        "freight": 2003.77,
+        "incentives": 51.0,
+        "markup": 1443.24,
+        "manual_payments": 264.62,
+        "proxy_total": 4892.47
       },
       {
-        "month_key": "2025-10",
-        "commissions": -4015.93,
-        "promotions": 8889.12,
-        "freight": 173.58,
-        "incentives": -942.5,
-        "markup": 9764.25,
-        "manual_payments": 2008.29,
-        "proxy_total": 15876.81
+        "month_key": "2023-10",
+        "commissions": -9495.19,
+        "promotions": 19568.88,
+        "freight": 9519.55,
+        "incentives": 121.85,
+        "markup": 20607.5,
+        "manual_payments": 3767.98,
+        "proxy_total": 44090.58
+      },
+      {
+        "month_key": "2023-11",
+        "commissions": -2163.77,
+        "promotions": 3530.58,
+        "freight": 4223.9,
+        "incentives": 1116.4,
+        "markup": 7636.11,
+        "manual_payments": 4407.76,
+        "proxy_total": 18750.98
+      },
+      {
+        "month_key": "2024-01",
+        "commissions": -7596.23,
+        "promotions": 11402.6,
+        "freight": 10845.89,
+        "incentives": -15.1,
+        "markup": 20786.82,
+        "manual_payments": 1730.22,
+        "proxy_total": 37154.2
+      },
+      {
+        "month_key": "2024-02",
+        "commissions": -4073.19,
+        "promotions": 7198.74,
+        "freight": 3540.1,
+        "incentives": -634.1,
+        "markup": 5797.07,
+        "manual_payments": -1402.66,
+        "proxy_total": 10425.95
+      },
+      {
+        "month_key": "2024-04",
+        "commissions": -7347.22,
+        "promotions": 11957.56,
+        "freight": 5389.05,
+        "incentives": 776.8,
+        "markup": 10950.01,
+        "manual_payments": -820.2,
+        "proxy_total": 20906.0
+      },
+      {
+        "month_key": "2024-09",
+        "commissions": -5121.49,
+        "promotions": 10528.57,
+        "freight": 3998.86,
+        "incentives": 311.0,
+        "markup": 4439.79,
+        "manual_payments": 100.96,
+        "proxy_total": 14257.69
+      },
+      {
+        "month_key": "2025-03",
+        "commissions": -3318.4,
+        "promotions": 4164.37,
+        "freight": 3190.62,
+        "incentives": 0.0,
+        "markup": 8014.22,
+        "manual_payments": 1356.92,
+        "proxy_total": 13407.73
+      },
+      {
+        "month_key": "2025-04",
+        "commissions": -3068.84,
+        "promotions": 4955.19,
+        "freight": 2974.92,
+        "incentives": -576.0,
+        "markup": 7276.09,
+        "manual_payments": 11101.78,
+        "proxy_total": 22663.14
       },
       {
         "month_key": "2025-11",
         "commissions": -3333.6,
         "promotions": 7807.99,
-        "freight": -347.72,
+        "freight": -173.86,
         "incentives": -942.5,
         "markup": 8758.52,
         "manual_payments": 1790.94,
-        "proxy_total": 13733.63
+        "proxy_total": 13907.49
       },
       {
         "month_key": "2025-12",
-        "commissions": -7649.03,
-        "promotions": 9807.96,
-        "freight": 3302.98,
-        "incentives": -1245.0,
-        "markup": 13803.25,
-        "manual_payments": 792.65,
-        "proxy_total": 18812.81
-      },
-      {
-        "month_key": "2026-02",
-        "commissions": -5308.39,
-        "promotions": 10327.95,
-        "freight": 3816.46,
-        "incentives": -1354.0,
-        "markup": 7348.06,
-        "manual_payments": -3682.43,
-        "proxy_total": 11147.65
-      },
-      {
-        "month_key": "2026-03",
-        "commissions": -4739.83,
-        "promotions": 7919.81,
-        "freight": 1620.08,
-        "incentives": 768.0,
-        "markup": 3128.52,
-        "manual_payments": -2695.74,
-        "proxy_total": 6000.84
+        "commissions": -5918.17,
+        "promotions": 8196.36,
+        "freight": 1359.91,
+        "incentives": -916.0,
+        "markup": 10597.08,
+        "manual_payments": 500.07,
+        "proxy_total": 13819.25
       },
       {
         "month_key": "2026-06",
         "commissions": -11159.94,
         "promotions": 19212.25,
-        "freight": 22797.32,
+        "freight": 11398.66,
         "incentives": 151.2,
         "markup": 8784.72,
         "manual_payments": -2045.43,
-        "proxy_total": 37740.12
+        "proxy_total": 26341.46
       }
     ]
   },
@@ -368,174 +474,170 @@
       {
         "product": "Spaten 473ml",
         "commission_total": 0.0,
-        "markup_total": 9596.03,
-        "units": 20526.0
-      },
-      {
-        "product": "Brahma 300ml | Apenas o Líquido",
-        "commission_total": 0.0,
-        "markup_total": 5296.94,
-        "units": 36622.0
-      },
-      {
-        "product": "Cerveja Corona Extra 330ml",
-        "commission_total": 0.0,
-        "markup_total": 4971.31,
-        "units": 10054.0
-      },
-      {
-        "product": "Stella Pure Gold 330ml",
-        "commission_total": 0.0,
-        "markup_total": 4762.84,
-        "units": 11454.0
-      },
-      {
-        "product": "Stella Pure Gold 473ml",
-        "commission_total": 0.0,
-        "markup_total": 4748.32,
-        "units": 16558.0
+        "markup_total": 16022.48,
+        "units": 46580.0
       },
       {
         "product": "Antarctica Pilsen 300ml | Apenas o Líquido",
         "commission_total": 0.0,
-        "markup_total": 4594.14,
-        "units": 39127.0
+        "markup_total": 12298.89,
+        "units": 104630.0
+      },
+      {
+        "product": "Brahma 300ml | Apenas o Líquido",
+        "commission_total": 0.0,
+        "markup_total": 9127.17,
+        "units": 80909.0
+      },
+      {
+        "product": "Cerveja Corona Extra 330ml",
+        "commission_total": 0.0,
+        "markup_total": 7927.34,
+        "units": 24051.0
+      },
+      {
+        "product": "Brahma Chopp 473ml",
+        "commission_total": 0.0,
+        "markup_total": 6348.89,
+        "units": 19749.0
       },
       {
         "product": "Stella Artois 473ml",
         "commission_total": 0.0,
-        "markup_total": 3893.23,
-        "units": 8827.0
+        "markup_total": 6138.89,
+        "units": 22166.0
+      },
+      {
+        "product": "Antarctica Pilsen 473ml",
+        "commission_total": 0.0,
+        "markup_total": 5887.57,
+        "units": 47547.0
       },
       {
         "product": "Original 473ml",
         "commission_total": 0.0,
-        "markup_total": 2075.94,
-        "units": 6005.0
+        "markup_total": 5694.72,
+        "units": 19660.0
+      },
+      {
+        "product": "Stella Pure Gold 330ml",
+        "commission_total": 0.0,
+        "markup_total": 5060.4,
+        "units": 19244.0
+      },
+      {
+        "product": "Stella Pure Gold 473ml",
+        "commission_total": 0.0,
+        "markup_total": 4685.29,
+        "units": 20459.0
+      },
+      {
+        "product": "Brahma 473ml",
+        "commission_total": 0.0,
+        "markup_total": 3918.02,
+        "units": 41802.0
       },
       {
         "product": "Stella Artois 330ml",
         "commission_total": 0.0,
-        "markup_total": 1979.36,
-        "units": 4472.0
-      },
-      {
-        "product": "Corona 473ml",
-        "commission_total": 0.0,
-        "markup_total": 1901.44,
-        "units": 3542.0
-      },
-      {
-        "product": "Spaten 330ml",
-        "commission_total": 0.0,
-        "markup_total": 1648.26,
-        "units": 4081.0
-      },
-      {
-        "product": "Spaten 350ml",
-        "commission_total": 0.0,
-        "markup_total": 1379.95,
-        "units": 3136.0
+        "markup_total": 3840.72,
+        "units": 13396.0
       }
     ],
     "promotion_buckets": [
       {
         "label": "Cupom",
-        "value": 58220.02
+        "value": 118452.1
       },
       {
         "label": "Desconto Zé",
-        "value": 10426.06
+        "value": 3009.45
       },
       {
         "label": "Brindes",
-        "value": 987.96
+        "value": 1127.84
       }
     ],
     "top_drivers": [
       {
+        "label": "Sem entregador informado (Retirada)",
+        "value": 38575.92
+      },
+      {
         "label": "kauanssantos050706@gmail.com",
-        "value": 6290.66
+        "value": 3145.33
       },
       {
         "label": "tg.fernandes.silva@gmail.com",
-        "value": 5562.32
+        "value": 2781.16
       },
       {
         "label": "ml0626048@gmail.com",
-        "value": 4866.31
+        "value": 2594.13
       },
       {
-        "label": "juliano32soares@gmail.com",
-        "value": 4188.7
-      },
-      {
-        "label": "harlintonleal18@gmail.com",
-        "value": 3527.31
+        "label": "anacarolinaandrade2405@gmail.com",
+        "value": 2283.49
       },
       {
         "label": "dglucas05@gmail.com",
-        "value": 2315.54
+        "value": 2240.54
       },
       {
-        "label": "lucas.sana14@gmail.com",
-        "value": 2023.68
+        "label": "lequinhosantos40@gmail.com",
+        "value": 2103.35
       },
       {
-        "label": "patrick.rodrigues0818@gmail.com",
-        "value": 1803.0
+        "label": "juliano32soares@gmail.com",
+        "value": 2094.35
       },
       {
-        "label": "mirandadasilvaalisson@gmail.com",
-        "value": 1785.34
+        "label": "oliveiraronald951@gmail.com",
+        "value": 2021.55
       },
       {
-        "label": "arianealexia777@gmail.com",
-        "value": 919.32
+        "label": "harlintonleal18@gmail.com",
+        "value": 1871.49
       }
     ],
     "delivery_types": [
       {
         "label": "Comum",
-        "value": 41401.4
+        "value": 38992.17
       },
       {
         "label": "Retirada",
-        "value": 0.0
-      },
-      {
-        "label": "Pedidos por Entregador",
-        "value": 0.0
-      },
-      {
-        "label": "Frete por Entregador",
-        "value": 0.0
+        "value": 38575.92
       }
     ],
     "manual_types": [
       {
         "label": "Frete",
-        "value": 11579.77
-      },
-      {
-        "label": "Incentivos",
-        "value": 3521.5
-      },
-      {
-        "label": "Comissão Marketplace",
-        "value": 652.97
-      },
-      {
-        "label": "Cupom",
-        "value": 61.53
+        "value": 18219.91
       },
       {
         "label": "Markup",
-        "value": 10.47
+        "value": 14510.0
+      },
+      {
+        "label": "Incentivos",
+        "value": 6327.45
+      },
+      {
+        "label": "Amostra Grátis",
+        "value": 566.2
       },
       {
         "label": "Descontos Marketplace",
-        "value": -260.28
+        "value": 550.19
+      },
+      {
+        "label": "Cupom",
+        "value": 151.53
+      },
+      {
+        "label": "Comissão Marketplace",
+        "value": -845.41
       },
       {
         "label": "Plataforma",
@@ -594,9 +696,21 @@
     ],
     "incentive_indicators": [
       {
+        "label": "Entregas em até 35min",
+        "value": 2577.8,
+        "orders": 20176.0,
+        "closing": [
+          "100%",
+          "40%"
+        ],
+        "target": [
+          "90%"
+        ]
+      },
+      {
         "label": "Tempo Médio de Liberação",
-        "value": 831.5,
-        "orders": 17162.0,
+        "value": 1542.0,
+        "orders": 23955.0,
         "closing": [
           "50%"
         ],
@@ -605,33 +719,48 @@
         ]
       },
       {
-        "label": "Entregas em até 35min",
-        "value": 624.8,
-        "orders": 5915.0,
+        "label": "Avaliação dos clientes Faixa A",
+        "value": 1282.8,
+        "orders": 8567.0,
         "closing": [
           "40%"
         ],
         "target": [
-          "90%"
+          "5%"
+        ]
+      },
+      {
+        "label": "Taxa de aceitação",
+        "value": 1229.85,
+        "orders": 13875.0,
+        "closing": [
+          "40%",
+          "45%"
+        ],
+        "target": [
+          "93%",
+          "95%"
         ]
       },
       {
         "label": "Disponibilidade",
-        "value": 451.5,
-        "orders": 23077.0,
+        "value": 1177.05,
+        "orders": 52091.0,
         "closing": [
           "40%",
+          "45%",
           "50%"
         ],
         "target": [
+          "Maior ou igual a 90%",
           "Maior ou igual a 94%",
           "Maior ou igual a 96%"
         ]
       },
       {
         "label": "Entrega em 35 minutos",
-        "value": 420.5,
-        "orders": 17162.0,
+        "value": 841.0,
+        "orders": 23955.0,
         "closing": [
           "50%"
         ],
@@ -640,20 +769,77 @@
         ]
       },
       {
-        "label": "Tempo médio de liberação",
-        "value": 294.4,
-        "orders": 5915.0,
+        "label": "Avaliação dos clientes",
+        "value": 548.4,
+        "orders": 7960.0,
         "closing": [
-          "40%"
+          "20%"
         ],
         "target": [
+          "5%"
+        ]
+      },
+      {
+        "label": "Tempo médio de liberação Faixa A",
+        "value": 484.2,
+        "orders": 8567.0,
+        "closing": [
+          "30%"
+        ],
+        "target": [
+          "88%"
+        ]
+      },
+      {
+        "label": "Tempo médio de liberação",
+        "value": 419.5,
+        "orders": 13875.0,
+        "closing": [
+          "40%",
+          "45%"
+        ],
+        "target": [
+          "80%",
           "87%"
         ]
       },
       {
+        "label": "Avaliação dos clientes Faixa B",
+        "value": 395.0,
+        "orders": 8567.0,
+        "closing": [
+          "20%"
+        ],
+        "target": [
+          "5%"
+        ]
+      },
+      {
+        "label": "Disponibilidade Faixa A",
+        "value": 207.6,
+        "orders": 8567.0,
+        "closing": [
+          "30%"
+        ],
+        "target": [
+          "95%"
+        ]
+      },
+      {
+        "label": "Avaliação dos clientes Faixa C",
+        "value": 159.8,
+        "orders": 8567.0,
+        "closing": [
+          "20%"
+        ],
+        "target": [
+          "5%"
+        ]
+      },
+      {
         "label": "Portfólio Ideal",
-        "value": 0.0,
-        "orders": 23077.0,
+        "value": 103.5,
+        "orders": 44131.0,
         "closing": [
           "40%",
           "50%"
@@ -663,20 +849,119 @@
         ]
       },
       {
-        "label": "Taxa de aceitação",
-        "value": 0.0,
-        "orders": 5915.0,
+        "label": "Tempo médio de liberação Faixa B",
+        "value": 67.5,
+        "orders": 8567.0,
         "closing": [
-          "40%"
+          "10%"
+        ],
+        "target": [
+          "92%"
+        ]
+      },
+      {
+        "label": "Tempo médio de liberação Faixa C",
+        "value": 0.0,
+        "orders": 8567.0,
+        "closing": [
+          "10%"
         ],
         "target": [
           "95%"
         ]
       },
       {
+        "label": "Disponibilidade Faixa B",
+        "value": 0.0,
+        "orders": 8567.0,
+        "closing": [
+          "10%"
+        ],
+        "target": [
+          "97%"
+        ]
+      },
+      {
+        "label": "Disponibilidade Faixa C",
+        "value": 0.0,
+        "orders": 8567.0,
+        "closing": [
+          "10%"
+        ],
+        "target": [
+          "100%"
+        ]
+      },
+      {
+        "label": "SLA35",
+        "value": 0.0,
+        "orders": 1002.0,
+        "closing": [
+          "50%"
+        ],
+        "target": [
+          "90%"
+        ]
+      },
+      {
+        "label": "TML",
+        "value": 0.0,
+        "orders": 1002.0,
+        "closing": [
+          "50%"
+        ],
+        "target": [
+          "87%"
+        ]
+      },
+      {
+        "label": "DISPO",
+        "value": 0.0,
+        "orders": 1002.0,
+        "closing": [
+          "50%"
+        ],
+        "target": [
+          "94%"
+        ]
+      },
+      {
+        "label": "PORTIFOLIO IDEAL",
+        "value": 0.0,
+        "orders": 1002.0,
+        "closing": [
+          "50%"
+        ],
+        "target": [
+          "90%"
+        ]
+      },
+      {
+        "label": "Taxa de rastreio",
+        "value": 0.0,
+        "orders": 7960.0,
+        "closing": [
+          "20%"
+        ],
+        "target": [
+          "94%"
+        ]
+      },
+      {
+        "label": "FILL RATE",
+        "value": -501.0,
+        "orders": 1002.0,
+        "closing": [
+          "0%"
+        ],
+        "target": [
+          "92%"
+        ]
+      },
+      {
         "label": "Taxa de Aceitação",
-        "value": -5353.5,
-        "orders": 17162.0,
+        "value": -6181.5,
+        "orders": 23955.0,
         "closing": [
           "0%"
         ],

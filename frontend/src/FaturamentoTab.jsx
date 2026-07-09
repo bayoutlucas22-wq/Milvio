@@ -76,6 +76,8 @@ export default function FaturamentoTab() {
   const totalDesc   = monthly.reduce((s, m) => s + m.desconto, 0)
   const totalRes    = monthly.reduce((s, m) => s + m.resultado_proxy, 0)
   const totalPed    = monthly.reduce((s, m) => s + m.pedidos, 0)
+  
+  const weeksCount  = Math.max(1, Math.round(daily.length / 7))
 
   // What Zé actually PAYS to Milvinho = Proxy Total (net of all 6 components)
   // Faturamento = what CUSTOMERS paid to Zé — reference only, not Milvinho's income
@@ -133,10 +135,10 @@ export default function FaturamentoTab() {
             <strong style={{ color: '#93c5fd', fontSize: '24px', display: 'block', marginBottom: '6px' }}>{money(totalFat)}</strong>
             Receita bruta das vendas. É o que entrou pelas vendas. Ainda não é lucro.
           </div>
-          <div style={{ padding: '18px', borderRadius: '16px', background: 'rgba(96,211,148,0.16)', border: '1px solid #2d7a3d', textAlign: 'center', minHeight: '118px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div style={{ fontSize: '11px', color: '#aedec0', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Resultado do depósito</div>
-            <strong style={{ fontSize: '34px', fontWeight: 900, color: '#79e6a6', lineHeight: 1 }}>{money(proxyTotal)}</strong>
-            <div style={{ fontSize: '13px', color: '#aedec0', marginTop: '6px' }}>~{money(Math.round(proxyTotal/14))}/semana · 14 semanas</div>
+          <div style={{ padding: '14px', borderRadius: '8px', background: 'rgba(96,211,148,0.15)', border: '1px solid #2d7a3d', textAlign: 'center' }}>
+            <div style={{ fontSize: '11px', color: '#8aaf9a', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.8px' }}>= O Zé paga ao Milvinho</div>
+            <strong style={{ fontSize: '28px', fontWeight: 800, color: '#60d394' }}>{money(proxyTotal)}</strong>
+            <div style={{ fontSize: '12px', color: '#8aaf9a', marginTop: '4px' }}>~{money(Math.round(proxyTotal/weeksCount))}/semana · {weeksCount} semanas</div>
           </div>
         </div>
         <div style={{ marginTop: '12px', fontSize: '12px', color: '#cfe2d5', padding: '12px 14px', borderRadius: '14px', background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)' }}>
@@ -146,16 +148,16 @@ export default function FaturamentoTab() {
       </section>
 
       {/* KPIs */}
-      <div className="kpi-grid">
-        <KPI label="Resultado do depósito" value={money(proxyTotal)} sub={`~${money(Math.round(proxyTotal/14))}/semana`} color="var(--green)" />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px' }}>
+        <KPI label="O Zé Paga (Proxy Total)" value={money(proxyTotal)} sub={`~${money(Math.round(proxyTotal/weeksCount))}/semana`} color="var(--green)" />
         <KPI label="Faturamento bruto" value={money(totalFat)} sub="o que o cliente pagou ao Zé" color="#60a5fa" />
         <KPI label="Comissão Cobrada" value={money(totalComm)} sub={`${(Math.abs(totalComm)/totalFat*100).toFixed(1)}% do faturamento`} color="#ef4444" />
         <KPI label="Total de Pedidos" value={integer(totalPed)} sub={`ticket médio ${money(totalPed > 0 ? totalFat/totalPed : 0)}`} />
         <KPI label="Promoções" value={money(totalDesc)} color="#7b5ea7" sub="Zé banca os descontos" />
         <KPI label="Markup" value={money(totalMarkup)} color={totalMarkup >= 0 ? 'var(--green)' : '#ef4444'} sub="margem acima da tabela Ambev" />
         <KPI label="Frete" value={money(totalFrete)} color="var(--green)" sub="subsídio logístico do Zé" />
+        <KPI label={`${daily.length} dias processados`} value={`${weeksCount} semanas`} sub="dados dos relatórios raw" />
       </div>
-
 
       {/* Toggle */}
       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>

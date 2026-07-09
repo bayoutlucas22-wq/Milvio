@@ -20,12 +20,14 @@ import {
   ChartNoAxesCombined,
   Database,
   PackageSearch,
+  FolderTree,
+  BookOpen,
   RefreshCw,
-  TrendingUp,
 } from 'lucide-react'
 import fallbackAnalytics from './analytics.json'
-import { compactDate, integer, money, monthLabel } from './lib/format'
+import { compactDate, integer, money } from './lib/format'
 import FaturamentoTab from './FaturamentoTab'
+import ResearchTab from './ResearchTab'
 
 const REPORT_LABELS = {
   commissions: 'Comissões',
@@ -48,17 +50,17 @@ const COMPONENT_COLORS = {
 
 const TABS = [
   { id: 'faturamento', label: 'Faturamento', icon: ChartNoAxesCombined },
-  { id: 'integracoes', label: 'Integrações', icon: ArrowRight },
+  { id: 'research', label: 'Research', icon: BookOpen },
   { id: 'operation', label: 'Operação', icon: PackageSearch },
-  { id: 'faturamento_v2', label: 'Faturamento v2', icon: TrendingUp },
   { id: 'mongo', label: 'Mongo', icon: Database },
+  { id: 'artifacts', label: 'Artifacts', icon: FolderTree },
 ]
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('faturamento')
   const [payload, setPayload] = useState({ source: 'bundle', data: fallbackAnalytics })
-  const [faturamentoV2, setFaturamentoV2] = useState({ loading: true, data: null, error: '' })
   const [mongoPayload, setMongoPayload] = useState({ loading: true, data: null, error: '' })
+  const [artifactPayload, setArtifactPayload] = useState({ loading: true, data: [], error: '' })
   const ActiveIcon = TABS.find((tab) => tab.id === activeTab)?.icon ?? Boxes
   const analytics = payload.data
 
@@ -83,30 +85,6 @@ export default function App() {
 
   useEffect(() => {
     let active = true
-    Promise.all([
-      fetch('/timeline_monthly.json').then((response) => {
-        if (!response.ok) throw new Error(`timeline monthly request failed: ${response.status}`)
-        return response.json()
-      }),
-      fetch('/timeline_daily.json').then((response) => {
-        if (!response.ok) throw new Error(`timeline daily request failed: ${response.status}`)
-        return response.json()
-      }),
-    ])
-      .then(([monthly, daily]) => {
-        if (active) setFaturamentoV2({ loading: false, data: { monthly, daily }, error: '' })
-      })
-      .catch((error) => {
-        if (active) setFaturamentoV2({ loading: false, data: null, error: error.message })
-      })
-
-    return () => {
-      active = false
-    }
-  }, [])
-
-  useEffect(() => {
-    let active = true
     fetch('/api/mongo/overview')
       .then((response) => {
         if (!response.ok) throw new Error(`mongo request failed: ${response.status}`)
@@ -117,6 +95,25 @@ export default function App() {
       })
       .catch((error) => {
         if (active) setMongoPayload({ loading: false, data: null, error: error.message })
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  useEffect(() => {
+    let active = true
+    fetch('/api/artifacts')
+      .then((response) => {
+        if (!response.ok) throw new Error(`artifacts request failed: ${response.status}`)
+        return response.json()
+      })
+      .then((response) => {
+        if (active) setArtifactPayload({ loading: false, data: response, error: '' })
+      })
+      .catch((error) => {
+        if (active) setArtifactPayload({ loading: false, data: [], error: error.message })
       })
 
     return () => {
@@ -157,7 +154,9 @@ export default function App() {
       <main className="workspace">
         <header className="topbar">
           <div>
-            <p className="section-kicker">jul/2025 → jul/2026 · 267 dias · {integer(analytics.scope.json_files)} artifacts</p>
+            <p className="section-kicker">
+              2023 → jan/2025 · visão anual fechada · {integer(analytics.scope.json_files)} artifacts
+            </p>
             <h1>Milvio — Dashboard Financeiro Zé Delivery</h1>
           </div>
         </header>
@@ -168,10 +167,10 @@ export default function App() {
         </section>
 
         {activeTab === 'faturamento' && <FaturamentoTab />}
-        {activeTab === 'integracoes' && <IntegracoesTab />}
+        {activeTab === 'research' && <ResearchTab />}
         {activeTab === 'operation' && <OperationTab data={analytics} />}
-        {activeTab === 'faturamento_v2' && <FaturamentoV2Tab state={faturamentoV2} />}
         {activeTab === 'mongo' && <MongoTab state={mongoPayload} />}
+        {activeTab === 'artifacts' && <ArtifactsTab state={artifactPayload} />}
       </main>
     </div>
   )
@@ -530,112 +529,7 @@ function OperationTab({ data }) {
   )
 }
 
-function IntegracoesTab() {
-  const cards = [
-    {
-      title: 'Authentication',
-      short: 'Primeiro passo',
-      summary: 'OAuth2 `client_credentials` para obter o access token e liberar as rotas.',
-      use: 'Usar antes de qualquer integração com a Seller Public API.',
-      avoid: 'Não é rota de negócio. É só autenticação.',
-    },
-    {
-      title: 'Reports',
-      short: 'Dashboard e conciliação',
-      summary: 'KPIs do PDV por `HOUR`, `DAY`, `WEEK` ou `MONTH` e repasses financeiros por pedido.',
-      use: 'Quando o objetivo é entender resultado, conciliação e indicadores do estabelecimento.',
-      avoid: 'Não serve para operar pedido em tempo real.',
-    },
-    {
-      title: 'Orders',
-      short: 'Ciclo do pedido',
-      summary: 'Consulta, confirmação, solicitação de cancelamento, cancelamento direto e ajuste/restauração de itens.',
-      use: 'Quando o pedido já existe e você precisa decidir o que fazer com ele.',
-      avoid: 'Não é substituto de fila/eventos nem de catálogo.',
-    },
-    {
-      title: 'Events',
-      short: 'Polling de status',
-      summary: 'Busca eventos pendentes e faz acknowledgment depois do processamento.',
-      use: 'Quando a integração precisa acompanhar mudanças de status sem webhook.',
-      avoid: 'Não usar como comando de operação, e o ack só confirma consumo.',
-    },
-    {
-      title: 'Logistics',
-      short: 'Entrega na rua',
-      summary: 'Detalhe da entrega, pickupCode, começo de rota, chegada, validação de código e finalização/cancelamento.',
-      use: 'Quando o entregador ou o sistema precisa executar a jornada da entrega.',
-      avoid: 'Não usar para aceitar/cancelar pedido administrativamente.',
-    },
-    {
-      title: 'Merchants',
-      short: 'Loja / PDV',
-      summary: 'Status do estabelecimento, metadados e abertura/fechamento da loja.',
-      use: 'Quando o foco é disponibilidade do ponto e visão do merchant.',
-      avoid: 'Não serve para SKU, pedido ou relatório financeiro.',
-    },
-    {
-      title: 'Products',
-      short: 'Catálogo',
-      summary: 'Disponibilidade, itens, oferta/preço, promoções, lista de menu e catálogo externo.',
-      use: 'Quando a integração mexe com catálogo e disponibilidade de produto.',
-      avoid: 'Não usar para pedidos, repasse ou status operacional.',
-    },
-  ]
 
-  return (
-    <div className="tab-grid two-col integrations-view">
-      <div className="work-panel integrations-hero" style={{ gridColumn: '1 / -1' }}>
-        <h2>Integrações com a Seller Public API</h2>
-        <p>
-          A API organiza o negócio em blocos reais: autenticação, eventos, pedidos, logística, merchant, catálogo e reports.
-          O jeito certo de integrar é seguir a intenção de cada grupo, não misturar uma rota de pedido com uma rota de report.
-        </p>
-      </div>
-
-      <Panel title="Fluxo prático">
-        <div className="flow-map integrations-flow">
-          <FlowNode title="Auth" subtitle="pega token" tone="source" />
-          <FlowArrow />
-          <FlowNode title="Reports" subtitle="entende o negócio" tone="bridge" />
-          <FlowArrow />
-          <FlowNode title="Orders + Events" subtitle="acompanha o pedido" tone="analysis" />
-          <FlowArrow />
-          <FlowNode title="Logistics" subtitle="executa a entrega" tone="action" />
-        </div>
-      </Panel>
-
-      <Panel title="Grupos da API">
-        <div className="integration-card-grid">
-          {cards.map((card) => (
-            <div className="integration-card" key={card.title}>
-              <div className="integration-card-head">
-                <strong>{card.title}</strong>
-                <span>{card.short}</span>
-              </div>
-              <p>{card.summary}</p>
-              <div className="integration-tag"><b>Usar:</b> {card.use}</div>
-              <div className="integration-tag"><b>Evitar:</b> {card.avoid}</div>
-            </div>
-          ))}
-        </div>
-      </Panel>
-
-      <Panel title="O que a documentação deixa claro">
-        <StudyBlock
-          rows={[
-            'Reports é leitura: KPIs, repasses por pedido e incentivos semanais.',
-            'Orders é decisão sobre o pedido: confirmar, cancelar, ajustar ou restaurar itens.',
-            'Events é polling com acknowledgment, para não depender de webhook.',
-            'Logistics cuida da jornada da entrega e do deliveryCode/pickupCode.',
-            'Merchants cuida do PDV e da disponibilidade operacional da loja.',
-            'Products cuida do catálogo e da disponibilidade dos SKUs.',
-          ]}
-        />
-      </Panel>
-    </div>
-  )
-}
 
 function MongoTab({ state }) {
   const collections = state.data?.collections ?? []
@@ -696,120 +590,143 @@ function MongoTab({ state }) {
   )
 }
 
-function FaturamentoV2Tab({ state }) {
-  const monthly = state.data?.monthly ?? []
-  const daily = state.data?.daily ?? []
-  const yearlyMap = monthly.reduce((acc, row) => {
-    const year = row.month.slice(0, 4)
-    const bucket = acc[year] ?? {
-      year,
-      months: 0,
-      days: 0,
-      faturamento: 0,
-      comissao: 0,
-      markup: 0,
-      frete: 0,
-      desconto: 0,
-      resultado_proxy: 0,
-    }
-    bucket.months += 1
-    bucket.days += Number(row.days ?? 0)
-    bucket.faturamento += Number(row.faturamento ?? 0)
-    bucket.comissao += Number(row.comissao ?? 0)
-    bucket.markup += Number(row.markup ?? 0)
-    bucket.frete += Number(row.frete ?? 0)
-    bucket.desconto += Number(row.desconto ?? 0)
-    bucket.resultado_proxy += Number(row.resultado_proxy ?? 0)
-    acc[year] = bucket
+function ArtifactsTab({ state }) {
+  const [query, setQuery] = useState('')
+  const [selectedFolder, setSelectedFolder] = useState('')
+  const [page, setPage] = useState(1)
+  const itemsPerPage = 20
+  const files = state.data ?? []
+
+  const groups = files.reduce((acc, path) => {
+    const parts = path.split('/')
+    const folder = parts[0] || 'root'
+    if (!acc[folder]) acc[folder] = []
+    acc[folder].push(path)
     return acc
   }, {})
-  const years = Object.values(yearlyMap).sort((a, b) => a.year.localeCompare(b.year))
-  const strongest = years.reduce((best, row) => (row.resultado_proxy > (best?.resultado_proxy ?? -Infinity) ? row : best), years[0] ?? null)
-  const chartData = years.map((year) => ({
-    year: year.year,
-    faturamento: year.faturamento,
-    comissao: year.comissao,
-    markup: year.markup,
-    frete: year.frete,
-    desconto: year.desconto,
-    resultado_proxy: year.resultado_proxy,
-  }))
+
+  const folderNames = Object.keys(groups).sort()
+  const visibleFolders = selectedFolder ? [selectedFolder] : folderNames
+  const filtered = visibleFolders.flatMap((folder) => (
+    (groups[folder] ?? []).filter((path) => path.toLowerCase().includes(query.toLowerCase()))
+  ))
+  
+  const totalPages = Math.ceil(filtered.length / itemsPerPage)
+  const paginated = filtered.slice((page - 1) * itemsPerPage, page * itemsPerPage)
+
+  useEffect(() => {
+    setPage(1)
+  }, [query, selectedFolder])
 
   return (
-    <div className="tab-grid two-col faturamento-v2-view">
-      <div className="work-panel faturamento-v2-hero" style={{ gridColumn: '1 / -1' }}>
-        <h2>Faturamento v2 por ano</h2>
-        <p>
-          Aqui a conta é anual, computada direto do Mongo. Cada card mostra o que entrou e saiu por ano, sem misturar períodos.
+    <div className="tab-grid two-col artifacts-view">
+      <div className="work-panel" style={{ gridColumn: '1 / -1' }}>
+        <h2>Artifacts organizados</h2>
+        <p className="panel-note">
+          A leitura agora acompanha a estrutura nova do `raw`, agrupada por origem. Use a busca para achar um arquivo e o filtro para abrir uma pasta semanal.
         </p>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Buscar arquivo..."
+            style={{ flex: '1 1 240px', padding: '10px 12px', borderRadius: '12px', border: '1px solid var(--line)' }}
+          />
+          <button type="button" className="mongo-sample-toggle" onClick={() => { setQuery(''); setSelectedFolder('') }}>
+            Limpar
+          </button>
+        </div>
+        <div className="mongo-field-chips" style={{ marginBottom: '14px' }}>
+          <span onClick={() => setSelectedFolder('')} style={{ cursor: 'pointer' }}>Todas</span>
+          {folderNames.map((folder) => (
+            <span key={folder} onClick={() => setSelectedFolder(folder)} style={{ cursor: 'pointer' }}>
+              {folder}
+            </span>
+          ))}
+        </div>
       </div>
 
-      <div className="operation-summary-grid">
-        {[
-          { label: 'Anos computados', value: years.length, sub: 'anos encontrados na base', color: '#277da1' },
-          { label: 'Base usada', value: 'timeline_*.json', sub: 'mesmos arquivos do Faturamento v1', color: '#1f7a3b' },
-          { label: 'Melhor ano', value: strongest ? strongest.year : '-', sub: strongest ? money(strongest.resultado_proxy) : 'aguardando dados', color: '#b93b2f' },
-        ].map((item) => (
-          <div key={item.label} className="metric-tile">
-            <span>{item.label}</span>
-            <strong style={{ color: item.color }}>{item.value}</strong>
-            <span style={{ color: 'var(--muted)', fontSize: '11px' }}>{item.sub}</span>
-          </div>
-        ))}
-      </div>
-
-      <Panel title="Resumo anual">
-        {!state.loading && !state.error && years.length > 0 && (
-          <ChartFrame>
-            <ResponsiveContainer width="100%" height={320}>
-              <ComposedChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
-                <YAxis tickFormatter={(value) => shortMoney(value)} />
-                <Tooltip formatter={(value) => money(value)} />
-                <Bar dataKey="faturamento" name="Faturamento" fill="#277da1" stackId="a" />
-                <Bar dataKey="resultado_proxy" name="Resultado" fill={COMPONENT_COLORS.proxy_total} radius={[6, 6, 0, 0]} />
-                <Legend />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </ChartFrame>
-        )}
-        {state.loading && <div className="mongo-empty">Carregando faturamento v2...</div>}
-        {state.error && <div className="mongo-empty negative">Falha ao ler faturamento v2: {state.error}</div>}
+      <Panel title="Lista">
+        {state.loading && <div className="mongo-empty">Carregando artifacts...</div>}
+        {state.error && <div className="mongo-empty negative">Falha ao ler artifacts: {state.error}</div>}
         {!state.loading && !state.error && (
-          <div className="faturamento-year-list">
-            {years.map((year) => (
-              <div className="faturamento-year-card" key={year.year}>
+          <div className="mongo-collection-list">
+            {paginated.map((path) => (
+              <div key={path} className="mongo-card">
                 <div className="mongo-card-head">
                   <div>
-                    <strong>{year.year}</strong>
-                    <span>{year.months} meses · {year.days} dias</span>
+                    <strong>{path.split('/').slice(-1)[0]}</strong>
+                    <span>{path}</span>
                   </div>
-                  <b className={year.resultado_proxy < 0 ? 'negative' : 'positive'}>{money(year.resultado_proxy)}</b>
-                </div>
-                <div className="faturamento-year-grid">
-                  <div><span>Faturamento</span><strong>{money(year.faturamento)}</strong></div>
-                  <div><span>Comissão</span><strong>{money(year.comissao)}</strong></div>
-                  <div><span>Markup</span><strong>{money(year.markup)}</strong></div>
-                  <div><span>Frete</span><strong>{money(year.frete)}</strong></div>
-                  <div><span>Promoções</span><strong>{money(year.desconto)}</strong></div>
-                  <div><span>Resultado</span><strong>{money(year.resultado_proxy)}</strong></div>
                 </div>
               </div>
             ))}
+            
+            {totalPages > 1 && (
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', marginTop: '16px' }}>
+                <button 
+                  disabled={page === 1}
+                  onClick={() => setPage(p => Math.max(1, p - 1))}
+                  style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--line)', background: 'var(--surface)' }}
+                >
+                  Anterior
+                </button>
+                <span style={{ fontSize: '14px', color: 'var(--muted)' }}>Página {page} de {totalPages}</span>
+                <button 
+                  disabled={page === totalPages}
+                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                  style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--line)', background: 'var(--surface)' }}
+                >
+                  Próxima
+                </button>
+              </div>
+            )}
           </div>
         )}
       </Panel>
 
-      <Panel title="O que muda aqui">
+      <Panel title="Resumo">
         <StudyBlock
           rows={[
-            'A leitura usa os mesmos arquivos do Faturamento v1, só que resumidos por ano.',
-            'O cálculo fica mais fácil de comparar porque o ano vira a unidade principal.',
-            'Se um ano estiver estranho, o próximo passo é abrir o mês daquele período e conferir a linha a linha.',
+            `Arquivos encontrados: ${files.length}`,
+            `Pastas na raiz: ${folderNames.length}`,
+            'A tela agora acompanha a estrutura nova do raw, com agrupamento por pasta semanal de origem.',
           ]}
         />
       </Panel>
+    </div>
+  )
+}
+
+
+function KPI({ label, value, sub, color }) {
+  return (
+    <div className="metric-tile">
+      <span>{label}</span>
+      <strong style={{ color: color || 'var(--text)', fontSize: '20px' }}>{value}</strong>
+      {sub && <span style={{ color: 'var(--muted)', fontSize: '11px' }}>{sub}</span>}
+    </div>
+  )
+}
+
+function AnnualTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null
+  return (
+    <div style={{
+      background: '#1b2820',
+      borderRadius: '8px',
+      padding: '10px 14px',
+      fontSize: '12px',
+      color: '#e2ede5',
+      boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+    }}>
+      <strong style={{ display: 'block', marginBottom: '6px' }}>{label}</strong>
+      {payload.map((item) => (
+        <div key={item.dataKey} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
+          <span style={{ color: item.color }}>{item.name}</span>
+          <span>{typeof item.value === 'number' ? money(item.value) : item.value}</span>
+        </div>
+      ))}
     </div>
   )
 }
