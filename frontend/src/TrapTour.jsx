@@ -166,14 +166,17 @@ export default function TrapTour() {
                 </button>
               ) : (
                 <button 
-                  onClick={() => setStep(0)}
+                  onClick={() => {
+                    document.getElementById('golden-ticket')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                  }}
                   style={{
-                    background: 'var(--surface)', border: '1px solid var(--line)', padding: '8px 20px',
-                    borderRadius: '8px', cursor: 'pointer', color: 'var(--text)', fontWeight: 600,
-                    display: 'flex', alignItems: 'center', gap: '8px'
+                    background: 'linear-gradient(90deg, #fbbf24, #f59e0b)', border: 'none', padding: '10px 24px',
+                    borderRadius: '8px', cursor: 'pointer', color: '#78350f', fontWeight: 800,
+                    display: 'flex', alignItems: 'center', gap: '8px',
+                    boxShadow: '0 4px 15px rgba(251, 191, 36, 0.4)'
                   }}
                 >
-                  Recomeçar o Tour
+                  Ver Solução (Golden Ticket)
                 </button>
               )}
             </div>

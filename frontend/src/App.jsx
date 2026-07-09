@@ -28,6 +28,7 @@ import fallbackAnalytics from './analytics.json'
 import { compactDate, integer, money } from './lib/format'
 import FaturamentoTab from './FaturamentoTab'
 import ResearchTab from './ResearchTab'
+import LoginScreen from './LoginScreen'
 
 const REPORT_LABELS = {
   commissions: 'Comissões',
@@ -56,10 +57,14 @@ const TABS = [
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('faturamento')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
   const ActiveIcon = TABS.find((tab) => tab.id === activeTab)?.icon ?? Boxes
   const analytics = fallbackAnalytics
 
-
+  if (!isAuthenticated) {
+    return <LoginScreen onLogin={() => setIsAuthenticated(true)} />
+  }
 
   return (
     <div className="analysis-shell">

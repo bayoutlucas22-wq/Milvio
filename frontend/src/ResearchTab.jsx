@@ -256,39 +256,65 @@ export default function ResearchTab() {
         </div>
       </div>
 
-      {/* PRÓXIMOS PASSOS */}
-      <div style={{ background: 'var(--surface-2)', border: '1px solid #10b981', borderRadius: '12px', padding: '24px', marginTop: '16px' }}>
-        <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '20px', margin: '0 0 16px 0', color: '#10b981' }}>
-          <Zap size={24} color="#10b981" />
-          Próximos Passos: Como Virar o Jogo
+      {/* PRÓXIMOS PASSOS (GOLDEN TICKET) */}
+      <div id="golden-ticket" style={{ 
+        background: 'linear-gradient(135deg, #453411 0%, #785a1a 50%, #453411 100%)', 
+        border: '2px solid #fbbf24', 
+        borderRadius: '16px', 
+        padding: '32px', 
+        marginTop: '32px',
+        boxShadow: '0 0 40px rgba(251, 191, 36, 0.4), inset 0 0 20px rgba(251, 191, 36, 0.2)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <style>
+          {`
+            @keyframes shimmer {
+              0% { transform: translateX(-150%) skewX(-20deg); }
+              100% { transform: translateX(250%) skewX(-20deg); }
+            }
+            .shimmer-effect::after {
+              content: '';
+              position: absolute;
+              top: 0; left: 0; right: 0; bottom: 0;
+              background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+              animation: shimmer 4s infinite;
+            }
+          `}
+        </style>
+        <div className="shimmer-effect" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} />
+
+        <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '24px', margin: '0 0 16px 0', color: '#fef08a', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 900 }}>
+          <Zap size={28} color="#fef08a" />
+          Golden Ticket: Como Virar o Jogo
         </h2>
-        <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>
+        <p style={{ color: '#fef9c3', fontSize: '16px', lineHeight: 1.6, marginBottom: '24px', position: 'relative', zIndex: 1 }}>
           Você não precisa ser refém dessa armadilha logística. As alternativas para virar esse jogo incluem:
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '24px' }}>
-          <div style={{ background: 'var(--surface)', padding: '20px', borderRadius: '8px', border: '1px solid var(--line)' }}>
-            <h3 style={{ fontSize: '15px', color: '#60a5fa', marginBottom: '8px' }}>1. Mudar para Entregador Autônomo</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '13px', lineHeight: 1.6, margin: 0 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+          <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(251, 191, 36, 0.5)' }}>
+            <h3 style={{ fontSize: '15px', color: '#fde047', marginBottom: '8px' }}>1. Mudar para Entregador Autônomo</h3>
+            <p style={{ color: '#fef9c3', fontSize: '13px', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>
               Solicite a alteração do seu contrato para que a gestão logística seja centralizada e o pagamento do frete seja feito diretamente pelo aplicativo, tirando o peso do custo fixo das suas costas.
             </p>
           </div>
-          <div style={{ background: 'var(--surface)', padding: '20px', borderRadius: '8px', border: '1px solid var(--line)' }}>
-            <h3 style={{ fontSize: '15px', color: '#a855f7', marginBottom: '8px' }}>2. Repassar o Custo Invisível</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '13px', lineHeight: 1.6, margin: 0 }}>
+          <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(251, 191, 36, 0.5)' }}>
+            <h3 style={{ fontSize: '15px', color: '#fde047', marginBottom: '8px' }}>2. Repassar o Custo Invisível</h3>
+            <p style={{ color: '#fef9c3', fontSize: '13px', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>
               Aumente a sua taxa de entrega e reajuste a margem de lucro dos rótulos de cerveja que não são curva A. Equilibrar o preço de venda é fundamental para compensar a logística.
             </p>
           </div>
-          <div style={{ background: 'var(--surface)', padding: '20px', borderRadius: '8px', border: '1px solid var(--line)' }}>
-            <h3 style={{ fontSize: '15px', color: '#f59e0b', marginBottom: '8px' }}>3. Revisar seu Painel de Parceiro</h3>
-            <p style={{ color: 'var(--muted)', fontSize: '13px', lineHeight: 1.6, margin: 0 }}>
+          <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(251, 191, 36, 0.5)' }}>
+            <h3 style={{ fontSize: '15px', color: '#fde047', marginBottom: '8px' }}>3. Revisar seu Painel de Parceiro</h3>
+            <p style={{ color: '#fef9c3', fontSize: '13px', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>
               Acesse a página do Zé Delivery para Parceiros para obter suporte, verificar as condições do seu contrato atual ou checar o modelo de taxas praticadas na sua região.
             </p>
           </div>
         </div>
 
-        <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
-          <p style={{ color: '#d1fae5', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
+        <div style={{ background: 'rgba(251, 191, 36, 0.2)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(251, 191, 36, 0.4)', position: 'relative', zIndex: 1 }}>
+          <p style={{ color: '#fef08a', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
             <strong>💡 Reflexão Estratégica:</strong> Tomando as rédeas da logística e parando de sangrar margem no frete, o seu lucro bruto voltará a ser real. Dependendo da quantidade de rotas e da sua base fiel de clientes, fechar a torneira do "frete grátis subsidiado pelo dono" pode fazer a operação retornar ao ponto de equilíbrio <strong>em apenas 2 ou 3 meses de ajuste fino</strong>.
           </p>
         </div>
